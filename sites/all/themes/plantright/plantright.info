@@ -1,0 +1,7 @@
+name = PlantRight
+description = PlantRight Drupal theme.
+core = 6.x
+engine = phptemplate
+stylesheets[all][] = css/reset.css
+stylesheets[all][] = css/style.css
+
