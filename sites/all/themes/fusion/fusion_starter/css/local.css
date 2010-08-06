@@ -24,6 +24,32 @@ body {
 	float: left;
 }
 
+div#banner	{
+	border-bottom: solid 1px #4d3c14;
+	background-color: #a14926;
+	margin: 0px;
+	padding: 4px 20px;
+}
+
+div#banner h1	{
+	font-size: 1.8em;
+	margin: 0px;
+	letter-spacing: 1px;
+	color: #ffe;
+	text-align: center;
+}
+
+div#banner h2	{
+	font-size: 2.6em;
+	font-weight: normal;
+	margin: 5px 0px 0px 0px;
+	color: #ffc;
+	text-align: center;
+	padding-top: 5px;
+	border-top: solid 1px #c16946;
+}
+
+
 #sidebar-first {
 	background-color: #78a22e;
 }

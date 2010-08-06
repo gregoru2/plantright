@@ -14,7 +14,7 @@
 <div id="container">
 	<div id="left">
 		<div id="logo"> 
-				<a href="http://plantright.org"><img alt="Plantrightlogo" src="<?php
+				<a href="<?php print $base_path; ?>"><img alt="Plantrightlogo" src="<?php
 global $base_url;
 print $base_url;
 ?>/images/PlantRightLogo.gif" /></a> 
