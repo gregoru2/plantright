@@ -7,6 +7,8 @@ core = 6.x
 engine = phptemplate
 
 stylesheets[all][] = css/fusion-acquia-slate-style.css
+stylesheets[all][] = css/utilities.css
+stylesheets[all][] = css/custom.css
 
 scripts[] = js/jquery.corner.js
 scripts[] = js/fusion-acquia-slate-script.js

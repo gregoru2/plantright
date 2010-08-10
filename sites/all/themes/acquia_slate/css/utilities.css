@@ -1,0 +1,82 @@
+.float-right {
+	float: right;
+	margin-left: 1em;
+}
+
+.float-left {
+	float: left;
+	margin-right: 1em;
+}
+
+.center {
+	align: center;
+}
+
+.left-margin-50 {
+	margin-left: 50px;
+}
+
+.right-margin-50 {
+	margin-right: 50px;
+}
+
+.left-padding-50 {
+	padding-left: 50px;
+}
+
+.right-padding-50 {
+	padding-right:50px;
+}
+
+.bottom-margin-30 {
+	padding-bottom: 30px;
+}
+
+/**
+ * Typographical utilities
+ */
+
+.green {
+	color: #78A22E;
+}
+
+.red {
+	color: #A14926;
+}
+
+.brown {
+	color:#4d3c14;
+}
+
+.upcase {
+	text-transform:uppercase;
+}
+
+.medium {
+	font-size:1.5em;
+	padding-top: .3em;
+	font-weight:100;
+	line-height:100%; 
+}
+
+.big {
+	font-size:2em;
+	padding-top: .3em;
+	font-weight:100;
+	line-height:100%;
+}
+
+.bigger {
+	font-size:2.5em;
+	font-weight:100;
+	line-height:100%;
+}
+
+dt {
+	font-size: 1.2em;
+	color: #A14926; 
+}
+
+.border {
+	border: 1px solid #A14926;
+}

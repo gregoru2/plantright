@@ -1,0 +1,56 @@
+.content-sidebar {
+	float: right;
+	border:1px solid #A14926;
+	width: 200px;
+	margin-left: 1em;
+}
+
+.content-sidebar h3 {
+	text-align: center;
+	background-color: #D8CFB4;
+}
+
+#content-inner .content-sidebar ul {
+	margin-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+.content-inner .content-sidebar ul {
+	margin-bottom: 0.5em;
+}
+
+.content-sidebar li {
+	list-style-type: none;
+	padding: .3em 0;
+}
+
+.content-sidebar li a {
+	text-decoration: underline;
+}
+
+.field-field-common-name {
+	padding-bottom: 1em;
+}
+
+.field-field-common-name .field-label {
+	font-weight: 100;
+	font-size: 1.5em;
+	margin-bottom: .5em;
+}
+
+.field-field-common-name .field-item {
+	font-size: 1.2em;
+}
+
+.node-type-species h3 {
+	padding-top: 1em;
+	font-size: 1.3em;
+}
+
+.field-field-plant-photo {
+}
+
+.field-field-plant-photo .field-item {
+	float: left;
+	margin: .5em .8em;
+}
