@@ -1,3 +1,7 @@
+/**
+ * Content Sidebar - ala FAQs 
+ */
+
 .content-sidebar {
 	float: right;
 	border:1px solid #A14926;
@@ -28,6 +32,10 @@
 	text-decoration: underline;
 }
 
+/**
+ * Full species node
+ */
+
 .field-field-common-name {
 	padding-bottom: 1em;
 }
@@ -53,4 +61,26 @@
 .field-field-plant-photo .field-item {
 	float: left;
 	margin: .5em .8em;
+}
+
+/**
+ * Regions views
+ */
+
+.view-region-invasives-list .field-content img {
+	float: left;
+	margin-top: -.55em;
+	margin-right: 3em; 
+}
+
+.view-region-invasives-list {}
+
+.view-region-invasives-list .views-row {
+	clear: left;
+	margin: 1em 0;
+	padding: 1em;
+}
+
+.view-region-invasives-list .views-row-odd {
+	background-color: #f1f1f1;
 }
