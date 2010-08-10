@@ -84,3 +84,12 @@
 .view-region-invasives-list .views-row-odd {
 	background-color: #f1f1f1;
 }
+
+/**
+ * Map page helpers
+ */
+ 
+#map {
+	height: 360px;
+	overflow: hidden;
+}
