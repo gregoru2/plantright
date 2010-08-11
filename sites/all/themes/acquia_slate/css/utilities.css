@@ -52,6 +52,12 @@
 	text-transform:uppercase;
 }
 
+.small-medium {
+	font-size:1.3em;
+	font-weight:100;
+	line-height:130%;
+}
+
 .medium {
 	font-size:1.5em;
 	padding-top: .3em;
@@ -70,6 +76,19 @@
 	font-size:2.5em;
 	font-weight:100;
 	line-height:100%;
+}
+
+.huge {
+	font-size:3em;
+	font-weight:100;
+	line-height:100%;
+}
+
+.effing-giant {
+	font-size: 6em;
+	font-weight: 100;
+	line-height: 100%;
+	margin-right: 30px;
 }
 
 dt {
