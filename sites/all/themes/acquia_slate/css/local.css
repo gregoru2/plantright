@@ -549,6 +549,7 @@ body {
 .layout-first-main .content-inner-inner, 
 .layout-first-main .preface-bottom-inner {
   padding: 20px;
+  padding-top: 0;
 }
 
 /* Layout - First/Main/Last */
