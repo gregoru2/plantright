@@ -44,6 +44,7 @@
 	font-weight: 100;
 	font-size: 1.5em;
 	margin-bottom: .5em;
+	margin-top: 1em;
 }
 
 .field-field-common-name .field-item {
@@ -53,6 +54,7 @@
 .node-type-species h3 {
 	padding-top: 1em;
 	font-size: 1.3em;
+	border-top: 2px dashed #d7d7d7;
 }
 
 .field-field-plant-photo {
@@ -92,4 +94,33 @@
 #map {
 	height: 360px;
 	overflow: hidden;
+}
+/**
+ * Front Page banner
+ */
+
+#block-block-6 h1 {
+	background-color: #A14926;
+	color: #f8f8f8;
+	padding: .5em 1em;
+	font-weight: 100;
+	text-align: center;
+	border-top: 1px solid #444;
+	border-bottom: 1px solid #444;
+	-moz-box-shadow: 3px 3px 4px #737373;
+	-webkit-box-shadow: 3px 3px 4px #737373;
+	box-shadow: 3px 3px 4px #737373;
+}
+
+#block-block-6.block,
+#block-block-6.content {
+	margin-bottom: 0;
+}
+
+#node-1.node {
+	margin-bottom: 0;
+}
+
+#breadcrumbs.block {
+	margin-bottom: 0;
 }
