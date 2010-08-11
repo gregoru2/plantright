@@ -71,8 +71,15 @@
 
 .view-region-invasives-list .field-content img {
 	float: left;
-	margin-top: -.55em;
+	margin-top: -9px;
 	margin-right: 3em; 
+}
+
+#view-id-region_invasives_list-page_1 .view-content {
+	border: 2px dashed #d7d7d7;
+	border-right: none;
+	border-bottom: none;
+	padding-left: 14px;
 }
 
 .view-region-invasives-list {}
@@ -80,11 +87,15 @@
 .view-region-invasives-list .views-row {
 	clear: left;
 	margin: 1em 0;
-	padding: 1em;
+	padding: 20px;
 }
 
 .view-region-invasives-list .views-row-odd {
 	background-color: #f1f1f1;
+}
+
+.plant-care strong {
+	float:left;
 }
 
 /**
@@ -123,4 +134,69 @@
 
 #breadcrumbs.block {
 	margin-bottom: 0;
+}
+
+/**
+ * Testimonials Styling
+ */
+
+.testimonial-nav a {
+	margin: 0 10px;
+ }
+ 
+.testimonial-nav {
+	margin-bottom: 1.5em;
+	border: 2px dashed #d7d7d7;
+	border-right: none;
+	padding: 9px 0 6px 10px;
+}
+
+#view-id-business_view-page_1 .view-content {
+	padding-left: 20px;
+	border-left: 2px dashed #d7d7d7 ;
+	margin-top: -20px;
+	padding-top: 20px;
+}
+
+#view-id-business_view-page_1 .views-row-odd {
+	background-color: #f1f1f1;
+}
+
+#view-id-business_view-page_1 .views-row {
+	padding: 1.5em;
+	padding-bottom: .5em;
+ }
+ 
+#view-id-business_view-page_1 .views-field-title {
+	font-size: 1.3em;
+	float: left;
+}
+
+#view-id-business_view-page_1 .views-field-name {
+	float: right;
+}
+
+#view-id-business_view-page_1 .views-field-name  .field-content {
+	font-size: 1.2em;
+}
+
+#view-id-business_view-page_1 .views-field-body {
+	clear: both;
+	padding-top: 1em; 
+}
+
+/**
+ * Horticultural Pros Styling
+ */
+
+div.hort-pros {
+	background-color: #d8cfb4;
+	width: 660px;
+	padding: 2em 0;
+}
+
+div.hort-pros .words {
+	list-style-type: none;
+	font-size: 1.8em;
+	margin: 1em 1em 0 4em;
 }
