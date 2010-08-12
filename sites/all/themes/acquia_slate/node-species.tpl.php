@@ -19,7 +19,7 @@
     <?php endif; ?>
 
     <div class="content clearfix">
-      <div class="big red"><?php print $title ?></div>
+      <div class="species-title red"><?php print $title ?></div>
       <?php print $content ?>
     </div>
 
