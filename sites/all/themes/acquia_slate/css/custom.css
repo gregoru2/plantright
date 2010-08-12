@@ -35,20 +35,26 @@
 /**
  * Full species node
  */
+ 
+.species-title {
+	font-size: 2em;
+	font-weight: 100;
+	line-height: 100%;
+	padding: .3em 0;
+} 
 
 .field-field-common-name {
 	padding-bottom: 1em;
 }
 
-.field-field-common-name .field-label {
+.field-field-common-name .field-item .field-label-inline-first {
 	font-weight: 100;
-	font-size: 1.5em;
+	font-size: .75em;
 	margin-bottom: .5em;
-	margin-top: 1em;
 }
 
 .field-field-common-name .field-item {
-	font-size: 1.2em;
+	font-size: 1.5em;
 }
 
 .node-type-species h3 {
@@ -65,6 +71,7 @@
 	margin: .5em .8em;
 }
 
+
 /**
  * Regions views
  */
@@ -78,16 +85,14 @@
 #view-id-region_invasives_list-page_1 .view-content {
 	border: 2px dashed #d7d7d7;
 	border-right: none;
-	border-bottom: none;
-	padding-left: 14px;
+	padding: 1.5em 0 1.5em 1.5em;
 }
 
 .view-region-invasives-list {}
 
 .view-region-invasives-list .views-row {
 	clear: left;
-	margin: 1em 0;
-	padding: 20px;
+	padding: 24px 15px 21px;
 }
 
 .view-region-invasives-list .views-row-odd {
@@ -153,9 +158,11 @@
 
 #view-id-business_view-page_1 .view-content {
 	padding-left: 29px;
-	border-left: 2px dashed #d7d7d7 ;
+	border-left: 2px dashed #d7d7d7;
+	border-bottom: 2px dashed #d7d7d7;
 	margin-top: -20px;
 	padding-top: 29px;
+	padding-bottom: 29px;
 }
 
 #view-id-business_view-page_1 .views-row-odd {
