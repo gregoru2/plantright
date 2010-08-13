@@ -246,3 +246,45 @@ div.hort-pros .number {
 	float: left;
 	font-size: 4em;
 }
+
+/**
+ * Temporary Alternatives helpers until i figure out this Views thing
+ */
+
+div.alternatives {
+	border: 2px dashed #d7d7d7;
+	border-right: none;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+div .alternatives .item {
+	padding: 20px 20px 1px;
+}
+
+div.alternatives .odd {
+	background-color: #f1f1f1;
+}
+
+div.alternatives .commonName {
+	font-size: 1.3em;
+}
+
+div.alternatives .plantCare {
+	float: right;
+	padding:8px 0 0 30px;
+	background-color: #fff;
+	margin-right: 60px;		width: 140px;
+}
+
+div.alternatives ul.altRegions li {
+	margin-left: 16px;
+}
+
+div.alternatives ul.moreList {
+	margin-top: 20px;
+}
+
+div.alternatives ul.moreList li {
+	margin: 5px 0;
+}
