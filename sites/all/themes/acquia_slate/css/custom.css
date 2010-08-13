@@ -85,14 +85,14 @@
 #view-id-region_invasives_list-page_1 .view-content {
 	border: 2px dashed #d7d7d7;
 	border-right: none;
-	padding: 1.5em 0 1.5em 1.5em;
+	padding: 19px 0 1.5em 19px;
 }
 
 .view-region-invasives-list {}
 
 .view-region-invasives-list .views-row {
 	clear: left;
-	padding: 24px 15px 21px;
+	padding: 24px 19px 21px;
 }
 
 .view-region-invasives-list .views-row-odd {
@@ -102,6 +102,40 @@
 .plant-care strong {
 	float:left;
 }
+
+/**
+ * Alternatives
+ */
+ 
+#view-id-region_alteratives_list-page_1 .views-field-title {
+	font-size: 1.5em;
+	color: #78A22E;
+	margin: 0 0 .5em;
+}
+
+#view-id-region_alteratives_list-page_1 .views-field-field-common-name-value {
+	font-size: 1em;
+}
+
+#view-id-region_alteratives_list-page_1 .views-field-field-common-name-value .field-content {
+	font-size: 1.3em;
+}
+
+#view-id-region_alteratives_list-page_1 .views-field-field-plant-photo-fid img {
+	float: left;
+	margin-right: 1em;
+	margin-bottom: .5em;
+	padding-top: 19px;
+}
+
+#view-id-region_alteratives_list-page_1 .views-row {
+	padding: 20px 20px 1px;
+}
+
+#view-id-region_alteratives_list-page_1 .views-row-odd {
+	background-color: #f1f1f1;
+}
+
 
 /**
  * Map page helpers
