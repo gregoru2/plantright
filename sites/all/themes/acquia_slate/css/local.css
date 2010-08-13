@@ -135,7 +135,7 @@ body {
   needed */
 #logo {
   float: left;
-  margin: 0 9px;
+  margin: 0 7px;
 }
 
 /* Link and hover styles for site name */
@@ -543,7 +543,7 @@ body {
 .layout-first-main #main-group {
   border-left: 1px solid #444;
   background-color: #fff;
-	padding-top:15px;
+	padding-top:23px;
 }
 
 .layout-first-main .content-inner-inner, 
