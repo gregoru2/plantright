@@ -1,3 +1,4 @@
+<?php
 $view = new view;
 $view->name = 'region_invasives_list';
 $view->description = 'Region Invasives List';
