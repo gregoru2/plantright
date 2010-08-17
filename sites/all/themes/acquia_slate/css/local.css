@@ -32,6 +32,8 @@ a:visited {
   text-decoration: none;
 }
 
+
+
 /* Hover/active link styles. Don't forget :focus for accessibility */
 a:hover,
 a:focus,
@@ -181,10 +183,10 @@ body {
 }
 
 #header-site-info-inner {
-  background: #d8cfb4;
+  background: #d8cfb4 url(/images/header-bg.jpg) top repeat-x;
   height: 100%;
   float: left;
-  padding: 10px 0;
+  padding: 10px 0 0;
   width: 180px;
   margin: 0;}
 
@@ -192,13 +194,6 @@ body {
   color: #525252;
 }
 
-#header-wrapper {
-  clear: right;
-}
-
-.header-wrapper {
-  color: #666;
-}
 
 /**
  *  Sidebar menu styling fixes
@@ -468,7 +463,8 @@ body {
 /* Header - Search
 -------------------------------------------------------------- */
 #header-group-wrapper {
-	background-color:  }
+	background: url(/images/header-bg.jpg) top repeat-x;
+}
 
 #search-box {
   float: right;
@@ -622,7 +618,7 @@ body {
 }
 
 .footer-wrapper {
-  background: #a14926;
+  background: #a14926 url(/images/footer-bg.jpg) bottom repeat-x;
   color: #fff;
   padding: 20px 0 0 0;
   border-top: 1px solid #444;
@@ -638,7 +634,7 @@ body {
 }
 
 .footer-message-wrapper {
-  background: #a14926;
+  background: #63250d;
   color: #fff;
   padding: 20px 0 0 0;
   text-align: center;
