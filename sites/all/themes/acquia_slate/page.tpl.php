@@ -47,21 +47,7 @@
                   <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
                 </div>
                 <?php endif; ?>
-                <?php if ($site_name || $site_slogan): ?>
-                <div id="site-name-wrapper" class="clearfix">
-                  <?php if ($site_name): ?>
-                  <span id="site-name"<?php if ($site_slogan): ?> class="with-slogan"<?php endif; ?>><a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a></span>
-                  <?php endif; ?>
-                  <?php if ($site_slogan): ?>
-                  <span id="slogan"><?php print $site_slogan; ?></span>
-                  <?php endif; ?>
-                </div><!-- /site-name-wrapper -->
-                <?php endif; ?>
-                <?php if ($header): ?>
-                <div id="header-wrapper" class="header-wrapper">
-                  <?php print $header; ?>
-                </div>
-                <?php endif; ?>
+				<div id="header-wrap"<?php print $header ?></div>
               </div><!-- /header-site-info-inner -->
             </div><!-- /header-site-info -->
             <?php endif; ?>

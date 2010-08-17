@@ -231,20 +231,13 @@
  */
 
 div.hort-pros {
-	background-color: #d8cfb4;
-	width: 660px;
-	padding: 2em 0;
+	width: 600px;
+	padding: 20px 50px;
 }
 
-div.hort-pros .words {
-	list-style-type: none;
-	font-size: 1.8em;
-	margin: 1em 1em 0 4em;
-}
-
-div.hort-pros .number {
-	float: left;
-	font-size: 4em;
+div.home-list {
+	width: 640px;
+	margin: 20px auto;
 }
 
 /**
@@ -287,4 +280,27 @@ div.alternatives ul.moreList {
 
 div.alternatives ul.moreList li {
 	margin: 5px 0;
+}
+
+/**
+ * the Effing HEADER
+ */
+
+#header-wrapper {
+  width:720px;
+	float:right;
+	margin-left:180px;
+}
+
+#header-wrap .block-block-8 {
+	float: right;
+	margin: none;
+}
+
+#header-wrap .block .inner {
+	margin: none;
+}
+
+#header-wrap .content {
+	margin: none;
 }
