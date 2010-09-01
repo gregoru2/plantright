@@ -88,6 +88,19 @@
 	padding: 19px 0 1.5em 19px;
 }
 
+#view-id-region_invasives_list-page_1 .views-field-field-alternatives-nid {
+	float: right;
+	width: 150px;
+	margin-left: 40px;
+	margin-bottom: 20px;
+}
+
+	
+
+#view-id-region_invasives_list-page_1 .views-field-title {
+	margin-left: 105px;
+}
+
 .view-region-invasives-list {}
 
 .view-region-invasives-list .views-row {
@@ -251,8 +264,20 @@ div.alternatives {
 	margin-top: 20px;
 }
 
-div .alternatives .item {
+div.alternatives .item {
 	padding: 20px 20px 1px;
+}
+
+div.alternatives h3 {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 2px dotted #d7d7d7;
+}
+
+div.alternatives .item h3 {
+	margin-top: 0;
+	padding-top: 0;
+	border-top: none;
 }
 
 div.alternatives .odd {
@@ -274,11 +299,12 @@ div.alternatives ul.altRegions li {
 	margin-left: 16px;
 }
 
-div.alternatives ul.moreList {
+div.alternatives ul {
 	margin-top: 20px;
+	margin-left: 20px;
 }
 
-div.alternatives ul.moreList li {
+ div.alternatives ul.moreList li {
 	margin: 5px 0;
 }
 
@@ -286,21 +312,47 @@ div.alternatives ul.moreList li {
  * the Effing HEADER
  */
 
-#header-wrapper {
-  width:720px;
-	float:right;
-	margin-left:180px;
+#pr-header {
+	width: 961px;
+	margin: 0 auto;
+	background: url(/images/header-bg.jpg) top repeat-x;
+	height: 196px;
+	border-right: 1px solid #444;
 }
 
-#header-wrap .block-block-8 {
-	float: right;
-	margin: none;
+#pr-header img {
+	margin: 0; 
+}
+ 
+#header-banner img {
+	width: 780px;
 }
 
-#header-wrap .block .inner {
-	margin: none;
+#header-banner .block,
+#header-banner .block .inner,
+#header-banner .block .inner .content,
+#header-banner .grid16-13,
+#block-block-8,
+#block-block-8 .inner-inner img{
+	margin: 0;
+	float: none;
 }
 
-#header-wrap .content {
-	margin: none;
+#header-banner .block .inner .content p {
+	margin: 0px;}
+	
+/**
+ * News list
+ */
+ 
+#view-id-News-page_1 .views-field-title {
+	font-size: 20px;
+	margin-bottom: 4px;
+}
+
+#view-id-News-page_1 .views-row {
+	clear: both;
+	border-bottom: 2px dashed #d7d7d7;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }

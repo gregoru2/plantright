@@ -29,36 +29,17 @@
       <div id="skip">
         <a href="#main-content-area"><?php print t('Skip to Main Content Area'); ?></a>
       </div>
-
-      <!-- header-top row: width = grid_width -->
-      <?php print theme('grid_row', $header_top, 'header-top', 'full-width', $grid_width); ?>
-
-      <!-- header-group row: width = grid_width -->
-      <div id="header-group-wrapper" class="header-group-wrapper <?php if ($preface_top) { echo "with-preface-top"; } else { echo "without-preface-top"; }?> full-width">
-        <div id="header-group" class="header-group row <?php print $grid_width; ?>">
-          <div id="header-group-inner" class="header-group-inner inner clearfix">
-            <?php print theme('grid_block', $primary_links_tree, 'primary-menu'); ?>
-            <?php if ($logo || $site_name || $site_slogan || $header): ?>
-            <div id="header-site-info" class="header-site-info <?php if ($preface_top) { echo "with-preface-top"; } else { echo "without-preface-top"; }?> block">
-              <div id="header-site-info-inner" class="header-site-info-inner inner clearfix">
-                <?php print theme('grid_block', $search_box, 'search-box'); ?>
-                <?php if ($logo): ?>
-                <div id="logo">
-                  <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
-                </div>
-                <?php endif; ?>
-				<div id="header-wrap"<?php print $header ?></div>
-              </div><!-- /header-site-info-inner -->
-            </div><!-- /header-site-info -->
-            <?php endif; ?>
-          </div><!-- /header-group-inner -->
-
-          <!-- preface-top row: width = grid_block -->
-          <?php print theme('grid_block', $preface_top, 'preface-top'); ?>
-          <?php print theme('grid_block', theme('links', $secondary_links), 'secondary-menu'); ?>
-
-        </div><!-- /header-group -->
-      </div><!-- /header-group-wrapper -->
+		
+		<div id="header-wrapper">
+			<div id="pr-header">
+				<div id="logo">
+					<a href="/"><img src="/images/PlantRightLogo.gif" /></a>
+				</div>
+				<div id="header-banner">
+					<?php print $header ?>
+				</div>
+			</div>
+		</div>
 
       <!-- main row: width = grid_width -->
       <div id="main-wrapper" class="main-wrapper full-width">

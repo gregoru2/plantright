@@ -8,6 +8,10 @@
 	margin-right: 1em;
 }
 
+.clear {	
+	clear: both;
+}
+
 .center {
 	align: center;
 }
@@ -38,6 +42,11 @@
 
 .padding-50 {
 	padding: 50px;
+}
+
+.dashed {
+	border:5px dashed #f1f1f1;
+	margin-bottom: 20px;
 }
 
 /**
@@ -122,34 +131,40 @@ a.green-button:visited {
 a.green-button  {
 	background: #78A22E;
 	height: 60px;
-	border: 1px solid #444;
+	border: 1px solid #ccc;
 	display: inline;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	padding: 12px 20px 4px;
 	margin-left: 40px;
+	background: #78A22E url(/images/gr-button-bg.jpg) top repeat-x;
+	-webkit-background-clip: padding-box;
 }
 
 a.green-button:hover,
 a.green-button:focus,
 a.green-button:active {
   color: #f9f9f9;
-  text-decoration: underline;
+  text-decoration: none;
+ 
 }
 
 a.green-button:hover {
-	background: #78A22E url(/images/gr-button-bg.jpg) top repeat-x;
+	border: 1px solid #444;
+	border-bottom: #ccc;
 }
 
 a.red-button  {
 	background: #A14926;
 	height: 60px;
-	border: 1px solid #444;
+	border: 1px solid #ccc;
 	display: inline;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	padding: 12px 20px 4px;
 	margin-left: 40px;
+	background: #A14926 url(/images/red-button-bg.jpg) top repeat-x;
+	-webkit-background-clip: padding-box;
 }
 
 a.red-button,
@@ -163,10 +178,12 @@ a.red-button:hover,
 a.red-button:focus,
 a.red-button:active {
   color: #f9f9f9;
-  text-decoration: underline;
+  text-decoration: none;
+
 }
 
 a:hover.red-button {
-	background: #A14926 url(/images/red-button-bg.jpg) top repeat-x;
+  border: 1px solid #444;
+  border-bottom: #ccc;	
 }
 
