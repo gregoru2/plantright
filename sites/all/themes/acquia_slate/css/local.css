@@ -533,11 +533,17 @@ body {
 
 .layout-first-main #sidebar-first a {
 	color:#fff;
+	display: block;
 	text-decoration: none;
+	padding: 8px 5px 5px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 }
 
-.layout-first-main #sidebar-first a:hover {
-	text-decoration: underline;
+.layout-first-main #sidebar-first a:hover,
+.layout-first-main #sidebar-first a:active {
+	background-color: #587d17;
+	font-weight: normal;
 }
 
 .layout-first-main #main-group {
@@ -1321,10 +1327,19 @@ div.poll div.bar div.foreground {
   margin: 0 0 10px 0;
 }
 
+.fusion-list-vertical-spacing .inner ul li, 
+.fusion-list-vertical-spacing div.views-row {
+	margin-bottom: 0;
+}
+
 .fusion-list-vertical-spacing .inner ul li {
   list-style: none;
-  margin-bottom: 10px;
+  margin-bottom: 0;
+  font-size: 1.2em;
 }
+
+.menu .fusion-list-vertical-spacing .inner ul li {
+	margin-bottom:0; }
 
 .fusion-list-vertical-spacing .inner ul li a:link,
 .fusion-list-vertical-spacing .inner ul li a:visited {
@@ -1333,10 +1348,10 @@ div.poll div.bar div.foreground {
 
 .fusion-list-vertical-spacing .inner ul li.active-trail a:link,
 .fusion-list-vertical-spacing .inner ul li.active-trail a:visited {
-  background: url(../images/menu-arrow-white.png) no-repeat 0 4px;
   color: #f6f6f6;
-  font-weight: bold;
+  font-weight: normal;
   padding-left: 10px;
+  background: none;
 }
 
 .fusion-list-vertical-spacing .inner ul li a:hover,
