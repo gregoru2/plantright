@@ -19,3 +19,10 @@ function acquia_slate_button($element) {
     return '<span class="button-wrapper"><span class="button"><span><input type="submit" '. (empty($element['#name']) ? '' : 'name="'. $element['#name'] .'" ')  .'id="'. $element['#id'].'" value="'. check_plain($element['#value']) .'" '. drupal_attributes($element['#attributes']) ." /></span></span></span>\n";
   }
 }
+
+function acquia_slate_node_submitted($node) {
+  return t('@datetime',
+    array(
+      '@datetime' => format_date($node->created),
+    ));
+}

@@ -137,7 +137,11 @@ body {
   needed */
 #logo {
   float: left;
-  margin: 0 7px;
+  padding: 0 8px 0 9px;
+  border-left: 1px solid #444;
+  border-right: 1px solid #444;
+  margin-right: 0;
+  height: 196px;
 }
 
 /* Link and hover styles for site name */
@@ -169,6 +173,7 @@ body {
   border: 0;
   margin-bottom: 0;
   padding: 0;
+  background: url(/images/header-bg.jpg) top repeat-x;
 }
 
 
@@ -183,7 +188,6 @@ body {
 }
 
 #header-site-info-inner {
-  background: #d8cfb4 url(/images/header-bg.jpg) top repeat-x;
   height: 100%;
   float: left;
   padding: 10px 0 0;
@@ -607,7 +611,7 @@ body {
 }
 
 #content-inner ul {
-	margin-left: 2em;
+	margin-left: 20px;
 }
 
 
