@@ -42,6 +42,7 @@ a:active {
   text-decoration: underline;
 }
 
+
 li a.active {
   color: #fff;
 }
@@ -116,11 +117,12 @@ h6 {
 -------------------------------------------------------------- */
 /* Add padding here if desired so edges of theme aren't flush with browser window */
 html {
+background: none;
 }
 
 body {
   background: #d8cfb4;
-  color: #444;
+  color: #f9f9f9;
 }
 
 
@@ -519,7 +521,7 @@ body {
 }
 
 #main {
-  background-color: #78a22e;
+  background-color: #77a32f;
   border-left: 1px solid #444;
   border-right: 1px solid #444;
   border-top: 1px solid #444;
@@ -535,16 +537,22 @@ body {
 	color:#fff;
 	display: block;
 	text-decoration: none;
-	padding: 8px 5px 5px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+	padding: 8px 5px;
+	border-top:1px solid #80b534;
+	border-bottom:1px solid #69922a;
 }
 
 .layout-first-main #sidebar-first a:hover,
 .layout-first-main #sidebar-first a:active {
-	background-color: #587d17;
+	border-top-color: #5c8226;
+	border-bottom-color: #729e2d;
 	font-weight: normal;
 }
+
+.layout-first-main #sidebar-first a:active {
+	padding:9px 5px 7px;
+}
+
 
 .layout-first-main #main-group {
   border-left: 1px solid #444;
@@ -614,6 +622,10 @@ body {
 -------------------------------------------------------------- */
 .content {
   margin-bottom: 20px;
+}
+
+#main-content {
+	color: #444;
 }
 
 #content-inner ul {
@@ -919,21 +931,27 @@ span.button-wrapper {
 }
 
 span.button {
-  background: transparent url(../images/submit-button-right.png) no-repeat right top;
+  background: transparent url(/images/gr-button-bg.jpg) repeat-x right top;
   display: -moz-inline-box;        /* for FF2 */
   display: inline-block;
   height: 33px;
   padding: 0 10px 0 0;
   position: relative;
+  
+  border: 1px solid #ccc;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
 span.button span {
-  background: transparent url(../images/submit-button.png) no-repeat left top;
+  background: transparent url(/images/gr-button-bg.jpg) repeat-x left top;
   display: -moz-inline-box;        /* for FF2 */
   display: inline-block;
   height: 33px;
   margin-right: -2px;
   padding: 0 0 0 9px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
 span.button span input {
@@ -949,17 +967,17 @@ span.button span input {
 }
 
 span.button-wrapper:hover span.button {
-  background-position: right -33px;
+  border-color: #444;
 }
-
+/*
 span.button-wrapper:hover span.button span {
-  background-position: left -33px;
+  background-position: bottom;
 }
 
 span.button span input:hover {
   background-color: transparent;
 }
-
+*/
 
 /* Tables
 -------------------------------------------------------------- */
