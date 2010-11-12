@@ -21,6 +21,8 @@
   <?php print $local_styles; ?>
   <?php endif; ?>
   <?php print $scripts; ?>
+  <script type="text/javascript" src="http://use.typekit.com/jur2zfp.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
 
 <body id="<?php print $body_id; ?>" class="<?php print $body_classes; ?> <?php print $skinr; ?>">

@@ -97,12 +97,9 @@ h6 {
 -------------------------------------------------------------- */
 /* Add padding here if desired so edges of theme aren't flush with browser window */
 html {
-  background: #000;
 }
 
 body {
-  background: #292929;
-  color: #F0F0F0;
 }
 
 

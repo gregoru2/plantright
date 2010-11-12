@@ -85,7 +85,12 @@
 #view-id-region_invasives_list-page_1 .view-content {
 	border: 2px dashed #d7d7d7;
 	border-right: none;
+	border-top:none;
 	padding: 19px 0 1.5em 19px;
+}
+
+#view-id-region_invasives_list-page_1 .testimonial-nav {
+	margin-bottom: 0;
 }
 
 #view-id-region_invasives_list-page_1 .views-field-field-alternatives-nid {
@@ -193,7 +198,7 @@
  */
 
 .testimonial-nav a {
-	padding: 10px 10px 7px;
+	padding: 10px 8px 7px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
  } 
