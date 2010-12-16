@@ -90,7 +90,9 @@
 	font-size:2em;
 	padding-top: .3em;
 	line-height:100%;
+	text-shadow: 0.075em 0.075em 0.1em #999;
 }
+
 
 .bigger {
 	font-size:2.5em;

@@ -32,7 +32,10 @@ a:visited {
   text-decoration: none;
 }
 
-
+.intro-banner a {
+  color: #eee;
+  text-decoration: underline;
+}
 
 /* Hover/active link styles. Don't forget :focus for accessibility */
 a:hover,
@@ -530,7 +533,6 @@ body {
 /* Layout - First/Main */
 .layout-first-main #sidebar-first {
   margin-left: -1px;
-  padding-top: 20px;
 }
 
 .layout-first-main #sidebar-first a {
@@ -540,6 +542,7 @@ body {
 	padding: 8px 5px;
 	border-top:1px solid #80b534;
 	border-bottom:1px solid #69922a;
+	text-shadow: 0.1em 0.1em 0.15em #333;
 }
 
 .layout-first-main #sidebar-first a:hover,

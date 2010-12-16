@@ -33,6 +33,21 @@
 }
 
 /**
+ * Donate now button
+ */
+ 
+#block-block-9 .content,
+#block-block-9 p {
+  margin-bottom: 0;
+}
+
+.layout-first-main #sidebar-first #block-block-9 a {
+  border-top:none;
+  border-bottom: none;
+  padding:0.5em 5px 0;
+}
+
+/**
  * Full species node
  */
  
@@ -167,17 +182,23 @@
  * Front Page banner
  */
 
-#block-block-6 h1 {
+#block-block-6 h1,
+.intro-banner {
 	background-color: #A14926;
 	color: #f8f8f8;
 	padding: .5em 1em;
 	font-weight: 100;
 	text-align: center;
-	border-top: 1px solid #444;
+	border-top: 1px solid #eee;
 	border-bottom: 1px solid #444;
 	-moz-box-shadow: 3px 3px 4px #737373;
 	-webkit-box-shadow: 3px 3px 4px #737373;
 	box-shadow: 3px 3px 4px #737373;
+}
+
+.intro-banner a {
+  color: #eee;
+  text-decoration: underline;
 }
 
 #block-block-6.block,
