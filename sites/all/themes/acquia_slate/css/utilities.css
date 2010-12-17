@@ -86,8 +86,10 @@
 	line-height:100%; 
 }
 
-.big {
+.big,
+p.big {
 	font-size:2em;
+	margin:0 .5em 0 0;
 	padding-top: .3em;
 	line-height:100%;
 	text-shadow: 0.075em 0.075em 0.1em #999;
