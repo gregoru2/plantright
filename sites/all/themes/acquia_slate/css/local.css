@@ -542,7 +542,7 @@ body {
 	padding: 8px 5px;
 	border-top:1px solid #80b534;
 	border-bottom:1px solid #69922a;
-	text-shadow: 0.1em 0.1em 0.15em #333;
+	text-shadow: 1px 1px 1px #444;
 }
 
 .layout-first-main #sidebar-first a:hover,

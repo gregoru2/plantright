@@ -53,7 +53,7 @@
 }
 
 #block-block-9 .inner-inner {
-	background: #94CB38;
+	background: #6E9926;
 	-moz-border-radius:8px;
 	border-radius:8px;
 }
@@ -400,6 +400,47 @@ div.alternatives ul {
 	margin-top: 1em;
 	margin-bottom: 1em;
 }
+
+/**
+ * User Login form Styles
+ */
+
+#block-menu-primary-links {
+	margin-bottom:0;
+}
+
+#block-user-0 {
+	padding-top:10px;
+	background:#678D25;
+}
+
+#block-user-0 h2.title {
+	font-size:1.5em;
+	text-shadow:1px 1px 1px #444;
+}
+
+#block-user-0 #user-login-form label {
+	font-weight:normal;
+}
+
+#block-user-0 #user-login-form input {
+	font-size:1em;
+	width:100%;
+	padding:4px 5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+}
+
+#block-user-0 .button {
+	border:none;
+	width:45%;
+	margin-left:25%;
+}
+
+#block-user-0 input#edit-submit {
+	background:none;
+}
+
 
 /**
  * new User Registration form styles
