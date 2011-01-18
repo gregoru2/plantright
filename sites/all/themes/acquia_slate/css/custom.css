@@ -44,7 +44,18 @@
 .layout-first-main #sidebar-first #block-block-9 a {
   border-top:none;
   border-bottom: none;
-  padding:0.5em 5px 0;
+  padding:6px 5px 0;
+}
+
+.layout-first-main #sidebar-first #block-block-9 a:active {
+	padding-top:8px;
+	margin-bottom:-2px;
+}
+
+#block-block-9 .inner-inner {
+	background: #5B7C23;
+	-moz-border-radius:8px;
+	border-radius:8px;
 }
 
 /**
