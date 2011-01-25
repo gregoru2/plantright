@@ -491,14 +491,22 @@ div.alternatives ul {
  * new User Registration form styles
  */
 
-#user-register fieldset {
+#user-register fieldset,
+#user-login,
+#user-pass {
 	border:none;
 	-moz-border-radius:8px;
 	border-radius:8px;
 	background:#EEE;
 }
 
-#user-register fieldset legend {
+#user-login, 
+#user-pass {
+	padding:15px;
+}
+
+#user-register fieldset legend,
+#user-login legend {
 	background:#fff;
 	font-size:1.2em;
 	border:1px solid #BEBEBE;
@@ -508,7 +516,9 @@ div.alternatives ul {
 	margin-bottom:5px;
 }
 
-#user-register fieldset input {
+#user-register fieldset input,
+#user-login input.form-text,
+#user-pass input.form-text {
 	background:#fff;
 	font-size:1.3em;
 	padding:2px 5px;
@@ -517,5 +527,9 @@ div.alternatives ul {
 	border:1px solid #bebebe;
 }
 
-#user-register .form-submit {
+#user-register span.button,
+#user-login span.button,
+#user-pass span.button {
+	border:none;
+	-moz-box-shadow:2px 2px 2px #999;
 }
