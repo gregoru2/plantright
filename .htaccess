@@ -114,3 +114,5 @@ DirectoryIndex index.php
 </IfModule>
 
 # $Id: .htaccess,v 1.90.2.5 2010/02/02 07:25:22 dries Exp $
+
+AddHandler php5-script .php
