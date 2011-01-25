@@ -550,3 +550,12 @@ div.alternatives ul {
 	border:none;
 	-moz-box-shadow:2px 2px 2px #999;
 }
+
+.profile dl {
+	margin-bottom:15px;
+}
+
+.profile dl {
+	font-weight:normal;
+	coloe:#444;
+}
