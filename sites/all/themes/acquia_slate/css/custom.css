@@ -493,7 +493,10 @@ div.alternatives ul {
 
 #user-register fieldset,
 #user-login,
-#user-pass {
+#user-pass,
+#user-pass-reset,
+#user-profile-form fieldset,
+#contact-mail-user {
 	border:none;
 	-moz-border-radius:8px;
 	border-radius:8px;
@@ -501,12 +504,15 @@ div.alternatives ul {
 }
 
 #user-login, 
-#user-pass {
+#user-pass,
+#user-pass-reset,
+#contact-mail-user {
 	padding:15px;
 }
 
 #user-register fieldset legend,
-#user-login legend {
+#user-login legend,
+#user-profile-form fieldset legend {
 	background:#fff;
 	font-size:1.2em;
 	border:1px solid #BEBEBE;
@@ -518,7 +524,10 @@ div.alternatives ul {
 
 #user-register fieldset input,
 #user-login input.form-text,
-#user-pass input.form-text {
+#user-pass input.form-text,
+#user-profile-form fieldset input,
+#contact-mail-user input.form-text,
+#contact-mail-user textarea {
 	background:#fff;
 	font-size:1.3em;
 	padding:2px 5px;
@@ -529,7 +538,10 @@ div.alternatives ul {
 
 #user-register span.button,
 #user-login span.button,
-#user-pass span.button {
+#user-pass span.button,
+#user-pass-reset span.button,
+#user-profile-form span.button,
+#contact-mail-user span.button {
 	border:none;
 	-moz-box-shadow:2px 2px 2px #999;
 }
