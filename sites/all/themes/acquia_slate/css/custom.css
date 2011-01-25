@@ -58,6 +58,10 @@
 	border-radius:8px;
 }
 
+#block-block-9 .inner-inner:hover {
+	background:#415C16;
+}
+
 /**
  * Full species node
  */
