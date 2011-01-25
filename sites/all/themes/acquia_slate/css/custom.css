@@ -58,6 +58,13 @@
 	border-radius:8px;
 }
 
+<<<<<<< HEAD:sites/all/themes/acquia_slate/css/custom.css
+=======
+#block-block-9 .inner-inner:hover {
+	background:#415C16;
+}
+
+>>>>>>> d8fd7063820b7c76919a36494cf0567e4ace8ba0:sites/all/themes/acquia_slate/css/custom.css
 /**
  * Full species node
  */

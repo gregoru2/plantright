@@ -1,7 +1,15 @@
 sites/default/settings.php
 cache/*
+<<<<<<< HEAD:.gitignore
+=======
+tmp/*
+>>>>>>> d8fd7063820b7c76919a36494cf0567e4ace8ba0:.gitignore
 sites/default/files/backup_migrate/*
 sites/default/files/css/*
 sites/default/files/js/*
+<<<<<<< HEAD:.gitignore
 backup/*
 .htaccess
+=======
+backup/*
+>>>>>>> d8fd7063820b7c76919a36494cf0567e4ace8ba0:.gitignore
