@@ -41,7 +41,6 @@ a:visited {
 a:hover,
 a:focus,
 a:active {
-  color: #EBDCC7;
   text-decoration: underline;
 }
 
@@ -975,16 +974,17 @@ span.button span input {
   white-space: nowrap !important;
 }
 
-span.button-wrapper:hover span.button {
-  background:#466417;
-}
-
-span.button-wrapper:hover span.button span {
-  background:#466417;
-}
-
+span.button-wrapper:hover span.button,
+span.button-wrapper:hover span.button span,
 span.button span input:hover {
   background:#466417;
+}
+
+span.button-wrapper:active span.button,
+span.button-wrapper:active span.button span,
+span.button span input:active {
+	position:relative;
+	top:1px;
 }
 
 
