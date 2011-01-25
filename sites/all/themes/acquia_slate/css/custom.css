@@ -409,12 +409,14 @@ div.alternatives ul {
 	margin-bottom:0;
 }
 
-#block-user-0 {
+#block-user-0,
+#sidebar-first #block-admin-account {
 	padding-top:10px;
 	background:#678D25;
 }
 
-#block-user-0 h2.title {
+#block-user-0 h2.title,
+#block-admin-account h2.block-title {
 	font-size:1.5em;
 	text-shadow:1px 1px 1px #444;
 }
@@ -437,8 +439,8 @@ div.alternatives ul {
 	border-left-color:#496616;
 	background:#334813;
 	background:-moz-linear-gradient(top, #466417, #334813);
-	background:-webkit-gradient(linear, left top, left bottom, from(#466417), to(#334813));
-	width:150px;
+/*	background:-webkit-gradient(linear, left top, left bottom, from(#466417), to(#334813));
+*/	width:150px;
 	-moz-border-radius:3px;
 	border-radius:3px;
 	text-align:center;
@@ -446,6 +448,9 @@ div.alternatives ul {
 	-webkit-box-shadow:1px 1px 2px #374E0E;
 	box-shadow:1px 1px 2px #374E0E;
 	font-size:1.1em;
+	-webkit-transition:background 0.2s ease;
+	-o-transition:background 0.2s ease;
+	transition:background 0.2s ease;
 }
 
 #block-user-0 .button:hover {
@@ -466,28 +471,42 @@ div.alternatives ul {
 	background:none;
 }
 
-#sidebar-first #block-user-0 .item-list a {
+#sidebar-first #block-user-0 .item-list a,
+#sidebar-first #block-admin-account .item-list a {
 	border-top:1px solid #72A32E;
 	border-bottom:1px solid #5B8023;
 }
 
-#sidebar-first #block-user-0 .item-list a:hover {
+#sidebar-first #block-user-0 .item-list a:hover,
+#sidebar-first #block-admin-account .item-list a:hover {
 	border-top:1px solid #5B8023;
 	border-bottom:1px solid #678D25;
+}
+
+#block-admin-account li.leaf {
+	padding-bottom:0;
 }
 
 /**
  * new User Registration form styles
  */
 
-#user-register fieldset {
+#user-register fieldset,
+#user-login,
+#user-pass {
 	border:none;
 	-moz-border-radius:8px;
 	border-radius:8px;
 	background:#EEE;
 }
 
-#user-register fieldset legend {
+#user-login, 
+#user-pass {
+	padding:15px;
+}
+
+#user-register fieldset legend,
+#user-login legend {
 	background:#fff;
 	font-size:1.2em;
 	border:1px solid #BEBEBE;
@@ -497,7 +516,9 @@ div.alternatives ul {
 	margin-bottom:5px;
 }
 
-#user-register fieldset input {
+#user-register fieldset input,
+#user-login input.form-text,
+#user-pass input.form-text {
 	background:#fff;
 	font-size:1.3em;
 	padding:2px 5px;
@@ -506,5 +527,9 @@ div.alternatives ul {
 	border:1px solid #bebebe;
 }
 
-#user-register .form-submit {
+#user-register span.button,
+#user-login span.button,
+#user-pass span.button {
+	border:none;
+	-moz-box-shadow:2px 2px 2px #999;
 }

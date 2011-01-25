@@ -934,20 +934,26 @@ span.button-wrapper {
 }
 
 span.button {
-  background: transparent url(/images/gr-button-bg.jpg) repeat-x right top;
+  background:#334813;
+	background:-moz-linear-gradient(top, #466417, #334813);
   display: -moz-inline-box;        /* for FF2 */
   display: inline-block;
   height: 33px;
   padding: 0 10px 0 0;
   position: relative;
-  
+  text-align:center;
+	-moz-box-shadow:1px 1px 2px #374E0E;
+	-webkit-box-shadow:1px 1px 2px #374E0E;
+	box-shadow:1px 1px 2px #374E0E;
+	font-size:1.1em;
   border: 1px solid #ccc;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
 }
 
 span.button span {
-  background: transparent url(/images/gr-button-bg.jpg) repeat-x left top;
+  background:#334813;
+	background:-moz-linear-gradient(top, #466417, #334813);
   display: -moz-inline-box;        /* for FF2 */
   display: inline-block;
   height: 33px;
@@ -970,17 +976,17 @@ span.button span input {
 }
 
 span.button-wrapper:hover span.button {
-  border-color: #444;
+  background:#466417;
 }
-/*
+
 span.button-wrapper:hover span.button span {
-  background-position: bottom;
+  background:#466417;
 }
 
 span.button span input:hover {
-  background-color: transparent;
+  background:#466417;
 }
-*/
+
 
 /* Tables
 -------------------------------------------------------------- */
