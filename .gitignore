@@ -1,6 +1,5 @@
 sites/default/settings.php
 cache/*
-tmp/*
 sites/default/files/backup_migrate/*
 sites/default/files/css/*
 sites/default/files/js/*
