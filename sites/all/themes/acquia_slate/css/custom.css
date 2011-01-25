@@ -549,9 +549,9 @@ div.alternatives ul {
 }
 
 .profile dl {
-	margin-bottom:15px;
+	margin-bottom:30px;
 }
 
-.profile dl {
+.profile dt {
 	font-weight:normal;
 }
