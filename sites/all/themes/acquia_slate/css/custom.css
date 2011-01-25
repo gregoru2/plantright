@@ -493,14 +493,15 @@ div.alternatives ul {
 }
 
 /**
- * new User Registration form styles
+ * User Form styles
  */
 
 #user-register fieldset,
 #user-login,
 #user-pass,
 #user-profile-form fieldset,
-#contact-mail-user {
+#contact-mail-user,
+#user-pass-reset {
 	border:none;
 	-moz-border-radius:8px;
 	border-radius:8px;
@@ -509,7 +510,8 @@ div.alternatives ul {
 
 #user-login, 
 #user-pass,
-#contact-mail-user {
+#contact-mail-user,
+#user-pass-reset {
 	padding:15px;
 }
 
@@ -543,7 +545,8 @@ div.alternatives ul {
 #user-login span.button,
 #user-pass span.button,
 #user-profile-form span.button,
-#contact-mail-user span.button {
+#contact-mail-user span.button,
+#user-pass-reset span.button {
 	border:none;
 	-moz-box-shadow:2px 2px 2px #999;
 }
