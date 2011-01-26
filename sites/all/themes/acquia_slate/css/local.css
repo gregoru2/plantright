@@ -939,13 +939,12 @@ span.button {
   display: inline-block;
   height: 33px;
   padding: 0 10px 0 0;
-  position: relative;
   text-align:center;
 	-moz-box-shadow:1px 1px 2px #374E0E;
 	-webkit-box-shadow:1px 1px 2px #374E0E;
 	box-shadow:1px 1px 2px #374E0E;
 	font-size:1.1em;
-  border: 1px solid #ccc;
+  border: none;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
 }
@@ -977,12 +976,10 @@ span.button span input {
 span.button-wrapper:hover span.button,
 span.button-wrapper:hover span.button span,
 span.button span input:hover {
-  background:#466417;
+  background:#4F7319;
 }
 
-span.button-wrapper:active span.button,
-span.button-wrapper:active span.button span,
-span.button span input:active {
+span.button-wrapper:active span.button {
 	position:relative;
 	top:1px;
 }
