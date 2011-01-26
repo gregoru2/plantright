@@ -1,4 +1,13 @@
 /**
+ * Intro banner
+ */
+
+.intro-banner a {
+  color: #eee;
+  text-decoration: underline;
+}
+
+/**
  * Content Sidebar - ala FAQs 
  */
 
@@ -196,31 +205,34 @@
 	overflow: hidden;
 }
 /**
- * Front Page banner
+ * Big RED banner
  */
 
-#block-block-6 h1,
 .intro-banner {
 	background-color: #A14926;
 	color: #f8f8f8;
+	font-size:1.75em;
+	line-height:1em;
 	padding: .5em 1em;
 	font-weight: 100;
 	text-align: center;
 	border-top: 1px solid #eee;
 	border-bottom: 1px solid #444;
-	-moz-box-shadow: 3px 3px 4px #737373;
-	-webkit-box-shadow: 3px 3px 4px #737373;
-	box-shadow: 3px 3px 4px #737373;
+	-moz-box-shadow: 2px 2px 3px #777;
+	-webkit-box-shadow: 2px 2px 3px #777;
+	box-shadow: 2px 2px 3px #777;
+	margin-bottom:30px;
+	text-shadow:1px 1px 2px #444;
 }
 
 .intro-banner a {
   color: #eee;
-  text-decoration: underline;
+	text-shadow:none;
+	color:#fff;
 }
 
-#block-block-6.block,
-#block-block-6.content {
-	margin-bottom: 0;
+.intro-banner a:hover {
+	text-decoration:none;
 }
 
 #node-1.node {
