@@ -697,7 +697,7 @@ h2.title a:active {
 div.links,
 .node div.links,
 div.terms {
-  background: #444;
+  background: #eee;
   font-size: 107.6%; /* 14px/13px */
   margin: 0 0 10px 0;
   padding: 5px 10px;
@@ -711,7 +711,7 @@ div.terms ul {
 
 div.links ul li,
 div.terms ul li {
-  color: #C6C6C6;
+  color: #444;
   font-weight: normal;
   line-height: 130%;
 }
@@ -720,7 +720,7 @@ div.links ul li a:link,
 div.links ul li a:visited,
 div.terms ul li a:link,
 div.terms ul li a:visited {
-  color: #f0f0f0;
+	color:#A14926;
   font-weight: bold;
   padding-right: 14px;
 }
@@ -729,7 +729,7 @@ div.links ul li a:hover,
 div.links ul li a:focus,
 div.terms ul li a:hover,
 div.terms ul li a:focus {
-  color: #dfb77c
+  color:#A14926;
 }
 
 .picture {
