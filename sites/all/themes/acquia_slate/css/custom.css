@@ -580,3 +580,12 @@ div.alternatives ul {
 .profile dt {
 	font-weight:normal;
 }
+
+/**
+ * Nursery Nodes, probably nobody will even see this 
+ */
+
+.node-type-nursery .field-label-inline-first {
+	display:inline-block;
+	width:150px;
+}
