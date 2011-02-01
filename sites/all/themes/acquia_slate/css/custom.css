@@ -420,7 +420,7 @@ div.alternatives ul {
 }
 
 /**
- * User Login form Styles
+ * User Login form Styles, Survey Menu styles
  */
 
 #block-menu-primary-links {
@@ -428,13 +428,15 @@ div.alternatives ul {
 }
 
 #block-user-0,
-#sidebar-first #block-admin-account {
+#sidebar-first #block-admin-account,
+#sidebar-first #block-menu-menu-survey-menu {
 	padding-top:10px;
 	background:#678D25;
 }
 
 #block-user-0 h2.title,
-#block-admin-account h2.block-title {
+#block-admin-account h2.block-title,
+#block-menu-menu-survey-menu h2.block-title {
 	font-size:1.5em;
 	text-shadow:1px 1px 1px #444;
 }
@@ -490,18 +492,21 @@ div.alternatives ul {
 }
 
 #sidebar-first #block-user-0 .item-list a,
-#sidebar-first #block-admin-account .item-list a {
+#sidebar-first #block-admin-account .item-list a,
+#sidebar-first #block-menu-menu-survey-menu .menu a {
 	border-top:1px solid #72A32E;
 	border-bottom:1px solid #5B8023;
 }
 
 #sidebar-first #block-user-0 .item-list a:hover,
-#sidebar-first #block-admin-account .item-list a:hover {
+#sidebar-first #block-admin-account .item-list a:hover,
+#sidebar-first #block-menu-menu-survey-menu .menu a:hover {
 	border-top:1px solid #5B8023;
 	border-bottom:1px solid #678D25;
 }
 
-#block-admin-account li.leaf {
+#block-admin-account li.leaf,
+#block-menu-menu-survey-menu li.leaf {
 	padding-bottom:0;
 }
 

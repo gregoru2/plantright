@@ -45,6 +45,8 @@ Upload to the website the list of nurseries to survey (by February 16, 2011) –
 	
 TODO - Get list of nurseries
 TODO - Research node_import module for bulk import of Nursery.csv
+TODO - research Flags handbook for how to polish up the flagging experience. http://drupal.org/handbook/modules/flag
+
 	
 Create system for submitting data (by March 1, 2011). - est. 20 hours
 	Database with open ended fields where people can submit survey data
