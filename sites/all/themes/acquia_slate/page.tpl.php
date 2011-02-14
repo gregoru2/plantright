@@ -35,7 +35,7 @@
 		<div id="header-wrapper">
 			<div id="pr-header">
 				<div id="logo">
-					<a href="/"><img src="/images/PlantRightLogo.gif" /></a>
+					<a href="/"><img src="/images/PlantRightLogo.gif" alt="PlantRight.org"/></a>
 				</div>
 				<div id="header-banner">
 					<?php print $header ?>
