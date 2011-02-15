@@ -790,18 +790,20 @@ ul.pager {
 ul.pager a:link,
 ul.pager a:visited,
 ul.pager li.pager-current {
-  border-color: #000;
-  color: #DFB77C;
+  border-color: #444;
+	-moz-border-radius:3px;
+	border-radius:3px;
+  color: #A14926;
 }
 
 ul.pager li.pager-current {
-  background-color: #000;
+  background-color: #eee;
 }
 
 ul.pager a:hover,
 ul.pager a:active,
 ul.pager a:focus {
-  background-color: #000;
+  background-color: #eee;
 }
 
 /* Forms
@@ -1090,7 +1092,7 @@ tr.dblog-error.even {
 
 /* Sticky header */
 table.sticky-header {
-  background: #000;
+  background: #fff;
 }
 
 table.sticky-header thead th {
