@@ -6,11 +6,11 @@
  */
 
 function score_quiz_quiz_finished($quiz, $score, $rid) {
-	global $user
+	global $user;
 	
 	if($score >= 80) {
-		$query = db_query('INSERT INTO {users_roles} (uid, rid) VALUES (%d, %d)', $user->uid, 4);
-		drupal_set_message(t('Congratulations, you passed the quiz.  You may procede to the instructions page.'));
+		db_query('INSERT INTO {users_roles} (uid, rid) VALUES (%d, %d)', $user->uid, 4);
+		drupal_set_message(t('Congratulations, you passed the quiz.  You may procede to the <a href="/spring-nursery-survey/instructions">instructions page</a>.'));
 	}
 	else {
 		drupal_set_message(t('You did not pass the quiz.  Please try again.'));
