@@ -1,5 +1,5 @@
 ; $Id$
 name = Score Quiz
-description = Scores the results of the PlantRight spring survey quiz.
+description = Scores the results of the PlantRight spring survey quiz and grants access privileges to users who pass.
 package = PlantRight
 core = 6.x
