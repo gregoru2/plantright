@@ -5,14 +5,16 @@
  * Scores the user's quiz and givers them privileges if they pass.
  */
 
-function score_quiz_quiz_finished($quiz, $score, $rid) {
+function score_quiz_quiz_finished($quiz, $score) {
 	global $user;
 	
 	if($score[percentage_score] >= 80) {
 		db_query('INSERT INTO {users_roles} (uid, rid) VALUES (%d, %d)', $user->uid, 4);
 		drupal_set_message(t('Congratulations, you passed the quiz.  You may procede to the <a href="/spring-nursery-survey/instructions">instructions page</a>.'));
+		watchdog('quiz', 'User %user passed the quiz.', array('%user' => $user->name));
 	}
 	else {
 		drupal_set_message(t('You did not pass the quiz.  <a href="/spring-survey-quiz">Please try again</a>.'));
+		watchdog('quiz', 'User %user did not pass the quiz.', array('%user' => $user->name));
 	}
 }
