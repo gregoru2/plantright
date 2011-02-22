@@ -231,6 +231,10 @@
 	color:#fff;
 }
 
+.intro-banner.green {
+	background-color:#78A22E;
+}
+
 .intro-banner a:hover {
 	text-decoration:none;
 }
