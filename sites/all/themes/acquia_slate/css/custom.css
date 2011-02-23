@@ -530,7 +530,8 @@ div.alternatives ul {
 #contact-mail-user,
 #user-pass-reset,
 #node-form,
-#node-form fieldset {
+#node-form fieldset,
+#webform-client-form-854 fieldset {
 	border:none;
 	-moz-border-radius:8px;
 	border-radius:8px;
@@ -552,7 +553,8 @@ div.alternatives ul {
 #user-register fieldset legend,
 #user-login legend,
 #user-profile-form legend,
-#node-form legend {
+#node-form legend,
+#webform-client-form-854 legend {
 	background:#fff;
 	font-size:1.2em;
 	border:1px solid #BEBEBE;
@@ -568,7 +570,8 @@ div.alternatives ul {
 #user-profile-form input.form-text,
 #contact-mail-user input.form-text,
 #contact-mail-user textarea,
-#node-form input.form-text {
+#node-form input.form-text,
+#webform-client-form-854 input.form-text {
 	background:#fff;
 	font-size:1.3em;
 	padding:2px 5px;
@@ -579,6 +582,28 @@ div.alternatives ul {
 	border-left-color:#ddd;
 	-webkit-box-shadow:1px 1px 2px #bbb;
 	-moz-box-shadow:1px 1px 2px #bbb;
+}
+
+#webform-client-form-854 input.form-text {
+	width:60%;
+	color:#777;
+}
+
+#webform-client-form-854 .form-item {
+	margin-bottom:.5em;
+	margin-top:.5em;
+}
+
+#webform-client-form-854 .form-textarea {
+	font-size:1em;
+	background:#fff;
+}
+
+#webform-client-form-854 .fieldset-wrapper {
+	background:#f6f6f6;
+	padding-left:15px;
+	-moz-border-radius:5px;
+	border-radius:5px;
 }
 
 #user-register span.button,

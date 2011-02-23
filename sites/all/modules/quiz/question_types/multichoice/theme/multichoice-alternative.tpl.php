@@ -1,5 +1,5 @@
 <?php
-// $Id: multichoice-alternative.tpl.php,v 1.1.2.6 2010/08/03 09:37:12 falcon Exp $
+// $Id: multichoice-alternative.tpl.php,v 1.1.2.7 2010/11/05 16:14:47 falcon Exp $
 /**
  * @file
  * Handles the layout of the multichoice answering form
@@ -10,7 +10,7 @@
  */
 
 ?>
-<?php 
+<?php
 $p = drupal_get_path('module', 'multichoice');
 drupal_add_css($p .'/theme/multichoice.css', 'module', 'all');
 
