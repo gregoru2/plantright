@@ -11,12 +11,12 @@ function score_quiz_quiz_finished($quiz, $score) {
 	if($score[percentage_score] >= 80) {
 		db_query('INSERT INTO {users_roles} (uid, rid) VALUES (%d, %d)', $user->uid, 4);
 		drupal_set_message(t('Congratulations, you passed the quiz!'));
-		drupal_goto($path = '/spring-nursery-survey/instructions');
+		drupal_goto($path = 'spring-nursery-survey/instructions');
 		watchdog('quiz', 'User %user passed the quiz.', array('%user' => $user->name));
 	}
 	else {
 		drupal_set_message(t('You did not pass the quiz.  Please try again.'));
-		drupal_goto($path = '/spring-survey-quiz');
+		drupal_goto($path = 'spring-survey-quiz');
 		watchdog('quiz', 'User %user did not pass the quiz.', array('%user' => $user->name));
 	}
 }
