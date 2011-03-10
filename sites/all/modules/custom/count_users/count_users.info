@@ -1,0 +1,5 @@
+; $Id$
+name = Count Users
+description = Provides a block to count the number of registered users on the site.
+package = PlantRight
+core = 6.x
