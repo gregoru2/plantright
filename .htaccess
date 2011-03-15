@@ -119,4 +119,3 @@ DirectoryIndex index.php
 # $Id: .htaccess,v 1.90.2.5 2010/02/02 07:25:22 dries Exp $
 
 AddHandler php5-script .php
-AddType video/mp4v-es .mp4
