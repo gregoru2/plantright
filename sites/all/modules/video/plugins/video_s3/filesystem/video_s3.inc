@@ -1,6 +1,5 @@
 <?php
 
-//$Id: video_s3.inc,v 1.1.2.4 2011/01/27 12:26:57 heshanmw Exp $
 /*
  * @file
  * Class file used to store filesystem on the video.

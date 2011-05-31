@@ -1,6 +1,5 @@
 <?php
 /**
-* $Id: S3.php,v 1.1.2.1 2010/10/16 06:28:58 heshanmw Exp $
 *
 * Copyright (c) 2008, Donovan Schönknecht.  All rights reserved.
 *

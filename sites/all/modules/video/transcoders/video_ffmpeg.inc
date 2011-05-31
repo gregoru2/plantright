@@ -1,12 +1,10 @@
 <?php
 
-//$Id: video_ffmpeg.inc,v 1.1.2.39 2011/01/27 14:19:59 heshanmw Exp $
 /*
  * @file
  * Transcoder class file to handle ffmpeg settings and conversions.
  *
  */
-
 
 class video_ffmpeg implements transcoder_interface {
 
@@ -154,13 +152,13 @@ class video_ffmpeg implements transcoder_interface {
         // Setup our default command to be run.
         foreach ($preset['command'] as $command) {
           $command = strtr($command, array(
-                '!cmd_path' => $this->params['cmd_path'],
-                '!videofile' => escapeshellarg($video->filepath),
-                '!audiobitrate' => $preset['audio_bitrate'],
-                '!width' => $dimention[0],
-                '!height' => $dimention[1],
-                '!videobitrate' => $preset['video_bitrate'],
-                '!convertfile' => escapeshellarg($ffmpeg_output),
+            '!cmd_path' => $this->params['cmd_path'],
+            '!videofile' => escapeshellarg($video->filepath),
+            '!audiobitrate' => $preset['audio_bitrate'],
+            '!width' => $dimention[0],
+            '!height' => $dimention[1],
+            '!videobitrate' => $preset['video_bitrate'],
+            '!convertfile' => escapeshellarg($ffmpeg_output),
               ));
 //          print_r($preset['command']);
 //          die();
@@ -172,10 +170,7 @@ class video_ffmpeg implements transcoder_interface {
         if ($ffmpeg_output != $converted && file_exists($ffmpeg_output)) {
           // Because the transcoder_interface doesn't allow the run_command() to include the ability to pass
           // the command to be execute so we need to fudge the command to run qt-faststart.
-          $cmd_path = $this->params['cmd_path'];
-          $this->params['cmd_path'] = $this->params['faststart_cmd'];
-          $command_output .= $this->run_command($ffmpeg_output . ' ' . $converted, $verbose);
-          $this->params['cmd_path'] = $cmd_path;
+          $command_output .= $this->run_command($this->params['faststart_cmd'] . ' ' . $ffmpeg_output . ' ' . $converted);
 
           // Delete the temporary output file.
           file_delete($ffmpeg_output);
@@ -202,8 +197,7 @@ class video_ffmpeg implements transcoder_interface {
         $converted_files[] = $video->converted;
       }
       // Update our video_files table with the converted video information.
-      $result = db_query("UPDATE {video_files} SET status=%d, completed=%d, data='%s' WHERE vid=%d",
-              $video->converted->status, $video->converted->completed, serialize($converted_files), $video->converted->vid);
+      $result = db_query("UPDATE {video_files} SET status=%d, completed=%d, data='%s' WHERE vid=%d", $video->converted->status, $video->converted->completed, serialize($converted_files), $video->converted->vid);
 
       watchdog('video_conversion', 'Successfully converted %orig to %dest', array('%orig' => $video->filepath, '%dest' => $video->converted->filepath), WATCHDOG_INFO);
       return TRUE;
@@ -429,8 +423,7 @@ class video_ffmpeg implements transcoder_interface {
   public function load_job_queue() {
     $total_videos = variable_get('video_ffmpeg_instances', 5);
     $videos = array();
-    $result = db_query_range('SELECT f.*, vf.vid, vf.nid, vf.dimensions, vf.status as video_status FROM {video_files} vf LEFT JOIN {files} f ON vf.fid = f.fid WHERE vf.status = %d AND f.status = %d ORDER BY f.timestamp',
-            VIDEO_RENDERING_PENDING, FILE_STATUS_PERMANENT, 0, $total_videos);
+    $result = db_query_range('SELECT f.*, vf.vid, vf.nid, vf.dimensions, vf.status as video_status FROM {video_files} vf LEFT JOIN {files} f ON vf.fid = f.fid WHERE vf.status = %d AND f.status = %d ORDER BY f.timestamp', VIDEO_RENDERING_PENDING, FILE_STATUS_PERMANENT, 0, $total_videos);
 
     while ($row = db_fetch_object($result)) {
       $videos[] = $row;
@@ -454,6 +447,7 @@ class video_ffmpeg implements transcoder_interface {
       $video->files->{$extension}->filepath = $value->filepath;
       $video->files->{$extension}->url = file_create_url($value->filepath);
       $video->files->{$extension}->extension = $extension;
+      $video->files->{$extension}->filemime = file_get_mimetype($value->filepath);
       $video->player = strtolower($extension);
     }
     return $video;

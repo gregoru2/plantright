@@ -1,6 +1,5 @@
 <?php
 
-// $Id: video_s3.install,v 1.1.2.2 2011/01/27 12:26:52 heshanmw Exp $
 /**
  * @file
  * Provides installation functions for video_s3.module.

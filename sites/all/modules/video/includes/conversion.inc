@@ -1,6 +1,5 @@
 <?php
 
-//$Id: conversion.inc,v 1.1.2.17 2010/10/01 01:59:26 heshanmw Exp $
 /*
  * @file
  * Class file to handle video conversion using ffmpeg and webservices.

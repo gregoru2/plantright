@@ -1,6 +1,5 @@
 <?php
 
-// $Id: video.views.inc,v 1.1.4.3 2010/10/05 02:28:31 heshanmw Exp $
 /**
  * @file
  * Provide views data for video.module.

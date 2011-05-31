@@ -1,5 +1,4 @@
 <?php
-//$Id: video.theme.inc,v 1.1.2.3 2010/05/10 23:19:58 iLLin Exp $
 /**
  *
  * @file

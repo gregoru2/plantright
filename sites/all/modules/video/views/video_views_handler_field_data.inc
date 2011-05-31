@@ -1,5 +1,4 @@
 <?php
-// $Id: video_views_handler_field_data.inc,v 1.1.2.2 2010/09/19 11:31:52 heshanmw Exp $
 
 /**
  * @file

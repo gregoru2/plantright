@@ -1,6 +1,5 @@
 <?php
 
-//$Id: drupal.inc,v 1.1.2.2 2010/10/16 13:37:19 heshanmw Exp $
 /*
  * @file
  * Class file used to store filesystem on the video.

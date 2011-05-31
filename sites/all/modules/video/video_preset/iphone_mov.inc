@@ -1,6 +1,5 @@
 <?php
 
-//$Id: iphone_mov.inc,v 1.1.2.2 2010/12/04 02:01:23 heshanmw Exp $
 /*
  * @file
  * Class file used to store metadata on the video.

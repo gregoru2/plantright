@@ -1,4 +1,3 @@
-// $Id: README.txt,v 1.8.4.5.4.5.2.4 2010/07/10 04:02:19 heshanmw Exp $
 ------------
 
  to embed videos into drupal pages, using CCK and filefield support.

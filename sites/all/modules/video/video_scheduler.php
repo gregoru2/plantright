@@ -1,6 +1,5 @@
 #!/usr/bin/env php
 <?php
-//$Id: video_scheduler.php,v 1.1.2.14.2.3 2010/08/09 14:31:23 heshanmw Exp $
 /**
  * @file
  * Implement video rendering scheduling.

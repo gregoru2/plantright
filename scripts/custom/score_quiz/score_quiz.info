@@ -1,5 +1,0 @@
-; $Id$
-name = Score Quiz
-description = Scores the results of the PlantRight spring survey quiz.
-package = PlantRight
-core = 6.x

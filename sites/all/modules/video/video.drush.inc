@@ -1,5 +1,4 @@
 <?php
-// $Id: video.drush.inc,v 1.1.2.1 2010/08/09 14:31:23 heshanmw Exp $
 
 /**
  * Implementation of hook_drush_command().

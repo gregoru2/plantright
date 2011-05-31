@@ -1,5 +1,4 @@
 <?php
-//$Id: uploadfield.theme.inc,v 1.1.2.1 2010/04/27 15:34:46 iLLin Exp $
 /**
  * 
  * @file

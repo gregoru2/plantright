@@ -1,5 +1,4 @@
 <?php
-//$Id: videoftp.theme.inc,v 1.1.2.2 2010/04/25 20:49:55 iLLin Exp $
 /**
  * 
  * @file

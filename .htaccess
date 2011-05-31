@@ -106,9 +106,6 @@ DirectoryIndex index.php
   # uncomment the following line:
   # RewriteBase /
 
-	# RewriteCond %{HTTP_HOST} !^www\. [NC]
-	# RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [L,R=301]
-
   # Rewrite URLs of the form 'x' to the form 'index.php?q=x'.
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
@@ -116,6 +113,4 @@ DirectoryIndex index.php
   RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
 </IfModule>
 
-# $Id: .htaccess,v 1.90.2.5 2010/02/02 07:25:22 dries Exp $
-
-AddHandler php5-script .php
+# $Id$

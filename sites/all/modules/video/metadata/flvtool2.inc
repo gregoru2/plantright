@@ -1,6 +1,5 @@
 <?php
 
-//$Id: flvtool2.inc,v 1.1.2.1 2010/09/22 17:32:45 heshanmw Exp $
 /*
  * @file
  * Class file used to store metadata on the video.

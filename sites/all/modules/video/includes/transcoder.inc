@@ -1,6 +1,5 @@
 <?php
 
-//$Id: transcoder.inc,v 1.1.2.25 2010/11/13 16:30:24 heshanmw Exp $
 /*
  * @file
  * Class file used to wrap the transcoder functions.

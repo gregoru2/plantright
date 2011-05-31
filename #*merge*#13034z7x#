@@ -1,7 +1,0 @@
-sites/default/settings.php
-cache/*
-sites/default/files/backup_migrate/*
-sites/default/files/css/*
-sites/default/files/js/*
-backup/*
-.htaccess

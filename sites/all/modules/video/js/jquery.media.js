@@ -10,7 +10,6 @@
  * @author: M. Alsup
  * @version: 0.92 (24-SEP-2009)
  * @requires jQuery v1.1.2 or later
- * $Id: jquery.media.js,v 1.1.2.1 2010/05/04 17:55:41 iLLin Exp $
  *
  * Supported Media Players:
  *	- Flash

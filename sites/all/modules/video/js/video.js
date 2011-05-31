@@ -1,4 +1,3 @@
-// $Id: video.js,v 1.1.2.7 2010/10/16 06:28:58 heshanmw Exp $
 
 /**
  * @file
@@ -34,12 +33,20 @@ $(document).ready(function() {
     $('select', this).change(function() {
       if($(this).val() == 'video_play_flv') {
         $('#flv_player_'+ext).show();
+      } else if($(this).val() == 'video_play_html5') {
+        $('#html5_player_'+ext).show();
       } else {
         $('#flv_player_'+ext).hide();
+        $('#html5_player_'+ext).hide();
       }
     });
     if($('select', this).val() == 'video_play_flv') {
       $('#flv_player_'+ext).show();
+    }
+    if($('select', this).val() == 'video_play_html5') {
+      $('#html5_player_'+ext).show();
+    } else {
+      $('#html5_player_'+ext).hide();
     }
   });
 	
@@ -69,7 +76,7 @@ $(document).ready(function() {
           $('#video-overlay').media({
             flashvars: {
               autostart: Drupal.settings.video.autoplay
-              },
+            },
             width:width,
             height:height
           });

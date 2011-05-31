@@ -1,6 +1,5 @@
 <?php
 
-//$Id: html5_ogv.inc,v 1.1.2.6 2010/12/04 02:01:23 heshanmw Exp $
 /*
  * @file
  * Class file used to store metadata on the video.

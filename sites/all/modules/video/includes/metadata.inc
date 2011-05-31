@@ -1,6 +1,5 @@
 <?php
 
-//$Id: metadata.inc,v 1.1.2.5 2010/09/22 17:37:14 heshanmw Exp $
 /*
  * @file
  * Class file used to store metadata on the video.

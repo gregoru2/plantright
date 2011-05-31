@@ -1,6 +1,5 @@
 <?php
 
-// $Id: video_s3.module,v 1.1.2.4 2011/01/27 12:26:47 heshanmw Exp $
 /**
  * @file
  * Provides wrapper functions for the s3 amazon webservices.

@@ -1,5 +1,4 @@
 <?php 
-//$Id: video-play-dcr.tpl.php,v 1.1.2.5 2010/11/30 21:59:02 heshanmw Exp $
 /*
  * @file
  * Theme file to handle director output.

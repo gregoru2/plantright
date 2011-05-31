@@ -1,6 +1,5 @@
 <?php
 
-//$Id: zencoder.inc,v 1.1.2.29 2011/01/23 16:43:05 heshanmw Exp $
 /*
  * @file
  * Class file to handle amazon s3 transfers.
@@ -44,8 +43,9 @@ class video_zencoder_api {
     $thumb_base = $baseurl;
     $thumb_prefix = $filename;
     // dimentions
-    $dimentions = explode('x', $file->dimentions);
-
+//    watchdog('zencoder', 'Dimentions !d imentions', array('!dimentions' => $file->dimentions), WATCHDOG_INFO);
+    $dimentions = explode('x', $file->dimensions);
+//watchdog('zencoder', 'Dimentions width:!width and height:!height', array('!width' => $dimentions[0], '!height' => $dimentions[1]), WATCHDOG_INFO);
     $notify_url = variable_get('zc_notify_url', '');
     $notify_email = variable_get('zc_notify_email', '');
 

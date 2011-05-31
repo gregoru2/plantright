@@ -1,5 +1,5 @@
-<?php 
-//$Id: video-play-flv.tpl.php,v 1.1.2.4 2010/05/10 18:24:53 iLLin Exp $
+<?php
+
 /*
  * @file
  * Theme file to handle flv output.

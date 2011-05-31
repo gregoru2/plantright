@@ -1,6 +1,5 @@
 <?php
 
-//$Id: amazon_s3.inc,v 1.1.2.3 2011/01/27 12:26:42 heshanmw Exp $
 /*
  * @file
  * Class file to handle amazon s3 transfers.

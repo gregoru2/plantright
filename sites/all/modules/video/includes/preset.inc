@@ -1,6 +1,5 @@
 <?php
 
-//$Id: preset.inc,v 1.1.2.1 2010/11/13 16:30:24 heshanmw Exp $
 /*
  * @file
  * Class file used to store video presets on the video.
