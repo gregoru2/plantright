@@ -385,7 +385,7 @@ function quiz_menu() {
     'page arguments' => array(3),
     'access arguments' => array(3),
     'access callback' => 'quiz_access_my_result',
-    'type' => MENU_LOCAL_TASK,
+    'type' => MENU_CALLBACK,
     'file' => 'quiz.pages.inc',
   );
 
@@ -393,7 +393,7 @@ function quiz_menu() {
     'title' => 'Results',
     'page callback' => 'quiz_admin_results',
     'page arguments' => array(1, 3),
-    'type' => MENU_LOCAL_TASK, // MENU_CALLBACK, MENU_SUGGESTED_ITEM, MENU_LOCAL_TASK, MENU_DEFAULT_LOCAL_TASK
+    'type' => MENU_CALLBACK, // , MENU_SUGGESTED_ITEM, MENU_LOCAL_TASK, MENU_DEFAULT_LOCAL_TASK
     'file' => 'quiz.admin.inc',
     'access arguments' => array(1, 3),
     'access callback' => 'quiz_access_results',
@@ -947,8 +947,6 @@ function quiz_form(&$node) {
 
   // We tell quiz_form_alter to check for the manual revisioning permission.
   $form['#quiz_check_revision_access'] = TRUE;
-
-  $form['theme']['#theme'] = 'quiz_node_form';
 
   $form['title'] = array(
     '#type' => 'textfield',
@@ -1739,7 +1737,7 @@ function quiz_take_quiz($quiz) {
   if (!isset($_POST['op'])) {
     // @todo Starting new quiz... Do we need to show instructions here?
   }
-  elseif ($_POST['question_nid'] != $_SESSION['quiz_'. $quiz->nid]['quiz_questions'][0]['nid']) {
+  elseif (isset($_POST['question_nid']) && $_POST['question_nid'] != $_SESSION['quiz_'. $quiz->nid]['quiz_questions'][0]['nid']) {
     // The user has pressed the navigation buttons multiple times...
   }
   // We maintain two lists: previous questions and upcomming questions.
@@ -1768,7 +1766,7 @@ function quiz_take_quiz($quiz) {
       quiz_store_question_result($quiz, $result, array('set_msg' => TRUE, 'question_data' => $former_question_array));
     }
     elseif ($quiz->allow_jumping && _quiz_is_int($_POST['jump_to_question'])) {
-      $_POST['op'] = t('Skip');
+      $_POST['op'] = t('Leave blank');
       $allow_skipping = TRUE;
       $jumping = TRUE;
     }
@@ -1806,7 +1804,7 @@ function quiz_take_quiz($quiz) {
     }
   }
   // Check for a skip.
-  if (($_POST['op'] == t('Skip') || $_POST['op'] == t('Skip and finish')) && $allow_skipping) {
+  if (isset($_POST['op']) && ($_POST['op'] == t('Leave blank') || $_POST['op'] == t('Leave blank and finish')) && $allow_skipping) {
     if (!isset($_SESSION['quiz_'. $quiz->nid]['result_id'])) {
       $_SESSION['quiz_'. $quiz->nid]['result_id'] = quiz_create_rid($quiz);
     }
@@ -1829,7 +1827,7 @@ function quiz_take_quiz($quiz) {
     quiz_store_question_result($quiz, $result, array('set_msg' => TRUE, 'question_data' => $former_question_array));
   }
 
-  if ($check_jump) {
+  if (isset($check_jump) && $check_jump) {
     if ($quiz->allow_jumping && _quiz_is_int($_POST['jump_to_question'])) {
       quiz_jump_to($_POST['jump_to_question'], $quiz, $_SESSION['quiz_'. $quiz->nid]['result_id']);
     }
@@ -1856,6 +1854,7 @@ function quiz_take_quiz($quiz) {
       }
       // Avoid caching for anonymous users
       if (!$user->uid) {
+        drupal_set_message($q_passed_validation, 'error');
         drupal_goto('node/'. $quiz->nid .'/take', array('quizkey' => md5(mt_rand() . time())));
       }
     }
@@ -1966,9 +1965,9 @@ function quiz_take_quiz($quiz) {
 
 /**
  * Set the current session to jump to a specific question number
- * 
+ *
  * @param int $question_num
- *  The question number we want to jump to 
+ *  The question number we want to jump to
  */
 function quiz_jump_to($question_num, $quiz, $rid) {
   $num_next = count($_SESSION['quiz_'. $quiz->nid]['quiz_questions']);
@@ -2585,7 +2584,7 @@ function quiz_calculate_score($quiz, $rid) {
   // 1. Fetch all questions and their max scores
   $sql = 'SELECT a.question_nid, a.question_vid, n.type, r.max_score, qt.max_score as term_max_score
   FROM {quiz_node_results_answers} a
-  LEFT JOIN {node} n ON (question_nid = nid)
+  LEFT JOIN {node} n ON (a.question_nid = n.nid)
   LEFT OUTER JOIN {quiz_node_relationship} r ON (r.child_vid = a.question_vid AND r.parent_vid = %d)
   LEFT OUTER JOIN {quiz_terms} qt ON (a.tid = qt.tid AND qt.vid = %d)
   WHERE a.result_id = %d';
@@ -2920,7 +2919,7 @@ function _quiz_resume_existing_quiz($quiz, $uid, $rid) {
     // to replace an unanswered question in $questions with it.
     if (!in_array($answered->vid, $already_answered)) {
       foreach ($questions as $key => $question) {
-        if (!in_array($question['vid'],$already_answered) && $question['random'] === TRUE) {
+        if (!in_array($question['vid'], $already_answered) && $question['random'] === TRUE) {
           $questions[$key]['vid'] = $answered->vid;
           $questions[$key]['nid'] = $answered->nid;
           $questions[$key]['rid'] = $rid;
