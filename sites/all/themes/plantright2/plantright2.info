@@ -1,0 +1,8 @@
+name = "PlantRight"
+description = "Custom theme for Plantright.org"
+base theme = "tao"
+core = "6.x"
+engine = "phptemplate"
+version = 2.0
+
+stylesheets[screen][] = style.css

@@ -1,0 +1,55 @@
+@import lib
+$tan: #d8cfb4
+$green: #77A32F
+$red: #A14926
+
+// Base styles
+body
+  font: 15px/1.5 'lucida grande', helvetica, arial, sans-serif
+  color: #444
+
+a
+  color: $red
+
+// Layout
+
+.wrapper
+  @include container()
+
+#branding
+  @include grid(3)
+  
+#header
+  @include grid(13)
+  
+#left
+  @include grid(3)
+  
+#main
+  @include grid(13)
+
+
+// Style  
+#header-bg
+  background: $tan
+  @include gradient(darken($tan, 25%), $tan)
+  padding-top: 30px
+  
+#left
+  background: $green
+  #block-menu-primary-links
+    margin: 0 10px
+    li
+      padding: 7px 0
+      border-top: 1px solid lighten($green, 5%)
+      border-bottom: 1px solid darken($green, 5%)
+      &:hover
+        border-top-color: darken($green, 5%)
+        border-bottom-color: lighten($green, 5%)
+        background: darken($green, 2%)
+    a
+      color: #fff
+      font-size: 16px
+      font-weight: 100
+      text-decoration: none
+      display: block
