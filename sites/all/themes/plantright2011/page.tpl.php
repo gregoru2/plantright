@@ -11,12 +11,8 @@
 
 <link rel="stylesheet" href="/misc/agile_carousel/agile_carousel.css">
 
-<!--[if lte IE 7]>
-    <style type="text/css" media="all">@import "<?php print base_path() . path_to_theme() ?>/lte_ie7.css";</style>
-  <![endif]-->
-
   </head>
-  <body <?php print phptemplate_body_attributes($is_front, $layout); ?> <?php // print drupal_attributes($attr) ?>>
+  <body <?php print drupal_attributes($attr) ?>>
   
 <div id="prContainer">
 

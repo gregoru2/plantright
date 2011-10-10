@@ -3,9 +3,9 @@
 /**
  * Implementation of hook_theme().
  */
+
 function tao_theme() {
   $items = array();
-
   // Consolidate a variety of theme functions under a single template type.
   $items['block'] = array(
     'arguments' => array('block' => NULL),
@@ -255,7 +255,7 @@ function tao_preprocess_comment(&$vars) {
 /**
  * Implementation of preprocess_fieldset().
  */
-function tao_preprocess_fieldset(&$vars) {
+function pr11_preprocess_fieldset(&$vars) {
   $element = $vars['element'];
 
   $attr = isset($element['#attributes']) ? $element['#attributes'] : array();
@@ -543,4 +543,43 @@ function tao_views_mini_pager($tags = array(), $limit = 10, $element = 0, $param
     $links['pager-next'] = theme('pager_next', (isset($tags[3]) ? $tags[3] : t('››')), $limit, $element, 1, $parameters);
     return theme('links', $links, array('class' => 'links pager views-mini-pager'));
   }
+}
+
+
+
+/**
+ * Sets the body tag class and id attributes.
+ *
+ * From the Theme Developer's Guide, http://drupal.org/node/32077
+ *
+ * @param $is_front
+ *   boolean Whether or not the current page is the front page.
+ * @param $layout
+ *   string Which sidebars are being displayed.
+ * @return
+ *   string The rendered id and class attributes.
+ */
+function phptemplate_body_attributes($is_front = false, $layout = 'none') {
+
+  if ($is_front) {
+    $body_id = $body_class = 'homepage';
+  }
+  else {
+    // Remove base path and any query string.
+    global $base_path;
+    list(,$path) = explode($base_path, $_SERVER['REQUEST_URI'], 2);
+    list($path,) = explode('?', $path, 2);
+    $path = rtrim($path, '/');
+    // Construct the id name from the path, replacing slashes with dashes.
+    $body_id = str_replace('/', '-', $path);
+    // Construct the class name from the first part of the path only.
+    list($body_class,) = explode('/', $path, 2);
+  }
+  $body_id = 'page-'. $body_id;
+  $body_class = 'section-'. $body_class;
+
+  // Use the same sidebar classes as Garland.
+  $sidebar_class = ($layout == 'both') ? 'sidebars' : "sidebar-$layout";
+
+  return " id=\"$body_id\" class=\"$body_class $sidebar_class\"";
 }

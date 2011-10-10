@@ -1,0 +1,97 @@
+@charset "UTF-8";
+/* CSS Document */
+
+img.float-left.negative-margin	{
+	margin-right: 0px;
+}
+
+#ygyeyc .effing-giant {
+margin-top: -3px;
+}
+
+
+
+/**
+ * The Four Steps
+ */
+ 
+div#fourStepsWrapper	{
+	color: #78a22e;
+	text-shadow: 2px 2px 6px rgba(125,130,121,1);
+	background-color: #efead5;
+	border: solid 1px #887a4b;
+	padding: 20px;
+	margin: 20px 60px 20px 30px;
+}
+
+
+#content ol#fourSteps	{
+	margin: 0px;
+	padding: 0px;
+}
+
+#content ol#fourSteps li	{
+	margin: 20px;
+	padding: 0px;
+	list-style-type: none;
+	clear: both;
+}
+
+#content ol#fourSteps li span.number	{
+	color: #78a22e;
+	font-size: 25px;
+	font-weight: 700;
+	height: 1em;
+	display: block;
+	float: left;
+	width: 20px;
+	margin: 0px;
+}
+
+#content ol#fourSteps li span.text	{
+	margin: 0px;
+	padding: 0px;
+	color: #634f31;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-weight: 600;
+	text-shadow: none;
+	font-size: 18px;
+	line-height: 2.6ex;
+	position: relative;
+	top: -5px;
+	left: 0px;
+}
+
+
+
+fieldset legend {
+	margin-bottom: 10px;
+}
+fieldset	{
+	background: #fff;
+}
+
+
+
+ul.tabs.secondary 	{
+	position: relative;
+	top: 12px;
+	left: 0px;
+}
+
+ul.tabs.secondary li.active	{
+	background-color: #a45031;
+	color: #fff;
+}
+ul.tabs.secondary li.active a	{
+	color: #fff;
+}
+
+
+ul.tabs.primary li	{
+	border-right: solid 1px #a4976d;
+	padding: 2px 5px;
+}
+ul.tabs.primary li:last-child	{
+	border-right: none;
+}

@@ -5,23 +5,20 @@
 
 body  {
 	font: 75% Helvetica, Arial, sans-serif;
-	background: #fff url(/images/newbg1.gif) repeat-x left -130px;
+	background: #eae8e4;
 	color: #000;
 }
 
 a	{
 	text-decoration: none;
 	font-weight: bold;
-	color: #ac512a;
+	color: #a6522e;
 }
 
 a:hover	{
 	color: #4e3004;
 }
 
-a:visited	{
-	color: #84572f;
-}
 
 sup	{
 	font-size: .8em;
@@ -59,7 +56,7 @@ h1	{
 }
 h2	{
 	font-size: 2.1em;
-	margin: 30px 0px 30px 0px;
+	margin: 25px 0px 30px 0px;
 }
 h3	{
 	font-size: 1.4em;
@@ -78,22 +75,18 @@ h6	{
 }
 
 
-h1 a, h2 a, h3 a, h4 a, h5 a	{
-	font-weight: 600;
-	text-decoration: underline;
-}
 	
 /* -- GENERAL LAYOUT --- */	
 
 #prContainer { 
-	width: 954px; 
+	width: 960px; 
 	background: #fff;
 	margin: 0 auto;
-	padding: 0px 0px 20px 6px;
+	padding: 0px 0px 20px 0px;
 	text-align: left;
-	-moz-box-shadow: 0px -44px 38px rgba(77,60,20,.3);
-	-webkit-box-shadow: 0px -44px 38px rgba(77,60,20,.3);
-	box-shadow: 0px -44px 38px rgba(77,60,20,.3);
+	-moz-box-shadow: 0px 0px 12px #aaa;
+	-webkit-box-shadow: 0px 0px 12px #aaa;
+	box-shadow: 0px 0px 12px #aaa;
 	position: relative;
 	top: -10px;
 	left: 0;
@@ -113,30 +106,21 @@ h1 a, h2 a, h3 a, h4 a, h5 a	{
 	display: none;
 }
 
-
 #main h1.page-title	{
 	display: none;
 }
 
-body.section-news #main h1.page-title, body.section-nursery #main h1.page-title,  body.section-flag #main h1.page-title		{
-	display: block;
-	font-family: 'Open Sans', Helvetica, Arial sans-serif;
-	font-weight: 600;
-	font-size: 2.1em;
-	color: #4d3c14;
-	margin: 25px 0px 3px 0px;
-}
 
 	
 /* -- HEADER: Logo, tagline, donate button --- */	
 
 #header	{
-	margin: 10px 8px 2px 10px;
+	margin: 10px 10px 2px 10px;
 	background: url(/images/header_bg_stripe.png) repeat-x top right;
 }
 
 #header img#logo	{
-	padding-right: 16px;
+	padding-right: 20px;
 	padding-bottom: 1px;
 	background: #fff;
 	position: relative;
@@ -188,7 +172,7 @@ body.section-news #main h1.page-title, body.section-nursery #main h1.page-title,
 }
 
 	
-/* -- DRUPAL NAV / top horizontal nav / Admin messages --- */	
+/* -- DRUPAL NAV / top horizontal nav --- */	
 
 ul.tabs.primary	{
 	color: #c9c1b0;
@@ -196,7 +180,6 @@ ul.tabs.primary	{
 	position: absolute; 
 	top: 120px;
 	left: 180px;
-	background: rgba(0,0,0,0);
 }
 ul.tabs.primary:before	{
 }
@@ -215,63 +198,6 @@ ul.tabs.primary li a	{
 	color: #e0dacc;
 }
 
-ul.tabs.secondary 	{
-	display: block;
-	margin: 10px 0px;
-	padding: 0px;
-	width: 100%;
-	border-bottom: solid 1px #a45031;
-}
-
-ul.tabs.secondary li	{
-	display: inline;
-	padding: 2px 6px 0px 6px;
-	margin: 10px 10px 0px 0px;
-}
-
-ul.tabs.secondary li a	{
-	display: inline-block;
-}
-ul.tabs.secondary li.active	{
-	border: solid 1px #a45031;
-	border-bottom: none;
-	background-color: #f7f5f2;
-}
-
-div#console	{
-	position: absolute;
-	top: 54px;
-	left: 180px;
-	color: #c3321a;
-	background-color: #fff;
-	border: solid 2px #4a2e0f;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	z-index: 1000;
-}
-
-div#console div.status	{
-	padding: 3px 6px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	color: #000;
-}
-
-div#console div.error	{
-	padding: 3px 9px;
-	padding: 4px;
-	font-size: 1.2em;
-	background-color: #ffea00;
-	color: #000;
-	border: solid 0px #000;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-}
-
-
 	
 /* -- LEFT NAV --- */	
 
@@ -282,12 +208,8 @@ div#console div.error	{
 
 #left {
 	float: left; 
-	width: 138px;
-	margin: 0px 18px 20px 10px;
-}
-
-#left a:visited {
-	color: #ac512a;
+	width: 140px;
+	margin: 0px 20px 20px 10px;
 }
 
 #block-menu-primary-links ul.menu	{
@@ -311,14 +233,14 @@ div#console div.error	{
 ul.menu li.dhtml-menu.collapsed a	{
 	display: block;
 	background: url(/images/arrow-collapsed.png) no-repeat 0px 8px;
-	margin-left: -11px;
-	padding-left: 11px;
+	margin-left: -9px;
+	padding-left: 9px;
 }
 ul.menu li.dhtml-menu.expanded a	{
 	display: block;
 	background: url(/images/arrow-expanded.png) no-repeat 0px 9px;
-	margin-left: -11px;
-	padding-left:11px;
+	margin-left: -9px;
+	padding-left: 9px;
 }
 
 
@@ -412,11 +334,10 @@ div#footer	{
 	background-color: #4e3c14;
 	color: #bcb093;
 	font-size: .9em;
-	float: left;
 }
 
 div#footer div#block-block-1	{
-	float: left;
+	display: inline-block;
 	width: 350px;
 	padding: 45px 10px 10px 10px;
 }
@@ -478,7 +399,6 @@ div.contentBox h2 a	{
 	color: #4e3c14;
 	font-weight: 600;
 	font-size: 16px;
-	text-decoration: none;
 }
 div.contentBox h2 a:hover	{
 	color: #352503;
@@ -647,20 +567,12 @@ img.float-left	{
 	border: solid 2px #d9cfb4;
 }
 
-img.border	{
-	margin-top: 4px;
-	padding: 2px;
-	border: solid 2px #d9cfb4;
-}
 img.no-border	{
 	border: none;
 	margin-top: 2px;
 	padding: 0px;
 }
 
-img.float-left.negative-margin	{
-	margin-right: -14px;	
-}
 
 /* -- Interior CA imagemap formats --- */	
 
@@ -689,46 +601,9 @@ div#mapLegend ul li	{
 	list-style-type: none;
 }
 
-
-/* News page formats */
-
-div.view-News div.views-row	{
-	border-bottom: solid 1px #d8cfb4;
-}
-
-div.view-News div.views-field-title	{
-	font-size: 1.2em;
-	margin-top: 25px;
-	margin-bottom: 5px;
-	clear: left;
-}
-
-#content div.view-News div.views-field-title a	{
-	font-weight: 600;
-}
-
-div.view-News div.views-field-created	{
-	font-size: .9em;
-	font-style: italic;
-	text-indent: 1em;
-}
-
-#content div.view-News div.views-field-teaser p	{
-	margin-top: 2px;
-}
-
-
-#content div.view-News div.views-field-teaser p	{
-	margin-top: 2px;
-}
-#content div.view-News div.views-field-teaser h3	{
-	margin-top: 2px;
-	font-family: Helvetica, Arial, sans-serif;
-	font-weight: normal;
-	font-size: 1.1em;
-}
-
 /* -- Giant WYCD buttons --- */	
+
+
 
 .bigger.upcase	{
 	font-size: 36px;
@@ -760,38 +635,7 @@ a.bigger.upcase.red-button:hover	{
 }	
 	
 	
-
-
-/* -- Survey Quiz Formats --- */	
-
-table#quiz-view-table	{
-	float: right;
-	padding: 5px;
-	margin-top: 20px;
-}
 	
-table#quiz-view-table td	{
-	padding: 2px;
-}
-
-
-table#quiz-view-table td.quiz-view-table-title	{
-	text-align: right;
-}
-
-div#quiz_progress	{
-	margin-top: 20px;
-	font-weight: bold;
-}
-
-div.quiz-question-body p	{
-	font-size: 1.2em;
-}
-
-input#edit-back:hover	{
-	color: #fff;
-}
-
 /* -- COPIED FROM LOCAL.CSS in ACQUIA SLATE THEME --- */	
 
 
@@ -915,31 +759,26 @@ h2.block-title {
 
 /* Pagers
 -------------------------------------------------------------- */
-#content ul.pager {
+ul.pager {
   font-size: 100%; /* 13px/13px */
 }
 
-#content ul.pager a:link,
-#content ul.pager a:visited,
-#content ul.pager li.pager-current {
+ul.pager a:link,
+ul.pager a:visited,
+ul.pager li.pager-current {
   border-color: #444;
 	-moz-border-radius:3px;
 	border-radius:3px;
   color: #A14926;
 }
 
-#content ul.pager li {
-  padding: 0px 3px;
+ul.pager li.pager-current {
+  background-color: #eee;
 }
 
-#content ul.pager li.pager-current {
-  border: solid 1px #a45030;
-  padding: 2px 3px 2px 5px;
-}
-
-#content ul.pager a:hover,
-#content ul.pager a:active,
-#content ul.pager a:focus {
+ul.pager a:hover,
+ul.pager a:active,
+ul.pager a:focus {
   background-color: #eee;
 }
 
@@ -952,7 +791,8 @@ form input.form-submit {
   color: #f3eddf;
   font-weight: normal;
   font-size: 1.05em;
-  margin: 10px 0px 30px 0px;
+  letter-spacing: 1px;
+  margin: 0px 0px 20px 0px;
   padding: 0px 6px 2px 6px;
 }
 
@@ -996,11 +836,6 @@ form input.form-submit:focus {
   line-height: 150%;
 }
 
-div#edit-message-wrapper	{
-	margin-bottom: 10px;
-}
-
-
 /* Remove backgrounds and border on radios and checkboxes */
 .form-item .form-radio,
 .form-item .form-checkbox {
@@ -1008,76 +843,21 @@ div#edit-message-wrapper	{
   border: none !important;
 }
 
-/* Format the password recovery form and user login form -- total kludge to give the pages headers	*/
-
-body#page-user-password form, body#page-user form {
-  font-size: 1.5em;
-  }
-form#user-pass:before {
-  content: 'Password recovery';
-  }
-form#user-login:before {
-  content: 'User login';
-  }
-
-form#user-login .description {
- font-size: .6em;
- line-height: .8em;
- margin-top: 0px;
- margin-bottom: 10px;
-  }
-
-form#user-pass, form#user-login {
-  background: #f7f6f2;
-  border: 1px solid #b5a880;
-  margin: 15px 0;
-  padding: 20px 15px 0px 15px;
-  width: 28em;
-  line-height: 1.5em;
-}
-form#user-pass input#edit-name, form#user-login input {
-  background: #fff;
-  font-size: .75em;
- line-height: .7em;
- 
-}
-form#user-pass label, form#user-login label {
-  font-size: .75em;
- 
-}
-form#user-pass input#edit-submit, form#user-login input#edit-submit {
-  font-size: 14px;
-  line-height: 20px;
-   background-color: #a15334;
- 
-}
-form#user-pass input#edit-submit:hover, form#user-login input#edit-submit:hover	{
-	
-  background: #73381f;
-}
-
-
 /* Fieldset wrapper around groups of form elements -- add border here */
 fieldset {
-  background: #f7f6f2;
-  border: 1px solid #b5a880;
+  background: #f5f5f5;
+  border: 1px solid #555;
   margin: 15px 0;
-  padding: 10px 15px 15px 15px;
+  padding: 0 15px 15px 15px;
 }
-
-
-fieldset .form-item	 input{
-	background-color: #fff;
-}
-
 
 /* Typography and spacing for legend of fieldsets */
 fieldset legend {
   display: block;
   font-size: 100%; /* 13px/13px */
-  background: #d8cfb4;
-  border: 1px solid #b5a880;
-  font-weight: 400;
+  background: #f5f5f5;
+  border: 1px solid #555;
+  font-weight: 200;
   padding: 0 5px;
 }
 
@@ -1097,7 +877,7 @@ html.js fieldset.collapsed legend a {
 
 html.js fieldset legend:hover,
 html.js fieldset legend.hover{
-  background-color: #fff;
+  background-color: #555;
   border: 1px solid #000;
 }
 
@@ -1122,7 +902,6 @@ html.js input.form-autocomplete {
 html.js input.throbbing {
   background-position: 100% -16px;
 }
-
 
 
 /* Buttons
@@ -1447,28 +1226,9 @@ div.poll div.bar div.foreground {
 }
 
 .profile dt {
-	font-weight: bold;
-	
+  background-color: none;
+  padding: 0;
 }
-.profile dl	{
-	margin: 12px 0;
-}
-
-.profile dl dt	{
-	width: 10em;
-	float: left;
-	clear: left;
-	text-align: right;
-	padding-right: .5em;
-	padding-top: 1ex;
-}
-
-
-.profile dl dd	{
-	margin-left: 10.5em;
-	padding-top: 1ex;
-}
-
 
 
 /* Tab Menus
@@ -1509,6 +1269,7 @@ div.poll div.bar div.foreground {
 #content-tabs ul.primary li a:visited,
 #content-tabs ul.secondary li a:link,
 #content-tabs ul.secondary li a:visited {
+  background-color: transparent;
   border: none;
   color: #000;
   float: left;
@@ -1730,7 +1491,6 @@ img#plantCareKey	{
 #content div.alternatives div.item  {
 	clear: both;
 	float: left;
-	width: 100%;
 }
 
 	
@@ -1800,39 +1560,6 @@ div#fourStepsWrapper	{
 }
 
 
-/**
- * Survey stuff
- */
- 
-p.linkToSurvey {
-	font-size: 24px;
-	font-weight: normal;
-	background: #7ba229;
-	color: #fff;
-	line-height: 2.7ex;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	padding: 10px 20px 5px 20px;
-	margin: 20px 0px;
-	text-align: center;
-}
-p.linkToSurvey a {
-	color: #fff;
-}
-
-li span.flag-nursery-dibs	{
-	display: block;
-	font-size: 1.2em;
-	margin: 5px 0 20px 5px;
-}
-
-li span.flag-nursery-dibs a	{
-	background-color: #f7f5ed;
-	border: solid 1px #b6976f;
-	padding: 3px 7px;
-}
-
 
 /**
  * PLANTRIGHT: Your garden, your environment, your choice
@@ -1847,7 +1574,7 @@ font-size: 6.85em;
 font-weight: 100;
 line-height: 100%;
 margin-right: 12px;
-margin-top: 0px;
+margin-top: -10px;
 }
 #ygyeyc .upcase {
 text-transform: uppercase;
@@ -1856,9 +1583,9 @@ text-transform: uppercase;
 color: #78A22E;
 }
 #ygyeyc .small-medium {
-font-size: 18px;
+font-size: 20px;
 font-weight: 100;
-line-height: 26px;
+line-height: 120%;
 }
 #ygyeyc .grey {
 color: #666;
