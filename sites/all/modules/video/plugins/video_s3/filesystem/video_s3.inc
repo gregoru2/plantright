@@ -1,11 +1,10 @@
 <?php
-
 /*
  * @file
  * Class file used to store filesystem on the video.
  *
  */
-class video_s3 extends video_filesystem {
+class video_s3 implements filesystem_interface {
 
   protected $params = array();
   protected $name = 'Amazon S3';
@@ -15,16 +14,24 @@ class video_s3 extends video_filesystem {
 
   }
 
-  public function save_file($video) {
+  public function load_file($video) {
+    $transcoder = variable_get('vid_convertor', 'video_ffmpeg');
 
-  }
+    module_load_include('inc', 'video_s3', '/includes/amazon_s3');
+    $s3 = new video_amazon_s3;
 
-  public function prepare_file($video) {
+    if ($amazon = $s3->get($video->fid)) {
+      foreach ($video->files as $key => &$file) {
+        $s3->connect();
+        $file->url = $s3->getVideoUrl($file->filepath);
 
-  }
-
-  public function load_file(&$video) {
-    video_s3_video_load(&$video);
+        // For old video's (pre-4.5), the filename property is actually a path
+        // and no ffmpeg converted files were saved to S3.
+        if (strpos('/', $amazon->filename) !== FALSE && $transcoder == 'video_ffmpeg') {
+          $file->url = $s3->getVideoUrl($amazon->filename);
+        }
+      }
+    }
   }
 
   /**
@@ -40,8 +47,7 @@ class video_s3 extends video_filesystem {
    * @see sites/all/modules/video/includes/filesystem_interface#get_help()
    */
   public function get_help() {
-    $help = t('Amazon Simple Storage Service (!s3) to store your video files. This free\'s up bandwidth from your site, providing a faster experience for your users. Simply enable this and enter your authentication details and your done! ', array('!s3' => l(t('Aamzon S3'), 'http://s3.amazonaws.com')));
-    return $help;
+    return t('Amazon Simple Storage Service (!s3) to store your video files. This free\'s up bandwidth from your site, providing a faster experience for your users. Simply enable this and enter your authentication details and your done!', array('!s3' => l(t('Amazon S3'), 'http://aws.amazon.com/s3/')));
   }
 
   /**
@@ -52,45 +58,55 @@ class video_s3 extends video_filesystem {
     return $this->value;
   }
 
-  public function run_command($options) {
-    return;
-  }
-
   public function admin_settings() {
     $form = array();
+
     $form['amazon_s3_ssl'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Enable SSL?'),
+      '#title' => t('Use HTTPS file links'),
       '#default_value' => variable_get('amazon_s3_ssl', FALSE),
-      '#description' => t('If you would like to use ssl when transfering your files enable this option.'),
-    );
-    $form['amazon_s3_private'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Enable Private?'),
-      '#default_value' => variable_get('amazon_s3_private', FALSE),
-      '#description' => t('If you would like to use private transfering for your files enable this option.'),
-    );
-    $form['amazon_s3_lifetime'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Private Url Lifetime'),
-      '#default_value' => variable_get('amazon_s3_lifetime', '1800'),
-      '#size' => 5,
+      '#description' => t('If you would like to use SSL when transfering your files enable this option.'),
     );
 
+    $form['amazon_s3_delete_local'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Delete local file after uploading to S3'),
+      '#default_value' => variable_get('amazon_s3_delete_local', FALSE),
+      '#description' => t('Replaces the original file on the local file system with an empty file to reduce disk space usage. The file is not removed as Drupal and FileField expect a file to be present.'),
+    );
+
+    $form['amazon_s3_private'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Enable private file storage'),
+      '#default_value' => variable_get('amazon_s3_private', FALSE),
+      '#description' => t('If you would like to use private file storage for your files enable this option. Videos are displayed using temporary URLs that expire after an amount of time that is configurable below.'),
+    );
+
+    $form['amazon_s3_lifetime'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Private URL lifetime'),
+      '#default_value' => variable_get('amazon_s3_lifetime', 1800),
+      '#size' => 5,
+      '#description' => t('The number of seconds a URL to a private file is valid.'),
+    );
 
     $form['amazon_s3_access_key'] = array(
       '#type' => 'textfield',
       '#title' => t('Access Key ID'),
       '#default_value' => variable_get('amazon_s3_access_key', ''),
       '#size' => 50,
+      '#element_validate' => array('_video_s3_fsadmin_validate'),
     );
+
     $form['amazon_s3_secret_access_key'] = array(
       '#type' => 'password',
       '#title' => t('Secret Access Key'),
       '#default_value' => variable_get('amazon_s3_secret_access_key', ''),
       '#description' => t('Once saved, you do not need to re-enter your secret key.  If you need to update your key, then fill this out to update it.'),
       '#size' => 50,
+      '#element_validate' => array('_video_s3_fsadmin_validate_secret', '_video_s3_fsadmin_validate'),
     );
+
     //@todo Maybe move this to the admin settings page instead of global?
     $form['amazon_s3_bucket'] = array(
       '#type' => 'textfield',
@@ -98,6 +114,7 @@ class video_s3 extends video_filesystem {
       '#description' => t('Enter the bucket you wish to store your videos in.  If the bucket doesn\'t exist the system will attempt to create it.'),
       '#default_value' => variable_get('amazon_s3_bucket', ''),
       '#size' => 50,
+      '#element_validate' => array('_video_s3_fsadmin_validate'),
     );
 
     // cloud front
@@ -108,10 +125,18 @@ class video_s3 extends video_filesystem {
       '#default_value' => variable_get('amazon_s3_cf_domain', ''),
       '#size' => 50,
     );
+
+    // Cloud Front and private files do not work together
+    if (variable_get('amazon_s3_private', FALSE)) {
+      $form['amazon_s3_cf_domain']['#description'] = t('Amazon CloudFront and S3 private file storage cannot be used together. Disable private files to enable this setting.');
+      $form['amazon_s3_cf_domain']['#disabled'] = TRUE;
+    }
+
     $form['headers_fset'] = array(
       '#type' => 'fieldset',
       '#title' => t('Headers'),
     );
+
     $form['headers_fset']['amazon_s3_expires_offset'] = array(
       '#type' => 'select',
       '#title' => t('Expires header'),
@@ -122,6 +147,7 @@ class video_s3 extends video_filesystem {
       '#default_value' => variable_get('amazon_s3_expires_offset', 604800),
       '#description' => t('Amazon S3 can be told to send an Expires header (<a href="http://developer.yahoo.com/performance/rules.html#expires">learn more</a>) with served files. This will induce most browsers to cache the file longer, reducing the frequency that it is re-downloaded from the server. This can save on bandwidth charges and provide a faster experience for visitors. However, files which will be frequently updated with the same filename should use a low Expires offset, or else visitors won\'t see &quot;fresh&quot; data. Also, Expires headers will be updated for currently-uploaded files on cron runs, so the interval set here should be greater than or equal to your server\'s cron run interval for best results.'),
     );
+
     $form['headers_fset']['amazon_s3_cache_control_max_age'] = array(
       '#type' => 'select',
       '#title' => t('max-age parameter of Cache-Control header'),
@@ -159,23 +185,31 @@ class video_s3 extends video_filesystem {
       }
     }
 
-
-
     //lets show our buckets in table format with a delete link.
     //@todo add permissions
     //were enabled, that means they have successfully connected and created a bucket.
-    if (variable_get('amazon_s3_access_key', false) && variable_get('vid_filesystem', 'drupal') == 'video_s3') {
+    if (variable_get('amazon_s3_access_key', false) && _video_s3_is_active_fs()) {
       module_load_include('inc', 'video_s3', '/includes/amazon_s3');
       $s3 = new video_amazon_s3;
       $s3->connect();
       $buckets = $s3->s3->listBuckets();
       // Setup our header.
-      $header = array(t('Bucket Name'), t('Total Objects'), t('Actions'));
+      $header = array(t('Bucket Name'), t('Actions'));
       $rows = array();
       foreach ($buckets as $bucket) {
-        $objects = count($s3->s3->getBucket($bucket));
-        $actions = l(t('Delete'), 'admin/settings/video/amazon_s3/bucket/' . $bucket . '/delete');
-        $rows[] = array($bucket, $objects, $actions);
+        if (!$this->isValidBucketName($bucket)) {
+          $rows[] = array($bucket, t('Unsupported bucket name'));
+        }
+        else {
+          $title = $bucket;
+          
+          if ($bucket == variable_get('amazon_s3_bucket', '')) {
+            $title = '<strong>'. $title .' ('. t('active bucket') .')</strong>';
+          }
+
+          $actions = l(t('Delete'), 'admin/settings/video/amazon_s3/bucket/' . $bucket . '/delete');
+          $rows[] = array($title, $actions);
+        }
       }
       $form['amazon_info'] = array(
         '#type' => 'fieldset',
@@ -187,63 +221,102 @@ class video_s3 extends video_filesystem {
         '#type' => 'markup',
         '#value' => theme('table', $header, $rows),
       );
-      $form['amazon_s3_delete_local'] = array(
-        '#type' => 'checkbox',
-        '#title' => t('Delete Local file?'),
-        '#default_value' => variable_get('amazon_s3_delete_local', FALSE),
-        '#description' => t('Delete the local file from server on successful submit to the S3 server.'),
-      );
     }
     return $form;
   }
 
-  public function admin_settings_validate(&$form, &$form_state) {
+  public function admin_settings_validate($form, &$form_state) {
     // Check for CURL
     if (!extension_loaded('curl') && !@dl(PHP_SHLIB_SUFFIX == 'so' ? 'curl.so' : 'php_curl.dll')) {
       form_set_error('amazon_s3', t('The CURL extension is not loaded.'));
-    } else {
-      $bucket = $form_state['values']['amazon_s3_bucket'];
-      // S3 buckets must contain only lower case alphanumeric characters, dots and dashes.
-      if (!preg_match("/^[a-z.-]+$/", $bucket)) {
-        form_set_error('amazon_s3_bucket', t('S3 buckets must contain only lower case alphanumeric characters, dots and dashes.'));
-      } else {
-        $access_key = $form_state['values']['amazon_s3_access_key'];
-        // check our secret key.
-        if (!empty($form_state['values']['amazon_s3_secret_access_key'])) {
-          $secret_key = $form_state['values']['amazon_s3_secret_access_key'];
-        } else {
-          // Add our secret key back in to persist its value.
-          $form_state['values']['amazon_s3_secret_access_key'] = variable_get('amazon_s3_secret_access_key', '');
-          $secret_key = variable_get('amazon_s3_secret_access_key', '');
-        }
-        $ssl = isset($form_state['values']['amazon_s3_ssl']) && $form_state['values']['amazon_s3_ssl'] ? TRUE : FALSE;
-        // Lets verify our credentials and verify our bucket exists, if not attempt to create it.
-        module_load_include('inc', 'video_s3', '/includes/amazon_s3');
-        $s3 = new video_amazon_s3;
-        $s3->connect($access_key, $secret_key, $ssl);
-        $buckets = $s3->s3->listBuckets();
-        if (!$buckets || !(in_array($bucket, $buckets))) {
-          // Create a bucket with public read access
-          if ($s3->s3->putBucket($bucket, S3::ACL_PUBLIC_READ)) {
-            // set access control policy to zencoder if module is enabled
-            // @TODO : Add this to video_zencoder module
-            if (module_exists('video_zencoder')) {
-              $acp['acl'][] = array(
-                'type' => 'AmazonCustomerByEmail',
-                'email' => 'aws@zencoder.com',
-                'permission' => 'WRITE'
-              );
-              $s3->s3->setAccessControlPolicy($bucket, '', $acp);
-            }
-            drupal_set_message(t('Successfully created the bucket %bucket.', array('%bucket' => $bucket)));
-          } else {
-            form_set_error('amazon_s3_bucket', t('Could not verify or create the bucket %bucket.', array('%bucket' => $bucket)));
-          }
-        }
+      return;
+    }
+    
+    $bucket = $form_state['values']['amazon_s3_bucket'];
+    // S3 buckets must contain only lower case alphanumeric characters, dots and dashes.
+    if (!$this->isValidBucketName($bucket)) {
+      form_set_error('amazon_s3_bucket', t('S3 bucket names must contain only lower case alphanumeric characters, dots and dashes.'));
+    }
+
+    $ssl = isset($form_state['values']['amazon_s3_ssl']) && $form_state['values']['amazon_s3_ssl'];
+    $access_key = $form_state['values']['amazon_s3_access_key'];
+    $secret_key = $form_state['values']['amazon_s3_secret_access_key'];
+
+    if (empty($access_key) || empty($secret_key)) {
+      // There is no point in continuing if there is no access info
+      return;
+    }
+
+    // Lets verify our credentials and verify our bucket exists, if not attempt to create it.
+    module_load_include('inc', 'video_s3', '/includes/amazon_s3');
+    $s3 = new video_amazon_s3;
+    $s3->connect($access_key, $secret_key, $ssl);
+    $buckets = $s3->s3->listBuckets();
+
+    // If the return value is false, something went wrong.
+    if ($buckets === FALSE) {
+      return;
+    }
+
+    if (!in_array($bucket, $buckets)) {
+      // Create a bucket with public read access
+      if ($s3->s3->putBucket($bucket, S3::ACL_PUBLIC_READ)) {
+        drupal_set_message(t('Successfully created the bucket %bucket.', array('%bucket' => $bucket)));
+      }
+      else {
+        form_set_error('amazon_s3_bucket', t('Could not verify or create the bucket %bucket.', array('%bucket' => $bucket)));
+        $bucket = null;
+      }
+    }
+
+    // Always check the access rights, in case the bucket was created
+    // outside of Drupal or before the Zencoder module was active.
+    if ($bucket != null && module_exists('video_zencoder')) {
+      if ($s3->setZencoderAccessPolicy($bucket)) {
+        drupal_set_message(t('Successfully granted write access for bucket %bucket to Zencoder.', array('%bucket' => $bucket)));
       }
     }
   }
 
+  private function isValidBucketName($name) {
+    return preg_match('/^[a-z0-9.-]+$/', $name);
+  }
 }
 
-?>
+/**
+ * Replace the empty form value with the variable value.
+ * 
+ * Used for the access secret.
+ * 
+ * @param array $element
+ * @param array $form_state
+ */
+function _video_s3_fsadmin_validate_secret($element, &$form_state) {
+  $key = end($element['#parents']);
+  $val = $form_state['values'][$key];
+  $existing = variable_get($key, NULL);
+  
+  if ($val === '' && $existing !== NULL) {
+    $form_state['values'][$key] = $existing;
+  }
+}
+
+/**
+ * Handle required fields that are only required when
+ * video_s3 is the selected file system.
+ * 
+ * @param array $element
+ * @param array $form_state
+ */
+function _video_s3_fsadmin_validate($element, $form_state) {
+  if ($form_state['values']['vid_filesystem'] != 'video_s3') {
+    return;
+  }
+
+  $key = end($element['#parents']);
+  $val = $form_state['values'][$key];
+
+  if (empty($val)) {
+    form_error($element, t('!name field is required.', array('!name' => $element['#title'])));
+  }
+}

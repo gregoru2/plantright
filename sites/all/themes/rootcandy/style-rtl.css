@@ -1,4 +1,3 @@
-/* $Id: style-rtl.css,v 1.1.2.2 2009/02/12 10:55:27 sign Exp $ */
 
 body {
   direction: rtl;
@@ -76,4 +75,12 @@ body {
 
 table.system-status-report th {
   background-position: 99% 50%;
+}
+
+html.js fieldset.collapsible legend a {
+  background:url("images/exp_col.png") no-repeat scroll right 4px transparent;
+}
+
+html.js fieldset.collapsed legend a {
+  background-position: right -20px;
 }

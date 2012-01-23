@@ -1,5 +1,4 @@
 <?php
-// $Id: node.tpl.php,v 1.1.2.1 2009/02/12 11:04:45 sign Exp $
 ?>
   <div class="node<?php if ($sticky) { print " sticky"; } ?><?php if (!$status) { print " node-unpublished"; } ?>">
     <?php if ($picture) {
