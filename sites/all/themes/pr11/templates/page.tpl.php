@@ -34,12 +34,6 @@
 
   <?php print $skipnav ?>
 
-  <?php if ($help || ($show_messages && $messages)): ?>
-    <div id='console'><div class='limiter clear-block'>
-      <?php print $help; ?>
-      <?php if ($show_messages && $messages): print $messages; endif; ?>
-    </div></div>
-  <?php endif; ?>
 
   <?php if ($header): ?>
     <div id='header'><div class='limiter clear-block'>
@@ -68,6 +62,12 @@
     <?php endif; ?>
 
     <div id='main' class='clear-block'>
+      <?php if ($help || ($show_messages && $messages)): ?>
+        <div id='console'><div class='limiter clear-block'>
+          <?php print $help; ?>
+          <?php if ($show_messages && $messages): print $messages; endif; ?>
+        </div></div>
+      <?php endif; ?>
         <?php if ($breadcrumb) print $breadcrumb; ?>
         <?php if ($mission): print '<div id="mission">'. $mission .'</div>'; endif; ?>
         <?php if ($title): ?><h1 class='page-title'><?php print $title ?></h1><?php endif; ?>

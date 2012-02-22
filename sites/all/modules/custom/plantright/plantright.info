@@ -1,0 +1,5 @@
+; $Id$
+name = Plant Right
+description = Takes care of whatever needs taking care of for this site.
+package = PlantRight
+core = 6.x

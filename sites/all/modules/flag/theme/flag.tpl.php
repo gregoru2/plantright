@@ -34,7 +34,7 @@
  * NOTE: This template spaces out the <span> tags for clarity only. When doing some
  * advanced theming you may have to remove all the whitespace.
  */
-
+//dpm($flag);
   if ($setup) {
     drupal_add_css(drupal_get_path('module', 'flag') .'/theme/flag.css');
     drupal_add_js(drupal_get_path('module', 'flag') .'/theme/flag.js');
