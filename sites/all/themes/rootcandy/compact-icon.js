@@ -1,4 +1,3 @@
-// $Id: compact-icon.js,v 1.1.2.1 2009/04/19 08:25:52 sign Exp $
 
 $(document).ready(function(){
    //Close all menus on page load

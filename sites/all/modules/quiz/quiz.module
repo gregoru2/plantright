@@ -2801,7 +2801,7 @@ function quiz_node_map($node, $include_question = TRUE) {
   if ($include_question) {
     $new_question->question = check_markup($node->body, $node->format, FALSE);
   }
-  $new_question->title = check_plain($node->title);
+  $new_question->title = $node->title;
   $new_question->nid = $node->nid;
   $new_question->vid = $node->vid;
   $new_question->type = $node->type;
@@ -2912,7 +2912,7 @@ function _quiz_resume_existing_quiz($quiz, $uid, $rid) {
       if ($question['vid'] == $answered->vid) {
         $already_answered[] = $answered->vid;
         // we found it, no need to continue the foreach loop
-        continue;
+        continue 2;
       }
     }
     // This question was answered, but wasn't in $questions, so we need
@@ -2924,7 +2924,7 @@ function _quiz_resume_existing_quiz($quiz, $uid, $rid) {
           $questions[$key]['nid'] = $answered->nid;
           $questions[$key]['rid'] = $rid;
           $already_answered[] = $answered->vid;
-          continue;
+          continue 2;
         }
       }
     }
@@ -2945,6 +2945,12 @@ function _quiz_resume_existing_quiz($quiz, $uid, $rid) {
       $next_number++;
       $_SESSION['quiz_'. $quiz->nid]['quiz_questions'][] = $question;
     }
+  }
+
+  if (empty($_SESSION['quiz_'. $quiz->nid]['quiz_questions']) &&
+      count($_SESSION['quiz_'. $quiz->nid]['previous_quiz_questions']) == count($already_answered)
+    ) {
+    $_SESSION['quiz_'. $quiz->nid]['quiz_questions'][] = array_pop($_SESSION['quiz_'. $quiz->nid]['previous_quiz_questions']);
   }
 
   $_SESSION['quiz_'. $quiz->nid]['result_id'] = $rid;
