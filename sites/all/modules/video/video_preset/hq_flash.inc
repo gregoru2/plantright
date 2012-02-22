@@ -1,4 +1,5 @@
 <?php
+
 /*
  * @file
  * Class file used to store metadata on the video.
@@ -26,7 +27,7 @@ class hq_flash implements video_preset_interface {
    * @see sites/all/modules/video/includes/metadata_interface#get_help()
    */
   public function get_help() {
-    return t('Creates files that play in any Flash player, including older versions.', array());
+//    return t('<b>High Video</b>', array());
   }
 
   /**
@@ -69,4 +70,7 @@ class hq_flash implements video_preset_interface {
     );
     return $properties;
   }
+
 }
+
+?>

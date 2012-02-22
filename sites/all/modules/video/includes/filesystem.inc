@@ -35,6 +35,14 @@ class video_filesystem {
     }
   }
 
+  public function save_file($video) {
+    return $this->filesystem->save_file($video);
+  }
+
+  public function prepare_file($video) {
+    return $this->filesystem->prepare_file($video);
+  }
+
   public function load_file(&$video) {
     return $this->filesystem->load_file($video);
   }
@@ -103,10 +111,13 @@ class video_filesystem {
 }
 
 interface filesystem_interface {
+
+  public function save_file($video);
+
+  public function prepare_file($video);
+
   public function load_file($video);
 
-  public function get_value();
-  
   public function get_name();
 
   public function get_help();

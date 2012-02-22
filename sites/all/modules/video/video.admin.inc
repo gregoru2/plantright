@@ -1,9 +1,10 @@
 <?php
+
+
 /**
  * @file
  * Provides the administration settings for the Video Drupal module.
  */
-video_add_adminjs();
 
 /**
  * Video transcoder admin settings
@@ -63,9 +64,9 @@ function video_general_admin_settings() {
   );
   $form['video_bypass_conversion'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Bypass auto conversion by default'),
+    '#title' => t('Bypass Video Conversion'),
     '#default_value' => variable_get('video_bypass_conversion', FALSE),
-    '#description' => t('Bypass video conversion when creating videos. This setting can be overriden by users with the %perm permission.', array('%checkbox' => t('Bypass auto conversion'), '%perm' => t('bypass conversion video')))
+    '#description' => t('Bypass video conversion when creating videos.')
   );
   $form['video_convert_on_save'] = array(
     '#type' => 'checkbox',
@@ -86,12 +87,7 @@ function video_general_admin_settings() {
  * Video player admin settings
  * @return <type>
  */
-function video_players_admin_settings($form_state) {
-  // Check for SWF Tools and Amazon S3 Private URLs
-  if (module_exists('video_s3') && module_exists('swftools') && variable_get('vid_filesystem', NULL) == 'video_s3' && variable_get('amazon_s3_private', FALSE)) {
-    drupal_set_message(t('Using the Flowplayer FLV player via SWF Tools does not work when the S3 %setting-name setting is turned on. Install and enable the <a href="@flowplayer-api-url">Flowplayer API</a> module to use Flowplayer.', array('%setting-name' => t('Enable private file storage'), '@flowplayer-api-url' => 'http://drupal.org/project/flowplayer')), 'warning');
-  }
-
+function video_players_admin_settings() {
   $form = array();
   $form['extensions'] = array(
     '#type' => 'fieldset',
@@ -133,39 +129,7 @@ function video_players_admin_settings($form_state) {
       '#suffix' => '</div>',
     );
   }
-  
-  $form['extra'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Player Settings'),
-  );
-  
-  if (isset($flv_players['flowplayer'])) {
-    $form['extra']['video_flowplayer_extraplayerheight'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Flowplayer: add vertical space to accommodate the control bar'),
-      '#field_suffix' => 'pixels',
-      '#default_value' => variable_get('video_flowplayer_extraplayerheight', 24),
-      '#description' => t('The control bar in Flowplayer 3.2 and up uses an overlay on top of the video, so the player size is equal to the video size. For custom control bars or older Flowplayer versions you can use this field to add vertical space to the player height.'),
-      '#size' => 5,
-      '#maxlength' => 3,
-      '#element_validate' => array('_video_validate_number'),
-    );
-  }
-  
-  if (count($form['extra']) == 2) {
-    unset($form['extra']);
-  }
-  
   return system_settings_form($form);
-}
-
-function _video_validate_number($element, $form_state) {
-  $key = end($element['#parents']);
-  $val = $form_state['values'][$key];
-  
-  if (!empty($val) && (!preg_match('#^\d+$#', $val) || intval($val) < 0)) {
-    form_error($element, t('You must enter an integer value for field %field.', array('%field' => $element['#title'])));
-  }
 }
 
 /**
@@ -225,32 +189,4 @@ function video_filesystem_admin_settings_validate($form, &$form_state) {
   module_load_include('inc', 'video', '/includes/filesystem');
   $filesystem = new video_filesystem($filesystem);
   $filesystem->admin_settings_validate($form, $form_state);
-}
-
-/**
- * Return our possible flash players.
- */
-function video_video_flv_players() {
-  $options = array();
-  if (module_exists('swftools')) {
-    $options['swftools'] = t('SWF Tools');
-  }
-  if (module_exists('flowplayer')) {
-    $options['flowplayer'] = t('Flowplayer');
-  }
-  return $options;
-}
-
-/**
- * Return our possible html5 players.
- */
-function video_video_html5_players() {
-  $options = array();
-  if (module_exists('videojs')) {
-    $options['videojs'] = t('Video JS');
-  }
-  if (module_exists('video')) {
-    $options['video'] = t('Video (Default)');
-  }
-  return $options;
 }

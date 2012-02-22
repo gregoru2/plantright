@@ -1,4 +1,5 @@
 <?php
+// $Id: template.php,v 1.36.2.50 2010/06/07 07:19:59 sign Exp $
 
 /**
  * @file
@@ -84,16 +85,8 @@ function _rootcandy_admin_navigation() {
     $match = _rootcandy_besturlmatch($_GET['q'], $menu_tree);
     $items = array();
     foreach ($menu_tree as $key => $item) {
-      $key_parts = explode(' ', $key);
-      $key = $key_parts[0];
-
-      $active_trail = '';
-      if (isset($key_parts[1])) {
-        $active_trail = $key_parts[1];
-      }
-
       $router_item = menu_get_item($item['href']);
-      if (!$router_item['access'] && !menu_path_is_external($item['href']) && $item['href'] != '<front>') {
+      if (!$router_item['access']) {
         continue;
       }
       $id = '';
@@ -107,7 +100,7 @@ function _rootcandy_admin_navigation() {
         $icon = _rootcandy_icon($arg, $size, 'admin', $custom_icons);
         if ($icon) $icon = $icon .'<br />';
       }
-      if ($key == $match || $active_trail == 'active-trail') {
+      if ($key == $match) {
         $id = 'current';
         if (!$icons_disabled && $size) {
           $id = 'current-'. $size;
@@ -132,12 +125,7 @@ function _rootcandy_admin_navigation() {
 
     $level = 1;
     if ($rootcandy_navigation == '_rootcandy_default_navigation') {
-      if (module_exists('admin_menu')) {
-        $rootcandy_navigation = 'admin_menu';
-      }
-      else {
-        $rootcandy_navigation = 'navigation';
-      }
+      $rootcandy_navigation = 'navigation';
       $level = 2;
     }
 
@@ -275,7 +263,7 @@ function rootcandy_preprocess_page(&$vars) {
   $rootcandy_navigation_class = array();
 
   if (!$icons_disabled) {
-    $rootcandy_navigation_class[] = 'i'. theme_get_setting('rootcandy_navigation_icons_size');
+    $rootcandy_navigation_class[] = 'i'.theme_get_setting('rootcandy_navigation_icons_size');
   }
 
   if (!$vars['hide_header']) {
@@ -552,11 +540,7 @@ function _rootcandy_countmatches($arrayone, $arraytwo) {
   $matches = 0;
   foreach ($arraytwo as $i => $part) {
     if (!isset($arrayone[$i])) break;
-    if ($arrayone[$i] == $part) {
-      $matches = $i+1;
-    } else {
-      break;
-    }
+    if ($arrayone[$i] == $part) $matches = $i+1;
   }
   return $matches;
 }
@@ -564,7 +548,7 @@ function _rootcandy_countmatches($arrayone, $arraytwo) {
 function rootcandy_system_settings_form($form) {
   $themes = list_themes();
   $enabled_theme = arg(4);
-  if ($form['#id'] == 'system-theme-settings' AND ($enabled_theme == 'rootcandy' || (isset($themes[$enabled_theme]) && in_array($themes[$enabled_theme]->base_theme, array('rootcandy', 'rootcandy_dark', 'rootcandy_fixed'))))) {
+  if ($form['#id'] == 'system-theme-settings' AND ($enabled_theme == 'rootcandy' || $themes[$enabled_theme]->base_theme == 'rootcandy')) {
 
     foreach ($form['theme_specific']['rows'] as $rid => $row) {
       //we are only interested in numeric keys

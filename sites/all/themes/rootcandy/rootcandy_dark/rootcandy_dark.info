@@ -1,3 +1,4 @@
+; $Id: rootcandy_dark.info,v 1.1.2.7 2010/04/23 18:44:57 sign Exp $
 name = RootCandy Dark
 description = Administration theme - dark
 screenshot = screenshot.png
@@ -33,9 +34,9 @@ settings[rootcandy_hide_author] = 0
 settings[rootcandy_hide_panel] = 0
 settings[rootcandy_navigation_source_admin] = '_rootcandy_default_navigation'
 
-; Information added by drupal.org packaging script on 2011-12-08
-version = "6.x-1.9"
+; Information added by drupal.org packaging script on 2010-06-07
+version = "6.x-1.8"
 core = "6.x"
 project = "rootcandy"
-datestamp = "1323371444"
+datestamp = "1275900908"
 

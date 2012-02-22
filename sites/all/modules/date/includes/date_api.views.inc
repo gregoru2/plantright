@@ -1,4 +1,5 @@
 <?php
+//$Id: date_api.views.inc,v 1.1.2.12 2010/08/12 14:13:59 karens Exp $
 
 /**
  * @file
@@ -120,9 +121,9 @@ function date_api_views_plugins() {
  */
 function date_api_views_data() {
   $data = array();
-
+  
   $tables = module_invoke_all('date_api_tables');
-
+  
   foreach ($tables as $base_table) {
     // The flexible date argument.
     $data[$base_table]['date_argument'] = array(

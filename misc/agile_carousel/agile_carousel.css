@@ -1,0 +1,90 @@
+/* general styles */
+
+/* reset styles */
+
+.agile_carousel img {border: 0;}
+
+.agile_carousel p, .agile_carousel ul, .agile_carousel ul li {
+margin: 0;
+padding: 0;
+}
+
+/* agile carousel styles */
+
+/* -----------------------------------*/
+/*-- outer containers --*/
+/* -----------------------------------*/
+
+/*-- the most outer container rendered by JS 
+Contains .slides .slide_content_... .persistent_content and controls that have "no_control_set" --*/
+
+.agile_carousel {
+position: relative;
+overflow: hidden;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+
+/*-- container for all slides only --*/
+
+.agile_carousel .slides {
+position: absolute;
+top: 0;
+left: 0;
+}
+
+/*-- individual slide --*/
+
+.agile_carousel .slide {
+float: left;
+}
+
+
+/* -----------------------------------*/
+/*-- default style for controls --*/
+/* -----------------------------------*/
+
+
+/*-- default styles for all control sets --*/
+
+.agile_carousel .control_set {
+position: absolute;
+z-index: 4000;
+}
+
+/*-- default styles for all button containers --*/
+
+.agile_carousel .button_container {
+z-index: 5000;	
+}
+
+/*-- default style for controls whose trigger type is "hover" --*/
+
+.agile_carousel .ac_hover {
+cursor:text;	
+}
+
+
+/*-- style applied to all controls --*/
+
+.slide_button {
+z-index: 5000;
+cursor: pointer;
+display: block;
+background-position: 0 0;
+background-repeat: no-repeat;
+position: relative;
+}
+
+
+
+/* -------------------------------------------- */
+/*-- #basic_slideshow styles --*/
+/* -------------------------------------------- */
+
+/*-- hide the captions --*/
+#basic_slideshow .caption {
+/*  display: none;  */
+}
+
+

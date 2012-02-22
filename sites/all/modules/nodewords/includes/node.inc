@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: node.inc,v 1.1.4.8 2009/12/30 18:00:51 kiam Exp $
 
 /**
  * @file
@@ -14,10 +14,13 @@
 /**
  * Implements hook_nodewords_type_id().
  */
-function node_nodewords_type_id(&$result, $arg) {
+function node_nodewords_type_id($arg) {
   if ($arg[0] == 'node') {
     // Node paths: node/$nid.
-    if (isset($arg[1]) && is_numeric($arg[1]) && ($node = menu_get_object())) {
+    if (isset($arg[1]) && is_numeric($arg[1])) {
+      if (!($node = menu_get_object())) {
+        return array(NODEWORDS_TYPE_NONE, 0);
+      }
 
       $bool = (
         (
@@ -29,8 +32,7 @@ function node_nodewords_type_id(&$result, $arg) {
       );
 
       if ($bool) {
-        $result['type'] = NODEWORDS_TYPE_NODE;
-        $result['id'] = $node->nid;
+        return array(NODEWORDS_TYPE_NODE, array($node->nid));
       }
     }
   }

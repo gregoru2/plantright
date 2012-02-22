@@ -1,4 +1,5 @@
 <?php
+// $Id: maintenance-page.tpl.php,v 1.1.2.2 2009/06/15 21:01:13 sign Exp $
 
 /**
  * @file

@@ -1,5 +1,6 @@
 <?php
 
+// $Id: color.inc,v 1.7.2.6 2009/05/10 15:19:10 sign Exp $
 
 /**
  * @file

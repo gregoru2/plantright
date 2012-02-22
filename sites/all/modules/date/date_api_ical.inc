@@ -1,4 +1,5 @@
 <?php
+/* $Id: date_api_ical.inc,v 1.35.4.34 2010/10/26 10:21:36 karens Exp $ */
 /**
  * @file
  * Parse iCal data.
@@ -127,12 +128,13 @@ function date_ical_import($filename) {
  */
 function date_ical_parse($icaldatafolded = array()) {
   $items = array();
-
+    
   // Verify this is iCal data
   if (trim($icaldatafolded[0]) != 'BEGIN:VCALENDAR') {
     watchdog('date ical', 'Invalid calendar file.');
     return false;
   }
+
 
   // "unfold" wrapped lines
   $icaldata = array();
@@ -275,7 +277,7 @@ function date_ical_parse($icaldatafolded = array()) {
             $parse_result = array('DATA' => $data);
           }
           break;
-
+          
         case 'DURATION':
           // Can't be sure whether DTSTART is before or after DURATION in
           // the VEVENT, so store the data and parse it at the end.
