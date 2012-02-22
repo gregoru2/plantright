@@ -9,7 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
 
 
-<link rel="stylesheet" href="/misc/agile_carousel/agile_carousel.css">
+<link rel="stylesheet" href="/sites/default/files/agile_carousel/agile_carousel.css">
 
 <!--[if lte IE 7]>
     <style type="text/css" media="all">@import "<?php print base_path() . path_to_theme() ?>/lte_ie7.css";</style>
@@ -100,9 +100,9 @@
 
   <?php print $scripts ?>
   
-<script src="/misc/agile_carousel/agile_carousel.alpha.js"></script>
+<script src="/sites/default/files/agile_carousel/agile_carousel.alpha.js"></script>
 <script>
-    $.getJSON("misc/agile_carousel/agile_carousel_data_pr.php", function (data) {
+    $.getJSON("sites/default/files/agile_carousel/agile_carousel_data_pr.php", function (data) {
         $(document).ready(function () {
             $("#basic_slideshow").agile_carousel({
                 carousel_data: data,
