@@ -247,18 +247,23 @@ div#console	{
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	z-index: 1000;
+	margin-bottom: 5px;
 }
 
 div#console div.status	{
-	padding: 3px 6px;
+	padding: 8px 6px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	color: #000;
 }
 
+div#console div.status a {
+  text-decoration: underline;
+}
+
 div#console div.error	{
-	padding: 3px 9px;
+	padding: 8px 9px;
 	padding: 4px;
 	font-size: 1.2em;
 	background-color: #ffea00;

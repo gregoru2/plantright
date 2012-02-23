@@ -24,3 +24,9 @@ function removeElementWithValue($array, $key, $value){
   }
   return $array;
 }
+
+function plantright_user($op, &$edit, &$account, $category = NULL) {
+  if($op == 'login' && !$account->profile_city) {
+    drupal_set_message("Please don't forget to add your City to <a href='user/$account->uid/edit/Personal%20Info'>your profile</a>.  Thank you!");
+  }
+}
