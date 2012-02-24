@@ -218,7 +218,10 @@ div#console {
     border-bottom: solid 1px #d8cfb4;
     padding: 10px 0px; }
 
-#left #block-menu-primary-links ul.menu a, #left #block-menu-menu-survey-menu ul.menu a, #left #block-menu-menu-pre-survey-menu ul.menu a {
+#left #block-menu-primary-links ul.menu a,
+#left #block-menu-menu-survey-menu ul.menu a,
+#left #block-menu-menu-pre-survey-menu ul.menu a,
+#left #block-menu-menu-survey-admin ul.menu a {
   font-family: "Open Sans", Helvetica, Arial sans-serif;
   font-size: 16px;
   font-weight: 700; }
@@ -236,10 +239,16 @@ ul.menu li.dhtml-menu.expanded a {
 ul.menu li.dhtml-menu li.fake-leaf {
   display: none; }
 
-#block-menu-primary-links ul.menu.expanded ul, #block-menu-menu-survey-menu ul.menu.expanded ul, #block-menu-menu-pre-survey-menu ul.menu.expanded ul {
+#block-menu-primary-links ul.menu.expanded ul,
+#block-menu-menu-survey-menu ul.menu.expanded ul,
+#block-menu-menu-pre-survey-menu ul.menu.expanded ul,
+#block-menu-menu-survey-admin ul.menu.expanded ul {
   margin-top: 10px; }
 
-#left #block-menu-primary-links ul.menu li.dhtml-menu li a, #left #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a {
+#left #block-menu-primary-links ul.menu li.dhtml-menu li a,
+#left #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a,
+#left #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a,
+#left #block-menu-menu-survey-admin ul.menu li.dhtml-menu li a {
   display: block;
   background: none;
   margin-left: 0px;
@@ -248,16 +257,23 @@ ul.menu li.dhtml-menu li.fake-leaf {
   font-size: 14px;
   font-weight: normal;
   color: #7f4128; }
+  #left #block-menu-primary-links ul.menu li.dhtml-menu li a:hover,
+  #left #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a:hover,
+  #left #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a:hover,
+  #left #block-menu-menu-survey-admin ul.menu li.dhtml-menu li a:hover {
+    color: #403000; }
 
-#block-menu-primary-links ul.menu li.dhtml-menu li a:hover, #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a:hover, #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a:hover {
-  color: #403000; }
-
-#block-menu-primary-links ul.menu li.dhtml-menu li, #block-menu-menu-survey-menu ul.menu li.dhtml-menu li, #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li {
+#block-menu-primary-links ul.menu li.dhtml-menu li,
+#block-menu-menu-survey-menu ul.menu li.dhtml-menu li,
+#block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li,
+#block-menu-menu-survey-admin ul.menu li.dhtml-menu li {
   border-top: solid 1px #eae8dc;
   border-bottom: none;
   padding: 6px 0px; }
 
-#block-menu-menu-survey-menu, #block-menu-menu-pre-survey-menu {
+#block-menu-menu-survey-menu,
+#block-menu-menu-pre-survey-menu,
+#block-menu-menu-survey-admin {
   margin-top: 12px; }
 
 #block-user-0,
