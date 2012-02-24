@@ -4,13 +4,9 @@
     <?php print $head ?>
     <?php print $styles ?>
     <title><?php print $head_title ?></title>
-	
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700,800' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
-
-
-<link rel="stylesheet" href="/sites/default/files/agile_carousel/agile_carousel.css">
-
+<?php if ($is_front):?><link rel="stylesheet" href="/sites/default/files/agile_carousel/agile_carousel.css"><?php endif; ?>
 <!--[if lte IE 7]>
     <style type="text/css" media="all">@import "<?php print base_path() . path_to_theme() ?>/lte_ie7.css";</style>
   <![endif]-->
@@ -99,10 +95,10 @@
 
 
   <?php print $scripts ?>
-  
+<?php if ($is_front): ?>  
 <script src="/sites/default/files/agile_carousel/agile_carousel.alpha.js"></script>
 <script>
-    $.getJSON("sites/default/files/agile_carousel/agile_carousel_data_pr.php", function (data) {
+    $.getJSON("/sites/default/files/agile_carousel/agile_carousel_data_pr.php", function (data) {
         $(document).ready(function () {
             $("#basic_slideshow").agile_carousel({
                 carousel_data: data,
@@ -117,7 +113,7 @@
         });
     });
 </script>
-
+<?php endif; ?>
   
   <?php print $closure ?>
 

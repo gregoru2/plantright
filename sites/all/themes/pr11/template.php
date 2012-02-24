@@ -4,47 +4,47 @@
  * Implementation of hook_theme().
  */
 
-function tao_theme() {
+function pr11_theme() {
   $items = array();
   // Consolidate a variety of theme functions under a single template type.
   $items['block'] = array(
     'arguments' => array('block' => NULL),
     'template' => 'object',
-    'path' => drupal_get_path('theme', 'tao') .'/templates',
+    'path' => drupal_get_path('theme', 'pr11') .'/templates',
   );
   $items['box'] = array(
     'arguments' => array('title' => NULL, 'content' => NULL, 'region' => 'main'),
     'template' => 'object',
-    'path' => drupal_get_path('theme', 'tao') .'/templates',
+    'path' => drupal_get_path('theme', 'pr11') .'/templates',
   );
   $items['comment'] = array(
     'arguments' => array('comment' => NULL, 'node' => NULL, 'links' => array()),
     'template' => 'object',
-    'path' => drupal_get_path('theme', 'tao') .'/templates',
+    'path' => drupal_get_path('theme', 'pr11') .'/templates',
   );
   $items['node'] = array(
     'arguments' => array('node' => NULL, 'teaser' => FALSE, 'page' => FALSE),
     'template' => 'node',
-    'path' => drupal_get_path('theme', 'tao') .'/templates',
+    'path' => drupal_get_path('theme', 'pr11') .'/templates',
   );
   $items['fieldset'] = array(
     'arguments' => array('element' => array()),
     'template' => 'fieldset',
-    'path' => drupal_get_path('theme', 'tao') .'/templates',
+    'path' => drupal_get_path('theme', 'pr11') .'/templates',
   );
 
   // Use a template for form elements
   $items['form_element'] = array(
     'arguments' => array('element' => array(), 'value' => NULL),
     'template' => 'form-item',
-    'path' => drupal_get_path('theme', 'tao') .'/templates',
+    'path' => drupal_get_path('theme', 'pr11') .'/templates',
   );
 
   // Print friendly page headers.
   $items['print_header'] = array(
     'arguments' => array(),
     'template' => 'print-header',
-    'path' => drupal_get_path('theme', 'tao') .'/templates',
+    'path' => drupal_get_path('theme', 'pr11') .'/templates',
   );
 
   // Split out pager list into separate theme function.
@@ -66,7 +66,7 @@ function tao_theme() {
  * Strips CSS files from a Drupal CSS array whose filenames start with
  * prefixes provided in the $match argument.
  */
-function tao_css_stripped($match = array('modules/*'), $exceptions = NULL) {
+function pr11_css_stripped($match = array('modules/*'), $exceptions = NULL) {
   // Set default exceptions
   if (!is_array($exceptions)) {
     $exceptions = array(
@@ -89,7 +89,7 @@ function tao_css_stripped($match = array('modules/*'), $exceptions = NULL) {
 
   // This servers to move the "all" CSS key to the front of the stack.
   // Mainly useful because modules register their CSS as 'all', while
-  // Tao has a more media handling.
+  // pr11 has a more media handling.
   ksort($css);
   return $css;
 }
@@ -97,7 +97,7 @@ function tao_css_stripped($match = array('modules/*'), $exceptions = NULL) {
 /**
  * Print all child pages of a book.
  */
-function tao_print_book_children($node) {
+function pr11_print_book_children($node) {
   // We use a semaphore here since this function calls and is called by the
   // node_view() stack so that it may be called multiple times for a single book tree.
   static $semaphore;
@@ -111,7 +111,7 @@ function tao_print_book_children($node) {
       $tree = array_shift(book_menu_subtree_data($node->book));
       if (!empty($tree['below'])) {
         foreach ($tree['below'] as $link) {
-          _tao_print_book_children($link, $child_pages, $zomglimit);
+          _pr11_print_book_children($link, $child_pages, $zomglimit);
         }
       }
 
@@ -127,7 +127,7 @@ function tao_print_book_children($node) {
 /**
  * Book printing recursion.
  */
-function _tao_print_book_children($link, &$content, &$zomglimit, $limit = 500) {
+function _pr11_print_book_children($link, &$content, &$zomglimit, $limit = 500) {
   if ($zomglimit < $limit) {
     $zomglimit++;
     if (!empty($link['link']['nid'])) {
@@ -137,7 +137,7 @@ function _tao_print_book_children($link, &$content, &$zomglimit, $limit = 500) {
       }
       if (!empty($link['below'])) {
         foreach ($link['below'] as $child) {
-          _tao_print_book_children($child, $content);
+          _pr11_print_book_children($child, $content);
         }
       }
     }
@@ -147,14 +147,32 @@ function _tao_print_book_children($link, &$content, &$zomglimit, $limit = 500) {
 /**
  * Preprocess functions ===============================================
  */
+ 
+//function pr11_preprocess_views_view__nursery_list__page_1(&$vars) {
+//  $results = $vars['view']->result;
+//  foreach($results as $key => $result) {
+//    if($result->flag_counts_node_count && $result->users_node_data_field_surveying_user_profile_values_profile_survey_w_others_value == 'No') {
+//      unset($results[$key]);
+//    }
+//  }
+//  $vars['view']->result = $results;
+//  dpm($vars);
+//  return $vars;
+//}
+
+//
+//function pr11_preprocess_views_view_field__nursery_list__ops(&$vars) {
+//  //dpm($vars['row']);
+//  
+//}
 
 /**
  * Implementation of preprocess_page().
  */
-function tao_preprocess_page(&$vars) {
+function pr11_preprocess_page(&$vars) {
   $attr = array();
   $attr['class'] = $vars['body_classes'];
-  $attr['class'] .= ' tao'; // Add the tao class so that we can avoid using the 'body' selector
+  $attr['class'] .= ' pr11'; // Add the pr11 class so that we can avoid using the 'body' selector
 
   // Replace screen/all stylesheets with print
   // We want a minimal print representation here for full control.
@@ -195,7 +213,7 @@ function tao_preprocess_page(&$vars) {
 /**
  * Implementation of preprocess_block().
  */
-function tao_preprocess_block(&$vars) {
+function pr11_preprocess_block(&$vars) {
   // Hide blocks with no content.
   $vars['hide'] = empty($vars['block']->content);
 
@@ -213,7 +231,7 @@ function tao_preprocess_block(&$vars) {
 /**
  * Implementation of preprocess_box().
  */
-function tao_preprocess_box(&$vars) {
+function pr11_preprocess_box(&$vars) {
   $attr = array();
   $attr['class'] = "box";
   $vars['attr'] = $attr;
@@ -223,7 +241,7 @@ function tao_preprocess_box(&$vars) {
 /**
  * Implementation of preprocess_node().
  */
-function tao_preprocess_node(&$vars) {
+function pr11_preprocess_node(&$vars) {
   $attr = array();
   $attr['id'] = "node-{$vars['node']->nid}";
   $attr['class'] = "node node-{$vars['node']->type}";
@@ -235,14 +253,14 @@ function tao_preprocess_node(&$vars) {
 
   // Add print customizations
   if (isset($_GET['print'])) {
-    $vars['post_object'] = tao_print_book_children($vars['node']);
+    $vars['post_object'] = pr11_print_book_children($vars['node']);
   }
 }
 
 /**
  * Implementation of preprocess_comment().
  */
-function tao_preprocess_comment(&$vars) {
+function pr11_preprocess_comment(&$vars) {
   $attr = array();
   $attr['id'] = "comment-{$vars['comment']->cid}";
   $attr['class'] = "comment {$vars['status']}";
@@ -281,7 +299,7 @@ function pr11_preprocess_fieldset(&$vars) {
  * Implementation of preprocess_form_element().
  * Take a more sensitive/delineative approach toward theming form elements.
  */
-function tao_preprocess_form_element(&$vars) {
+function pr11_preprocess_form_element(&$vars) {
   $element = $vars['element'];
 
   // Main item attributes.
@@ -312,7 +330,7 @@ function tao_preprocess_form_element(&$vars) {
 /**
  * Preprocessor for theme_print_header().
  */
-function tao_preprocess_print_header(&$vars) {
+function pr11_preprocess_print_header(&$vars) {
   $vars = array(
     'base_path' => base_path(),
     'theme_path' => base_path() .'/'. path_to_theme(),
@@ -330,7 +348,7 @@ function tao_preprocess_print_header(&$vars) {
  * Add argument to allow primary/secondary local tasks to be printed
  * separately. Use theme_links() markup to consolidate.
  */
-function tao_menu_local_tasks($type = '') {
+function pr11_menu_local_tasks($type = '') {
   if ($primary = menu_primary_local_tasks()) {
     $primary = "<ul class='links primary-tabs'>{$primary}</ul>";
   }
@@ -351,7 +369,7 @@ function tao_menu_local_tasks($type = '') {
  * Override of theme_file().
  * Reduces the size of upload fields which are by default far too long.
  */
-function tao_file($element) {
+function pr11_file($element) {
   _form_set_class($element, array('form-file'));
   $attr = $element['#attributes'] ? ' '. drupal_attributes($element['#attributes']) : '';
   return theme('form_element', $element, "<input type='file' name='{$element['#name']}' id='{$element['#id']}' size='15' {$attr} />");
@@ -363,7 +381,7 @@ function tao_file($element) {
  * control block display on a per-region basis. Falls back to default
  * block region handling if no region-specific overrides are found.
  */
-function tao_blocks($region) {
+function pr11_blocks($region) {
   // Allow theme functions some additional control over regions.
   $registry = theme_get_registry();
   if (isset($registry['blocks_'. $region])) {
@@ -375,7 +393,7 @@ function tao_blocks($region) {
 /**
  * Override of theme_username().
  */
-function tao_username($object) {
+function pr11_username($object) {
   if (!empty($object->name)) {
     // Shorten the name when it is too long or it will break many tables.
     $name = drupal_strlen($object->name) > 20 ? drupal_substr($object->name, 0, 15) .'...' : $object->name;
@@ -404,7 +422,7 @@ function tao_username($object) {
  * ensure the markup will not conflict with major other styles
  * (theme_item_list() in particular).
  */
-function tao_pager($tags = array(), $limit = 10, $element = 0, $parameters = array(), $quantity = 9) {
+function pr11_pager($tags = array(), $limit = 10, $element = 0, $parameters = array(), $quantity = 9) {
   $pager_list = theme('pager_list', $tags, $limit, $element, $parameters, $quantity);
 
   $links = array();
@@ -423,7 +441,7 @@ function tao_pager($tags = array(), $limit = 10, $element = 0, $parameters = arr
 /**
  * Split out page list generation into its own function.
  */
-function tao_pager_list($tags = array(), $limit = 10, $element = 0, $parameters = array(), $quantity = 9) {
+function pr11_pager_list($tags = array(), $limit = 10, $element = 0, $parameters = array(), $quantity = 9) {
   global $pager_page_array, $pager_total, $theme_key;
   if ($pager_total[$element] > 1) {
     // Calculate various markers within this pager piece:
@@ -478,7 +496,7 @@ function tao_pager_list($tags = array(), $limit = 10, $element = 0, $parameters 
 /**
  * Return an array suitable for theme_links() rather than marked up HTML link.
  */
-function tao_pager_link($text, $page_new, $element, $parameters = array(), $attributes = array()) {
+function pr11_pager_link($text, $page_new, $element, $parameters = array(), $attributes = array()) {
   $page = isset($_GET['page']) ? $_GET['page'] : '';
   if ($new_page = implode(',', pager_load_array($page_new[$element], $element, explode(',', $page)))) {
     $parameters['page'] = $new_page;
@@ -523,7 +541,7 @@ function tao_pager_link($text, $page_new, $element, $parameters = array(), $attr
 /**
  * Override of theme_views_mini_pager().
  */
-function tao_views_mini_pager($tags = array(), $limit = 10, $element = 0, $parameters = array(), $quantity = 9) {
+function pr11_views_mini_pager($tags = array(), $limit = 10, $element = 0, $parameters = array(), $quantity = 9) {
   global $pager_page_array, $pager_total;
 
   // Calculate various markers within this pager piece:
