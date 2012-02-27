@@ -1,6 +1,3 @@
-<!-- in pr fieldset.tpl.php -->
-<!-- <?php var_dump($title) ?> -->
-<!-- <?php var_dump($content) ?> -->
 <fieldset <?php if (!empty($attr)) print drupal_attributes($attr) ?>>
    <?php if (!empty($title)): ?>
     <legend><span class='<?php print $hook ?>-title'><?php print $title ?></span></legend>
@@ -11,4 +8,3 @@
     </div>
   <?php endif; ?>
 </fieldset>
-<!-- leaving pr fieldset.tpl.php -->
