@@ -22,3 +22,11 @@ Drupal.behaviors.tao = function (context) {
     });
   });
 };
+
+jQuery(document).ready(function($) {
+  $('#page-node-add-survey-photos input.form-radio').click(function() {
+    $code = $(this).siblings('span.views-field-field-store-code-value').children('.field-content').html();
+    console.log($code);
+    $('input#edit-title').val($code);
+  });
+});

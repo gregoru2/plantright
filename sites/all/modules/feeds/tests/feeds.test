@@ -1,5 +1,4 @@
 <?php
-// $Id: feeds.test.inc,v 1.15 2010/09/15 19:27:42 alexb Exp $
 
 /**
  * @file
@@ -11,16 +10,52 @@
  */
 class FeedsWebTestCase extends DrupalWebTestCase {
 
-  /**
-   * Debug utility. Shows current screen.
-   */
-  public function show($path = NULL) {
-    if ($path !== NULL) {
-      $this->drupalGet($path);
+  public function setUp() {
+    $args = func_get_args();
+
+    // Build the list of required modules which can be altered by passing in an
+    // array of module names to setUp().
+    if (isset($args[0])) {
+      if (is_array($args[0])) {
+        $modules = $args[0];
+      }
+      else {
+        $modules = $args;
+      }
     }
-    // Use error, this will make sure we don't forget accidental calls to show()
-    // in our tests.
-    $this->error($this->content);
+    else {
+      $modules = array();
+    }
+
+    $modules[] = 'taxonomy';
+    $modules[] = 'feeds';
+    $modules[] = 'feeds_ui';
+    //$modules[] = 'feeds_tests';
+    $modules[] = 'ctools';
+    $modules[] = 'job_scheduler';
+    $modules = array_unique($modules);
+    parent::setUp($modules);
+
+    // Build the list of required administration permissions. Additional
+    // permissions can be passed as an array into setUp()'s second parameter.
+    if (isset($args[1]) && is_array($args[1])) {
+      $permissions = $args[1];
+    }
+    else {
+      $permissions = array();
+    }
+
+    $permissions[] = 'access content';
+    $permissions[] = 'administer site configuration';
+    $permissions[] = 'administer content types';
+    $permissions[] = 'administer nodes';
+    $permissions[] = 'administer taxonomy';
+    $permissions[] = 'administer users';
+    $permissions[] = 'administer feeds';
+
+    // Create an admin user and log in.
+    $this->admin_user = $this->drupalCreateUser($permissions);
+    $this->drupalLogin($this->admin_user);
   }
 
   /**
@@ -153,9 +188,11 @@ class FeedsWebTestCase extends DrupalWebTestCase {
     if (empty($feed_url)) {
       $feed_url = $GLOBALS['base_url'] .'/'. drupal_get_path('module', 'feeds') .'/tests/feeds/developmentseed.rss2';
     }
+
     // If content type not given, retrieve it.
     if (!$content_type) {
-      $config = unserialize(db_result(db_query("SELECT config FROM {feeds_importer} WHERE id = '%s'", $id)));
+      $result = db_query("SELECT config FROM {feeds_importer} WHERE id = '%s'", $id);
+      $config = unserialize(db_result($result));
       $content_type = $config['content_type'];
       $this->assertFalse(empty($content_type), 'Valid content type found: '. $content_type);
     }
@@ -172,7 +209,9 @@ class FeedsWebTestCase extends DrupalWebTestCase {
     $nid = $this->getNid($this->getUrl());
 
     // Check whether feed got recorded in feeds_source table.
-    $this->assertEqual(1, db_result(db_query("SELECT COUNT(*) FROM {feeds_source} WHERE id = '%s' AND feed_nid = %d", $id, $nid)));
+    $result = db_result(db_query("SELECT COUNT(*) FROM {feeds_source} WHERE id = '%s' AND feed_nid = %d", $id, $nid));
+    $this->assertEqual(1, $result);
+
     $source = db_fetch_object(db_query("SELECT * FROM {feeds_source} WHERE id = '%s' AND feed_nid = %d", $id, $nid));
     $config = unserialize($source->config);
     $this->assertEqual($config['FeedsHTTPFetcher']['source'], $feed_url, t('URL in DB correct.'));
@@ -315,5 +354,81 @@ class FeedsWebTestCase extends DrupalWebTestCase {
       $this->error(t('Could not find node id, found @nid instead.', array('@nid' => $nid)));
     }
     return $nid;
+  }
+}
+
+/**
+ * Provides a wrapper for DrupalUnitTestCase for Feeds unit testing.
+ */
+class FeedsUnitTestHelper extends DrupalUnitTestCase {
+  public function setUp() {
+    parent::setUp();
+
+    // Manually include the feeds module.
+    // @todo Allow an array of modules from the child class.
+    drupal_load('module', 'feeds');
+  }
+}
+
+class FeedsUnitTestCase extends FeedsUnitTestHelper {
+  public static function getInfo() {
+    return array(
+      'name' => 'Unit tests',
+      'description' => 'Test basic low-level Feeds module functionality.',
+      'group' => 'Feeds',
+    );
+  }
+
+  /**
+   * Test valid absolute urls.
+   *
+   * @see ValidUrlTestCase
+   *
+   * @todo Remove when http://drupal.org/node/1191252 is fixed.
+   */
+  function testFeedsValidURL() {
+    $url_schemes = array('http', 'https', 'ftp', 'feed', 'webcal');
+    $valid_absolute_urls = array(
+      'example.com',
+      'www.example.com',
+      'ex-ample.com',
+      '3xampl3.com',
+      'example.com/paren(the)sis',
+      'example.com/index.html#pagetop',
+      'example.com:8080',
+      'subdomain.example.com',
+      'example.com/index.php?q=node',
+      'example.com/index.php?q=node&param=false',
+      'user@www.example.com',
+      'user:pass@www.example.com:8080/login.php?do=login&style=%23#pagetop',
+      '127.0.0.1',
+      'example.org?',
+      'john%20doe:secret:foo@example.org/',
+      'example.org/~,$\'*;',
+      'caf%C3%A9.example.org',
+      '[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html',
+    );
+
+    foreach ($url_schemes as $scheme) {
+      foreach ($valid_absolute_urls as $url) {
+        $test_url = $scheme . '://' . $url;
+        $valid_url = feeds_valid_url($test_url, TRUE);
+        $this->assertTrue($valid_url, t('@url is a valid url.', array('@url' => $test_url)));
+      }
+    }
+
+    $invalid_ablosule_urls = array(
+      '',
+      'ex!ample.com',
+      'ex%ample.com',
+    );
+
+    foreach ($url_schemes as $scheme) {
+      foreach ($invalid_ablosule_urls as $url) {
+        $test_url = $scheme . '://' . $url;
+        $valid_url = feeds_valid_url($test_url, TRUE);
+        $this->assertFalse($valid_url, t('@url is NOT a valid url.', array('@url' => $test_url)));
+      }
+    }
   }
 }
