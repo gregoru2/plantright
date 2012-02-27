@@ -1,0 +1,3 @@
+<?php
+
+include_once('spring_survey_views_menus.features.inc');
