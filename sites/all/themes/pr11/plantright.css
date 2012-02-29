@@ -1385,3 +1385,7 @@ li span.flag-nursery-dibs {
   background-color: white;
   width: 90%;
 }
+
+.node-nursery .node-submitted {
+  display: none;
+}
