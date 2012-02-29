@@ -1375,6 +1375,11 @@ li span.flag-nursery-dibs {
 
 #page-node-add-survey-photos .views-field-field-store-code-value {
   display: none; }
+  
+#page-node-add-survey-photos .content-add-more {
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
 
 .webform-client-form textarea {
   background-color: white;

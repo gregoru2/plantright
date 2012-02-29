@@ -29,4 +29,5 @@ jQuery(document).ready(function($) {
     console.log($code);
     $('input#edit-title').val($code);
   });
+  $('#page-node-add-survey-photos input#edit-field-survey-image-field-survey-image-add-more').val('Add another photo');
 });
