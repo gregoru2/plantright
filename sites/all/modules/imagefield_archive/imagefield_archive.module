@@ -1,0 +1,241 @@
+<?php
+
+/**
+ * Implementation of hook_action_info().
+ */
+function imagefield_archive_action_info() {
+  return array(
+    'imagefield_archive_action' => array(
+      'type' => 'node',
+      'description' => t('Download archive of images'),
+      'configurable' => TRUE,
+      'aggregate' => TRUE,
+    ),
+  );
+}
+
+define('IMAGEFIELD_ZIP_PRESET_ORIGINAL', '__original__');
+define('IMAGE_ZIP_PRESET_ORIGINAL', '_original');
+
+/**
+ * Implementation of action().
+ */
+function imagefield_archive_action($nids, $context) {
+  $files = array();
+  foreach ($nids as $nid) {
+    $node = node_load($nid);
+    if ($node->type == 'image' && module_exists('image')) {
+      foreach ($context['presets']['image_presets'] as $presetid => $presetname) {
+        if ($presetid != IMAGE_ZIP_PRESET_ORIGINAL) {
+          _image_build_derivatives_if_needed($node);
+        }
+        $image_presets = variable_get('image_sizes', array(IMAGE_ZIP_PRESET_ORIGINAL => array('label' => t('Original'))));
+        $derivative = array(
+          'node' => $node,
+          'filepath' => $node->images[$presetid],
+          'filename' => basename($node->images[IMAGE_ZIP_PRESET_ORIGINAL]),
+          'presetname' => $image_presets[$presetid]['label'],
+        );
+        $files[] = (object)$derivative;
+      }
+    }
+    $content = content_types($node->type);
+    foreach ($content['fields'] as $field) {
+      if ($field['type'] == 'filefield' && $field['widget']['module'] == 'imagefield') {
+        if (!empty($node->$field['field_name'])) foreach ($node->$field['field_name'] as $file) {
+          foreach ($context['presets']['imagecache_presets'] as $presetid => $presetname) {
+            if ($presetid == IMAGEFIELD_ZIP_PRESET_ORIGINAL) {
+              $file['node'] = $node;
+              $files[] = (object)$file;
+            }
+            else {
+              $preset = imagecache_preset($presetid);
+              if (!$preset) continue;
+              $derivative = array(
+                'node' => $node,
+                'filepath' => imagecache_create_path($preset['presetname'], $file['filepath']),
+                'filename' => $file['filename'],
+                'presetname' => $preset['presetname'],
+              );
+              if (!is_file($derivative['filepath'])) {
+                if (!imagecache_build_derivative($preset['actions'], file_create_path($file['filepath']), $derivative['filepath'])) continue;
+              }
+              $files[] = (object)$derivative;
+            }
+          }
+        }
+      }
+    }
+  }
+  if (!empty($files)) {
+    imagefield_archive_action_do($files, $context);
+  }
+}
+
+function imagefield_archive_action_do($files, $context) {
+  // Create zip file.
+  $zipfile = tempnam(file_directory_temp(), 'zip');
+  $zip = new ZipArchive();
+  if (!$zip->open($zipfile, ZIPARCHIVE::CREATE | ZIPARCHIVE::OVERWRITE)) {
+    return;
+  }
+  foreach ($files as $file) {
+    $pathname = token_replace_multiple($context['settings']['filename'], array('global' => NULL, 'imagefield_archive' => $file, 'node' => $file->node));
+    $paths = explode('/', $pathname); 
+    $filename = array_pop($paths);
+    $dir = '';
+    if (!empty($paths)) foreach ($paths as $path) {
+      $zip->addEmptyDir($dir . $path);
+      $dir .= $path . '/';
+    }
+    $zip->addFile(file_create_path($file->filepath), $dir . $filename);
+  }
+  $zip->close();
+
+  // Download zip file.
+  $zipname = token_replace($context['settings']['zipname']) .'.zip';
+  header('Content-Type: application/zip');
+  header('Content-Disposition: attachment; filename="'. $zipname . '"');
+  header('Content-Transfer-Encoding: binary');
+  header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+  header('Pragma: public');
+  header('Expires: 0');
+  header('Content-Length: '. filesize($zipfile));
+  readfile($zipfile);
+  unlink($zipfile);
+  exit;
+}
+
+/**
+ * Implementation of hook_token_list().
+ */
+function imagefield_archive_token_list($type = 'all') {
+  if ($type == 'all' || $type == 'imagefield_archive') {
+    $tokens['imagefield_archive'] = array(
+      'filename' => t('Name of the image file (without the extension)'),
+      'extension' => t('Extension of the image file (without the leading dot)'),
+      'dirname' => t('Path of the image file (without the filename)'),
+      'presetname' => t('Name of the ImageCache / Image preset ("Original" if no preset)'),
+    );
+  }
+  return $tokens;
+}
+
+/**
+ * Implementation of hook_token_values().
+ */
+function imagefield_archive_token_values($type, $object = NULL) {
+  if ($type != 'imagefield_archive' || !$object) return array();
+  $pathinfo = pathinfo($object->filepath);
+  $filepathinfo = pathinfo($object->filename);
+  $values['filename'] = $filepathinfo['filename'];
+  $values['dirname'] = $pathinfo['dirname'];
+  $values['extension'] = $pathinfo['extension'];
+  $values['presetname'] = isset($object->presetname) ? $object->presetname : t('Original');
+  return $values;
+}
+
+/**
+ * Implementation of action_views_bulk_operations_form_options().
+ */
+function imagefield_archive_action_views_bulk_operations_form_options() {
+  $options['zipname'] = 'images-[site-date-yyyy][site-date-mm][site-date-dd]';
+  $options['filename'] = '';
+  return $options;
+}
+
+/**
+ * Implementation of action_views_bulk_operations_form().
+ */
+function imagefield_archive_action_views_bulk_operations_form($options) {
+  $form['zipname'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Zip filename pattern'),
+    '#default_value' => $options['zipname'],
+    '#field_suffix' => '.zip',
+    '#description' => t('Enter the pattern to name the downloadable archive file. Available tokens are listed below:') . theme('fieldset', array(
+      '#title' => t('Available tokens'),
+      '#value' => theme('token_help', 'global'),
+      '#collapsed' => TRUE,
+      '#collapsible' => TRUE,
+    )),
+  );
+  $form['filename'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Image filename pattern'),
+    '#default_value' => $options['filename'],
+    '#description' => t('Enter the pattern to name each image file in the archive file. You can include path separators ("/") to create directories.
+                         Leave blank to use the file system hierarchy. Available tokens are listed below:') . theme('fieldset', array(
+      '#title' => t('Available tokens'),
+      '#value' => theme('token_help', array('global', 'node', 'imagefield_archive')),
+      '#collapsed' => TRUE,
+      '#collapsible' => TRUE,
+    )),
+  );
+  return $form;
+}
+
+/**
+ * Implementation of action_form().
+ */
+function imagefield_archive_action_form($context) {
+  // ImageField presets
+  $presets = array(
+    IMAGEFIELD_ZIP_PRESET_ORIGINAL => t('Original'),
+  );
+  if (module_exists('imagecache')) {
+    foreach (imagecache_presets() as $id => $preset) {
+      $presets[$id] = $preset['presetname'];
+    }
+    $form['imagecache_presets'] = array(
+      '#type' => 'select',
+      '#multiple' => TRUE,
+      '#title' => t('ImageField formats'),
+      '#description' => t('Select the formats (ImageCache presets) that you want to include in the archive.'),
+      '#default_value' => @$context['imagecache_presets'],
+      '#required' => TRUE,
+      '#options' => $presets, 
+    );
+  }
+  else {
+    $form['imagecache_presets'] = array('#type' => 'value', '#value' => $presets);
+  }
+  $presets = array(
+    IMAGE_ZIP_PRESET_ORIGINAL => t('Original'),
+  );
+
+  // Image presets
+  if (module_exists('image')) {
+    $image_presets = variable_get('image_sizes', array(IMAGE_ZIP_PRESET_ORIGINAL => array('label' => t('Original'))));
+    foreach ($image_presets as $id => $preset) {
+      $presets[$id] = $preset['label'];
+    }
+    $form['image_presets'] = array(
+      '#type' => 'select',
+      '#multiple' => TRUE,
+      '#title' => t('Image formats'),
+      '#description' => t('Select the formats (Image presets) that you want to include in the archive.'),
+      '#default_value' => @$context['image_presets'],
+      '#required' => TRUE,
+      '#options' => $presets,
+    );
+  }
+  else {
+    $form['image_presets'] = array('#type' => 'value', '#value' => $presets);
+  }
+
+  return $form;
+}
+
+/**
+ * Implementation of action_submit().
+ */
+function imagefield_archive_action_submit($form, $form_state) {
+  return array(
+    'presets' => array(
+      'image_presets' => $form_state['values']['image_presets'],
+      'imagecache_presets' => $form_state['values']['imagecache_presets'],
+    )
+  );
+}
+
