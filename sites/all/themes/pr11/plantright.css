@@ -1389,3 +1389,10 @@ li span.flag-nursery-dibs {
 .node-nursery .node-submitted {
   display: none;
 }
+
+.node-nursery .field-label-inline-first {
+  display: inline-block;
+  width: 130px;
+  text-align: right;
+  margin-right: 10px;
+}
