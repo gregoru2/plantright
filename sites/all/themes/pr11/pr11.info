@@ -1,5 +1,5 @@
 core = "6.x"
-base theme = Tao
+;base theme = tao
 description = "This is the PlantRight 2011 theme based on Tao"
 engine = "phptemplate"
 name = "pr11"
