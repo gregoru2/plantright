@@ -6,3 +6,4 @@ sites/default/files/css/*
 sites/default/files/js/*
 backup/*
 .htaccess
+sites/default/files/backup_migrate
