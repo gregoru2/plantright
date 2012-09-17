@@ -326,6 +326,7 @@ function quiz_admin_node_form_submit($form, &$form_state) {
   $form_state['values']['save_def_uid'] = variable_get('quiz_def_uid', NULL);
   $form_state['values']['nid'] = 0;
   $form_state['values']['vid'] = 0;
+  $form_state['values']['aid'] = '';
   _quiz_save_user_settings($form_state['values']);
 }
 
@@ -383,7 +384,7 @@ function quiz_admin_results($quiz, $rid) {
  */
 function _quiz_results_mr_store_filters($filters) {
   $pre = 'quiz_results_mr_';
-  $_SESSION[$pre .'name'] = $filters['name'];
+  $_SESSION[$pre .'name'] = trim($filters['name']);
   $_SESSION[$pre .'started'] = $filters['started'];
   $_SESSION[$pre .'finished'] = $filters['finished'];
   $_SESSION[$pre .'score'] = $filters['score'];
@@ -1157,7 +1158,7 @@ function _quiz_add_questions_to_form(&$form, &$questions, &$quiz, &$question_typ
     else {
       $update_cell = array(
       '#type' => 'checkbox',
-      '#title' => (l(t('Latest'), 'node/' . $question->nid . '/revisions/' . $latest->vid . '/view')
+      '#title' => (l(t('Latest'), 'node/' . $question->nid . '/revisions/' . $question->latest_vid . '/view')
                   .' of '.
                   l(t('revisions'), 'node/' . $question->nid . '/revisions')
                   ),
@@ -1693,10 +1694,10 @@ function _quiz_question_browser_submit($form, &$form_state) {
  */
 function _quiz_browser_store_filters($filters) {
   $pre = 'quiz_question_browser_';
-  $_SESSION[$pre .'title'] = $filters['title'];
+  $_SESSION[$pre .'title'] = trim($filters['title']);
   $_SESSION[$pre .'type'] = $filters['type'];
   $_SESSION[$pre .'changed'] = $filters['changed'];
-  $_SESSION[$pre .'name'] = $filters['name'];
+  $_SESSION[$pre .'name'] = trim($filters['name']);
 }
 
 
@@ -1918,9 +1919,9 @@ function theme_quiz_admin_summary($quiz, $questions, $score, $summary) {
   $output .= '<div id="quiz_score_possible">'. t('This person got %num_correct of %question_count possible points.', $params) .'</div>'."\n";
   $output .= '<div id="quiz_score_percent">'. t('Total score: @score %', array('@score' => $score['percentage_score'])) .'</div>'."\n";
   if (isset($summary['passfail']))
-    $output .= '<div id="quiz_summary">'. check_markup($summary['passfail'], $quiz->format) .'</div>'."\n";
+    $output .= '<div id="quiz_summary">'. check_markup($summary['passfail'], $quiz->format, FALSE) .'</div>'."\n";
   if (isset($summary['result']))
-    $output .= '<div id="quiz_summary">'. check_markup($summary['result'], $quiz->format) .'</div>'."\n";
+    $output .= '<div id="quiz_summary">'. check_markup($summary['result'], $quiz->format, FALSE) .'</div>'."\n";
 
   // Get the feedback for all questions.
   require_once(drupal_get_path('module', 'quiz') .'/quiz.pages.inc');
