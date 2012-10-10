@@ -8,3 +8,4 @@ backup/*
 .htaccess
 sites/default/files/backup_migrate
 *DS_Store*
+*.DS_Store
