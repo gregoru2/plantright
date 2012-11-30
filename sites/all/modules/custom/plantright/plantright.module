@@ -28,22 +28,9 @@ function removeElementWithValue($array, $key, $value){
 }
 
 function plantright_user($op, &$edit, &$account, $category = NULL) {
-//  if($op == 'login') {
-//    drupal_goto($path = 'node/68', $query = NULL, $fragment = NULL, $http_response_code = 302);
-//    //dpm($account);
-//    if(in_array("4", $account->roles)) {
-//      
-//    }
-//  }
+
 }
 
 function plantright_nodeapi(&$node, $op) {
-  if ($op == 'view') {
-    global $user;
-    //dpm($user);
-    $member = user_load($user->uid);
-    if ($user->uid && !$member->profile_city) {
-      drupal_set_message("Please add your City to <a href='/user/$user->uid/edit/Personal%20Info'>your profile</a>, and if you'd like to partner with other Survey members in your area to survey nurseries, please check the box on <a href='/user/$user->uid/edit/Personal%20Info'>your profile page</a>.  Thank you very much!<br /><br />The PlantRight Team");
-    }
-  }
+
 }
