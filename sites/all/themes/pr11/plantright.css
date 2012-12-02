@@ -9,7 +9,8 @@ a {
   font-weight: bold;
   color: #ac512a; }
   a:hover {
-    color: #4e3004; }
+    color: #4e3004;
+    text-decoration: underline; }
   a:visited {
     color: #84572f; }
 
@@ -47,9 +48,10 @@ h3 {
   font-size: 1.4em;
   margin: 30px 0px 10px 0px; }
 
-h4 {
+h4, .prose h4 {
   font-size: 1.2em;
-  margin: 20px 0px 5px 0px; }
+  margin: 20px 0px 5px 0px;
+  font-weight: normal; }
 
 h5 {
   font-size: 1.1em;
@@ -261,7 +263,8 @@ ul.menu li.dhtml-menu li.fake-leaf {
   #left #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a:hover,
   #left #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a:hover,
   #left #block-menu-menu-survey-admin ul.menu li.dhtml-menu li a:hover {
-    color: #403000; }
+    color: #403000;
+    text-decoration: none; }
 
 #block-menu-primary-links ul.menu li.dhtml-menu li,
 #block-menu-menu-survey-menu ul.menu li.dhtml-menu li,
@@ -1874,7 +1877,7 @@ margin: 0px 0px 20px;
 } 
 
 
-body#partner_only #main { 
+body#page-partner-resources #main { 
 	border-top: solid 77px #a15334;
 } 
 
@@ -2088,7 +2091,7 @@ div#footer	{
 	float: left;
 }
 
-body#partner_only #footer { 
+body#page-partner-resources #footer { 
 	background-color: #a15334;
 } 
 
@@ -2241,7 +2244,7 @@ div.contentBox#box3 	{
 	display: none;
 }
 
-body#partner_only #main div#partner_notice	{
+body#page-partner-resources #main div#partner_notice	{
 	display: block;
 	width: 780px;
 	text-align: center;
@@ -4469,4 +4472,178 @@ div.content-profile-display .field .field-label-inline-first {
   display: inline-block;
   width: 120px;
   text-align: right;
+}
+
+@charset "UTF-8";
+/* CSS Document */
+
+
+#header p#tagline	{
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	text-transform: uppercase;
+	color: #4e3c14;
+}
+#header p#tagline_partner	{
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	text-transform: uppercase;
+	color: #4e3c14;
+	display: none;
+}
+
+body.partner_only #header p#tagline	{
+	display: none;
+}
+body.partner_only #header p#tagline_partner	{
+	display: block;
+}
+
+
+
+body.partner_only #main { 
+	border-top: solid 77px #a15334;
+} 
+
+body.partner_only #footer { 
+	background-color: #a15334;
+	color: #e4dfd0;
+} 
+body.partner_only #footer a { 
+	color: #f1ead6;
+}
+
+sup.tm	{
+	font-size: .75em;
+	position: relative;
+	top: 0px;
+	left: 0px;
+	font-weight: normal;
+}
+
+
+ul#partner_downloads	{
+	margin: 0px;
+	padding: 0px;
+}
+
+ul#partner_downloads li  {
+	font-family: 'Open Sans', Helvetica, Arial sans-serif;
+	list-style-type: none;
+	display: inline-block;
+	padding: 5px 20px;
+	margin: 10px;
+	color: #fff;
+	padding: 10px;
+	margin: 10px;
+	width: 43%;
+	text-align: center; 
+	border: solid 1px #334e04;
+	background-color: #5d801f;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	font-size: .9em;
+}
+ul li#download_agreement  {	
+	border: solid 1px #42320c;
+	background-color: #6b5328;
+}
+
+ul li#download_pledge a, ul li#download_agreement a	{
+	font-size: 1.45em;
+	font-weight: normal;
+	color: #fff;
+}
+ul li#download_pledge a{
+}
+
+ul li#download_agreement a	{
+}
+
+
+
+div#resources_list	{
+	float: left;
+	width: 100%;
+	margin-top: 20px;
+}
+
+div#resources_list > div	{
+	width: 45%;
+	margin: 10px 0px;
+	float: left;
+	padding: 0 20px 0 10px;
+}
+
+div#resources_list h3 {
+  font-weight: normal;
+}
+
+
+div#resources_list div#outreach_and_marketing	{
+	padding: 0 10px 0 20px;
+}
+	
+div#resources_list > div > h3	{
+	margin-top: 0px;
+}
+	
+div#resources_list > div > h4	{
+	 background-color: #e5dec7;
+	 padding: 2px 5px;
+	 font-weight: bold;
+}
+
+div#resources_list > div > ul	{
+	padding-left: 0;
+	margin-top: 12px;
+}
+
+div#resources_list > div > ul li	{
+	margin-bottom: 8px;
+}
+
+div#resources_list div#resources_feedback	{
+	margin-top: 40px;
+	background-color: #e5dec7;
+	padding: 9px 12px;
+	text-align: center;
+	font-weight: bold;
+	line-height: 2.5ex;
+	color: #4d3c14;
+	border-top: solid 2px #a15334;
+}
+
+div#resources_list div#resources_feedback h5	{
+	font-weight: bold;
+	margin-top: 0px;
+}
+	
+	
+/* override old orange button styles */
+
+
+form input.form-submit {
+	display: inline-block;
+	background-color: #a15334;
+	border: 1px solid #912304;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
+	color: #f3eddf;
+	font-weight: normal;
+	font-size: 1.05em;
+	text-align: left;
+	margin: 5px auto 20px auto;
+	padding: 1px 6px 3px 6px;
+	/*width: 80%;*/
 }
