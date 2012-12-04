@@ -1622,12 +1622,13 @@ li span.flag-nursery-dibs a {
   margin-right: 10px;
 }
 /* /home */
-body.home h2.pageTitle {
+body#page-horticultural-professionals h2.pageTitle {
   display: none;
 }
-body.home h3 {
+body#page-horticultural-professionals h3 {
   color: #78a22e;
-  font-size: 1.9em;
+  font-size: 1.7em;
+  margin-top: 2em;
 }
 h2 sup,h3 sup,h4 sup {
   font-weight: normal;
