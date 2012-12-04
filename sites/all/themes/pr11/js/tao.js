@@ -26,8 +26,13 @@ Drupal.behaviors.tao = function (context) {
 jQuery(document).ready(function($) {
   $('#page-node-add-survey-photos input.form-radio').click(function() {
     $code = $(this).siblings('span.views-field-field-store-code-value').children('.field-content').html();
-    console.log($code);
+    //console.log($code);
     $('input#edit-title').val($code);
   });
   $('#page-node-add-survey-photos input#edit-field-survey-image-field-survey-image-add-more').val('Add another photo');
+  $('.folded').hide();
+  $('h3.fold').click(function() {
+    $(this).toggleClass('open');
+    $(this).next('.folded').toggle();
+  });
 });
