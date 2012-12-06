@@ -853,6 +853,8 @@ div.-submitted {
   padding: 2px 0; }
   .view-region-invasives-list .testimonial-nav a {
     display: block;
+    font-weight: normal;
+    font-size: 1.2em;
     float: left;
     padding: 0 10px;
     border-right: 1px solid #aaaaaa; }
