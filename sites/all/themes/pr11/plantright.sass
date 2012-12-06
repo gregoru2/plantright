@@ -893,14 +893,8 @@ div.-submitted
     .views-field-field-common-name-value .field-content
       font-size: 1.2em
       line-height: 1.5
-
-#view-id-region_invasives_list-page_1
-  .view-content
-    padding: 20px 0 1.5em
   .testimonial-nav
     margin-bottom: 20px
-    border-top: solid 1px #d8cfb4
-    border-bottom: solid 1px #d8cfb4
     width: 100%
     float: left
     padding: 2px 0
@@ -908,6 +902,16 @@ div.-submitted
       display: block
       float: left
       padding: 0 10px
+      border-right: 1px solid #aaa
+      &.active
+        color: #78A22E
+      &.last
+        border-right: none
+
+
+#view-id-region_invasives_list-page_1
+  .view-content
+    padding: 20px 0 1.5em
   .views-field-field-alternatives-nid
     float: right
     width: 200px
@@ -2198,8 +2202,7 @@ div.view-News div.views-row, table.supporters tr
 input#edit-back:hover, p.linkToSurvey a
   color: #fff
 
-/*--------------------------------------------------------------
-/* Change unpublished and preview colors for dark background themes
+
 
 .node-unpublished
   background-color: #fff4f4
@@ -2223,7 +2226,7 @@ div
   margin: 0 0 10px
   padding: 5px 10px
 
-/*--------------------------------------------------------------
+
 
 h2.block-title
   font-size: 107.6%
@@ -2266,12 +2269,11 @@ textarea:focus, select:focus
 tbody, .book-navigation .menu
   border-top: 1px solid #ccc
 
-tr.odd
+tr.odd,
+tr.even
   background-color: #f5f5f5
-  border-bottom: 1px solid #000
   td
     background-color: #f5f5f5
-    border-bottom: 1px solid #000
 
 div.comment .submitted a, .profile dt
   font-weight: 700
@@ -2279,24 +2281,23 @@ div.comment .submitted a, .profile dt
 .comments div.links, #leftnav ul.menu li.dhtml-menu.expanded li a
   background: none
 
-/*--------------------------------------------------------------
 
 .forum-topic-navigation
   border-top: 1px solid #888
   border-bottom: 1px solid #888
 
-/*--------------------------------------------------------------
+
 
 div.poll div.bar
   background-color: #ddd
 
-/*--------------------------------------------------------------
-/* Styles for sub-headings on user profiles
+
+
 
 .profile .picture
   float: none
 
-/*--------------------------------------------------------------
+
 
 #content-tabs
   background-color: transparent

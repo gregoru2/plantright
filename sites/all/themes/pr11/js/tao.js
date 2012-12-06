@@ -35,4 +35,9 @@ jQuery(document).ready(function($) {
     $(this).toggleClass('open');
     $(this).next('.folded').toggle();
   });
+  $('.testimonial-nav a').each(function(){
+    if (this.href === window.location.href) {
+      this.className += 'active';
+    }
+  });
 });
