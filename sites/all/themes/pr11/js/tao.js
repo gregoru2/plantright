@@ -37,7 +37,7 @@ jQuery(document).ready(function($) {
   });
   $('.testimonial-nav a').each(function(){
     if (this.href === window.location.href) {
-      this.className += 'active';
+      this.className += ' active';
     }
   });
 });
