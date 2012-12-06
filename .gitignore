@@ -10,3 +10,5 @@ backup/*
 sites/default/files/backup_migrate
 *DS_Store*
 *.DS_Store
+*.sass-cache
+*.swp

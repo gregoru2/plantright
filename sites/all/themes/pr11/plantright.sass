@@ -1,15 +1,14 @@
-/* -- GENERAL HTML STYLES --- */
-
 body
-  font: 75% Helvetica, Arial, sans-serif
+  font: 75% Helvetica,Arial,sans-serif
   background: white url(/images/newbg1.gif) repeat-x left -130px
   color: #000
 
 a
   text-decoration: none
-  font-weight: bold
+  font-weight: 700
   color: #ac512a
   &:hover
+    text-decoration: underline
     color: #4e3004
   &:visited
     color: #84572f
@@ -19,23 +18,21 @@ sup
   position: relative
   top: -0.4em
   left: 0
-  font-weight: bold
+  font-weight: 700
 
 h1, h2, h3, h4, h5
   clear: left
 
-/* below is equivalent to H2 */
-
 #content
   .big.brown, h2.pageTitle
-    font-family: 'Open Sans', Helvetica, Arial sans-serif
+    font-family: 'Open Sans',Helvetica,Arial sans-serif
     font-weight: 600
     font-size: 2.1em
     color: #4d3c14
-    margin: 25px 0px 30px 0px
+    margin: 25px 0 22px
 
 h2, h3, h4, h5, h6
-  font-family: 'Open Sans', Helvetica, Arial sans-serif
+  font-family: 'Open Sans',Helvetica,Arial sans-serif
   font-weight: 600
   color: #4d3c14
 
@@ -44,110 +41,94 @@ h1
 
 h2
   font-size: 2.1em
-  margin: 30px 0px 30px 0px
+  margin: 30px 0
 
 h3
   font-size: 1.4em
-  margin: 30px 0px 10px 0px
+  margin: 30px 0 10px
 
-h4
+h4, .prose h4
   font-size: 1.2em
-  margin: 20px 0px 5px 0px
+  font-weight: 400
+  margin: 20px 0 5px
 
 h5
   font-size: 1.1em
-  margin: 10px 0px 3px 0px
-
-h6
-  font-size: 1em
+  margin: 10px 0 3px
 
 h1 a, h2 a, h3 a, h4 a, h5 a
   font-weight: 600
   text-decoration: underline
 
-/* -- GENERAL LAYOUT --- */
-
 #prContainer
-  width: 954px
-  background: #fff
-  margin: 0 auto
-  padding: 0px 0px 20px 6px
-  text-align: left
-  -moz-box-shadow: 0px -44px 38px rgba(77, 60, 20, 0.3)
-  -webkit-box-shadow: 0px -44px 38px rgba(77, 60, 20, 0.3)
-  box-shadow: 0px -44px 38px rgba(77, 60, 20, 0.3)
   position: relative
   top: -10px
   left: 0
+  width: 948px
+  background: #fff
+  text-align: left
+  -moz-box-shadow: 38px 0 38px -38px rgba(77, 60, 20, 0.3), -38px 0 38px -38px rgba(77, 60, 20, 0.3)
+  -webkit-box-shadow: 38px 0 38px -38px rgba(77, 60, 20, 0.3), -38px 0 38px -38px rgba(77, 60, 20, 0.3)
+  box-shadow: 38px 0 38px -38px rgba(77, 60, 20, 0.3), -38px 0 38px -38px rgba(77, 60, 20, 0.3)
+  margin: 10px auto
+  padding: 0 6px 20px
 
 #main
   width: 780px
   float: left
-  padding: 0px
-
-#branding, #navigation, #main h1.page-title
-  display: none
+  border-top: solid 77px #4b3c17
+  margin-top: -95px
+  padding: 0 0 20px
 
 body
-  &.section-news #main h1.page-title,
-  &.section-nursery #main h1.page-title,
-  &.section-flag #main h1.page-title
+  &.section-news #main h1.page-title, &.section-nursery #main h1.page-title, &.section-flag #main h1.page-title
     display: block
-    font-family: 'Open Sans', Helvetica, Arial sans-serif
+    font-family: "Open Sans",Helvetica,Arial sans-serif
     font-weight: 600
     font-size: 2.1em
     color: #4d3c14
-    margin: 25px 0px 3px 0px
-
-/* -- HEADER: Logo, tagline, donate button --- */
+    margin: 25px 0 3px
 
 #header
-  margin: 10px 8px 5px 10px
   background: url(/images/header_bg_stripe.png) repeat-x top right
+  margin: 0 8px 2px 10px
   img#logo
     padding-right: 16px
     padding-bottom: 1px
     background: #fff
     position: relative
-    top: 5px
-    left: 0px
+    top: 8px
+    left: 0
+    border: none
   p#tagline
     position: absolute
     top: 10px
     right: 20px
-    font-family: 'Open Sans', sans-serif
+    font-family: 'Open Sans',sans-serif
     font-size: 18px
     text-transform: uppercase
     color: #4e3c14
   div#donate a
     display: block
-    padding: 8px 0px 0px 12px
     height: 49px
-    width: 189px
+    width: 205px
     position: absolute
     top: 36px
-    right: 8px
-    background: url(/images/donate_button.png) no-repeat top left
+    right: 6px
+    background: url(/images/donate_button_2012.png) no-repeat top left
     color: #c63403
     text-transform: uppercase
     font-size: 23px
-    font-weight: bold
+    font-weight: 700
     text-align: right
+    padding: 8px 0 0 12px
     span
       position: absolute
-      top: 6px
-      right: 31px
+      top: 15px
+      right: 39px
     &:hover
-      background: url(/images/donate_button.png) no-repeat left -78px
+      background: url(/images/donate_button_2012.png) no-repeat left -78px
       color: #a83000
-
-@-moz-document url-prefix()
-  #header div#donate a span
-    top: 8px
-    right: 33px
-
-
-/* -- DRUPAL NAV / top horizontal nav / Admin messages --- */
 
 ul
   &.primary-tabs
@@ -161,24 +142,22 @@ ul
       display: inline
       margin-left: 3px
       &:before
-        content: ' | '
+        content: " | "
       &:first-child:before
-        content: ''
+        content: ""
       a
         color: #e0dacc
         float: none
   &.secondary-tabs
     display: block
-    margin: 10px 0px
-    padding: 0px
     width: 100%
     border-bottom: solid 1px #a45031
+    margin: 10px 0
+    padding: 0
     li
       display: inline
-      padding: 2px 6px 0px 6px
-      margin: 10px 10px 0px 0px
-      a
-        display: inline-block
+      margin: 10px 10px 0 0
+      padding: 2px 6px 0
       &.active
         border: solid 1px #a45031
         border-bottom: none
@@ -186,7 +165,7 @@ ul
 
 div#console
   color: #c3321a
-  background-color: #fff
+  background-color: #FFF
   border: solid 2px #4a2e0f
   -webkit-border-radius: 5px
   -moz-border-radius: 5px
@@ -195,157 +174,60 @@ div#console
   margin-bottom: 5px
   div
     &.status
-      padding: 8px 6px
       -webkit-border-radius: 5px
       -moz-border-radius: 5px
       border-radius: 5px
       color: #000
-      a
-        text-decoration: underline
+      padding: 8px 6px
     &.error
-      padding: 8px 9px
-      padding: 4px
       font-size: 1.2em
       background-color: #ffea00
       color: #000
-      border: solid 0px #000
+      border: solid 0 #000
       -webkit-border-radius: 5px
       -moz-border-radius: 5px
       border-radius: 5px
-
-/* -- LEFT NAV --- */
-
-#left
-  .block-menu h2.title, .block-admin h2.title
-    display: none
-  float: left
-  width: 138px
-  margin: 0px 18px 20px 10px
-  a:visited
-    color: #ac512a
-
-#block-menu-primary-links ul.menu
-  margin: 0px
-  padding: 0px
-  li
-    border-bottom: solid 1px #d8cfb4
-    padding: 10px 0px
+      padding: 4px
 
 #left
-  #block-menu-primary-links ul.menu a,
-  #block-menu-menu-survey-menu ul.menu a,
-  #block-menu-menu-pre-survey-menu ul.menu a,
-  #block-menu-menu-survey-admin ul.menu a
-    font-family: 'Open Sans', Helvetica, Arial sans-serif
+  #block-menu-primary-links ul.menu a, #block-menu-menu-survey-menu ul.menu a, #block-menu-menu-pre-survey-menu ul.menu a, #block-menu-menu-survey-admin ul.menu a
+    font-family: "Open Sans",Helvetica,Arial sans-serif
     font-size: 16px
     font-weight: 700
+  #block-menu-primary-links ul.menu li.dhtml-menu li a:hover, #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a:hover, #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a:hover, #block-menu-menu-survey-admin ul.menu li.dhtml-menu li a:hover
+    color: #403000
+    text-decoration: none
 
-ul.menu li.dhtml-menu
-  &.collapsed a
-    display: block
-    background: url(/images/arrow-collapsed.png) no-repeat 0px 8px
-    margin-left: -11px
-    padding-left: 11px
-  &.expanded a
-    display: block
-    background: url(/images/arrow-expanded.png) no-repeat 0px 9px
-    margin-left: -11px
-    padding-left: 11px
-  li.fake-leaf
-    display: none
-
-#block-menu-primary-links ul.menu.expanded ul,
-#block-menu-menu-survey-menu ul.menu.expanded ul,
-#block-menu-menu-pre-survey-menu ul.menu.expanded ul,
-#block-menu-menu-survey-admin ul.menu.expanded ul
-  margin-top: 10px
-
-#left
-  #block-menu-primary-links ul.menu li.dhtml-menu li a,
-  #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a,
-  #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a,
-  #block-menu-menu-survey-admin ul.menu li.dhtml-menu li a
-    display: block
-    background: none
-    margin-left: 0px
-    padding-left: 0px
-    font-family: Helvetica, Arial, sans-serif
-    font-size: 14px
-    font-weight: normal
-    color: #7f4128
-    &:hover
-      color: #403000
-
-
-
-#block-menu-primary-links ul.menu li.dhtml-menu li,
-#block-menu-menu-survey-menu ul.menu li.dhtml-menu li,
-#block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li,
-#block-menu-menu-survey-admin ul.menu li.dhtml-menu li
-  border-top: solid 1px #eae8dc
-  border-bottom: none
-  padding: 6px 0px
-
-#block-menu-menu-survey-menu,
-#block-menu-menu-pre-survey-menu,
-#block-menu-menu-survey-admin
+#block-menu-menu-survey-menu, #block-menu-menu-pre-survey-menu, #block-menu-menu-survey-admin
   margin-top: 12px
 
-#block-user-0,
-#block-masquerade-0
+#block-user-0, #block-masquerade-0
   padding-top: 20px
-  label
-    font-weight: normal
-  input.form-text
-    width: 97%
-    padding: 1px 2px
-  .item-list li
-    margin: 3px 0
-  input#edit-submit
-    padding: 1px 6px
-    width: 100px
-    display: block
-    margin: 10px auto 30px
 
+#block-user-0 input.form-text, #block-masquerade-0 input.form-text
+  width: 97%
+  padding: 1px 2px
 
-/*-- Left Nav Login Area -- */
+#block-user-0 .item-list li, #block-masquerade-0 .item-list li
+  margin: 3px 0
 
-#page-homepage
-  #footer
-    margin-top: 2px
+#block-user-0 input#edit-submit, #block-masquerade-0 input#edit-submit
+  width: 100px
+  display: block
+  margin: 10px auto 30px
+  padding: 1px 6px
 
 div
-  &#block-admin-account ul, &#block-menu-menu-new-user-account-menu ul
-    margin-top: 20px
-    li
-      padding: 4px 0
-      border-top: dotted 1px #d8cfb4
-      font-size: .9em
-      &:first-child
-        border-top: none
-      a
-        font-weight: normal
-  &#forgotPassword
-    margin: 20px 0px 40px 0px
   &#content form#user-login
     margin-top: 30px
     margin-left: 20px
   &#footer
     width: 100%
-    margin-top: 15px
+    margin-top: 2px
     background-color: #4e3c14
     color: #bcb093
     font-size: .9em
     float: left
-    div
-      &#block-block-1
-        float: left
-        width: 350px
-        padding: 45px 10px 10px 10px
-      &#block-block-2
-        display: inline-block
-        float: right
-        padding: 45px 10px 10px 10px
     a
       color: #c8af74
       &:hover
@@ -359,14 +241,14 @@ div
     height: 240px
     width: 259px
     float: left
-    margin: 2px 0px 0px 0px
+    margin: 2px 0 0
     h2
       background-color: #d9cfb4
       color: #4e3c14
-      font-family: 'Open Sans', Helvetica, Arial sans-serif
+      font-family: 'Open Sans',Helvetica,Arial sans-serif
       font-size: 16px
+      margin: 0
       padding: 1px 5px
-      margin: 0px
       a
         color: #4e3c14
         font-weight: 600
@@ -383,44 +265,30 @@ div
       background: url(/images/pampas_cutout.jpg) no-repeat center 72px
     &#box3
       border-right: none
-      margin-right: 0px
+      margin-right: 0
       background: url(/images/flower_girl.jpg) no-repeat 112px 10px
 
-/*-- User Login Page --
-
-/* -- FOOTER ---
-
-/* *********************************
- *-- Homepage Content Area --- 
- **********************************
-
-/* -- HOMEPAGE CAROUSEL SLIDESHOW ---
-
-/* -- HOMEPAGE CONTENT BOXES --- */
-
 #content
+  font-size: 1.1em
+  line-height: 2.8ex
+  color: #444
   div.contentBox
     p
-      padding: 5px 10px
-      margin: 0px
       color: #1f1f1f
       line-height: 2.8ex
       text-shadow: -2px 2px 2px rgba(255, 255, 255, 0.9)
+      margin: 0
+      padding: 5px 10px
     &#box1 p
       text-align: right
       margin-left: 100px
     &#box3 p
       margin-right: 80px
-  font-size: 1.1em
-  line-height: 2.8ex
-  color: #444
   h2
-    font-weight: normal
+    font-weight: 400
     font-size: 1.5em
   p
-    margin: 1em 0px
-    em strong
-      font-size: 1.2em
+    margin: 1em 0
     &.footnote
       font-size: .9em
       line-height: 2.6ex
@@ -428,24 +296,17 @@ div
       text-indent: -0.8em
       padding-top: 5px
       border-top: solid 1px #ccc
+  ul
+    margin: 10px 0 10px 30px
 
-/* -- INNER PAGE MAIN CONTENT AREA FORMATS --- */
-
-#main div.breadcrumb
-  display: none
-
-/* -- Interior list formats --- */
-
-#content ul, ol
-  margin: 10px 0px 10px 30px
+ol
+  margin: 10px 0 10px 30px
 
 #content
   ul li
     list-style-type: disc
     margin-bottom: 3px
   ol li
-    list-style-type: decimal
-    margin-bottom: 3px
     list-style-type: decimal
     margin-bottom: 3px
   dl
@@ -460,7 +321,6 @@ div
         font-size: .85em
         color: #444
     &.contactMethods
-      margin: 12px 0
       dt
         width: 6em
         float: left
@@ -472,67 +332,52 @@ div
         margin-left: 6.5em
         padding-top: .5ex
   ul.ftp_plant_thumbs
-    margin: 0px
+    margin: 0
     li
       list-style-type: none
       display: inline-block
-      margin: 10px 30px 10px 0px
-      img
-        display: block
-
-/* -- Interior photo formats --- */
+      margin: 10px 30px 10px 0
 
 img
   &.float-right
     float: right
-    margin: 4px 0px 10px 12px
-    padding: 2px
     border: solid 2px #d9cfb4
+    margin: 4px 0 10px 12px
+    padding: 2px
   &.float-left
     float: left
-    margin: 4px 12px 10px 0px
-    padding: 2px
     border: solid 2px #d9cfb4
+    margin: 4px 12px 10px 0
+    padding: 2px
   &.border
     margin-top: 4px
-    padding: 2px
     border: solid 2px #d9cfb4
+    padding: 2px
   &.no-border
     border: none
     margin-top: 2px
-    padding: 0px
+    padding: 0
   &.float-left.negative-margin
     margin-right: -14px
 
-/* -- Interior CA imagemap formats --- */
-
 div
-  &#map
-    float: left
-    &.float-right
-      float: right
-      margin-left: 0px
-      margin-top: -20px
+  &#map.float-right
+    float: right
+    margin-left: 0
+    margin-top: -20px
   &#mapLegend
     border-left: solid 1px #d8cfb4
-    padding: 0px 40px 0px 10px
     width: 360px
     float: right
+    padding: 0 40px 0 10px
     ul
-      margin: 10px 0px
-      padding: 0px
-      li
-        list-style-type: none
-  &.view-News div
-    &.views-row
-      border-bottom: solid 1px #d8cfb4
-    &.views-field-title
-      font-size: 1.2em
-      margin-top: 25px
-      margin-bottom: 5px
-      clear: left
-
-/* News page formats */
+      margin: 10px 0
+      padding: 0
+  &.view-News div.views-field-title
+    font-size: 1.2em
+    margin-top: 25px
+    margin-bottom: 5px
+    clear: left
 
 #content div.view-News div.views-field-title a
   font-weight: 600
@@ -542,21 +387,15 @@ div.view-News div.views-field-created
   font-style: italic
   text-indent: 1em
 
-#content div.view-News div.views-field-teaser
-  p
-    margin-top: 2px
-    margin-top: 2px
-  h3
-    margin-top: 2px
-    font-family: Helvetica, Arial, sans-serif
-    font-weight: normal
-    font-size: 1.1em
-
-/* -- Giant WYCD buttons --- */
+#content div.view-News div.views-field-teaser h3
+  margin-top: 2px
+  font-family: Helvetica,Arial,sans-serif
+  font-weight: 400
+  font-size: 1.1em
 
 .bigger.upcase
   font-size: 36px
-  font-weight: normal
+  font-weight: 400
   text-transform: uppercase
   line-height: 70px
   background: #4e3c14
@@ -564,8 +403,8 @@ div.view-News div.views-field-created
   -webkit-border-radius: 10px
   -moz-border-radius: 10px
   border-radius: 10px
-  padding: 10px 20px 5px 20px
   margin: 30px
+  padding: 10px 20px 5px
   &.green-button
     background-color: #78a22e
   &.red-button
@@ -577,44 +416,25 @@ a.bigger.upcase
   &.red-button:hover
     background-color: #924121
 
-/* -- Survey Quiz Formats --- */
-
 table#quiz-view-table
   float: right
-  padding: 5px
   margin-top: 20px
+  display: none
+  padding: 5px
   td
     padding: 2px
     &.quiz-view-table-title
       text-align: right
 
-div
-  &#quiz_progress
-    margin-top: 20px
-    font-weight: bold
-  &.quiz-question-body p
-    font-size: 1.2em
-
-input#edit-back:hover
-  color: #fff
-
-/* -- COPIED FROM LOCAL.CSS in ACQUIA SLATE THEME ---
-
-/* Default node styles
- */--------------------------------------------------------------
-/* Change unpublished and preview colors for dark background themes */
-
-.node-unpublished
-  background-color: #fff4f4
+div#quiz_progress
+  margin-top: 20px
+  font-weight: 700
 
 .preview .node
   background-color: #ffffea
 
-/* Typography for node titles */
-
 h2.title
   font-size: 153.8%
-  /* 20px/13px */
   a
     &:link, &:visited
       color: #DFB77C
@@ -622,58 +442,17 @@ h2.title
       color: #F2F2F2
       text-decoration: none
 
-/* Colors and styles for linked node titles
-
-/* Links for nodes (taxonomy, commenting, read more, etc) */
-
-div.links, .node div.links
-  background: #eee
-  font-size: 107.6%
-  /* 14px/13px */
-  margin: 0 0 10px 0
-  padding: 5px 10px
-
 div
-  &.terms
-    background: #eee
-    font-size: 107.6%
-    /* 14px/13px */
-    margin: 0 0 10px 0
-    padding: 5px 10px
-  &.links ul, &.terms ul
-    margin: 0
-    padding: 0
   &.links ul li, &.terms ul li
     color: #444
-    font-weight: normal
+    font-weight: 400
     line-height: 130%
-  &.links ul li a
-    &:link, &:visited
-      color: #A14926
-      font-weight: bold
-      padding-right: 14px
-  &.terms ul li a
-    &:link, &:visited
-      color: #A14926
-      font-weight: bold
-      padding-right: 14px
-  &.links ul li a
-    &:hover, &:focus
-      color: #A14926
-  &.terms ul li a
-    &:hover, &:focus
-      color: #A14926
 
 .picture
   float: right
   margin: 0 0 15px 15px
   img
     border: 1px solid #444
-
-/* Just more/read more links */
-
-div.node
-  .read-more a, .more-link a
 
 blockquote
   color: #999
@@ -684,87 +463,83 @@ hr
   height: 1px
   border: 1px solid gray
 
-/* Default block styles
- */-------------------------------------------------------------- */
-
-h2.block-title
-  font-size: 107.6%
-  /* 14px/13px
-
-/* Drupal messages
- */--------------------------------------------------------------
-/* Error that appears when a required form field is not filled out */
-
 .form-item
   input.error, textarea.error, select.error
-    border: 1px solid #aa1144
-
-/* Required field */
+    border: 1px solid #a14
 
 .marker, .form-required
-  color: #aa1144
+  color: #a14
 
-/* Pagers
- *-------------------------------------------------------------- */
-
-#content ul.pager
-  font-size: 100%
-  /* 13px/13px */
-  a
-    &:link, &:visited
-      border-color: #444
-      -moz-border-radius: 3px
-      border-radius: 3px
-      color: #A14926
-  li
-    &.pager-current
-      border-color: #444
-      -moz-border-radius: 3px
-      border-radius: 3px
-      color: #A14926
-      border: solid 1px #a45030
-      padding: 2px 3px 2px 5px
-    padding: 0px 3px
-  a
-    &:hover, &:active, &:focus
-      background-color: #eee
-#content .view
-  ul.pager-list
+#content
+  ul.pager
+    font-size: 100%
+    a
+      &:link, &:visited
+        -moz-border-radius: 3px
+        border-radius: 3px
+        color: #a14926
+        border-color: #444
     li
-      list-style-type: none
-      a
-        padding: 3px 5px 2px 5px
-  ul.pager-links
-    li
+      padding: 0 3px
+      &.pager-current
+        -moz-border-radius: 3px
+        border-radius: 3px
+        color: #a14926
+        border: solid 1px #a45030
+        border-color: #444
+        padding: 2px 3px 2px 5px
+    a
+      &:hover, &:active, &:focus
+        background-color: #eee
+  .view ul
+    &.pager-list li a
+      padding: 3px 5px 2px
+    &.pager-links li
       list-style-type: none
       margin-right: 20px
       padding: 0
       a
+        color: #FFF
+        background: #a14926
         padding: 3px 15px
-        color: white
-        background: #A14926
         &:hover
-          background: #4E3004
-    
-/* Forms
- */--------------------------------------------------------------
-/* Typography and backgrounds for all form buttons */
+          background: #4e3004
+          
 
 form input.form-submit
-  background-color: #a15334
-  border: 1px solid #912304
-  color: #f3eddf
-  font-weight: normal
-  font-size: 1.05em
-  margin: 10px 0px 30px 0px
-  padding: 0px 6px 2px 6px
+  margin-bottom: 0
+  margin-left: .3em
+  cursor: pointer
+  border: 0
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false)
+  zoom: 1
+  display: inline-block
+  font-size: 14px
+  font-weight: 400
+  color: #fff
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
+  line-height: 20px
+  text-align: center
+  vertical-align: middle
+  -webkit-border-radius: 4px
+  -moz-border-radius: 4px
+  border-radius: 4px
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)
+  background-color: #A15334
+  border-solid: solid 1px #4d3c14
+  background-image: linear-gradient(tobottom, #ab7a4b, #a15334)
+  background-repeat: repeat-x
+  border-color: rgba(77, 60, 20, 0.3)
+  padding: 4px 14px
   &:hover, &.hover, &:focus
+    color: #fcfce6
+    text-decoration: none
+    background-color: #a15334
+    background-image: none
     background: #73381f
     cursor: pointer
-
-/* Hover style for form buttons
-
-/* Grippie */
 
 .form-item
   .resizable-textarea .grippie
@@ -775,31 +550,13 @@ form input.form-submit
     background: #faf9f4
     border: 1px solid #ccbeb2
     color: #444
-    margin: 0 0 10px 0
+    font-size: .8em
+    margin: 0 0 10px
     padding: 2px
-    font-size: 0.8em
   input.error, textarea.error, select.error
-    border: 1px solid #DD7777
-    background: #FFCCCC
-    color: #8A1F11
-  .description
-    font-size: 84.6%
-    /* 11px/13px */
-    line-height: 150%
-
-/* Typography, background, borders, padding for form fields */
-
-div#edit-message-wrapper
-  margin-bottom: 10px
-
-/* Remove backgrounds and border on radios and checkboxes */
-
-.form-item
-  .form-radio, .form-checkbox
-    background: inherit
-    border: none !important
-
-/* Format the password recovery form and user login form -- total kludge to give the pages headers */
+    background: #fcc
+    color: #8a1f11
+    border: 1px solid #a14
 
 body
   &#page-user-password form, &#page-user form
@@ -814,15 +571,15 @@ form
     .description
       font-size: .6em
       line-height: .8em
-      margin-top: 0px
+      margin-top: 0
       margin-bottom: 10px
   &#user-pass, &#user-login
     background: #f7f6f2
     border: 1px solid #b5a880
-    margin: 15px 0
-    padding: 20px 15px 15px 15px
     width: 28em
     line-height: 1.5em
+    margin: 15px 0
+    padding: 20px 15px 0
   &#user-pass input#edit-name, &#user-login input
     background: #fff
     font-size: .75em
@@ -833,28 +590,23 @@ form
     font-size: 14px
     line-height: 20px
     background-color: #a15334
-  &#user-pass input#edit-submit:hover, &#user-login input#edit-submit:hover
-    background: #73381F
-
-/* Fieldset wrapper around groups of form elements -- add border here */
 
 fieldset
   background: #f7f6f2
   border: 1px solid #b5a880
+  border-radius: 5px
   margin: 15px 0
-  padding: 10px 15px 15px 15px
+  padding: 10px 15px 15px
   .form-item input
     background-color: #fff
   legend
     display: block
-    font-size: 100%
-    /* 13px/13px */
     background: #d8cfb4
     border: 1px solid #b5a880
     font-weight: 400
-    padding: 0 5px
-
-/* Typography and spacing for legend of fieldsets */
+    font-size: 1.2em
+    border-radius: 3px
+    padding: 3px 5px
 
 html.js
   fieldset
@@ -862,47 +614,29 @@ html.js
       background: none
       margin-bottom: 20px
     &.collapsible legend a
-      background: transparent url(../images/menu-expanded.gif) no-repeat 0% 50%
+      background: transparent url(/images/menu-expanded.gif) no-repeat 0 50%
       text-decoration: none
     &.collapsed legend a
-      background: transparent url(../images/menu-collapsed.gif) no-repeat 0% 50%
+      background: transparent url(/images/menu-collapsed.gif) no-repeat 0 50%
     legend
       &:hover, &.hover
         background-color: #fff
         border: 1px solid #000
-  input.form-autocomplete
-    background-position: 100% 5px
-    max-width: 96%
-
-input
-  &.text:focus, &.title:focus
-    border: 1px solid #666
-
-textarea:focus, select:focus
-  border: 1px solid #666
-
-html.js input
-  &.form-autocomplete
-    background-position: 100% 2px
-    background-image: url(../images/throbber-small.gif)
-    max-width: 96%
-  &.throbbing
-    background-position: 100% -16px
-
-/* Buttons
- *-------------------------------------------------------------- */
+  input
+    &.form-autocomplete
+      background-position: 100% 2px
+      background-image: url(/images/throbber-small.gif)
+      max-width: 96%
+    &.throbbing
+      background-position: 100% -16px
 
 span
   &.button-wrapper
     cursor: pointer
   &.button
-    background: #334813
-    background: -moz-linear-gradient(top, #466417, #334813)
-    display: -moz-inline-box
-    /* for FF2 */
+    background: 0
     display: inline-block
     height: 33px
-    padding: 0 10px 0 0
     text-align: center
     -moz-box-shadow: 1px 1px 2px #374E0E
     -webkit-box-shadow: 1px 1px 2px #374E0E
@@ -911,70 +645,43 @@ span
     border: none
     -moz-border-radius: 5px
     -webkit-border-radius: 5px
+    padding: 0 10px 0 0
     span
-      background: #334813
-      background: -moz-linear-gradient(top, #466417, #334813)
-      display: -moz-inline-box
-      /* for FF2 */
+      background: 0
       display: inline-block
       height: 33px
       margin-right: -2px
-      padding: 0 0 0 9px
       -moz-border-radius: 5px
       -webkit-border-radius: 5px
+      padding: 0 0 0 9px
       input
         background-color: transparent
         border: 0
         color: #fff
         cursor: pointer
-        /* for Opera */
         font-size: 107.6%
-        /* 14px/13px */
         height: 33px
-        margin: 0 !important
+        white-space: nowrap!important
+        margin: 0!important
         padding: 0
-        white-space: nowrap !important
-  &.button-wrapper:hover span.button
-    background: #4F7319
-    span
-      background: #4F7319
-  &.button span input:hover
-    background: #4F7319
   &.button-wrapper:active span.button
     position: relative
     top: 1px
 
-input#edit-submit
 input.form-submit
-  color: white
-  padding: 3px 15px
+  color: #FFF
   background: #a15334
-  &:hover
-    background: #73381F
+  padding: 3px 15px
 
-/* Tables
- *--------------------------------------------------------------
-
-/* Supporters table */
-
-table.supporters tr
-  border-bottom: solid 1px #d8cfb4
-  td
-    padding-left: 4em
-    padding-right: 0
-    padding-top: 10px
-    vertical-align: text-top
-    &:first-child
-      text-align: right
-      padding-right: 4em
-      padding-left: 0
-
-/* Body of tables */
-
-tbody
-  border-top: 1px solid #ccc
-
-/* Header of tables */
+table.supporters tr td
+  padding-left: 4em
+  padding-right: 0
+  padding-top: 10px
+  vertical-align: text-top
+  &:first-child
+    text-align: right
+    padding-right: 4em
+    padding-left: 0
 
 thead th, th
   border-bottom: 3px solid #000
@@ -982,63 +689,20 @@ thead th, th
 tbody th
   border-bottom: 1px solid #ccc
 
-/* Alternating row background styles */
-
 tr
-  &.even
-    background-color: #fff
-    border-bottom: 1px solid #000
-    td
-      background-color: #fff
-      border-bottom: 1px solid #000
-  &.odd
-    background-color: #f5f5f5
-    border-bottom: 1px solid #000
-    td
-      background-color: #f5f5f5
-      border-bottom: 1px solid #000
   &.drag td, &.drag-previous td
     color: #E09010
 
 td
   padding: 3px 8px
 
-/* Log files pages */
-
-tr.selected a, #admin-dblog tbody a
-  color: #0D57A3
-  text-decoration: none
-
 table
-  &.system-status-report a, &.update a
-    color: #0D57A3
-    text-decoration: none
-
-.update table.version a
-  color: #0D57A3
-  text-decoration: none
-
-table.update tr.error td
-  background: #FFFFDD
-
-tr.selected a:hover, #admin-dblog tbody a:hover
-  text-decoration: underline
-
-table
-  &.system-status-report a:hover, &.update a:hover
-    text-decoration: underline
-
-.update table.version a:hover
-  text-decoration: underline
-
-table.system-status-report th
-  border-bottom: 1px solid #000
+  &.update tr.error td
+    background: #FFD
+  &.system-status-report th
+    border-bottom: 1px solid #000
 
 tr
-  &.info
-    background: #4D4D4D
-    td
-      background: #4D4D4D
   &.ok
     &.even, &.odd, &.even td, &.odd td
       background: #C2F5C2
@@ -1046,64 +710,29 @@ tr
   &.dblog-notice
     background: #E4EEF8
     color: #000
-  &.warning
-    &.even, &.odd, &.even td, &.odd td
-      background: #FFFFDD
-      color: #000
-  &.dblog-warning
-    &.even, &.odd, &.even td, &.odd td
-      background: #FFFFDD
-      color: #000
-  &.error
-    &.even, &.odd
-      background: #FBDBDB
-      color: #8A1F11
-  &.dblog-error
-    &.odd, &.even
-      background: #FBDBDB
-      color: #8A1F11
-
-/* Sticky header */
 
 table.sticky-header
   background: #fff
   thead th
     padding: 5px
 
-/*--------------------------------------------------------------
-/* Module styles
- */--------------------------------------------------------------
-
-/* Book
- */-------------------------------------------------------------- */
-
-.book-navigation
-  .menu
-    border-top: 1px solid #ccc
-  .page-links
-    border-top: 1px solid #ccc
-    border-bottom: 1px solid #ccc
-
-/* Comments
- */-------------------------------------------------------------- */
-
+.book-navigation .page-links
+  border-top: 1px solid #ccc
+  border-bottom: 1px solid #ccc
+  
 h2.comments-header
   background: url(../images/icon-commentbubble.png) no-repeat 0 7px
-  border-bottom: 1px dotted #98846C
-  font-family: Arial Narrow, Helvetica, Arial, sans-serif
+  border-bottom: 1px dotted #98846c
+  font-family: Arial Narrow,Helvetica,Arial,sans-serif
   font-size: 153.8%
-  /* 20px/13px */
-  font-weight: bold
-  padding: 0 0 10px 25px
+  font-weight: 700
   text-transform: uppercase
-
-/* Subject (title) of each comment */
+  padding: 0 0 10px 25px
 
 div.comment h3.title
   font-size: 123.1%
-  /* 16px/13px */
-  font-weight: normal
-  margin: 0 0 5px 0
+  font-weight: 400
+  margin: 0 0 5px
 
 .comment
   h3.title a
@@ -1113,45 +742,28 @@ div.comment h3.title
     color: #E8DCC4
     margin-bottom: 10px
 
-div.comment .submitted a
-  font-weight: bold
-
-/* Alternating styles for even/odd comments */
-
 .comments div.odd
   background-color: inherit
 
 #comments div.even
   background-color: #343434
 
-/* A special highlight style for a comment by the author of the node */
-
 .comments div.comment-by-author
   background-color: #444
   border: 3px solid #212121
 
-/* Comment signatures */
-
 .signature
   border-top: 1px solid #d6ddb9
-
-/* User avatars in comments */
-
-.comment-wrapper .picture img
-
-.comments div.links
-  background: none
 
 .comment div.links
   a
     &:link, &:visited
       color: #E2B57C
-      padding: 0
       text-decoration: underline
+      padding: 0
   ul li
     border-right: 1px solid #E2B57C
     font-size: 84.6%
-    /* 11px/13px */
     line-height: 100%
     padding: 0 8px 0 5px
     &.first
@@ -1160,53 +772,1533 @@ div.comment .submitted a
       border: none
       padding-right: 0
 
-/* Forum
- */-------------------------------------------------------------- 
+div.poll div.bar div.foreground
+  background-color: #999
+
+.profile dl
+  dt
+    width: 10em
+    float: left
+    clear: left
+    text-align: right
+    padding-right: .5em
+    padding-top: 1ex
+  dd
+    margin-left: 10.5em
+    padding-top: 1ex
+
+#edit-profile-survey-w-others-wrapper
+  background: #dbffd6
+  margin-top: 20px
+  border: 1px solid #b5a880
+  padding: 20px
+  input.form-checkbox
+    margin-top: 7px
+
+#content-tabs ul
+  &.secondary
+    clear: both
+    float: left
+    border-bottom: 1px solid #555
+    text-transform: lowercase
+    margin: 10px 0 0
+    padding: 0 10px
+  &.primary li, &.secondary li
+    display: inline
+    float: left
+    list-style: none
+    border-style: none
+    margin: 0 10px
+    padding: 0
+  &.primary li a
+    &:link, &:visited
+      border: none
+      float: left
+      text-decoration: none
+      white-space: nowrap
+      color: inherit
+      font-size: 107.8%
+      font-weight: 700
+      margin: 0
+      padding: 0 0 6px
+  &.secondary li a
+    &:link, &:visited
+      border: none
+      float: left
+      font-weight: 700
+      text-decoration: none
+      white-space: nowrap
+      color: #555
+      margin: 0
+      padding: 0 0 6px
+  &.primary li a.active
+    &:link, &:visited
+      border-bottom: 4px solid #DFB77C
+      color: #999
+      padding-bottom: 2px
+  &.secondary li a.active
+    &:link, &:visited
+      border-bottom: 4px solid #555
+      color: #777
+      padding-bottom: 2px
+  &.primary li a
+    &:hover, &:focus
+      padding-bottom: 2px
+      border-bottom: 4px solid #DFB77C
+      color: #999
+
+.species-title
+  font-size: 2em
+  font-weight: 100
+  line-height: 100%
+  padding: .3em 0
+
+.field-field-common-name
+  padding-bottom: 1em
+  .field-item .field-label-inline-first
+    font-weight: 100
+    margin-bottom: .5em
+
+.field-field-alternatives .field-items a
+  background-color: #f7f5ed
+  border: solid 1px #b6976f
+  font-size: .9em
+  padding: 3px 7px
+
+.node-type-species h3
+  padding-top: 1em
+  font-size: 1.3em
+  border-top: 2px dashed #d7d7d7
+
+.field-field-plant-photo .field-item
+  float: left
+  margin: .5em .8em
+
+div.-submitted
+  font-size: .9em
+  font-style: italic
+  margin-bottom: 20px
+
+.view-region-invasives-list 
+  .field-content img
+    float: left
+    margin-top: -9px
+    margin-right: 1em
+  .views-row
+    clear: left
+    overflow: auto
+    padding: 24px 19px 21px
+    a
+      font-weight: normal
+    .field-content
+      font-size: 1.2em
+      line-height: 1.5
+    .views-field-title .field-content
+      font-size: 1em
+
+#view-id-region_invasives_list-page_1
+  .view-content
+    padding: 20px 0 1.5em
+  .testimonial-nav
+    margin-bottom: 20px
+    border-top: solid 1px #d8cfb4
+    border-bottom: solid 1px #d8cfb4
+    width: 100%
+    float: left
+    padding: 2px 0
+    a
+      display: block
+      float: left
+      padding: 0 10px
+  .views-field-field-alternatives-nid
+    float: right
+    width: 200px
+    margin-left: 40px
+    margin-bottom: 20px
+  .views-field-title
+    margin-left: 85px
+    font-size: 1.5em
+    color: #78A22E
+    margin: 0 0 .5em
+  .views-field-field-common-name-value .field-content
+    font-size: 1.3em
+  .views-field-field-plant-photo-fid img
+    float: left
+    margin-right: 1em
+    margin-bottom: .5em
+    padding-top: 19px
+  .views-row
+    padding: 20px 20px 1px
+    
+
+img#plantCareKey
+  border-top: solid 1px #78a22f
+  margin: 10px 0 0
+  padding: 6px 0 0
+
+#content div.alternatives
+  ul.altRegions
+    margin-left: 0
+    padding-left: 0
+    li
+      margin-left: 30px
+  div.item
+    clear: both
+    float: left
+    width: 100%
+    h2
+      border-top: solid 1px #78a22f
+      margin-top: 20px
+      margin-bottom: 10px
+      padding-top: 10px
+      font-weight: 700
+    h3
+      clear: both
+      margin-top: 10px
+      margin-bottom: 10px
+      font-weight: 400
+
+div#fourStepsWrapper
+  color: #78a22e
+  text-shadow: 2px 2px 6px rgba(125, 130, 121, 1)
+  background-color: #efead5
+  border: solid 1px #887a4b
+  margin: 20px 60px 20px 30px
+  padding: 20px 30px 30px
+
+#content ol#fourSteps li
+  list-style-type: none
+  clear: both
+  margin: 0
+  padding: 0
+  span
+    &.number
+      color: #78a22e
+      text-shadow: 2px 2px 6px rgba(125, 130, 121, 0.5)
+      font-size: 70px
+      font-weight: 700
+      height: 1em
+      display: block
+      float: left
+      width: 50px
+      margin: 24px 0 0
+    &.text
+      color: #634f31
+      font-family: 'Open Sans',Helvetica,Arial,sans-serif
+      font-weight: 600
+      text-shadow: none
+      font-size: 24px
+      line-height: 2.6ex
+      margin: 0
+      padding: 0
+
+p.linkToSurvey
+  font-size: 24px
+  font-weight: 400
+  background: #7ba229
+  color: #fff
+  line-height: 2.7ex
+  -webkit-border-radius: 10px
+  -moz-border-radius: 10px
+  border-radius: 10px
+  text-align: center
+  margin: 20px 0
+  padding: 10px 20px 5px
+
+li span.flag-nursery-dibs
+  display: block
+  font-size: 1.2em
+  margin: 5px 0 20px 5px
+  a
+    background-color: #f7f5ed
+    border: solid 1px #b6976f
+    padding: 3px 7px
+
+#ygyeyc
+  .effing-giant
+    font-size: 6.85em
+    font-weight: 100
+    line-height: 100%
+    margin-right: 12px
+    margin-top: 0
+  .upcase
+    text-transform: uppercase
+  .green
+    color: #78A22E
+  .small-medium
+    font-size: 18px
+    font-weight: 100
+    line-height: 26px
+  .grey
+    color: #666
+  .brown
+    color: #4D3C14
+  .red
+    color: #A14926
+
+#page-node-add-survey-photos .content-add-more
+  margin-bottom: 15px
+  margin-top: 10px
+
+.webform-client-form textarea
+  background-color: #FFF
+  width: 90%
+
+.node-nursery .field-label-inline-first
+  display: inline-block
+  width: 130px
+  text-align: right
+  margin-right: 10px
+
+body#page-horticultural-professionals h3
+  color: #78a22e
+  font-size: 1.7em
+  margin-top: 2em
+
+h2 sup, h3 sup, h4 sup
+  font-weight: 400
+  font-size: .6em
+
+h2 sup
+  font-size: .3em
+  position: relative
+  top: -1.2em
+  left: 0
+
+h3.fold
+  a
+    display: block
+    text-decoration: none
+    border-bottom: dotted 1px #d8cfb4
+    padding-bottom: 1px
+    &:before
+      content: '+ '
+  &.open a:before
+    content: '- '
+  + ol
+    margin-left: 0
+    padding-left: 3em
+    border-bottom: solid 1px #d8cfb4
+    padding-bottom: 20px
+
+div#faq_answers h4 a
+  color: #000
+  text-decoration: none
+
+form
+  div.add_location
+    margin: 10px 0
+  label
+    &.indent, &.collection_check_boxes, &.collection_radio_buttons
+      margin-top: 0
+      padding-top: 0
+      border: none
+  &.form-horizontal label
+    margin-top: 0
+    padding-top: 0
+    border: none
+
+p.reqd_notice
+  color: #c82404
+
+form
+  ul.quiz
+    margin-bottom: 12px
+    padding-bottom: 10px
+    border-bottom: solid 1px #eee
+  &[action="quiz"] p
+    font-weight: 700
+    font-size: 1.1em
+
+div#missed_quiz_qs ul
+  margin-top: 2px
+  color: #c82404
+  li:first-child
+    margin-top: 2px
+    padding-top: 0
+
+h3.staff_training_consists
+  margin-bottom: 0
+  margin-top: 0
+
+ol.staff_training_consists
+  margin-top: 0
+  margin-bottom: 20px
+  font-size: 1.2em
+  li
+    margin-bottom: 4px
+
+div.signup_for_training
+  display: inline-block
+  font-family: 'Open Sans',Helvetica,Arial sans-serif
+  list-style-type: none
+  color: #fff
+  text-align: center
+  border: solid 1px #61871f
+  background-color: #5d801f
+  -webkit-border-radius: 10px
+  -moz-border-radius: 10px
+  border-radius: 10px
+  box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.2)
+  margin: 10px
+  padding: 10px
+  a
+    color: #fff
+    font-size: 1.5em
+    font-weight: 600
+    text-shadow: -2px 3px 2px rgba(79, 115, 17, 0.7)
+    padding: 0 20px
+
+form.form-horizontal input[type=submit]
+  margin-left: 180px
+  margin-top: 0
+
+label[for=user_remember_me]
+  display: inline
+  margin-top: 0
+  padding-top: 0
+  border: none
+
+ul#pr_profile_data
+  list-style-type: none
+  margin-left: 0
+  padding-left: 0
+  li
+    font-size: 1.2em
+    margin-top: 3px
+    padding: 2px 5px
+
+form input[type=submit]
+  margin-top: 20px
+  margin-bottom: 20px
+
+div#shared-links a
+  display: block
+  margin: 1px 0
+
+a.btn-primary, .btn-primary, a.btn-success, .btn-success, .btn-info, a.btn-info
+  display: inline-block
+  font-size: 14px
+  font-weight: 400
+  color: #fff
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
+  line-height: 20px
+  text-align: center
+  vertical-align: middle
+  -webkit-border-radius: 4px
+  -moz-border-radius: 4px
+  border-radius: 4px
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)
+  background-color: #A15334
+  border-solid: solid 1px #4d3c14
+  background-image: linear-gradient(tobottom, #ab7a4b, #a15334)
+  background-repeat: repeat-x
+  border-color: rgba(77, 60, 20, 0.3)
+  padding: 4px 14px
+
+.btn-info, a.btn-info
+  background-color: #d8cfb4
+  border-solid: solid 1px #4d3c14
+  background-image: linear-gradient(tobottom, #d8cfb4, #c5bb9c)
+  background-repeat: repeat-x
+  color: #5f4f28
+  border-color: rgba(145, 130, 106, 0.3)
+
+.btn:hover
+  color: #fcfce6
+  text-decoration: none
+  background-color: #a15334
+  background-image: none
+
+a.btn-info:hover
+  color: #5f4f28
+  text-decoration: none
+  background-color: #bfac8e
+  background-image: none
+
+span.pagetoplink
+  display: block
+  text-align: center
+  font-size: .9em
+
+h2 + h3
+  margin-top: -20px
+
+h4
+  font-size: 1.2em
+  margin: 20px 0 5px
+
+#skipnav
+  position: absolute
+  top: -50px
+  left: 0
+
+#prWrapper
+  width: 954px
+  margin: 0 auto
+  padding: 0
+
+#leftnav ul.menu
+  list-style-type: none
+  margin: 0
+  padding: 0
+  a
+    font-family: 'Open Sans',Helvetica,Arial sans-serif
+    font-size: 16px
+    font-weight: 700
+  li.dhtml-menu li a:hover
+    color: #403000
+
+div#leftnav form#user-login-form
+  margin-top: 30px
+
+body#page-partner-resources
+  #footer
+    background-color: #a15334
+  #main div#partner_notice
+    display: block
+    width: 780px
+    text-align: center
+    letter-spacing: 1px
+    font-style: italic
+    color: #e4dcc3
+    position: absolute
+    top: 110px
+    left: 170px
+    padding: 4px
+
+div
+  &.links ul li a
+    &:link, &:visited
+      color: #a14926
+      font-weight: 700
+      padding-right: 14px
+  &.terms ul li a
+    &:link, &:visited
+      color: #a14926
+      font-weight: 700
+      padding-right: 14px
+  &.links ul li a
+    &:hover, &:focus
+      color: #a14926
+  &.terms ul li a
+    &:hover, &:focus
+      color: #a14926
+
+#content ul.pager
+  a
+    &:link, &:visited
+      -moz-border-radius: 3px
+      border-radius: 3px
+      color: #A14926
+      border-color: #444
+  li.pager-current
+    -moz-border-radius: 3px
+    border-radius: 3px
+    color: #A14926
+    border-color: #444
+
+form
+  input
+    &.form-text
+      width: 97%
+    &.form-submit
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
+      line-height: 20px
+      vertical-align: middle
+      -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)
+      -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05)
+      border-solid: solid 1px #4d3c14
+      background-image: linear-gradient(tobottom, #ab7a4b, #a15334)
+      background-repeat: repeat-x
+      display: inline-block
+      background-color: #a15334
+      border: 1px solid #912304
+      -webkit-border-radius: 5px
+      -moz-border-radius: 5px
+      border-radius: 5px
+      color: #f3eddf
+      font-weight: 400
+      font-size: 1.05em
+      text-align: left
+      border-color: rgba(77, 60, 20, 0.3)
+      margin: 5px auto 20px
+      padding: 1px 6px 3px
+    background: #faf9f4
+    border: 1px solid #ccbeb2
+    color: #444
+    margin: 0 0 10px
+    padding: 2px
+  select, textarea
+    background: #faf9f4
+    border: 1px solid #ccbeb2
+    color: #444
+    margin: 0 0 10px
+    padding: 2px
+
+.hide-text
+  font: 0 / 0 a
+  color: transparent
+  text-shadow: none
+  background-color: transparent
+  border: 0
+
+.input-block-level
+  display: block
+  width: 100%
+  min-height: 30px
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  box-sizing: border-box
+
+legend
+  display: block
+  width: 100%
+  margin-bottom: 20px
+  font-size: 21px
+  color: #333
+  border: 0
+  border-bottom: 1px solid #e5e5e5
+  padding: 0
+  small
+    font-size: 15px
+    color: #999
+
+label, input, button, select, textarea
+  font-size: 14px
+  font-weight: 400
+  line-height: 20px
+
+input, button, select, textarea
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
+
+label
+  display: block
+  margin-bottom: 5px
+
+select, textarea
+  display: inline-block
+  height: 20px
+  margin-bottom: 10px
+  font-size: 14px
+  line-height: 20px
+  color: #555
+  -webkit-border-radius: 4px
+  -moz-border-radius: 4px
+  border-radius: 4px
+  vertical-align: middle
+  padding: 4px 6px
+
+input
+  &[type=text], &[type=password], &[type=datetime], &[type=datetime-local], &[type=date], &[type=month], &[type=time], &[type=week], &[type=number], &[type=email], &[type=url], &[type=search], &[type=tel], &[type=color]
+    display: inline-block
+    height: 20px
+    margin-bottom: 10px
+    font-size: 14px
+    line-height: 20px
+    color: #555
+    -webkit-border-radius: 4px
+    -moz-border-radius: 4px
+    border-radius: 4px
+    vertical-align: middle
+    padding: 4px 6px
+
+.uneditable-input
+  display: inline-block
+  height: 20px
+  margin-bottom: 10px
+  font-size: 14px
+  line-height: 20px
+  color: #555
+  -webkit-border-radius: 4px
+  -moz-border-radius: 4px
+  border-radius: 4px
+  vertical-align: middle
+  padding: 4px 6px
+
+input, textarea, .uneditable-input
+  width: 206px
+  margin-left: 0
+
+textarea
+  background-color: #fff
+  border: 1px solid #ccc
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+  -webkit-transition: border linear .2s,box-shadow linear .2s
+  -moz-transition: border linear .2s,box-shadow linear .2s
+  -o-transition: border linear .2s,box-shadow linear .2s
+  transition: border linear .2s,box-shadow linear .2s
+
+input
+  &[type=text], &[type=password], &[type=datetime], &[type=datetime-local], &[type=date], &[type=month], &[type=time], &[type=week], &[type=number], &[type=email], &[type=url], &[type=search], &[type=tel], &[type=color]
+    background-color: #fff
+    border: 1px solid #ccc
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+    -webkit-transition: border linear .2s,box-shadow linear .2s
+    -moz-transition: border linear .2s,box-shadow linear .2s
+    -o-transition: border linear .2s,box-shadow linear .2s
+    transition: border linear .2s,box-shadow linear .2s
+
+.uneditable-input
+  background-color: #fff
+  border: 1px solid #ccc
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+  -webkit-transition: border linear .2s,box-shadow linear .2s
+  -moz-transition: border linear .2s,box-shadow linear .2s
+  -o-transition: border linear .2s,box-shadow linear .2s
+  transition: border linear .2s,box-shadow linear .2s
+
+textarea:focus
+  outline: thin dotted \9
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6)
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6)
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6)
+  border-color: rgba(82, 168, 236, 0.8)
+
+input
+  &[type=text]:focus, &[type=password]:focus, &[type=datetime]:focus, &[type=datetime-local]:focus, &[type=date]:focus, &[type=month]:focus, &[type=time]:focus, &[type=week]:focus, &[type=number]:focus, &[type=email]:focus, &[type=url]:focus, &[type=search]:focus, &[type=tel]:focus, &[type=color]:focus
+    outline: thin dotted \9
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6)
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6)
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6)
+    border-color: rgba(82, 168, 236, 0.8)
+
+.uneditable-input:focus
+  outline: thin dotted \9
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6)
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6)
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6)
+  border-color: rgba(82, 168, 236, 0.8)
+
+input
+  &[type=radio], &[type=checkbox]
+    line-height: normal
+    cursor: pointer
+    margin: 1px \9 0 0 0
+  &[type=file], &[type=image], &[type=submit], &[type=reset], &[type=button], &[type=radio], &[type=checkbox]
+    width: auto
+
+select, input[type=file]
+  height: 30px
+  margin-top: 4px
+  line-height: 30px
+
+select
+  width: 220px
+  border: 1px solid #ccc
+  background-color: #fff
+  &:focus
+    outline: 5px auto 0
+    outline-offset: -2px
+
+input
+  &[type=file]:focus, &[type=radio]:focus, &[type=checkbox]:focus
+    outline: 5px auto 0
+    outline-offset: -2px
+
+.uneditable-input, .uneditable-textarea
+  color: #999
+  background-color: #fcfcfc
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.025)
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.025)
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.025)
+  cursor: not-allowed
+  border-color: #ccc
+
+.uneditable-input
+  overflow: hidden
+  white-space: nowrap
+
+.uneditable-textarea
+  width: auto
+  height: auto
+
+.radio, .checkbox
+  min-height: 20px
+  padding-left: 20px
+
+.radio input[type=radio], .checkbox input[type=checkbox]
+  float: left
+  margin-left: -20px
+
+.radio.inline, .checkbox.inline
+  display: inline-block
+  padding-top: 5px
+  margin-bottom: 0
+  vertical-align: middle
+
+.radio.inline + .radio.inline, .checkbox.inline + .checkbox.inline
+  margin-left: 10px
+
+.input-mini
+  width: 60px
+
+.input-small
+  width: 90px
+
+.input-medium
+  width: 150px
+
+.input-large
+  width: 210px
+
+.input-xlarge
+  width: 270px
+
+.input-xxlarge
+  width: 530px
+
+input[class*=span], select[class*=span], textarea[class*=span], .uneditable-input[class*=span]
+  float: none
+  margin-left: 0
+
+.row-fluid
+  input[class*=span], select[class*=span], textarea[class*=span], .uneditable-input[class*=span]
+    float: none
+    margin-left: 0
+
+.controls-row [class*=span] + [class*=span]
+  margin-left: 20px
+
+input.span12, textarea.span12, .uneditable-input.span12
+  width: 926px
+
+input.span11, textarea.span11, .uneditable-input.span11
+  width: 846px
+
+input.span10, textarea.span10, .uneditable-input.span10
+  width: 766px
+
+input.span9, textarea.span9, .uneditable-input.span9
+  width: 686px
+
+input.span8, textarea.span8, .uneditable-input.span8
+  width: 606px
+
+input.span7, textarea.span7, .uneditable-input.span7
+  width: 526px
+
+input.span6, textarea.span6, .uneditable-input.span6
+  width: 446px
+
+input.span5, textarea.span5, .uneditable-input.span5
+  width: 366px
+
+input.span4, textarea.span4, .uneditable-input.span4
+  width: 286px
+
+input.span3, textarea.span3, .uneditable-input.span3
+  width: 206px
+
+input.span2, textarea.span2, .uneditable-input.span2
+  width: 126px
+
+input.span1, textarea.span1, .uneditable-input.span1
+  width: 46px
+
+input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly]
+  cursor: not-allowed
+  background-color: #eee
+
+input
+  &[type=radio][disabled], &[type=checkbox][disabled], &[type=radio][readonly], &[type=checkbox][readonly]
+    background-color: transparent
+
+.control-group
+  &.warning
+    input, select, textarea
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+      border-color: #c09853
+    input:focus, select:focus, textarea:focus
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #dbc59e
+      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #dbc59e
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #dbc59e
+      border-color: #a47e3c
+    .input-prepend .add-on, .input-append .add-on
+      color: #c09853
+      background-color: #fcf8e3
+      border-color: #c09853
+  &.error
+    input, select, textarea
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+      border-color: #b94a48
+    input:focus, select:focus, textarea:focus
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392
+      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392
+      border-color: #953b39
+    .input-prepend .add-on, .input-append .add-on
+      color: #b94a48
+      background-color: #f2dede
+      border-color: #b94a48
+  &.success
+    input, select, textarea
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+      border-color: #468847
+    input:focus, select:focus, textarea:focus
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7aba7b
+      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7aba7b
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7aba7b
+      border-color: #356635
+    .input-prepend .add-on, .input-append .add-on
+      color: #468847
+      background-color: #dff0d8
+      border-color: #468847
+  &.info
+    input, select, textarea
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+      border-color: #3a87ad
+    input:focus, select:focus, textarea:focus
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3
+      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7ab5d3
+      border-color: #2d6987
+    .input-prepend .add-on, .input-append .add-on
+      color: #3a87ad
+      background-color: #d9edf7
+      border-color: #3a87ad
+
+input:focus:required:invalid, textarea:focus:required:invalid, select:focus:required:invalid
+  color: #b94a48
+  border-color: #ee5f5b
+
+input:focus:required:invalid:focus, textarea:focus:required:invalid:focus, select:focus:required:invalid:focus
+  -webkit-box-shadow: 0 0 6px #f8b9b7
+  -moz-box-shadow: 0 0 6px #f8b9b7
+  box-shadow: 0 0 6px #f8b9b7
+  border-color: #e9322d
+
+.form-actions
+  margin-top: 20px
+  margin-bottom: 20px
+  background-color: #f5f5f5
+  border-top: 1px solid #e5e5e5
+  zoom: 1
+  padding: 19px 20px 20px
+
+.help-block, .help-inline
+  color: #595959
+
+.help-block
+  display: block
+  margin-bottom: 10px
+
+.help-inline
+  display: inline
+  zoom: 1
+  vertical-align: middle
+  padding-left: 5px
+
+.input-append, .input-prepend
+  margin-bottom: 5px
+  font-size: 0
+  white-space: nowrap
+
+.input-append input, .input-prepend input, .input-append select, .input-prepend select, .input-append .uneditable-input, .input-prepend .uneditable-input, .input-append .dropdown-menu, .input-prepend .dropdown-menu
+  font-size: 14px
+
+.input-append input, .input-prepend input, .input-append select, .input-prepend select, .input-append .uneditable-input, .input-prepend .uneditable-input
+  position: relative
+  margin-bottom: 0
+  margin-left: 0
+  vertical-align: top
+  -webkit-border-radius: 0 4px 4px 0
+  -moz-border-radius: 0 4px 4px 0
+  border-radius: 0 4px 4px 0
+
+.input-append input:focus, .input-prepend input:focus, .input-append select:focus, .input-prepend select:focus, .input-append .uneditable-input:focus, .input-prepend .uneditable-input:focus
+  z-index: 2
+
+.input-append .add-on, .input-prepend .add-on
+  display: inline-block
+  width: auto
+  height: 20px
+  min-width: 16px
+  font-size: 14px
+  font-weight: 400
+  line-height: 20px
+  text-align: center
+  text-shadow: 0 1px 0 #fff
+  background-color: #eee
+  border: 1px solid #ccc
+  padding: 4px 5px
+
+.input-append .add-on, .input-prepend .add-on, .input-append .btn, .input-prepend .btn
+  vertical-align: top
+  -webkit-border-radius: 0
+  -moz-border-radius: 0
+  border-radius: 0
+
+.input-append .active
+  background-color: #a9dba9
+  border-color: #46a546
+
+.input-prepend
+  .active
+    background-color: #a9dba9
+    border-color: #46a546
+  .add-on, .btn
+    margin-right: -1px
+
+.input-append
+  .add-on, .btn, .btn-group
+    margin-left: -1px
+
+.input-prepend.input-append
+  .add-on:first-child, .btn:first-child
+    margin-right: -1px
+    -webkit-border-radius: 4px 0 0 4px
+    -moz-border-radius: 4px 0 0 4px
+    border-radius: 4px 0 0 4px
+  .add-on:last-child, .btn:last-child
+    margin-left: -1px
+    -webkit-border-radius: 0 4px 4px 0
+    -moz-border-radius: 0 4px 4px 0
+    border-radius: 0 4px 4px 0
+
+input.search-query
+  padding-right: 4px \9
+  padding-left: 4px \9
+  margin-bottom: 0
+  -webkit-border-radius: 15px
+  -moz-border-radius: 15px
+  border-radius: 15px
+
+.form-search input, .form-inline input, .form-horizontal input, .form-search textarea, .form-inline textarea, .form-horizontal textarea, .form-search select, .form-inline select, .form-horizontal select, .form-search .help-inline, .form-inline .help-inline, .form-horizontal .help-inline, .form-search .uneditable-input, .form-inline .uneditable-input, .form-horizontal .uneditable-input, .form-search .input-prepend, .form-inline .input-prepend, .form-horizontal .input-prepend, .form-search .input-append, .form-inline .input-append, .form-horizontal .input-append
+  display: inline
+  zoom: 1
+  margin-bottom: 0
+  vertical-align: middle
+
+.form-search
+  .radio, .checkbox
+    padding-left: 0
+    margin-bottom: 0
+    vertical-align: middle
+
+.form-inline
+  .radio, .checkbox
+    padding-left: 0
+    margin-bottom: 0
+    vertical-align: middle
+
+.form-search
+  .radio input[type=radio], .checkbox input[type=checkbox]
+    float: left
+    margin-right: 3px
+    margin-left: 0
+
+.form-inline
+  .radio input[type=radio], .checkbox input[type=checkbox]
+    float: left
+    margin-right: 3px
+    margin-left: 0
+
+legend + .control-group
+  margin-top: 20px
+  -webkit-margin-top-collapse: separate
+
+.form-horizontal
+  .control-group
+    margin-bottom: 20px
+    zoom: 1
+  .control-label
+    float: left
+    width: 160px
+    padding-top: 5px
+    text-align: right
+  .controls
+    display: inline-block
+    padding-left: 20px
+    margin-left: 0
+
+form
+  input.error, textarea.error, select.error
+    border: 1px solid #D77
+    background: #FCC
+    color: #8A1F11
+
+span
+  &.button-wrapper:hover span.button
+    background: #4f7319
+    span
+      background: #4f7319
+  &.button span input:hover
+    background: #4f7319
+
+tr
+  &.even
+    background-color: #FFF
+    border-bottom: 1px solid #000
+    td
+      background-color: #FFF
+      border-bottom: 1px solid #000
+  &.selected a
+    color: #0d57a3
+    text-decoration: none
+
+#admin-dblog tbody a
+  color: #0d57a3
+  text-decoration: none
+
+table
+  &.system-status-report a, &.update a
+    color: #0d57a3
+    text-decoration: none
+
+.update table.version a
+  color: #0d57a3
+  text-decoration: none
+
+tr
+  &.info
+    background: #4d4d4d
+    td
+      background: #4d4d4d
+  &.warning
+    &.even, &.odd, &.even td, &.odd td
+      background: #ffd
+      color: #000
+  &.dblog-warning
+    &.even, &.odd, &.even td, &.odd td
+      background: #ffd
+      color: #000
+  &.error
+    &.even, &.odd
+      background: #fbdbdb
+      color: #8a1f11
+  &.dblog-error
+    &.odd, &.even
+      background: #fbdbdb
+      color: #8a1f11
+
+h2.comments-header
+  background: url(/images/icon-commentbubble.png) no-repeat 0 7px
+  border-bottom: 1px dotted #98846C
+  font-family: Arial Narrow,Helvetica,Arial,sans-serif
+  font-size: 153.8%
+  font-weight: 700
+  text-transform: uppercase
+  padding: 0 0 10px 25px
+
+#content-tabs ul
+  &.primary li a
+    &:link, &:visited
+      border: none
+      color: #000
+      float: left
+      font-weight: 700
+      text-decoration: none
+      white-space: nowrap
+      margin: 0
+      padding: 0 0 6px
+  &.secondary li a
+    &:link, &:visited
+      border: none
+      color: #000
+      float: left
+      font-weight: 700
+      text-decoration: none
+      white-space: nowrap
+      margin: 0
+      padding: 0 0 6px
+
+.form-item label.option
+  line-height: 2em
+
+div.content-profile-display
+  border: none
+  .field .field-label-inline-first
+    display: inline-block
+    width: 120px
+    text-align: right
+
+#header p#tagline_partner
+  position: absolute
+  top: 10px
+  right: 20px
+  font-family: 'Open Sans',sans-serif
+  font-size: 18px
+  text-transform: uppercase
+  color: #4e3c14
+  display: none
+
+body.partner_only #footer
+  background-color: #a15334
+  color: #e4dfd0
+  a
+    color: #f1ead6
+
+sup.tm
+  font-size: .75em
+  position: relative
+  top: 0
+  left: 0
+  font-weight: 400
+
+ul
+  &#partner_downloads li
+    font-family: 'Open Sans',Helvetica,Arial sans-serif
+    list-style-type: none
+    display: inline-block
+    color: #fff
+    width: 43%
+    text-align: center
+    border: solid 1px #334e04
+    background-color: #5d801f
+    -webkit-border-radius: 10px
+    -moz-border-radius: 10px
+    border-radius: 10px
+    font-size: .9em
+    margin: 10px
+    padding: 10px
+  li
+    &#download_agreement
+      border: solid 1px #42320c
+      background-color: #6b5328
+    &#download_pledge a, &#download_agreement a
+      font-size: 1.45em
+      font-weight: 400
+      color: #fff
+
+div#resources_list
+  float: left
+  width: 100%
+  margin-top: 20px
+  > div
+    width: 45%
+    float: left
+    margin: 10px 0
+    padding: 0 20px 0 10px
+  div
+    &#outreach_and_marketing
+      padding: 0 10px 0 20px
+    &#resources_feedback
+      margin-top: 40px
+      background-color: #e5dec7
+      text-align: center
+      font-weight: 700
+      line-height: 2.5ex
+      color: #4d3c14
+      border-top: solid 2px #a15334
+      padding: 9px 12px
+      h5
+        font-weight: 700
+        margin-top: 0
+  > div >
+    h4
+      background-color: #e5dec7
+      font-weight: 700
+      padding: 2px 5px
+    ul
+      padding-left: 0
+      margin-top: 12px
+      li
+        margin-bottom: 8px
+
+textarea.form-textarea
+  font-family: monaco,monospace
+
+h6, #view-id-region_alteratives_list-page_1 .views-field-field-common-name-value
+  font-size: 1em
+
+#branding, #navigation, #main h1.page-title
+  display: none
+
+#left
+  .block-menu h2.title, .block-admin h2.title
+    display: none
+
+ul.menu li.dhtml-menu li.fake-leaf, #main div.breadcrumb, #page-node-add-survey-photos .views-field-field-store-code-value, .node-nursery .node-submitted, body#page-horticultural-professionals h2.pageTitle, form div.required label abbr, label.required abbr
+  display: none
+
+#leftnav ul.menu li.dhtml-menu
+  &.collapsed ul.menu, li.fake-leaf
+    display: none
+
+#main div#partner_notice, .form-search .hide, .form-inline .hide, .form-horizontal .hide, body.partner_only #header p#tagline
+  display: none
+
+ul.secondary-tabs li a
+  display: inline-block
+
+.input-append
+  input[class*=span], .uneditable-input[class*=span]
+    display: inline-block
+
+.input-prepend
+  input[class*=span], .uneditable-input[class*=span]
+    display: inline-block
+
+.row-fluid
+  input[class*=span], select[class*=span], textarea[class*=span], .uneditable-input[class*=span], .input-prepend [class*=span], .input-append [class*=span]
+    display: inline-block
+
+.form-search label, .form-inline label, .form-search .btn-group, .form-inline .btn-group
+  display: inline-block
+
+div#console div.status a, tr.selected a:hover, #admin-dblog tbody a:hover
+  text-decoration: underline
+
+table
+  &.system-status-report a:hover, &.update a:hover
+    text-decoration: underline
+
+.update table.version a:hover, tr.selected a:hover, #admin-dblog tbody a:hover
+  text-decoration: underline
+
+table
+  &.system-status-report a:hover, &.update a:hover
+    text-decoration: underline
+
+.update table.version a:hover
+  text-decoration: underline
+
+#left, #leftnav
+  float: left
+  width: 138px
+  margin: 0 18px 20px 10px
+
+#left a:visited, #leftnav a:visited
+  color: #ac512a
+
+#block-menu-primary-links ul.menu
+  margin: 0
+  padding: 0
+
+div
+  &.links ul, &.terms ul
+    margin: 0
+    padding: 0
+
+#content ol#fourSteps, ul#partner_downloads
+  margin: 0
+  padding: 0
+
+#block-menu-primary-links ul.menu li, #leftnav ul.menu li
+  border-bottom: solid 1px #d8cfb4
+  padding: 10px 0
+
+ul.menu li.dhtml-menu.collapsed a, #leftnav ul.menu li.dhtml-menu.collapsed a
+  display: block
+  background: url(/images/arrow-collapsed.png) no-repeat 0 8px
+  margin-left: -11px
+  padding-left: 11px
+
+ul.menu li.dhtml-menu.expanded a, #leftnav ul.menu li.dhtml-menu.expanded a
+  display: block
+  background: url(/images/arrow-expanded.png) no-repeat 0 9px
+  margin-left: -11px
+  padding-left: 11px
+
+#block-menu-primary-links ul.menu.expanded ul, #block-menu-menu-survey-menu ul.menu.expanded ul, #block-menu-menu-pre-survey-menu ul.menu.expanded ul, #block-menu-menu-survey-admin ul.menu.expanded ul, #leftnav ul.menu.expanded ul
+  margin-top: 10px
+
+.form-horizontal
+  input + .help-block, select + .help-block, textarea + .help-block
+    margin-top: 10px
+
+#left
+  #block-menu-primary-links ul.menu li.dhtml-menu li a, #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a, #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a, #block-menu-menu-survey-admin ul.menu li.dhtml-menu li a
+    display: block
+    background: none
+    margin-left: 0
+    padding-left: 0
+    font-family: Helvetica,Arial,sans-serif
+    font-size: 14px
+    font-weight: 400
+    color: #7f4128
+
+#leftnav ul.menu li.dhtml-menu li a
+  display: block
+  background: none
+  margin-left: 0
+  padding-left: 0
+  font-family: Helvetica,Arial,sans-serif
+  font-size: 14px
+  font-weight: 400
+  color: #7f4128
+
+#block-menu-primary-links ul.menu li.dhtml-menu li, #block-menu-menu-survey-menu ul.menu li.dhtml-menu li, #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li, #block-menu-menu-survey-admin ul.menu li.dhtml-menu li, #leftnav ul.menu li.dhtml-menu li
+  border-top: solid 1px #eae8dc
+  border-bottom: none
+  padding: 6px 0
+
+#block-user-0 label, #block-masquerade-0 label
+  font-weight: 400
+
+div
+  &#block-admin-account ul li a, &#block-menu-menu-new-user-account-menu ul li a, &#block-admin-account ul li a, &#block-menu-menu-new-user-account-menu ul li a, &#resources_list h3
+    font-weight: 400
+
+#page-homepage #footer, #content div.view-News div.views-field-teaser p
+  margin-top: 2px
+
+div
+  &#block-admin-account ul, &#block-menu-menu-new-user-account-menu ul
+    margin-top: 20px
+
+#ygyeyc
+  margin-top: 20px
+
+div
+  &#block-admin-account ul, &#block-menu-menu-new-user-account-menu ul
+    margin-top: 20px
+  &#block-admin-account ul li, &#block-menu-menu-new-user-account-menu ul li, &#block-admin-account ul li, &#block-menu-menu-new-user-account-menu ul li
+    border-top: dotted 1px #d8cfb4
+    font-size: .9em
+    padding: 4px 0
+  &#block-admin-account ul li:first-child, &#block-menu-menu-new-user-account-menu ul li:first-child, &#block-admin-account ul li:first-child, &#block-menu-menu-new-user-account-menu ul li:first-child
+    border-top: none
+  &#forgotPassword, &#new_password
+    margin: 20px 0 40px
+  &#footer div
+    &#block-block-1, &#copyright
+      float: left
+      width: 350px
+      padding: 45px 10px 10px
+    &#block-block-2, &#footernav
+      display: inline-block
+      float: right
+      padding: 45px 10px 10px
+
+#content p em strong, div.quiz-question-body p
+  font-size: 1.2em
+
+#content dl.contactMethods, .profile dl
+  margin: 12px 0
+
+#content ul.ftp_plant_thumbs li img, body.partner_only #header p#tagline_partner
+  display: block
+
+div#map, .plant-care strong, #ygyeyc .float-left, .controls-row [class*=span], .row-fluid .controls-row [class*=span]
+  float: left
+
+div#mapLegend ul li, #content .view ul.pager-list li
+  list-style-type: none
+
+div.view-News div.views-row, table.supporters tr
+  border-bottom: solid 1px #d8cfb4
+
+input#edit-back:hover, p.linkToSurvey a
+  color: #fff
+
+/*--------------------------------------------------------------
+/* Change unpublished and preview colors for dark background themes
+
+.node-unpublished
+  background-color: #fff4f4
+
+div.links, .node div.links
+  background: #eee
+  font-size: 107.6%
+  margin: 0 0 10px
+  padding: 5px 10px
+
+div
+  &.terms, &.links
+    background: #eee
+    font-size: 107.6%
+    margin: 0 0 10px
+    padding: 5px 10px
+
+.node div.links, div.terms
+  background: #eee
+  font-size: 107.6%
+  margin: 0 0 10px
+  padding: 5px 10px
+
+/*--------------------------------------------------------------
+
+h2.block-title
+  font-size: 107.6%
+
+.form-item .description, form .description
+  font-size: 84.6%
+  line-height: 150%
+
+div#edit-message-wrapper, .control-group
+  margin-bottom: 10px
+
+.form-item
+  .form-radio, .form-checkbox
+    background: inherit
+    border: none!important
+
+form
+  .form-radio, .form-checkbox
+    background: inherit
+    border: none!important
+  &#user-pass input#edit-submit:hover, &#user-login input#edit-submit:hover
+    background: #73381f
+
+input
+  &.form-submit:hover
+    background: #73381f
+  &.text:focus, &.title:focus
+    border: 1px solid #666
+
+textarea:focus, select:focus
+  border: 1px solid #666
+
+input
+  &.text:focus, &.title:focus
+    border: 1px solid #666
+
+textarea:focus, select:focus
+  border: 1px solid #666
+
+tbody, .book-navigation .menu
+  border-top: 1px solid #ccc
+
+tr.odd
+  background-color: #f5f5f5
+  border-bottom: 1px solid #000
+  td
+    background-color: #f5f5f5
+    border-bottom: 1px solid #000
+
+div.comment .submitted a, .profile dt
+  font-weight: 700
+
+.comments div.links, #leftnav ul.menu li.dhtml-menu.expanded li a
+  background: none
+
+/*--------------------------------------------------------------
 
 .forum-topic-navigation
   border-top: 1px solid #888
   border-bottom: 1px solid #888
 
-/* Poll
- */-------------------------------------------------------------- 
+/*--------------------------------------------------------------
 
 div.poll div.bar
   background-color: #ddd
-  div.foreground
-    background-color: #999
 
-/* s
- */--------------------------------------------------------------
-/* Styles for sub-headings on user profiles*/
+/*--------------------------------------------------------------
+/* Styles for sub-headings on user profiles
 
-.profile
-  .picture
-    float: none
-  dt
-    font-weight: bold
-  dl
-    margin: 12px 0
-    dt
-      width: 10em
-      float: left
-      clear: left
-      text-align: right
-      padding-right: .5em
-      padding-top: 1ex
-    dd
-      margin-left: 10.5em
-      padding-top: 1ex
+.profile .picture
+  float: none
 
-#edit-profile-survey-w-others-wrapper
-  background: #DBFFD6
-  padding: 20px
-  margin-top: 20px
-  border: 1px solid #B5A880
-  input.form-checkbox
-    margin-top: 7px
-
-/* Tab Menus
- */-------------------------------------------------------------- */
+/*--------------------------------------------------------------
 
 #content-tabs
   background-color: transparent
@@ -1226,55 +2318,11 @@ div.poll div.bar
       float: left
       margin: 0
       padding: 0 10px
-      border-bottom: 1px solid #555
-      margin-top: 10px
-      text-transform: lowercase
-    &.primary li, &.secondary li
-      border-style: none
-      display: inline
-      float: left
-      list-style: none
-      margin: 0 10px
-      padding: 0
-    &.primary li a
-      &:link, &:visited
-        border: none
-        color: #000
-        float: left
-        font-weight: bold
-        margin: 0
-        padding: 0 0 6px 0
-        text-decoration: none
-        white-space: nowrap
-    &.secondary li a
-      &:link, &:visited
-        border: none
-        color: #000
-        float: left
-        font-weight: bold
-        margin: 0
-        padding: 0 0 6px 0
-        text-decoration: none
-        white-space: nowrap
-    &.primary li a
-      &:link, &:visited
-        color: inherit
-        font-size: 107.8%
-        /* 14px/13px*/
-        font-weight: bold
-    &.secondary li a
-      &:link, &:visited
-        color: #555
-    &.primary li a.active
-      &:link, &:visited
-        border-bottom: 4px solid #DFB77C
-        color: #999
-        padding-bottom: 2px
-    &.secondary li a.active
-      &:link, &:visited
-        border-bottom: 4px solid #555
-        color: #777
-        padding-bottom: 2px
+      li a
+        &:hover, &:focus
+          border-bottom: 4px solid #777
+          color: #777
+          padding-bottom: 2px
     &.primary li a
       &:hover, &:focus
         border-bottom: 4px solid #777
@@ -1285,235 +2333,151 @@ div.poll div.bar
         border-bottom: 4px solid #777
         color: #777
         padding-bottom: 2px
-    &.primary li a
-      &:hover, &:focus
-        border-bottom: 4px solid #DFB77C
-        color: #999
 
-/* -- COPIED/MODIFIED FROM CUSTOM.CSS in ACQUIA SLATE THEME ---
+.field-field-common-name .field-item, ul#pr_profile_data li#pr_profile_name
+  font-size: 1.5em
+  font-weight: 700
 
-/**
- * Full species node */
+.view-region-invasives-list .views-row-odd, #view-id-region_alteratives_list-page_1 .views-row-odd
+  background-color: #f1f1f1
 
-.species-title
-  font-size: 2em
-  font-weight: 100
-  line-height: 100%
-  padding: .3em 0
+h3.fold
+  margin-top: 0
 
-.field-field-common-name
-  padding-bottom: 1em
-  .field-item
-    .field-label-inline-first
-      font-weight: 100
-      margin-bottom: .5em
-    font-size: 1.5em
-    font-weight: 700
-
-.field-field-alternatives .field-items a
-  background-color: #f7f5ed
-  border: solid 1px #b6976f
-  padding: 3px 7px
-  font-size: .9em
-
-.node-type-species h3
-  padding-top: 1em
-  font-size: 1.3em
-  border-top: 2px dashed #d7d7d7
-
-.field-field-plant-photo .field-item
-  float: left
-  margin: .5em .8em
-
-div.-submitted
-  font-size: .9em
-  font-style: italic
-  margin-bottom: 20px
-
-/**
- * Regions views */
-
-.view-region-invasives-list .field-content img
-  float: left
-  margin-top: -9px
-  margin-right: 1em
-
-#view-id-region_invasives_list-page_1
-  .view-content
-    padding: 20px 0 1.5em 0
-  .testimonial-nav
-    margin-bottom: 20px
-    padding: 2px 0
-    border-top: solid 1px #d8cfb4
-    border-bottom: solid 1px #d8cfb4
-    width: 100%
-    float: left
-    a
-      display: block
-      float: left
-      padding: 0 10px
-  .views-field-field-alternatives-nid
-    float: right
-    width: 200px
-    margin-left: 40px
-    margin-bottom: 20px
-  .views-field-title
-    margin-left: 85px
-
-.view-region-invasives-list
-  .views-row
-    clear: left
-    padding: 24px 19px 21px
-  .views-row-odd
-    background-color: #f1f1f1
-
-.plant-care strong
-  float: left
-
-/**
- * Alternatives */
-
-#view-id-region_alteratives_list-page_1
-  .views-field-title
-    font-size: 1.5em
-    color: #78A22E
-    margin: 0 0 .5em
-  .views-field-field-common-name-value
-    font-size: 1em
-    .field-content
-      font-size: 1.3em
-  .views-field-field-plant-photo-fid img
-    float: left
-    margin-right: 1em
-    margin-bottom: .5em
-    padding-top: 19px
-  .views-row
-    padding: 20px 20px 1px
-  .views-row-odd
-    background-color: #f1f1f1
-
-img#plantCareKey
-  border-top: solid 1px #78a22f
-  margin: 10px 0 0 0
-  padding: 6px 0 0 0
-
-#content div.alternatives
-  ul.altRegions
+div
+  &#resources_list > div > h3
+    margin-top: 0
+  &#faq_answers ul
     margin-left: 0
-    padding-left: 0
-    li
-      margin-left: 30px
-  div.item
-    clear: both
-    float: left
-    width: 100%
-    h2
-      border-top: solid 1px #78a22f
-      margin-top: 20px
-      margin-bottom: 10px
-      padding-top: 10px
-      font-weight: bold
-    h3
-      clear: both
-      margin-top: 10px
-      margin-bottom: 10px
-      font-weight: normal
 
-/**
- * The Four Steps */
+.input-prepend.input-append .btn-group:first-child
+  margin-left: 0
 
-div#fourStepsWrapper
-  color: #78a22e
-  text-shadow: 2px 2px 6px rgba(125, 130, 121, 1)
-  background-color: #efead5
-  border: solid 1px #887a4b
-  padding: 20px 30px 30px 30px
-  margin: 20px 60px 20px 30px
+form label, div#shared-links
+  margin-top: 12px
+  padding-top: 10px
+  border-top: solid 1px #eee
 
-#content ol#fourSteps
-  margin: 0px
-  padding: 0px
-  li
-    margin: 0px
-    padding: 0px
-    list-style-type: none
-    clear: both
-    span
-      &.number
-        color: #78a22e
-        text-shadow: 2px 2px 6px rgba(125, 130, 121, 0.5)
-        font-size: 70px
-        font-weight: bold
-        height: 1em
-        display: block
-        float: left
-        width: 50px
-        margin: 24px 0px 0px 0px
-      &.text
-        margin: 0px
-        padding: 0px
-        color: #634f31
-        font-family: 'Open Sans', Helvetica, Arial, sans-serif
-        font-weight: 600
-        text-shadow: none
-        font-size: 24px
-        line-height: 2.6ex
+#header
+  h1, h2, h3, h4, h5, h6, p
+    margin: 0 0 20px
 
-/**
- * Survey stuff */
+form
+  margin: 0 0 20px
 
-p.linkToSurvey
-  font-size: 24px
-  font-weight: normal
-  background: #7ba229
-  color: #fff
-  line-height: 2.7ex
-  -webkit-border-radius: 10px
-  -moz-border-radius: 10px
-  border-radius: 10px
-  padding: 10px 20px 5px 20px
-  margin: 20px 0px
-  text-align: center
-  a
-    color: #fff
+body
+  &#page-partner-resources #main, &.partner_only #main
+    border-top: solid 77px #a15334
 
-li span.flag-nursery-dibs
-  display: block
-  font-size: 1.2em
-  margin: 5px 0 20px 5px
-  a
-    background-color: #f7f5ed
-    border: solid 1px #b6976f
-    padding: 3px 7px
+.clearfix, .controls-row
+  zoom: 1
 
-/**
- * PLANTRIGHT: Your garden, your environment, your choice */
+.clearfix
+  &:before, &:after
+    display: table
+    content: ""
+    line-height: 0
 
-#ygyeyc
-  margin-top: 20px
-  .effing-giant
-    font-size: 6.85em
-    font-weight: 100
-    line-height: 100%
-    margin-right: 12px
-    margin-top: 0px
-  .upcase
-    text-transform: uppercase
-  .green
-    color: #78A22E
-  .small-medium
-    font-size: 18px
-    font-weight: 100
-    line-height: 26px
-  .grey
-    color: #666
-  .brown
-    color: #4D3C14
-  .red
-    color: #A14926
-  .float-left
-    float: left
+.controls-row
+  &:before, &:after
+    display: table
+    content: ""
+    line-height: 0
 
-#page-node-add-survey-photos
-  .views-field-field-store-code-value
-    display: none
+.form-actions
+  &:before, &:after
+    display: table
+    content: ""
+    line-height: 0
+
+.form-horizontal .control-group
+  &:before, &:after
+    display: table
+    content: ""
+    line-height: 0
+
+.clearfix:after, .controls-row:after, .form-actions:after, .form-horizontal .control-group:after
+  clear: both
+
+textarea
+  height: auto
+
+select
+  &[multiple], &[size]
+    height: auto
+
+input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, textarea:-ms-input-placeholder, input::-webkit-input-placeholder, textarea::-webkit-input-placeholder
+  color: #999
+
+.controls >
+  .radio:first-child, .checkbox:first-child
+    padding-top: 5px
+
+.controls-row
+  .checkbox[class*=span], .radio[class*=span]
+    padding-top: 5px
+
+.control-group
+  &.warning
+    > label, .help-block, .help-inline, .checkbox, .radio, input, select, textarea
+      color: #c09853
+  &.error
+    > label, .help-block, .help-inline, .checkbox, .radio, input, select, textarea
+      color: #b94a48
+  &.success
+    > label, .help-block, .help-inline, .checkbox, .radio, input, select, textarea
+      color: #468847
+  &.info
+    > label, .help-block, .help-inline, .checkbox, .radio, input, select, textarea
+      color: #3a87ad
+
+.input-prepend
+  .add-on:first-child, .btn:first-child
+    -webkit-border-radius: 4px 0 0 4px
+    -moz-border-radius: 4px 0 0 4px
+    border-radius: 4px 0 0 4px
+
+.input-append
+  input, select, .uneditable-input
+    -webkit-border-radius: 4px 0 0 4px
+    -moz-border-radius: 4px 0 0 4px
+    border-radius: 4px 0 0 4px
+  input + .btn-group .btn, select + .btn-group .btn, .uneditable-input + .btn-group .btn, .add-on:last-child, .btn:last-child
+    -webkit-border-radius: 0 4px 4px 0
+    -moz-border-radius: 0 4px 4px 0
+    border-radius: 0 4px 4px 0
+
+.input-prepend.input-append
+  input + .btn-group .btn, select + .btn-group .btn, .uneditable-input + .btn-group .btn
+    -webkit-border-radius: 0 4px 4px 0
+    -moz-border-radius: 0 4px 4px 0
+    border-radius: 0 4px 4px 0
+  input, select, .uneditable-input
+    -webkit-border-radius: 0
+    -moz-border-radius: 0
+    border-radius: 0
+
+.form-search
+  .input-append .search-query, .input-prepend .search-query
+    -webkit-border-radius: 0
+    -moz-border-radius: 0
+    border-radius: 0
+  .input-append .search-query, .input-prepend .btn
+    -webkit-border-radius: 14px 0 0 14px
+    -moz-border-radius: 14px 0 0 14px
+    border-radius: 14px 0 0 14px
+  .input-append .btn, .input-prepend .search-query
+    -webkit-border-radius: 0 14px 14px 0
+    -moz-border-radius: 0 14px 14px 0
+    border-radius: 0 14px 14px 0
+  .input-append
+    margin-bottom: 0
+
+.form-inline .input-append, .form-search .input-prepend, .form-inline .input-prepend
+  margin-bottom: 0
+
+.form-horizontal
+  .help-block
+    margin-bottom: 0
+  .controls:first-child, .form-actions
+    padding-left: 180px
