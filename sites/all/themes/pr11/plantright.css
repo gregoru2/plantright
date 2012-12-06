@@ -843,11 +843,9 @@ div.-submitted {
   padding: 24px 19px 21px; }
   .view-region-invasives-list .views-row a {
     font-weight: normal; }
-  .view-region-invasives-list .views-row .field-content {
+  .view-region-invasives-list .views-row .views-field-field-common-name-value .field-content {
     font-size: 1.2em;
     line-height: 1.5; }
-  .view-region-invasives-list .views-row .views-field-title .field-content {
-    font-size: 1em; }
 
 #view-id-region_invasives_list-page_1 .view-content {
   padding: 20px 0 1.5em; }
