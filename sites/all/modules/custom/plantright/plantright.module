@@ -30,7 +30,7 @@ function removeElementWithValue($array, $key, $value){
 
 
 function plantright_user($op, &$edit, &$account, $category = NULL) {
-
+  //dpm($account);
 }
 
 function plantright_nodeapi(&$node, $op) {

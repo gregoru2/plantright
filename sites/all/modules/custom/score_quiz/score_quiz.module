@@ -7,7 +7,10 @@
 
 function score_quiz_quiz_finished($quiz, $score) {
 	global $user;
-	
+  if ($quiz->nid == '1421' && $score[percentage_score] == $quiz->pass_rate) {
+    db_query('Insert into {users_roles} (uid, rid) values (%d, %d)', $user->uid, 11);
+  }
+  /*
 	if($score[percentage_score] >= 80) {
 		db_query('INSERT INTO {users_roles} (uid, rid) VALUES (%d, %d)', $user->uid, 4);
 		drupal_set_message(t('Congratulations, you passed the quiz!'));
@@ -19,4 +22,5 @@ function score_quiz_quiz_finished($quiz, $score) {
 		drupal_goto($path = 'spring-survey-quiz');
 		watchdog('quiz', 'User %user did not pass the quiz.', array('%user' => $user->name));
 	}
+  */
 }

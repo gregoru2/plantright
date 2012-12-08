@@ -2271,11 +2271,20 @@ textarea:focus, select:focus
 tbody, .book-navigation .menu
   border-top: 1px solid #ccc
 
-tr.odd,
 tr.even
   background-color: #f5f5f5
+  border-bottom: none
   td
     background-color: #f5f5f5
+    border-bottom: none
+
+tr.odd
+  background-color: #fff
+  border-bottom: none
+  td
+    background-color: #fff
+    border-bottom: none
+
 
 div.comment .submitted a, .profile dt
   font-weight: 700
@@ -2366,9 +2375,14 @@ form label, div#shared-links
 form
   margin: 0 0 20px
 
-body
-  &#page-partner-resources #main, &.partner_only #main
-    border-top: solid 77px #a15334
+//body
+//  &#page-partner-resources #main, &.partner_only #main
+//    border-top: solid 77px #a15334
+
+
+body.retailers
+  #donate
+    display: none
 
 .clearfix, .controls-row
   zoom: 1

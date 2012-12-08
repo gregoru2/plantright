@@ -2146,12 +2146,19 @@ textarea:focus, select:focus {
 tbody, .book-navigation .menu {
   border-top: 1px solid #cccccc; }
 
-tr.odd,
 tr.even {
-  background-color: whitesmoke; }
-  tr.odd td,
+  background-color: whitesmoke;
+  border-bottom: none; }
   tr.even td {
-    background-color: whitesmoke; }
+    background-color: whitesmoke;
+    border-bottom: none; }
+
+tr.odd {
+  background-color: white;
+  border-bottom: none; }
+  tr.odd td {
+    background-color: white;
+    border-bottom: none; }
 
 div.comment .submitted a, .profile dt {
   font-weight: 700; }
@@ -2228,8 +2235,8 @@ form label, div#shared-links {
 form {
   margin: 0 0 20px; }
 
-body#page-partner-resources #main, body.partner_only #main {
-  border-top: solid 77px #a15334; }
+body.retailers #donate {
+  display: none; }
 
 .clearfix, .controls-row {
   zoom: 1; }
