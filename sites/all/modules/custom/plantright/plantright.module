@@ -36,3 +36,11 @@ function plantright_user($op, &$edit, &$account, $category = NULL) {
 function plantright_nodeapi(&$node, $op) {
 
 }
+
+function plantright_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'user_register') {
+    $form['account']['mail']['#description'] = 'A valid e-mail address. All e-mails from the system will be sent to this address.<br />
+      The e-mail address is not made public and your information will not be sold, or shared with others.';
+    return $form;
+  }
+}

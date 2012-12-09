@@ -166,13 +166,15 @@ ul
 div#console
   color: #c3321a
   background-color: #FFF
-  border: solid 2px #4a2e0f
+  border: dashed 1px #888
   -webkit-border-radius: 5px
   -moz-border-radius: 5px
   border-radius: 5px
   z-index: 1000
   margin-bottom: 5px
-  div
+  margin-top: 5px
+  .messages
+    font-size: 15px
     &.status
       -webkit-border-radius: 5px
       -moz-border-radius: 5px
@@ -181,7 +183,7 @@ div#console
       padding: 8px 6px
     &.error
       font-size: 1.2em
-      background-color: #ffea00
+      background-color: pink
       color: #000
       border: solid 0 #000
       -webkit-border-radius: 5px
@@ -1053,6 +1055,14 @@ li span.flag-nursery-dibs
   width: 130px
   text-align: right
   margin-right: 10px
+
+body
+  &#page-horticultural-professionals,
+  &#page-partner-faq,
+  &#page-partner-resources,
+  &#page-plantright-101-training,
+    #donate
+      display: none
 
 body#page-horticultural-professionals h3
   color: #78a22e

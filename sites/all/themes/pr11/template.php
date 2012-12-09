@@ -173,7 +173,6 @@ function pr11_preprocess_page(&$vars) {
   $attr = array();
   $attr['class'] = $vars['body_classes'];
   $attr['class'] .= ' pr11'; // Add the pr11 class so that we can avoid using the 'body' selector
-
   // Replace screen/all stylesheets with print
   // We want a minimal print representation here for full control.
   if (isset($_GET['print'])) {
