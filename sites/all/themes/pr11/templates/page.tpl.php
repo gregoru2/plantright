@@ -23,7 +23,7 @@
 
 </script>
 </head>
-<body <?php print phptemplate_body_attributes($is_front, $layout); ?> <?php // print drupal_attributes($attr) ?>>
+<body <?php print phptemplate_body_attributes($is_front, $layout); ?> <?php print drupal_attributes($attr) ?>>
   
 <div id="prContainer">
 

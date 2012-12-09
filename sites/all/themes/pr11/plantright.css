@@ -2235,7 +2235,7 @@ form label, div#shared-links {
 form {
   margin: 0 0 20px; }
 
-body.retailers #donate {
+.retailers #donate {
   display: none; }
 
 .clearfix, .controls-row {
