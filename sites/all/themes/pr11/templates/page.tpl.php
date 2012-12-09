@@ -23,7 +23,7 @@
 
 </script>
 </head>
-<body <?php print phptemplate_body_attributes($is_front, $layout); ?> <?php// print $body_classes ?>>
+<body <?php print phptemplate_body_attributes($is_front, $layout); ?>>
   
 <div id="prContainer">
 

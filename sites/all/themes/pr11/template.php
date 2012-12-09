@@ -600,3 +600,4 @@ function phptemplate_body_attributes($is_front = false, $layout = 'none') {
 
   return " id=\"$body_id\" class=\"$body_class $sidebar_class\"";
 }
+

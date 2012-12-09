@@ -116,7 +116,14 @@ function user_pass_reset(&$form_state, $uid, $timestamp, $hashed_pass, $action =
           // user, which invalidates further use of the one-time login link.
           user_authenticate_finalize($form_state['values']);
           drupal_set_message(t('You have just used your one-time login link. It is no longer necessary to use this link to login. Please change your password.'));
-          drupal_goto('user/'. $user->uid .'/edit');
+          $rids = array_keys($user->roles);
+          if (in_array(7, $rids) || in_array(8, $rids) || in_array(9, $rids) || in_array(10, $rids)) {
+            $node = node_load(array('type' => 'retail_member', 'uid' => $user->uid));
+            drupal_set_message('Reset your password so you don\'t forget it!', 'message');
+            drupal_goto('node/' . $node->nid . '/edit');
+          } else {
+            drupal_goto('user/' . $user->uid);
+          }
         }
         else {
           $form['message'] = array('#value' => t('<p>This is a one-time login for %user_name and will expire on %expiration_date.</p><p>Click on this button to login to the site and change your password.</p>', array('%user_name' => $account->name, '%expiration_date' => format_date($timestamp + $timeout))));

@@ -31,14 +31,15 @@ function removeElementWithValue($array, $key, $value){
 
 function plantright_user($op, &$edit, &$account, $category = NULL) {
   if ($op == 'login') {
+    //dpm($account);
+    //dpm($edit);
   }
 }
 
 function plantright_nodeapi(&$node, $op) {
-  if ($node->type == 'retail_member') {
-   //dpm($node);
-   //dpm($GLOBALS['user']);
-  }
+  //if ($node->type == 'retail_member') {
+  //  dpm($node);
+  //}
 }
 
 function _plantright_role_sender(&$form, &$form_state) {
@@ -52,6 +53,16 @@ function _plantright_role_sender(&$form, &$form_state) {
   }
 }
 
+function _plantright_pass_reset($form, &$form_state) {
+  global $user;
+  $rids = array_keys($user->roles);
+  if (in_array(7, $rids) || in_array(8, $rids) || 
+      in_array(9, $rids) || in_array(10, $rids)) {
+    drupal_set_message('Please enter your new password', 'status');
+    $form_state['redirect'] = 'user/$user->rid/profile/retail_member';
+  }
+}
+
 function plantright_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'user_register') {
     $form['account']['mail']['#description'] = 'A valid e-mail address. All e-mails from the system will be sent to this address.<br />
@@ -62,4 +73,9 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     $form['#action'] = NULL;
     $form['#submit'] = array('_plantright_role_sender');
   }
+  if ($form_id == 'user_pass_reset') {
+    $form['#redirect'] = 'user';
+    dpm($form);
+  }
 }
+
