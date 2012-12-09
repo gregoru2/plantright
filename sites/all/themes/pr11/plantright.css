@@ -2253,14 +2253,18 @@ div#faq_answers ul {
 
 form label, div#shared-links {
   margin-top: 12px;
-  padding-top: 10px;
-  border-top: solid 1px #eeeeee; }
+  padding-top: 10px; }
 
 #header h1, #header h2, #header h3, #header h4, #header h5, #header h6, #header p {
   margin: 0 0 20px; }
 
 form {
   margin: 0 0 20px; }
+
+#page-node-add-business .form-item {
+  border-bottom: 1px solid #cccccc; }
+  #page-node-add-business .form-item .form-checkboxes .form-item, #page-node-add-business .form-item .form-radios .form-item {
+    border-bottom: none; }
 
 .retailers #donate {
   display: none; }
