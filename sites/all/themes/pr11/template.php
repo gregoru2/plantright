@@ -274,10 +274,11 @@ function pr11_preprocess_comment(&$vars) {
  */
 function pr11_preprocess_fieldset(&$vars) {
   $element = $vars['element'];
-
+  //dpm($vars);
   $attr = isset($element['#attributes']) ? $element['#attributes'] : array();
   $attr['class'] = !empty($attr['class']) ? $attr['class'] : '';
-  $attr['class'] .= ' fieldset';
+  $attr['class'] .= " fieldset ";
+  $attr['class'] .= $vars['id'];
   $attr['class'] .= !empty($element['#title']) ? ' titled' : '';
   $attr['class'] .= !empty($element['#collapsible']) ? ' collapsible' : '';
   $attr['class'] .= !empty($element['#collapsible']) && !empty($element['#collapsed']) ? ' collapsed' : '';

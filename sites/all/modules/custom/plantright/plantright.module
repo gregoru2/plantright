@@ -46,22 +46,24 @@ function _plantright_role_sender(&$form, &$form_state) {
   global $user;
   $node = node_load(array('uid' => $account->uid, 'type' => 'retail_member'));
   $rids = array_keys($user->roles);
+  //If a manager and hasn't registered a store, redirect to node/add/business form
   if ($node->field_retailer[0]['nid'] == NULL) {
     if (in_array(7, $rids) || in_array(8, $rids)) {
       $form_state['redirect'] = 'node/add/business';
     }
   }
-}
-
-function _plantright_pass_reset($form, &$form_state) {
-  global $user;
-  $rids = array_keys($user->roles);
-  if (in_array(7, $rids) || in_array(8, $rids) || 
-      in_array(9, $rids) || in_array(10, $rids)) {
-    drupal_set_message('Please enter your new password', 'status');
-    $form_state['redirect'] = 'user/$user->rid/profile/retail_member';
+  //If an employee, handle that
+  if (in_array(9, $rids) || in_array(10, $rids)) {
+    // If verified, go to resources
+    if (in_array(11, $rids)) {
+      drupal_goto('partner-resources');
+    } else {
+      // If not verified, go to training
+      drupal_goto('plantright-101-training');
+    }
   }
 }
+
 
 function plantright_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'user_register') {
@@ -75,7 +77,11 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
   }
   if ($form_id == 'user_pass_reset') {
     $form['#redirect'] = 'user';
-    dpm($form);
   }
+  if ($form_id == 'node_form' && $form['type'] == 'retail_member') {
+    $form['contact']['#prefix'] = '<div class="contact-info">';
+    $form['contact']['#suffix'] = '</div>';
+  } 
+  //dpm($form);
 }
 
