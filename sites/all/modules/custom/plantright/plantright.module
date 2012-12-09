@@ -30,11 +30,26 @@ function removeElementWithValue($array, $key, $value){
 
 
 function plantright_user($op, &$edit, &$account, $category = NULL) {
-  //dpm($account);
+  if ($op == 'login') {
+  }
 }
 
 function plantright_nodeapi(&$node, $op) {
+  if ($node->type == 'retail_member') {
+   //dpm($node);
+   //dpm($GLOBALS['user']);
+  }
+}
 
+function _plantright_role_sender(&$form, &$form_state) {
+  global $user;
+  $node = node_load(array('uid' => $account->uid, 'type' => 'retail_member'));
+  $rids = array_keys($user->roles);
+  if ($node->field_retailer[0]['nid'] == NULL) {
+    if (in_array(7, $rids) || in_array(8, $rids)) {
+      $form_state['redirect'] = 'node/add/business';
+    }
+  }
 }
 
 function plantright_form_alter(&$form, &$form_state, $form_id) {
@@ -42,5 +57,9 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     $form['account']['mail']['#description'] = 'A valid e-mail address. All e-mails from the system will be sent to this address.<br />
       The e-mail address is not made public and your information will not be sold, or shared with others.';
     return $form;
+  }
+  if ($form_id == 'user_login' || $form_id == 'user_login_block') {
+    $form['#action'] = NULL;
+    $form['#submit'] = array('_plantright_role_sender');
   }
 }

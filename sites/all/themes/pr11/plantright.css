@@ -171,7 +171,8 @@ div#console {
   margin-bottom: 5px;
   margin-top: 5px; }
   div#console .messages {
-    font-size: 15px; }
+    font-size: 15px;
+    line-height: 1.5; }
     div#console .messages.status {
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
