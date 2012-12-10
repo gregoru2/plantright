@@ -2265,6 +2265,8 @@ form {
   border-bottom: 1px solid #cccccc; }
   #page-node-add-business .form-item .form-checkboxes .form-item, #page-node-add-business .form-item .form-radios .form-item {
     border-bottom: none; }
+#page-node-add-business input#edit-preview {
+  display: none; }
 
 .retailers #donate {
   display: none; }
