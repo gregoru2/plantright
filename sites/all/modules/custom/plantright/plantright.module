@@ -71,7 +71,6 @@ function plantright_menu_alter(&$items) {
     'page arguments' => array('plantright_user_pass_reset', 2, 3, 4),
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
-    'file' => 'user.pages.inc',
   );
 }
 
@@ -112,11 +111,11 @@ function plantright_user_pass_reset(&$form_state, $uid, $timestamp, $hashed_pass
           // user_authenticate_finalize() also updates the login timestamp of the
           // user, which invalidates further use of the one-time login link.
           user_authenticate_finalize($form_state['values']);
-          drupal_set_message(t('You have just used your one-time login link. It is no longer necessary to use this link to login. Please change your password.'));
+          drupal_set_message(t('You have just used your one-time login link. It is no longer necessary to use this link to login.'));
           $rids = array_keys($user->roles);
           if (in_array(7, $rids) || in_array(8, $rids) || in_array(9, $rids) || in_array(10, $rids)) {
             $node = node_load(array('type' => 'retail_member', 'uid' => $user->uid));
-            drupal_set_message('Reset your password so you don\'t forget it!', 'message');
+            drupal_set_message('Reset your password so you don\'t forget it!', 'status');
             drupal_goto('node/' . $node->nid . '/edit');
           } else {
             drupal_goto('user/' . $user->uid);
