@@ -160,6 +160,12 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     $form['contact']['#prefix'] = '<div class="contact-info">';
     $form['contact']['#suffix'] = '</div>';
   } 
+  if ($form_id == 'business_node_form') {
+    $form['#redirect'] = 'invite';
+  }
+  if ($form_id == 'invite_form') {
+    drupal_set_message('<p>This is a good place to put some intro copy for managers to let them know what they\'re supposed to here.  Can we come up with that?');
+  }
   //dpm($form);
 }
 
