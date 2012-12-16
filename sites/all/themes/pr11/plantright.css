@@ -2053,6 +2053,8 @@ ul.menu li.dhtml-menu.expanded a, #leftnav ul.menu li.dhtml-menu.expanded a {
   font-size: 14px;
   font-weight: 400;
   color: #7f4128; }
+#left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu a, #left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li a {
+  color: #78a22e; }
 
 #leftnav ul.menu li.dhtml-menu li a {
   display: block;
