@@ -59,13 +59,25 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
 
         //Have all the plant buyers passed the quiz (verified role)?
         $total_buyers = array();
+        $certified_buyers = array();
         foreach ($fellow_citizens as $citizen) {
           $rids = array_keys($citizen['user']->roles);
           if (in_array(7, $rids) || in_array(9, $rids)) {
             array_push($total_buyers, $citizen['user']);
           }
         }
+
+        /* TODO - make this work
+        foreach ($total_buyers as $buyer) {
+          $rids = array_keys($buyer->roles);
+          if (in_array(11, $rids)) {
+            array_push($certified_buyers, $buyer);
+          }
+        }
+        */
+
         $block['content']['total_buyers'] = $total_buyers;
+        //$block['content']['certified_buyers'] = $certified_buyers;
         //Put all this info into the block.tpl
       break;
 
@@ -85,7 +97,7 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
         //Put all this info into the block.tpl
       break;
     }
-    dpm($fellow_citizens);
+    //dpm($fellow_citizens);
   }
 
   return $block;
