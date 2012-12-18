@@ -24,7 +24,7 @@
  * @see template_preprocess()
  * @see template_preprocess_block()
  */
-dpm($block->content);
+//dpm($block->content);
 $content = $block->content;
 $total_invites = $content['total_invites'];
 $ignored_invites = $content['ignored_invites'];
