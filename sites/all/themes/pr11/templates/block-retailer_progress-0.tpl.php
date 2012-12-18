@@ -26,6 +26,10 @@
  */
 //dpm($block->content);
 $content = $block->content;
+$total_invites = $content['total_invites'];
+$ignored_invites = $content['ignored_invites'];
+$accepted_invites = $content['accepted_invites'];
+$invite_percentage = ($accepted_invites / $total_invites) * 100;
 ?>
 <div id="block-<?php print $block->module .'-'. $block->delta; ?>" class="block block-<?php print $block->module ?>">
 <?php if ($block->subject): ?>
@@ -46,7 +50,7 @@ $content = $block->content;
       <?php endif; ?>
     </div>
 
-    <div id="invite-staff" class="<?php if ($content['invites'] { print("sent")}) ?>">
+    <div id="invite-staff" class="<?php if ($content['invites']) { print("completed")} ?>">
       <p>Invite your staff to join.</p>
       <?php if ($content['invites']): ?>
         <p class="status">Completed but, <a href="/invite">feel free to invite more</a></p>
@@ -55,11 +59,26 @@ $content = $block->content;
       <?php endif; ?>
     </div>
 
-    <div id="invite-status">
+    <div id="invite-status" class="<?php if ($invite_percentage == 100) { print("completed")} ?>">
       <p>All staff members register at PlantRight.org</p>
+      <?php if ($total_invites == $accepted_invites): ?>
+        <p class="status">Completed</p>
+      <?php else : ?>
       <div class="action">
-
+        <h4><?php print $accepted_invites ?> of <?php print $total_invites ?> staff members have registered</h4>
+        <div class="progress-bar" style="background-position: <?php print $invite_percentage ?>% center"></div>
+        <p>We're still waiting for:</p>
+        <ul>
+        <?php foreach($ignored_invites as $invite): ?>
+          <li><?php print $invite->email ?> - <a href="/invite/resend/<?php print $invite->reg_code ?>">resend invite</a></li>
+        <?php endforeach; ?>
+        </ul>
       </div>
+      <?php endif; ?>
+    </div>
+
+    <div id="review-material">
+
     </div>
 
   </div>

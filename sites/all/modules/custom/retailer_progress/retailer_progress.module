@@ -42,7 +42,6 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
         $total_invites = count($invites);
         $accepted_invites = array();
         $ignored_invites = array();
-        $block['content']['total_invites'] = $total_invites;
         foreach ($invites as $invite) {
           if ($invite->joined == 0) {
             array_push($ignored_invites, $invite);
@@ -50,7 +49,8 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
             array_push($accepted_invites, $invite);
           }
         }
-        $block['content']['ignored_invites'] = count($ignored_invites);
+        $block['content']['total_invites'] = $total_invites;
+        $block['content']['ignored_invites'] = $ignored_invites;
         $block['content']['accepted_invites'] = count($accepted_invites);
         //Have plant buyers reviewed the training materials?
         
