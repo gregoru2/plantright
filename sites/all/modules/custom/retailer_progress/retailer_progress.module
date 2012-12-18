@@ -1,0 +1,93 @@
+<?php
+
+function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
+  global $user;
+  
+  if ($op == 'list') {
+    $block[0]['info'] = t('PlantRight Retailer Manager Progress block');
+    $block[0]['cache'] = BLOCK_NO_CACHE;
+    $block[1]['info'] = t('PlantRight Retailer Employee Progress block');
+    $block[1]['cache'] = BLOCK_NO_CACHE;
+  }
+
+  if ($op == 'view') {
+//    dpm($user);
+    $profile = node_load(array('uid' => $user->uid, 'type' => 'retail_member'));
+    $results = db_query(' select * from {content_type_retail_member} rm
+                          inner join node n on n.nid = rm.nid
+                          inner join users u on n.uid = u.uid
+                          where rm.field_retailer_nid = %d', $profile->field_retailer[0]['nid']);
+    $fellow_citizens = array();
+    while ($result = db_fetch_object($results)) {
+      array_push($fellow_citizens, array( 'user' => user_load($result->uid), 'retailer' => node_load($result->field_retailer_nid)) );  
+      //dpm($result);
+    }
+
+    switch ($delta) { 
+      case 0:
+        //If user is a manager, show their block
+        
+        //Has this manager registered a retailer yet?
+        $block['content']['store_registered'] = $fellow_citizens[0]['retailer'] ? "registered" : "not-registered";
+
+        //Has this manager invited their employees yet?
+        $results = db_query('select * from invite where uid = %d', $user->uid);
+        $invites = array();
+        while ($result = db_fetch_object($results)) {
+          array_push($invites, $result);
+        }
+        $block['content']['invites'] = $results ? $invites : FALSE;
+
+        //Have the employees which were invited followed through and registered yet?
+        $total_invites = count($invites);
+        $accepted_invites = array();
+        $ignored_invites = array();
+        $block['content']['total_invites'] = $total_invites;
+        foreach ($invites as $invite) {
+          if ($invite->joined == 0) {
+            array_push($ignored_invites, $invite);
+          } else {
+            array_push($accepted_invites, $invite);
+          }
+        }
+        $block['content']['ignored_invites'] = count($ignored_invites);
+        $block['content']['accepted_invites'] = count($accepted_invites);
+        //Have plant buyers reviewed the training materials?
+        
+        // There's no real way to tell this one.
+        // This should just be there with no feedback
+
+        //Have all the plant buyers passed the quiz (verified role)?
+        $total_buyers = array();
+        foreach ($fellow_citizens as $citizen) {
+          $rids = array_keys($citizen['user']->roles);
+          if (in_array(7, $rids) || in_array(9, $rids)) {
+            array_push($total_buyers, $citizen['user']);
+          }
+        }
+        $block['content']['total_buyers'] = $total_buyers;
+        //Put all this info into the block.tpl
+      break;
+
+      case 1:
+        //If user is an employee, show their block
+
+        //The retailer would already be registered, so true dat
+
+        //The Staff would've been invited to join already, so true dat too
+
+        //Have all your fellow employees registered?
+
+        //Have all plant buyers reviewed the material?  This should just be a link
+
+        //Have all the plant buyers passed the quiz?
+
+        //Put all this info into the block.tpl
+      break;
+    }
+    dpm($fellow_citizens);
+  }
+
+  return $block;
+
+}

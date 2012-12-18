@@ -37,9 +37,12 @@ function plantright_user($op, &$edit, &$account, $category = NULL) {
 }
 
 function plantright_nodeapi(&$node, $op) {
-  //if ($node->type == 'retail_member') {
-  //  dpm($node);
-  //}
+  // When retail manager creates a Retailer, set the association
+  if ($node->type == 'business' && $op == 'insert') {
+    $retail_member = node_load(array('uid' => $node->uid, 'type' => 'retail_member'));
+    $retail_member->field_retailer[0]['nid'] = $node->nid;
+    node_save($retail_member);
+  }
 }
 
 function _plantright_login_action(&$form, &$form_state) {
