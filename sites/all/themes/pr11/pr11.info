@@ -8,7 +8,7 @@ regions[right] = "Right sidebar"
 regions[content] = "Content"
 regions[header] = "Header"
 regions[footer] = "Footer"
-scripts[] = "js/tao.js"
+scripts[] = "js/plantright.js"
 
 stylesheets[screen][] = "reset.css"
 stylesheets[screen][] = "drupal.css"
