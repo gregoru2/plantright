@@ -24,7 +24,8 @@
  * @see template_preprocess()
  * @see template_preprocess_block()
  */
-//dpm($block->content);
+global $user;
+dpm($block->content);
 $content = $block->content;
 $total_invites = $content['total_invites'];
 $ignored_invites = $content['ignored_invites'];
@@ -39,19 +40,19 @@ $invite_percentage = ($accepted_invites / $total_invites) * 100;
   <div id="progress-block" class="content">
     <h2>Becoming a PlantRight Partner</h2>
     <h3>The Checklist</h3>
-    <p>This checklist shows your completed steps and what's still required to becomea certified PlantRight Partner nursery.</p>
+    <p>This checklist shows your completed steps and what's still required to become a certified PlantRight Partner nursery.</p>
     
-    <div id="store-registered" class="<?php print $content['store_registered'] ?>">
-      <p>Register a store account for your nursery</p>
-      <?php if ($content['store_registered'] == 'registered'): ?>
+    <div id="store-registered" class="item <?php print $content['store_registered'] ?>">
+      <p class="desc">Register a store account for your nursery</p>
+      <?php if ($content['store_registered'] == 'complete'): ?>
         <p class="status">Completed</p>
       <?php else : ?>
         <p class="status"><a href="/node/add/business">Register your nursery now</a></p>
       <?php endif; ?>
     </div>
 
-    <div id="invite-staff" class="<?php //$x = $content['invites'] : print("completed") ? print("incomplete"); ?>">
-      <p>Invite your staff to join.</p>
+    <div id="invite-staff" class="item <?php //$x = $content['invites'] : print("complete") ? print("incomplete"); ?>">
+      <p class="desc">Invite your staff to join.</p>
       <?php if ($content['invites']): ?>
         <p class="status">Completed but, <a href="/invite">feel free to invite more</a></p>
       <?php else : ?>
@@ -59,8 +60,8 @@ $invite_percentage = ($accepted_invites / $total_invites) * 100;
       <?php endif; ?>
     </div>
 
-    <div id="invite-status" class="<?php //print(($invite_percentage == 100) : "completed" ? "incomplete") ?>">
-      <p>All staff members register at PlantRight.org</p>
+    <div id="invite-status" class="item <?php //print(($invite_percentage == 100) : "complete" ? "incomplete") ?>">
+      <p class="desc">All staff members register at PlantRight.org</p>
       <?php if ($total_invites > 0 && $total_invites == $accepted_invites): ?>
         <p class="status">Completed</p>
       <?php else : ?>
@@ -77,12 +78,17 @@ $invite_percentage = ($accepted_invites / $total_invites) * 100;
       <?php endif; ?>
     </div>
 
-    <div id="review-material">
-      <p><a href="/plantright-101-training">PlantRight 101 training page</a></p>
+    <div id="review-material" class="item">
+      <p class="desc">Review the PlantRight 101 training materials</p>
+      <?php if (!in_array(11, array_keys($user->roles))): ?>
+        <p class="status"><a href="/plantright-101-training">PlantRight 101 training page</a></p>
+      <?php else : ?>
+        <p class="status">Complete</p>
+      <?php endif; ?>
     </div>
 
-    <div id="pass-quiz">
-      <p>All plant buyers pass our 10 question quiz</p>
+    <div id="pass-quiz" class="item">
+      <p class="desc">All plant buyers pass our 10 question quiz</p>
 
     </div>
 

@@ -28,7 +28,7 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
         //If user is a manager, show their block
         
         //Has this manager registered a retailer yet?
-        $block['content']['store_registered'] = $fellow_citizens[0]['retailer'] ? "registered" : "not-registered";
+        $block['content']['store_registered'] = $fellow_citizens[0]['retailer'] ? "complete" : "incomplete";
 
         //Has this manager invited their employees yet?
         $results = db_query('select * from invite where uid = %d', $user->uid);
@@ -67,18 +67,7 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
           }
         }
 
-        /* TODO - make this work
-        foreach ($total_buyers as $buyer) {
-          $rids = array_keys($buyer->roles);
-          if (in_array(11, $rids)) {
-            array_push($certified_buyers, $buyer);
-          }
-        }
-        */
-
         $block['content']['total_buyers'] = $total_buyers;
-        //$block['content']['certified_buyers'] = $certified_buyers;
-        //Put all this info into the block.tpl
       break;
 
       case 1:

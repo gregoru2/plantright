@@ -2382,3 +2382,31 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
   margin-bottom: 0; }
 .form-horizontal .controls:first-child, .form-horizontal .form-actions {
   padding-left: 180px; }
+
+#progress-block {
+  border: 1px solid #debea1;
+  border-radius: 3px;
+  padding: 1em 3%;
+  width: 44%; }
+  #progress-block h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold; }
+  #progress-block h3 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 26px; }
+  #progress-block .item p.desc {
+    background: url(/images/incomplete.png) left 0px no-repeat;
+    font-size: 16px;
+    padding-left: 24px;
+    line-height: 2;
+    margin: 0.25em 0 0; }
+  #progress-block .item.complete p.desc {
+    background: url(/images/complete.png) left 0px no-repeat; }
+  #progress-block .item p.status {
+    margin: 0;
+    font-style: italic;
+    color: #888888;
+    line-height: 1; }
