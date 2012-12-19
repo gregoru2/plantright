@@ -65,7 +65,8 @@ $invite_percentage = ($accepted_invites / $total_invites) * 100;
       <?php if ($total_invites > 0 && $total_invites == $accepted_invites): ?>
         <p class="status">Completed</p>
       <?php else : ?>
-      <div class="action">
+      <a href="#" class="dropdown-toggle">Your progress details</a>
+      <div class="dropdown">
         <h4><?php print $accepted_invites ?> of <?php print $total_invites ?> staff members have registered</h4>
         <div class="progress-bar" style="background-position: <?php print $invite_percentage ?>% center"></div>
         <p>We're still waiting for:</p>

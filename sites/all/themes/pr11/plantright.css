@@ -2410,3 +2410,27 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
     font-style: italic;
     color: #888888;
     line-height: 1; }
+  #progress-block a.dropdown-toggle {
+    display: block;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    background: url(/images/arrow-collapsed.png) left center no-repeat; }
+    #progress-block a.dropdown-toggle.expanded {
+      background: url(/images/arrow-expanded.png) left center no-repeat; }
+  #progress-block .dropdown {
+    border-top: 2px solid #d9cfb4;
+    border-bottom: 2px solid #d9cfb4; }
+    #progress-block .dropdown p {
+      margin: 5px 0; }
+    #progress-block .dropdown h4 {
+      margin-top: 10px; }
+    #progress-block .dropdown ul {
+      margin: 0; }
+    #progress-block .dropdown li {
+      list-style: none;
+      font-size: 12px;
+      font-weight: bold;
+      color: #444444;
+      margin-left: 10px; }
+      #progress-block .dropdown li a {
+        font-style: italic; }

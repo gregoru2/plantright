@@ -40,4 +40,11 @@ jQuery(document).ready(function($) {
       this.className += ' active';
     }
   });
+  $('#progress-block .dropdown').hide();
+  $('#progress-block a.dropdown-toggle').click(function(e) {
+    console.log(this);
+    $(this).toggleClass('expanded');
+    $(this).next('.dropdown').toggle();
+    e.preventDefault();
+  });
 });
