@@ -578,7 +578,8 @@ fieldset {
   border: 1px solid #b5a880;
   border-radius: 5px;
   margin: 15px 0;
-  padding: 10px 15px 15px; }
+  padding: 10px 15px 15px; 
+  width: 92%; }
   fieldset .form-item input {
     background-color: white; }
   fieldset legend {
@@ -1969,6 +1970,16 @@ h6, #view-id-region_alteratives_list-page_1 .views-field-field-common-name-value
 #branding, #navigation, #main h1.page-title {
   display: none; }
 
+.section-retailer-certification-quiz #main h1.page-title,
+#page-node-1421-take #main h1.page-title {
+  display: block;
+  font-family: "Open Sans", Helvetica, Arial sans-serif;
+  font-weight: 600;
+  font-size: 2.1em;
+  color: #4d3c14;
+  margin: 25px 0 22px; }
+
+
 #left .block-menu h2.title, #left .block-admin h2.title {
   display: none; }
 
@@ -2299,7 +2310,8 @@ div#faq_answers ul {
   margin-left: 0; }
 
 form label, div#shared-links {
-  margin-top: 12px;
+  margin-top: 0px;
+  margin-bottom: 5px;
   padding-top: 10px; }
 
 #header h1, #header h2, #header h3, #header h4, #header h5, #header h6, #header p {
@@ -2307,13 +2319,32 @@ form label, div#shared-links {
 
 form {
   margin: 0 0 20px; }
+.form-item label	{
+	margin-top: 10px;
+}
+fieldset .form-item label	{
+	margin: 0px;
+}
+
+.form-item input.form-radio, .form-item input.form-checkbox	{
+	margin: 0px 0px 2px 0px;
+}
 
 #page-node-add-business .form-item {
   border-bottom: 1px solid #cccccc; }
-  #page-node-add-business .form-item .form-checkboxes .form-item, #page-node-add-business .form-item .form-radios .form-item {
+  #page-node-add-business .form-item .form-checkboxes .form-item, #page-node-add-business .form-item .form-radios .form-item,
+  #page-node-add-business fieldset .form-item {
     border-bottom: none; }
 #page-node-add-business input#edit-preview {
   display: none; }
+
+#page-node-add-business .form-item input, .form-item select, .form-item textarea,
+#page-user-registration .form-item input, .form-item select, .form-item textarea	{
+	font-size: 100%;
+	width: auto;
+}
+
+
 
 .retailers #donate {
   display: none; }
