@@ -2420,6 +2420,10 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
   #progress-block .dropdown {
     border-top: 2px solid #d9cfb4;
     border-bottom: 2px solid #d9cfb4; }
+    #progress-block .dropdown .progress-bar {
+      border: 1px solid #d9cfb4;
+      height: 15px;
+      background: url(/images/progress-bg.png) no-repeat; }
     #progress-block .dropdown p {
       margin: 5px 0; }
     #progress-block .dropdown h4 {

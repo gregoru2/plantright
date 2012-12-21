@@ -25,12 +25,17 @@
  * @see template_preprocess_block()
  */
 global $user;
-dpm($block->content);
 $content = $block->content;
 $total_invites = $content['total_invites'];
 $ignored_invites = $content['ignored_invites'];
 $accepted_invites = $content['accepted_invites'];
 $invite_percentage = ($accepted_invites / $total_invites) * 100;
+//dpm($content);
+$invites_sent = $content['invites'] ? "complete" : "incomplete";
+$invite_progress = ($invite_percentage == 100) ? "complete" : "incomplete";
+$user_quiz_progress = in_array(11, array_keys($user->roles)) ? "complete" : "incomplete" ;
+$group_quiz_progress = (count($content['total_buyers']) == count($content['certified_buyers'])) ? "complete" : "incomplete";
+
 ?>
 <div id="block-<?php print $block->module .'-'. $block->delta; ?>" class="block block-<?php print $block->module ?>">
 <?php if ($block->subject): ?>
@@ -51,7 +56,7 @@ $invite_percentage = ($accepted_invites / $total_invites) * 100;
       <?php endif; ?>
     </div>
 
-    <div id="invite-staff" class="item <?php //$x = $content['invites'] : print("complete") ? print("incomplete"); ?>">
+    <div id="invite-staff" class="item <?php print $invites_sent ?>">
       <p class="desc">Invite your staff to join.</p>
       <?php if ($content['invites']): ?>
         <p class="status">Completed but, <a href="/invite">feel free to invite more</a></p>
@@ -60,7 +65,7 @@ $invite_percentage = ($accepted_invites / $total_invites) * 100;
       <?php endif; ?>
     </div>
 
-    <div id="invite-status" class="item <?php //print(($invite_percentage == 100) : "complete" ? "incomplete") ?>">
+    <div id="invite-status" class="item <?php print $invite_progress ?>">
       <p class="desc">All staff members register at PlantRight.org</p>
       <?php if ($total_invites > 0 && $total_invites == $accepted_invites): ?>
         <p class="status">Completed</p>
@@ -68,7 +73,7 @@ $invite_percentage = ($accepted_invites / $total_invites) * 100;
       <a href="#" class="dropdown-toggle">Your progress details</a>
       <div class="dropdown">
         <h4><?php print $accepted_invites ?> of <?php print $total_invites ?> staff members have registered</h4>
-        <div class="progress-bar" style="background-position: <?php print $invite_percentage ?>% center"></div>
+        <progress value="<?php print $invite_percentage ?>" max="100" style="width:100%" ></progress>
         <p>We're still waiting for:</p>
         <ul>
         <?php foreach($ignored_invites as $invite): ?>
@@ -79,18 +84,31 @@ $invite_percentage = ($accepted_invites / $total_invites) * 100;
       <?php endif; ?>
     </div>
 
-    <div id="review-material" class="item">
+    <div id="review-material" class="item <?php print $user_quiz_progress ?>">
       <p class="desc">Review the PlantRight 101 training materials</p>
-      <?php if (!in_array(11, array_keys($user->roles))): ?>
-        <p class="status"><a href="/plantright-101-training">PlantRight 101 training page</a></p>
-      <?php else : ?>
+      <?php if (in_array(11, array_keys($user->roles))): ?>
         <p class="status">Complete</p>
+      <?php else : ?>
+        <p class="status"><a href="/plantright-101-training">PlantRight 101 training page</a></p>
       <?php endif; ?>
     </div>
 
-    <div id="pass-quiz" class="item">
+    <div id="pass-quiz" class="item <?php print $group_quiz_progress ?>">
       <p class="desc">All plant buyers pass our 10 question quiz</p>
-
+      <a href="#" class="dropdown-toggle">Your progress details</a>
+      <?php if (count($total_buyers) == count($certified_buyers)): ?>
+        <p class="status">Complete</p>
+      <?php else : ?>
+        <div class="dropdown">
+          <h4><?php print count($content['certified_buyers']) ?> of <?php print count($content['total_buyers'])?> are certified</h4>
+          <p>We're still waiting for:</p>
+          <ul>
+            <?php foreach ($slackers as $slacker): ?>
+              <li><?php print $slacker->email ?></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+      <?php endif; ?>
     </div>
 
   </div>

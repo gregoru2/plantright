@@ -54,20 +54,40 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
         $block['content']['accepted_invites'] = count($accepted_invites);
         //Have plant buyers reviewed the training materials?
         
-        // There's no real way to tell this one.
-        // This should just be there with no feedback
+        // There's no real way to tell this one,
+        // so we'll just set it to passed when the individual has passed the quiz
 
         //Have all the plant buyers passed the quiz (verified role)?
         $total_buyers = array();
         $certified_buyers = array();
+        $slackers = array();
         foreach ($fellow_citizens as $citizen) {
           $rids = array_keys($citizen['user']->roles);
+          // If the user is a buyer
+          dpm($citizen);
           if (in_array(7, $rids) || in_array(9, $rids)) {
             array_push($total_buyers, $citizen['user']);
+            // And if they've passed the quiz
+            if (in_array(11, $rids)) {
+              array_push($certified_buyers, $citizen['user']);
+            } else {
+              // Otherwise, they are a slacker
+              array_push($slackers, $citizen['user']);
+            }
           }
         }
 
+        //foreach ($fellow_citizens as $citizen) {
+        //  $rids = array_keys($citizen['user']->roles);
+        //  if ((in_array(7, $rids) || in_array(9, $rids)) && in_array(11, $rids)) {
+        //    array_push($certified_buyers, $citizen['user']);
+        //  }
+        //}
+
+
         $block['content']['total_buyers'] = $total_buyers;
+        $block['content']['certified_buyers'] = $certified_buyers;
+        $block['content']['slackers'] = $slackers;
       break;
 
       case 1:
