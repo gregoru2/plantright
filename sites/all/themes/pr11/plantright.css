@@ -1041,12 +1041,20 @@ h2 sup {
   top: -1.2em;
   left: 0; }
 
+.prose h3.fold	{
+	margin-bottom: 5px;
+	margin-top: 15px;
+}
+
 h3.fold a {
   display: block;
   text-decoration: none;
   border-bottom: dotted 1px #d8cfb4;
-  padding-bottom: 1px; }
-  h3.fold a:before {
+  padding-bottom: 1px; 
+  font-size: .9em;
+}
+
+h3.fold a:before {
     content: "+ "; }
 h3.fold.open a:before {
   content: "- "; }
@@ -1055,6 +1063,18 @@ h3.fold + ol {
   padding-left: 3em;
   border-bottom: solid 1px #d8cfb4;
   padding-bottom: 20px; }
+
+h3.fold br {
+  display: none; }
+  
+.prose ol.folded	{
+	padding-bottom: 2px;
+	margin-bottom: 10px;
+}
+
+div#faq_answers h3 {
+ margin-top: 30px;
+ }
 
 div#faq_answers h4 a {
   color: black;
@@ -1961,6 +1981,14 @@ ul.menu li.dhtml-menu li.fake-leaf, #main div.breadcrumb, #page-node-add-survey-
 #main div#partner_notice, .form-search .hide, .form-inline .hide, .form-horizontal .hide, body.partner_only #header p#tagline {
   display: none; }
 
+body#page-partner-faq #header p#tagline {
+  display: none; }
+  
+body#page-partner-faq #header p#tagline_partner  {
+  display: block;
+}
+
+
 ul.secondary-tabs li a {
   display: inline-block; }
 
@@ -2116,8 +2144,10 @@ div#footer div#block-block-2, div#footer div#footernav {
 #content dl.contactMethods, .profile dl {
   margin: 12px 0; }
 
+/*
 #content ul.ftp_plant_thumbs li img, body.partner_only #header p#tagline_partner {
   display: block; }
+  */
 
 div#map, .plant-care strong, #ygyeyc .float-left, .controls-row [class*=span], .row-fluid .controls-row [class*=span] {
   float: left; }
@@ -2255,9 +2285,10 @@ div.poll div.bar {
 
 .view-region-invasives-list .views-row-odd, #view-id-region_alteratives_list-page_1 .views-row-odd {
   background-color: #f1f1f1; }
-
+/*
 h3.fold {
   margin-top: 0; }
+*/
 
 div#resources_list > div > h3 {
   margin-top: 0; }
