@@ -2567,3 +2567,12 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
         margin-left: 10px; }
         .block-retailer_progress #progress-block .dropdown li a {
           font-style: italic; }
+
+form#user-register #edit-field-fname-0-value-wrapper,
+form#user-register #edit-field-lname-0-value-wrapper,
+form#user-register #edit-field-retailer-0-nid-nid-wrapper {
+  width: 330px;
+  float: left;
+  margin-right: 3em; }
+form#user-register fieldset.captcha {
+  clear: both; }
