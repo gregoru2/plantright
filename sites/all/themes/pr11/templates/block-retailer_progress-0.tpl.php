@@ -30,11 +30,11 @@ $total_invites = $content['total_invites'];
 $ignored_invites = $content['ignored_invites'];
 $accepted_invites = $content['accepted_invites'];
 $invite_percentage = ($accepted_invites / $total_invites) * 100;
-//dpm($content);
+//dpm($user);
 $invites_sent = $content['invites'] ? "complete" : "incomplete";
 $invite_progress = ($invite_percentage == 100) ? "complete" : "incomplete";
 $user_quiz_progress = in_array(11, array_keys($user->roles)) ? "complete" : "incomplete" ;
-$group_quiz_progress = (count($content['total_buyers']) == count($content['certified_buyers'])) ? "complete" : "incomplete";
+$group_quiz_progress = ($content['total_buyers'] === count($content['certified_buyers'])) ? "complete" : "incomplete";
 
 ?>
 <div id="block-<?php print $block->module .'-'. $block->delta; ?>" class="block block-<?php print $block->module ?>">
@@ -44,7 +44,7 @@ $group_quiz_progress = (count($content['total_buyers']) == count($content['certi
 
   <div id="progress-block" class="content">
     <h2>Becoming a PlantRight Partner</h2>
-    <h3>The Checklist</h3>
+    <h3 id="the-checklist">The Checklist</h3>
     <p>This checklist shows your completed steps and what's still required to become a certified PlantRight Partner nursery.</p>
     
     <div id="store-registered" class="item <?php print $content['store_registered'] ?>">
@@ -96,17 +96,17 @@ $group_quiz_progress = (count($content['total_buyers']) == count($content['certi
     <div id="pass-quiz" class="item <?php print $group_quiz_progress ?>">
       <p class="desc">All plant buyers pass our 10 question quiz</p>
       <a href="#" class="dropdown-toggle">Your progress details</a>
-      <?php if (count($total_buyers) == count($certified_buyers)): ?>
+      <?php if ($content['total_buyers'] === count($certified_buyers)): ?>
         <p class="status">Complete</p>
       <?php else : ?>
         <div class="dropdown">
-          <h4><?php print count($content['certified_buyers']) ?> of <?php print count($content['total_buyers'])?> are certified</h4>
-          <p>We're still waiting for:</p>
+          <h4><?php print count($content['certified_buyers']) ?> of <?php print $content['total_buyers'] ?> are certified</h4>
+          <!--<p>We're still waiting for:</p>
           <ul>
             <?php foreach ($slackers as $slacker): ?>
               <li><?php print $slacker->email ?></li>
             <?php endforeach; ?>
-          </ul>
+          </ul>-->
         </div>
       <?php endif; ?>
     </div>

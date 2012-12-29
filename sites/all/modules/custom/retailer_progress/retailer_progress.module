@@ -58,15 +58,14 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
         // so we'll just set it to passed when the individual has passed the quiz
 
         //Have all the plant buyers passed the quiz (verified role)?
-        $total_buyers = array();
+        $total_buyers = $fellow_citizens[0]['retailer']->field_number_of_buyers[0]['value'];
         $certified_buyers = array();
         $slackers = array();
         foreach ($fellow_citizens as $citizen) {
           $rids = array_keys($citizen['user']->roles);
           // If the user is a buyer
-          dpm($citizen);
+          //dpm($citizen);
           if (in_array(7, $rids) || in_array(9, $rids)) {
-            array_push($total_buyers, $citizen['user']);
             // And if they've passed the quiz
             if (in_array(11, $rids)) {
               array_push($certified_buyers, $citizen['user']);
