@@ -2576,3 +2576,10 @@ form#user-register #edit-field-retailer-0-nid-nid-wrapper {
   margin-right: 3em; }
 form#user-register fieldset.captcha {
   clear: both; }
+
+div.autocomplete {
+  background: white;
+  border: 1px solid #888888;
+  border-radius: 0 0 3px 3px; }
+  div.autocomplete ul, div.autocomplete li {
+    list-style: none; }
