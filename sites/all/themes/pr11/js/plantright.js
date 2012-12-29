@@ -47,4 +47,16 @@ jQuery(document).ready(function($) {
     $(this).next('.dropdown').toggle();
     e.preventDefault();
   });
+  $('#tabbed .tab-content:not(:first)').hide();
+  $('#tabbed h3:first').addClass('active');
+  $('#tabbed h3').click(function(){
+    var boxHeight, 
+        thisId = this.id;
+    $('#tabbed h3.active').removeClass('active');
+    $(this).addClass('active');
+    $('.tab-content').hide();
+    $('.tab-content.' + thisId).show();
+    boxHeight = $('.tab-content.' + thisId).outerHeight();
+    $('#tab-box').height(boxHeight);
+  });
 });

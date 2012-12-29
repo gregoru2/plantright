@@ -2740,3 +2740,33 @@ div#autocomplete
   border-radius: 0 0 3px 3px
   ul, li
     list-style: none
+    margin-left: 0.25em
+
+#tabbed
+  clear: both
+  #tab-box
+    position: relative
+    height: 200px
+    margin-bottom: 2em
+  h3
+    font-weight: normal
+    display: inline-block
+    cursor: pointer
+    border: 1px solid #888
+    position: relative
+    top: 2px
+    margin-bottom: 0
+    margin-right: -5px
+    padding: 0.3em 0.5em
+    background: #eee
+    z-index: 2
+    &.active
+      background: white
+      border-bottom-color: white
+  .tab-content
+    clear: both
+    position: absolute
+    top: 0
+    left: 0
+    border: 1px solid #888
+    padding: 1em

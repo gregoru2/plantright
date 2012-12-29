@@ -2582,4 +2582,34 @@ div#autocomplete {
   border: 1px solid #888888;
   border-radius: 0 0 3px 3px; }
   div#autocomplete ul, div#autocomplete li {
-    list-style: none; }
+    list-style: none;
+    margin-left: 0.25em; }
+
+#tabbed {
+  clear: both; }
+  #tabbed #tab-box {
+    position: relative;
+    height: 200px;
+    margin-bottom: 2em; }
+  #tabbed h3 {
+    font-weight: normal;
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid #888888;
+    position: relative;
+    top: 2px;
+    margin-bottom: 0;
+    margin-right: -5px;
+    padding: 0.3em 0.5em;
+    background: #eeeeee;
+    z-index: 2; }
+    #tabbed h3.active {
+      background: white;
+      border-bottom-color: white; }
+  #tabbed .tab-content {
+    clear: both;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #888888;
+    padding: 1em; }
