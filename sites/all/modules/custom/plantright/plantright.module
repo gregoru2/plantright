@@ -47,25 +47,61 @@ function plantright_nodeapi(&$node, $op) {
 
 function _plantright_login_action(&$form, &$form_state) {
   global $user;
-  $node = node_load(array('uid' => $account->uid, 'type' => 'retail_member'));
   $rids = array_keys($user->roles);
-  //If a manager and hasn't registered a store, redirect to node/add/business form
-  if ($node->field_retailer[0]['nid'] == NULL) {
-    if (in_array(7, $rids) || in_array(8, $rids)) {
-      $form_state['redirect'] = 'node/add/business';
-    }
+  // if a Retailer member,
+  if (in_array(7, $rids) || 
+      in_array(8, $rids) || 
+      in_array(9, $rids) || in_array(10, $rids)) {
+    drupal_goto("user/$user->uid");
+
   }
-  //If an employee, handle that
-  if (in_array(9, $rids) || in_array(10, $rids)) {
-    // If verified, go to resources
-    if (in_array(11, $rids)) {
-      drupal_goto('partner-resources');
-    } else {
-      // If not verified, go to training
-      drupal_goto('plantright-101-training');
-    }
-  }
+//  $node = node_load(array('uid' => $account->uid, 'type' => 'retail_member'));
+//  $rids = array_keys($user->roles);
+//  //If a manager and hasn't registered a store, redirect to node/add/business form
+//  if ($node->field_retailer[0]['nid'] == NULL) {
+//    if (in_array(7, $rids) || in_array(8, $rids)) {
+//      $form_state['redirect'] = 'node/add/business';
+//    }
+//  }
+//  //If an employee, handle that
+//  if (in_array(9, $rids) || in_array(10, $rids)) {
+//    // If verified, go to resources
+//    if (in_array(11, $rids)) {
+//      drupal_goto('partner-resources');
+//    } else {
+//      // If not verified, go to training
+//      drupal_goto('plantright-101-training');
+//    }
+//  }
 }
+
+
+function plantright_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'user_register') {
+    $form['account']['mail']['#description'] = 'A valid e-mail address. All e-mails from the system will be sent to this address.<br />
+      The e-mail address is not made public and your information will not be sold, or shared with others.';
+    return $form;
+  }
+  if ($form_id == 'user_login' || $form_id == 'user_login_block') {
+    $form['#action'] = NULL;
+    $form['#submit'] = array('_plantright_login_action');
+  }
+  if ($form_id == 'user_pass_reset') {
+    $form['#redirect'] = 'user';
+  }
+  if ($form_id == 'node_form' && $form['type'] == 'retail_member') {
+    $form['contact']['#prefix'] = '<div class="contact-info">';
+    $form['contact']['#suffix'] = '</div>';
+  } 
+  if ($form_id == 'business_node_form') {
+    $form['#redirect'] = 'invite';
+  }
+  if ($form_id == 'invite_form') {
+    drupal_set_message('<p>This is a good place to put some intro copy for managers to let them know what they\'re supposed to here.  Can we come up with that?');
+  }
+  //dpm($form);
+}
+
 
 function plantright_menu_alter(&$items) {
   $items['user/reset/%/%/%'] = array(
@@ -146,29 +182,4 @@ function plantright_user_pass_reset(&$form_state, $uid, $timestamp, $hashed_pass
 }
 
 
-function plantright_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'user_register') {
-    $form['account']['mail']['#description'] = 'A valid e-mail address. All e-mails from the system will be sent to this address.<br />
-      The e-mail address is not made public and your information will not be sold, or shared with others.';
-    return $form;
-  }
-  if ($form_id == 'user_login' || $form_id == 'user_login_block') {
-    $form['#action'] = NULL;
-    $form['#submit'] = array('_plantright_login_action');
-  }
-  if ($form_id == 'user_pass_reset') {
-    $form['#redirect'] = 'user';
-  }
-  if ($form_id == 'node_form' && $form['type'] == 'retail_member') {
-    $form['contact']['#prefix'] = '<div class="contact-info">';
-    $form['contact']['#suffix'] = '</div>';
-  } 
-  if ($form_id == 'business_node_form') {
-    $form['#redirect'] = 'invite';
-  }
-  if ($form_id == 'invite_form') {
-    drupal_set_message('<p>This is a good place to put some intro copy for managers to let them know what they\'re supposed to here.  Can we come up with that?');
-  }
-  //dpm($form);
-}
 

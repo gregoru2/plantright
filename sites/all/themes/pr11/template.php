@@ -246,7 +246,7 @@ function pr11_preprocess_node(&$vars) {
   $attr['class'] = "node node-{$vars['node']->type}";
   $attr['class'] .= $vars['node']->sticky ? ' sticky' : '';
   $vars['attr'] = $attr;
-
+  //dpm($vars);
   $vars['hook'] = 'node';
   $vars['is_prose'] = TRUE;
 
@@ -254,6 +254,22 @@ function pr11_preprocess_node(&$vars) {
   if (isset($_GET['print'])) {
     $vars['post_object'] = pr11_print_book_children($vars['node']);
   }
+  if ($vars['type'] == 'retail_member' || $vars['type'] == 'survey_profile') {
+    $user = user_load($vars['uid']);
+    //dpm($vars);
+    $type = ucwords(preg_replace('/_/', ' ', $vars['node']->type));
+    $vars['node']->readable_type = $type;
+    $vars['node']->profile_items['first_name']['label'] = "First Name:";
+    $vars['node']->profile_items['first_name']['value'] = $vars['field_fname'][0]['value'];
+    $vars['node']->profile_items['last_name']['label'] = "Last Name:";
+    $vars['node']->profile_items['last_name']['value'] = $vars['field_lname'][0]['value'];
+    $vars['node']->profile_items['email']['label'] = "Email:";
+    $vars['node']->profile_items['email']['value'] = $user->mail;
+    if ($vars['node']->type == 'retail_member') {
+      $vars['node']->retailer = node_load($vars['node']->field_retailer[0][nid]);
+    }
+  }
+  //dpm($vars);
 }
 
 /**
@@ -562,7 +578,6 @@ function pr11_views_mini_pager($tags = array(), $limit = 10, $element = 0, $para
     return theme('links', $links, array('class' => 'links pager views-mini-pager'));
   }
 }
-
 
 
 /**

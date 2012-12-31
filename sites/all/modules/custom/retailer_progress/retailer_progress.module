@@ -31,7 +31,7 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
         $block['content']['store_registered'] = $fellow_citizens[0]['retailer'] ? "complete" : "incomplete";
 
         //Has this manager invited their employees yet?
-        $results = db_query('select * from invite where uid = %d', $user->uid);
+        $results = db_query('select * from invite where uid = %d and canceled = 0', $user->uid);
         $invites = array();
         while ($result = db_fetch_object($results)) {
           array_push($invites, $result);
