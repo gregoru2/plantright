@@ -2,12 +2,16 @@
 
 function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
   global $user;
-  
+
   if ($op == 'list') {
-    $block[0]['info'] = t('PlantRight Retailer Manager Progress block');
+    $block[0]['info'] = t('PlantRight Retailer Manager/Buyer Progress block');
     $block[0]['cache'] = BLOCK_NO_CACHE;
-    $block[1]['info'] = t('PlantRight Retailer Employee Progress block');
+    $block[1]['info'] = t('PlantRight Retailer Manager/Non-buyer Progress block');
     $block[1]['cache'] = BLOCK_NO_CACHE;
+    $block[2]['info'] = t('PlantRight Retailer Employee/Buyer Progress block');
+    $block[2]['cache'] = BLOCK_NO_CACHE;
+    $block[3]['info'] = t('PlantRight Retailer Employee/Non-Buyer Progress block');
+    $block[3]['cache'] = BLOCK_NO_CACHE;
   }
 
   if ($op == 'view') {
@@ -23,86 +27,87 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
       //dpm($result);
     }
 
+    //Has this manager registered a retailer yet?
+    $content['store_registered'] = $fellow_citizens[0]['retailer'] ? "complete" : "incomplete";
+
+    //Has this manager invited their employees yet?
+    $results = db_query('select * from invite where uid = %d and canceled = 0', $user->uid);
+    $invites = array();
+    while ($result = db_fetch_object($results)) {
+      array_push($invites, $result);
+    }
+    $content['invites'] = $results ? $invites : FALSE;
+
+    //Have the employees which were invited followed through and registered yet?
+    $total_invites = count($invites);
+    $accepted_invites = array();
+    $ignored_invites = array();
+    foreach ($invites as $invite) {
+      if ($invite->joined == 0) {
+        array_push($ignored_invites, $invite);
+      } else {
+        array_push($accepted_invites, $invite);
+      }
+    }
+    $content['total_invites'] = $total_invites;
+    $content['ignored_invites'] = $ignored_invites;
+    $content['accepted_invites'] = count($accepted_invites);
+    //Have plant buyers reviewed the training materials?
+    
+    // There's no real way to tell this one,
+    // so we'll just set it to passed when the individual has passed the quiz
+
+    //Have all the plant buyers passed the quiz (verified role)?
+    $total_buyers = $fellow_citizens[0]['retailer']->field_number_of_buyers[0]['value'];
+    $certified_buyers = array();
+    $slackers = array();
+    foreach ($fellow_citizens as $citizen) {
+      $rids = array_keys($citizen['user']->roles);
+      // If the user is a buyer
+      //dpm($citizen);
+      if (in_array(7, $rids) || in_array(9, $rids)) {
+        // And if they've passed the quiz
+        if (in_array(11, $rids)) {
+          array_push($certified_buyers, $citizen['user']);
+        } else {
+          // Otherwise, they are a slacker
+          array_push($slackers, $citizen['user']);
+        }
+      }
+    }
+
+    //foreach ($fellow_citizens as $citizen) {
+    //  $rids = array_keys($citizen['user']->roles);
+    //  if ((in_array(7, $rids) || in_array(9, $rids)) && in_array(11, $rids)) {
+    //    array_push($certified_buyers, $citizen['user']);
+    //  }
+    //}
+
+
+    $content['total_buyers'] = $total_buyers;
+    $content['certified_buyers'] = $certified_buyers;
+    $content['slackers'] = $slackers;
+
+
     switch ($delta) { 
       case 0:
-        //If user is a manager, show their block
-        
-        //Has this manager registered a retailer yet?
-        $block['content']['store_registered'] = $fellow_citizens[0]['retailer'] ? "complete" : "incomplete";
-
-        //Has this manager invited their employees yet?
-        $results = db_query('select * from invite where uid = %d and canceled = 0', $user->uid);
-        $invites = array();
-        while ($result = db_fetch_object($results)) {
-          array_push($invites, $result);
-        }
-        $block['content']['invites'] = $results ? $invites : FALSE;
-
-        //Have the employees which were invited followed through and registered yet?
-        $total_invites = count($invites);
-        $accepted_invites = array();
-        $ignored_invites = array();
-        foreach ($invites as $invite) {
-          if ($invite->joined == 0) {
-            array_push($ignored_invites, $invite);
-          } else {
-            array_push($accepted_invites, $invite);
-          }
-        }
-        $block['content']['total_invites'] = $total_invites;
-        $block['content']['ignored_invites'] = $ignored_invites;
-        $block['content']['accepted_invites'] = count($accepted_invites);
-        //Have plant buyers reviewed the training materials?
-        
-        // There's no real way to tell this one,
-        // so we'll just set it to passed when the individual has passed the quiz
-
-        //Have all the plant buyers passed the quiz (verified role)?
-        $total_buyers = $fellow_citizens[0]['retailer']->field_number_of_buyers[0]['value'];
-        $certified_buyers = array();
-        $slackers = array();
-        foreach ($fellow_citizens as $citizen) {
-          $rids = array_keys($citizen['user']->roles);
-          // If the user is a buyer
-          //dpm($citizen);
-          if (in_array(7, $rids) || in_array(9, $rids)) {
-            // And if they've passed the quiz
-            if (in_array(11, $rids)) {
-              array_push($certified_buyers, $citizen['user']);
-            } else {
-              // Otherwise, they are a slacker
-              array_push($slackers, $citizen['user']);
-            }
-          }
-        }
-
-        //foreach ($fellow_citizens as $citizen) {
-        //  $rids = array_keys($citizen['user']->roles);
-        //  if ((in_array(7, $rids) || in_array(9, $rids)) && in_array(11, $rids)) {
-        //    array_push($certified_buyers, $citizen['user']);
-        //  }
-        //}
-
-
-        $block['content']['total_buyers'] = $total_buyers;
-        $block['content']['certified_buyers'] = $certified_buyers;
-        $block['content']['slackers'] = $slackers;
+        //If user is a manager/buyer, show their block
+        $block['content'] = $content;
       break;
 
       case 1:
-        //If user is an employee, show their block
+        //If user is an manager/non-buyer, show their block
+        $block['content'] = $content;
+      break;
 
-        //The retailer would already be registered, so true dat
+      case 2:
+        // employee/buyer
+        $block['content'] = $content;
+      break;
 
-        //The Staff would've been invited to join already, so true dat too
-
-        //Have all your fellow employees registered?
-
-        //Have all plant buyers reviewed the material?  This should just be a link
-
-        //Have all the plant buyers passed the quiz?
-
-        //Put all this info into the block.tpl
+      case 3:
+        // employee/non-buyer
+        $block['content'] = $content;
       break;
     }
     //dpm($fellow_citizens);

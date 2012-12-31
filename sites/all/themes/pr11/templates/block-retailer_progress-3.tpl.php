@@ -47,24 +47,6 @@ $group_quiz_progress = ($content['total_buyers'] === count($content['certified_b
     <h3 id="the-checklist">The Checklist</h3>
     <p>This checklist shows your completed steps and what's still required to become a certified PlantRight Partner nursery.</p>
     
-    <div id="store-registered" class="item <?php print $content['store_registered'] ?>">
-      <p class="desc">Register a store account for your nursery</p>
-      <?php if ($content['store_registered'] == 'complete'): ?>
-        <p class="status">Completed</p>
-      <?php else : ?>
-        <p class="status"><a href="/node/add/business">Register your nursery now</a></p>
-      <?php endif; ?>
-    </div>
-
-    <div id="invite-staff" class="item <?php print $invites_sent ?>">
-      <p class="desc">Invite your staff to join.</p>
-      <?php if ($content['invites']): ?>
-        <p class="status">Completed but, <a href="/invite">feel free to invite more</a></p>
-      <?php else : ?>
-        <p class="status"><a href="/invite">Invite Staff</a></p>
-      <?php endif; ?>
-    </div>
-
     <div id="invite-status" class="item <?php print $invite_progress ?>">
       <p class="desc">All staff members register at PlantRight.org</p>
       <?php if ($total_invites > 0 && $total_invites == $accepted_invites): ?>
@@ -74,12 +56,6 @@ $group_quiz_progress = ($content['total_buyers'] === count($content['certified_b
       <div class="dropdown">
         <h4><?php print $accepted_invites ?> of <?php print $total_invites ?> staff members have registered</h4>
         <progress value="<?php print $invite_percentage ?>" max="100" style="width:100%" ></progress>
-        <p>We're still waiting for:</p>
-        <ul>
-        <?php foreach($ignored_invites as $invite): ?>
-          <li><?php print $invite->email ?> - <a href="/invite/resend/<?php print $invite->reg_code ?>">resend invite</a></li>
-        <?php endforeach; ?>
-        </ul>
       </div>
       <?php endif; ?>
     </div>
@@ -101,16 +77,6 @@ $group_quiz_progress = ($content['total_buyers'] === count($content['certified_b
       <?php else : ?>
         <div class="dropdown">
           <h4><?php print count($content['certified_buyers']) ?> of <?php print $content['total_buyers'] ?> are certified</h4>
-          <p>We're still waiting for:</p>
-          <ul>
-            <?php if ($slackers): ?>
-              <?php foreach ($slackers as $slacker): ?>
-                <li><?php print $slacker->email ?></li>
-              <?php endforeach; ?>
-            <?php else: ?>
-              <li>Some folks who haven't registered yet.</li>
-            <?php endif; ?>
-          </ul>
         </div>
       <?php endif; ?>
     </div>

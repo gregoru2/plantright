@@ -59,4 +59,5 @@ jQuery(document).ready(function($) {
     boxHeight = $('.tab-content.' + thisId).outerHeight();
     $('#tab-box').height(boxHeight);
   });
+  $('#block-admin-account li:eq(1)').remove();
 });

@@ -103,13 +103,13 @@ $group_quiz_progress = ($content['total_buyers'] === count($content['certified_b
           <h4><?php print count($content['certified_buyers']) ?> of <?php print $content['total_buyers'] ?> are certified</h4>
           <p>We're still waiting for:</p>
           <ul>
-            <?php if ($slackers): ?>
-              <?php foreach ($slackers as $slacker): ?>
-                <li><?php print $slacker->email ?></li>
-              <?php endforeach; ?>
-            <?php else: ?>
-              <li>Some folks who haven't registered yet.</li>
-            <?php endif; ?>
+          <?php if ($slackers): ?>
+            <?php foreach ($slackers as $slacker): ?>
+              <li><?php print $slacker->email ?></li>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <li>Some folks who haven't registered yet.</li>
+          <?php endif; ?>
           </ul>
         </div>
       <?php endif; ?>
