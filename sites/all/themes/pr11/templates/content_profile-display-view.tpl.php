@@ -18,7 +18,7 @@
     </ul>
   <?php endif; ?>
   <?php if (isset($node->nid) && isset($content)): ?>
-    <?php dpm($node); ?>
+    <?php// dpm($node); ?>
     <h2>Your PlantRight <?php print $node->readable_type; ?> Account</h2>
     <?php foreach ($node->profile_items as $profile_item): ?>
     <div class="profile-item">
