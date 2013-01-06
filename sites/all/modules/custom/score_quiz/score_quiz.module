@@ -7,8 +7,34 @@
 
 function score_quiz_quiz_finished($quiz, $score) {
 	global $user;
+  // if this quiz taker passed the quiz
   if ($quiz->nid == '1421' && $score[percentage_score] == $quiz->pass_rate) {
+    // give them role 11 - certified
     db_query('Insert into {users_roles} (uid, rid) values (%d, %d)', $user->uid, 11);
+
+    // Get quiz taker's nursery that they belong to.
+    $result = db_fetch_object(db_query('select nid from {node} where uid = %d and type="retail_member"', $user->uid));
+    $profile = node_load($result->nid);
+    //dpm($profile);
+    $retailer = node_load($profile->field_retailer[0]['nid']);
+    // Check number of designated buyers in that nursery's field_number_of_buyers
+    $num_buyers = $retailer->field_number_of_buyers[0]['value'];
+    // Get users that belong to that nursery, are buyers, and have passed the quiz.
+    $result = db_fetch_object(db_query('select count(*) as count 
+                       from users_roles where uid in
+                       (select ur.uid from content_type_retail_member rm
+                       INNER JOIN node n on rm.nid = n.nid
+                       INNER JOIN users_roles ur on ur.uid = n.uid
+                       INNER JOIN role r on r.rid = ur.rid
+                       WHERE rm.field_retailer_nid = %d and ur.rid=11)
+                       and rid in (7, 9)', $retailer->nid));
+    dpm(array($result->count, $num_buyers));
+    // If the number of designated buyers and the number of users with 11 AND 7 or 8 match, then set field_is_certified to 1
+    if ($result->count >= $num_buyers && $num_buyers >= 1) {
+      $retailer->field_is_certified[0]['value'] = 1;
+      node_save($retailer);
+    }
+    //dpm($retailer);
   }
   /*
 	if($score[percentage_score] >= 80) {

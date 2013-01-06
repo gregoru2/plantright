@@ -44,6 +44,7 @@ function plantright_nodeapi(&$node, $op) {
     $retail_member->field_retailer[0]['nid'] = $node->nid;
     node_save($retail_member);
   }
+  //dpm($node);
 }
 
 function _plantright_login_action(&$form, &$form_state) {
@@ -93,7 +94,11 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'node_form' && $form['type'] == 'retail_member') {
     $form['contact']['#prefix'] = '<div class="contact-info">';
     $form['contact']['#suffix'] = '</div>';
-  } 
+  }
+  if ($form['form_id']['#value'] == 'business_node_form') {
+    $form['field_is_certified']['#type'] = 'hidden';
+    dpm($form);
+  }
   if ($form_id == 'business_node_form') {
     $form['#redirect'] = 'invite';
   }
