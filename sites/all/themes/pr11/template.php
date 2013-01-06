@@ -617,3 +617,46 @@ function phptemplate_body_attributes($is_front = false, $layout = 'none') {
   return " id=\"$body_id\" class=\"$body_class $sidebar_class\"";
 }
 
+
+/**
+ * Theme function for the invite form.
+ *
+ * @ingroup themeable
+ */
+function pr11_invite_form($form) {
+  $output = '';
+  $op = $form['#parameters'][2];
+
+  if ($op == 'page') {
+    // Show form elements.
+    $output .= drupal_render($form['remaining_invites_markup']);
+    $output .= drupal_render($form['remaining_invites']);
+    $output .= drupal_render($form['from']);
+    if (isset($form['email_markup'])) {
+      $output .= drupal_render($form['email_markup']);
+    }
+    $output .= drupal_render($form['email']);
+    $output .= drupal_render($form['subject']);
+
+    // Show complete invitation message.
+    $output .= drupal_render($form['body']);
+    $output .= '<div class="invite-message"><div class="opening">';
+
+    // Prepare invitation message.
+    $message_form = "</p></div>\n". drupal_render($form['message']) ."\n".'<div class="closing"><p>';
+    $body = _filter_autop(t(_invite_get_mail_template()));
+
+    // Perform token replacement on message body.
+    $types = _invite_token_types(array('data' => array('message' => $message_form)));
+    $output .= token_replace_multiple($body, $types);
+
+    $output .= "</div></div>\n";
+  }
+
+  // Render all missing form elements.
+  $output .= drupal_render($form);
+
+  $output .= '<br /><a href="/plantright-101-training">Skip this step (I\'m the only buyer)</a>';
+
+  return $output;
+}
