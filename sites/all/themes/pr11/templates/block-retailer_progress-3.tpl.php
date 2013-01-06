@@ -46,20 +46,12 @@ $group_quiz_progress = ($content['total_buyers'] === count($content['certified_b
     <h2>Becoming a PlantRight Partner</h2>
     <h3 id="the-checklist">The Checklist</h3>
     <p>This checklist shows your completed steps and what's still required to become a certified PlantRight Partner nursery.</p>
-    
-    <div id="invite-status" class="item <?php print $invite_progress ?>">
-      <p class="desc">All staff members register at PlantRight.org</p>
-      <?php if ($total_invites > 0 && $total_invites == $accepted_invites): ?>
-        <p class="status">Completed</p>
-      <?php else : ?>
-      <a href="#" class="dropdown-toggle">Your progress details</a>
-      <div class="dropdown">
-        <h4><?php print $accepted_invites ?> of <?php print $total_invites ?> staff members have registered</h4>
-        <progress value="<?php print $invite_percentage ?>" max="100" style="width:100%" ></progress>
-      </div>
-      <?php endif; ?>
-    </div>
 
+    <div id="register-account" class="item complete">
+      <p class="desc">Create an account at PlantRight.org</p>
+      <p class="status">Completed</p>
+    </div>
+    
     <div id="review-material" class="item <?php print $user_quiz_progress ?>">
       <p class="desc">Review the PlantRight 101 training materials</p>
       <?php if (in_array(11, array_keys($user->roles))): ?>
@@ -67,6 +59,16 @@ $group_quiz_progress = ($content['total_buyers'] === count($content['certified_b
       <?php else : ?>
         <p class="status"><a href="/plantright-101-training">PlantRight 101 training page</a></p>
       <?php endif; ?>
+    </div>
+
+    <div id="take-quiz" class="item <?php print $user_quiz_proress ?>">
+      <p class="desc">Pass our 10 question quiz</p>
+      <?php if (in_array(11, array_keys($user->roles))): ?>
+        <p class="status">Complete</p>
+      <?php else : ?>
+        <p class="status"><a href="/node/1421/take">Take the quiz</a></p>
+      <?php endif; ?>
+      
     </div>
 
     <div id="pass-quiz" class="item <?php print $group_quiz_progress ?>">
