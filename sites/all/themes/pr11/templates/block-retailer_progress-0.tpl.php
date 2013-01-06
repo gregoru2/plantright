@@ -94,10 +94,10 @@ $group_quiz_progress = (count($content['certified_buyers']) >= $content['total_b
 
     <div id="pass-quiz" class="item <?php print $group_quiz_progress ?>">
       <p class="desc">All plant buyers pass our 10 question quiz</p>
-      <a href="#" class="dropdown-toggle">Your progress details</a>
       <?php if ($content['total_buyers'] >= count($certified_buyers)): ?>
         <p class="status">Complete</p>
       <?php else : ?>
+        <a href="#" class="dropdown-toggle">Your progress details</a>
         <div class="dropdown">
           <h4><?php print count($content['certified_buyers']) ?> of <?php print $content['total_buyers'] ?> are certified</h4>
           <p>We're still waiting for:</p>
