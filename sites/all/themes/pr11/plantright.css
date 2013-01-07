@@ -2623,3 +2623,6 @@ div#autocomplete {
     font-weight: bold; }
   .content-profile-display .profile-item .value {
     display: inline-block; }
+
+#edit-field-is-certified-value-wrapper {
+  display: none; }
