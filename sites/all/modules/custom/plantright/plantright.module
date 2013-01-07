@@ -111,7 +111,7 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     $form['#redirect'] = "user/$user->uid";
     $form['title']['#type'] = 'hidden';
   }
-  dpm($form);
+  //dpm($form);
 }
 
 
