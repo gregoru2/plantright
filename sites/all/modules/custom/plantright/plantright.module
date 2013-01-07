@@ -102,14 +102,16 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
   }
   if ($form_id == 'business_node_form') {
     $form['#redirect'] = 'invite';
+    //$form['#']
   }
   if ($form_id == 'invite_form') {
     drupal_set_message('<p>This is a good place to put some intro copy for managers to let them know what they\'re supposed to here.  Can we come up with that?');
   }
   if ($form_id == 'retail_member_node_form') {
     $form['#redirect'] = "user/$user->uid";
+    $form['title']['#type'] = 'hidden';
   }
-  //dpm($form_id);
+  dpm($form);
 }
 
 
