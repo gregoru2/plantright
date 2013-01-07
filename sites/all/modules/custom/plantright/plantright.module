@@ -79,6 +79,7 @@ function _plantright_login_action(&$form, &$form_state) {
 
 
 function plantright_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
   if ($form_id == 'user_register') {
     $form['account']['mail']['#description'] = 'A valid e-mail address. All e-mails from the system will be sent to this address.<br />
       The e-mail address is not made public and your information will not be sold, or shared with others.';
@@ -105,7 +106,10 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'invite_form') {
     drupal_set_message('<p>This is a good place to put some intro copy for managers to let them know what they\'re supposed to here.  Can we come up with that?');
   }
-  //dpm($form);
+  if ($form_id == 'retail_member_node_form') {
+    $form['#redirect'] = "user/$user->uid";
+  }
+  //dpm($form_id);
 }
 
 
