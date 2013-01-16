@@ -244,8 +244,7 @@ div#console {
       border-radius: 5px;
       padding: 4px; }
 	  
-	  
-body.section-user div#console	{
+body[id$="invites"]  div#console	{
 	border: none;
 	margin: 20px 0px 10px 0px;
 	color: #000;
