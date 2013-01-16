@@ -128,6 +128,7 @@ body.section-news #main h1.page-title, body.section-nursery #main h1.page-title,
       background: url(/images/donate_button_2012.png) no-repeat left -78px;
       color: #a83000; }
 
+/* old primary tab style 
 ul.primary-tabs {
   color: #c9c1b0;
   font-size: 0.95em;
@@ -145,6 +146,34 @@ ul.primary-tabs {
     ul.primary-tabs li a {
       color: #e0dacc;
       float: none; }
+*/
+ul.primary-tabs {
+  color: #ac512a;
+  position: absolute;
+  top: 119px;
+  right: 20px;
+  }
+  ul.primary-tabs li {
+    display: inline;
+    margin-left: 1px;
+	padding: 4px 9px 2px 7px;
+  	background: rgba(255,255,255,1);
+	border: solid 1px #3d2b09;
+	border-bottom: none;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	box-shadow: -4px -2px 4px rgba(76,61,20,.4);
+	}
+    ul.primary-tabs li a {
+      color: #ac512a;
+      float: none;
+	  }
+
+
 ul.secondary-tabs {
   display: block;
   width: 100%;
@@ -159,6 +188,32 @@ ul.secondary-tabs {
       border: solid 1px #a45031;
       border-bottom: none;
       background-color: #f7f5f2; }
+
+body[id$="invites"] ul.secondary-tabs li {
+	font-size: 1.13em;
+    margin: 10px 10px 0 0;
+    padding: 5px 12px;
+	border: solid 1px #b7ab86;
+	border-bottom: none;
+	background-color: #efebdf;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	}
+    body[id$="invites"] ul.secondary-tabs li.active {
+	  border: solid 1px #a45031;
+	  border-bottom: none;
+      background-color: #a45031;
+	  color: #fff;
+	  }
+	  body[id$="invites"] ul.secondary-tabs li.active a {
+	  color: #fff;
+	  }
+
+
 
 div#console {
   color: #c3321a;
@@ -188,6 +243,18 @@ div#console {
       -moz-border-radius: 5px;
       border-radius: 5px;
       padding: 4px; }
+	  
+	  
+body.section-user div#console	{
+	border: none;
+	margin: 20px 0px 10px 0px;
+	color: #000;
+}
+		  
+body.section-user div#console p	{
+	margin: 10px 0px;
+}
+	  
 
 #left #block-menu-primary-links ul.menu a, #left #block-menu-menu-survey-menu ul.menu a, #left #block-menu-menu-pre-survey-menu ul.menu a, #left #block-menu-menu-survey-admin ul.menu a, #left #block-menu-menu-retailer-menu ul.menu a {
   font-family: "Open Sans", Helvetica, Arial sans-serif;
@@ -269,7 +336,9 @@ div.contentBox {
 #content {
   font-size: 1.1em;
   line-height: 2.8ex;
-  color: #444444; }
+  color: #444444;
+  margin-bottom: 20px;
+  }
   #content div.contentBox p {
     color: #1f1f1f;
     line-height: 2.8ex;
