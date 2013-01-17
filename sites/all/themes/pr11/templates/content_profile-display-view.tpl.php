@@ -6,6 +6,7 @@
  *
  * Theme implementation to display a content-profile.
  */
+global $user;
 ?>
 <div class="content-profile-display" id="content-profile-display-<?php print $type; ?>">
   <?php if (isset($tabs)) : ?>
@@ -29,7 +30,13 @@
   <?php endif; ?>
   <?php if ($node->type == 'retail_member'): ?>
     <h3>Retailer</h3>
-    <p>You are affiliated with <strong><?php print $node->retailer->title ?></strong></p>
+    <?php if ($node->retailer): ?>
+      <p>You are affiliated with <strong><?php print $node->retailer->title ?></strong></p>
+    <?php elseif(in_array(7, array_keys($user->roles)) || in_array(8, array_keys($user->roles))): ?>
+      <p>No affiliated nursery. <a href="/node/add/business">Register here.</a></p>
+    <?php else: ?>
+      <p>Edit your profile to choose an affiliated retailer.</p>
+    <?php endif; ?>
   <?php endif; ?>
   <?php global $user; if ($user->uid == $node->uid): ?>
     <a class="btn-primary" href="/node/<?php print $node->nid ?>/edit">Edit Profile</a>
