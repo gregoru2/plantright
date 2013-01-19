@@ -268,6 +268,7 @@ function pr11_preprocess_node(&$vars) {
     if ($vars['node']->type == 'retail_member') {
       $vars['node']->retailer = node_load($vars['node']->field_retailer[0][nid]);
     }
+    $vars['node']->user_roles = $user->roles;
   }
   //dpm($vars);
 }
