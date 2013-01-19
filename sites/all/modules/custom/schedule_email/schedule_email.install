@@ -1,0 +1,162 @@
+<?php
+/**
+ * @file
+ * Installation for schedule email
+ */
+
+/**
+ * Implementation of hook_schema().
+ */
+function schedule_email_schema() {
+  $schema['schedule_email'] = array(
+    'description' => 'Base table for schedule emails',
+    'fields' => array(
+      'seid' => array(
+        'description' => 'Email primary identifier',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'nid' => array(
+        'description' => 'Node ID',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'vid' => array(
+        'description' => 'Revision ID',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'setid' => array(
+        'description' => '{schedule_emails_type}.setid identifier',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'enabled' => array(
+        'description' => 'Boolean indicating whether the email is enabled',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 1,
+      ),
+      'days' => array(
+        'description' => 'The number of days since the associated type of event occurred',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'subject' => array(
+        'description' => 'The subject of the email that will be sent',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('seid'),
+    'foreign keys' => array(
+      'schedule_email_type' => array(
+        'table' => 'schedule_email_type',
+        'columns' => array('setid' => 'setid'),
+      ),
+    ),
+  );
+  $schema['schedule_email_type'] = array(
+    'description' => 'Types of event that can be emails can be schedule against',
+    'fields' => array(
+      'setid' => array(
+        'description' => 'Primary identifier for the type of email',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'name_short' => array(
+        'description' => 'The short name for the type of email for machine reference',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'name' => array(
+        'description' => 'The name for the type of email',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('setid'),
+  );
+  $schema['schedule_email_sent'] = array(
+    'description' => 'Log of the emails that have been sent',
+    'fields' => array(
+      'sesid' => array(
+        'description' => 'Primary id for the sent email',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'seid' => array(
+        'description' => 'Schedule email ID',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'timestamp' => array(
+        'description' => 'A Unix timestamp indicating when this email was sent.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0
+      ),
+      'uid' => array(
+        'description' => 'User ID from the {user} table',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'iid' => array(
+        'description' => 'Invite ID from the {invite} table',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('sesid'),
+    'foreign keys' => array(
+      'schedule_email' => array(
+        'table' => 'schedule_email',
+        'columns' => array('seid' => 'seid'),
+      ),
+    ),
+  );
+  return $schema;
+}
+
+/**
+ * Implementation of hook_install().
+ */
+function schedule_email_install() {
+  drupal_install_schema('schedule_email');
+  drupal_set_message(t('The Schedule Email tables have been created.'));
+  
+  // drupal_write_record doesn't work in hook_install()
+  db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('register', Send email X days after registration')");
+  db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('invite', If user has not registered, send reminder X days after invite')");
+}
+
+/**
+ * Implemetation of hook_uninstall().
+ */
+function schedule_email_uninstall() {
+  drupal_uninstall_schema('schedule_email');
+  drupal_set_message(t('The Schedule Email module has been uninstalled'));
+}

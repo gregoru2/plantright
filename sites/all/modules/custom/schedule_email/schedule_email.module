@@ -1,0 +1,297 @@
+<?php
+ini_set('dislay_errors', true);
+/**
+ * @file
+ * Module code for schedule email
+ */
+
+require 'scheduleemail.class.inc';
+
+/**
+ * Implementation of hook_help().
+ */
+function schedule_email_help() {
+  switch($path) {
+   case 'admin/help#schedule_email':
+     return t('Defines the schedule email content type and sends emails on cron based on the schedule selected.');
+  }
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function schedule_email_menu() {
+  $items = array();
+  $items['admin/content/schedule-email'] = array(
+    'title' => 'Send Schedule Emails',
+    'page callback' => 'schedule_email_page_email_send',
+    'type' => MENU_NORMAL_ITEM,
+    'access arguments' => array('administer schedule email'),
+  );
+  return $items;
+}
+
+/**
+ * Implementation of hook_node_info()
+ */
+function schedule_email_node_info() {
+  return array(
+    'schedule_email' => array(
+      'name' => t('Schedule Email'),
+      'module' => 'schedule_email',
+      'description' => t('Create emails to be scheduled to send to users.'),
+      'has_title' => TRUE,
+      'title_label' => t('Administrative Title'),
+      'has_body' => TRUE,
+      'min_word_count' => 10,
+    ),
+  );
+}
+
+/**
+ * Implementation of hook_access().
+ */
+function schedule_email_access($op, $node, $account) {
+  switch($op) {
+    case 'create':
+      return user_access('create schedule email', $account);
+    break;
+    case 'update':
+      if (user_access('edit any schedule email', $account) || (user_access('edit own schedule email', $account) && user_owns_schedule_email($account->uid, $node->nid))) {
+        return TRUE;
+      }
+    break;
+    case 'delete':
+      if (user_access('delete any schedule email', $account) || (user_access('delete own schedule email', $account) && user_owns_schedule_email($account->uid, $node->nid))) {
+        return TRUE;
+      }
+    break;
+    case 'view':
+      if(user_access('view any schedule email', $account) || (user_access('view own schedule email', $account) && user_owns_schedule_email($account->uid, $node->nid))) {
+        return TRUE;
+      }
+    break;
+  }
+
+  return FALSE;
+}
+
+/**
+ * Helper function to determine whether a user owns a schedule email node
+ * @param type $uid
+ *   User ID
+ * @param type $nid
+ *   Node ID
+ */
+function user_own_schedule_email($uid, $nid) {
+  return $uid == $nid;
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function schedule_email_perm() {
+  return array(
+    'administer schedule email',
+    'create schedule email',
+    'view any schedule email',
+    'view own schedule email',
+    'edit any schedule email',
+    'edit own schedule email',
+    'delete any schedule email',
+    'delete own schedule email',
+  );
+}
+
+/**
+ * Implementation of hook_form().
+ */
+function schedule_email_form(&$node, $form_state) {
+  global $user;
+  $type = node_get_types('type', $node);
+  if ($type->has_title) {
+    $form['title'] = array(
+      '#type' => 'textfield',
+      '#title' => check_plain($type->title_label),
+      '#required' => TRUE,
+      '#default_value' => $node->title,
+      '#maxlength' => 255,
+      '#weight' => -5,
+    );
+  }
+
+  $form['enabled'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enabled'),
+    '#default_value' => isset($node->enabled) ? $node->enabled : 1,
+    '#weight' => -10,
+  );
+
+  $types = ScheduleEmail::get_types();
+  $form['setid'] = array(
+    '#type' => 'select',
+    '#title' => '',
+    '#default_value' => isset($node->setid) ? $node->setid : 0,
+    '#required' => TRUE,
+    '#options' => array_merge(array(0 => '[select the type of email to schedule]'), $types),
+    '#weight' => -4,
+  );
+
+  $form['days'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Number of days'),
+    '#required' => TRUE,
+    '#maxlength' => 128,
+    '#default_value' => isset($node->days) ? $node->days : '',
+    '#weight' => -3,
+  );
+
+  $form['subject'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Email Subject'),
+    '#required' => TRUE,
+    '#maxlength' => 255,
+    '#default_value' => isset($node->subject) ? $node->subject : '',
+    '#weight' => -2,
+  );
+
+  if ($type->has_body) {
+    $form['body_field'] = node_body_field($node, $type->body_label, $type->min_word_count);
+  }
+  
+  $form['token_help'] = array(
+    '#title' => t('Replacement patterns'),
+    '#type' => 'fieldset',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $form['token_help']['help'] = array(
+    '#value' => theme('invite_token_help', array('user', 'profile', 'invite')),
+  );
+
+  return $form;
+}
+
+/**
+ * Implementation of hook_insert().
+ */
+function schedule_email_insert($node) {
+  db_query("INSERT INTO {schedule_email} (nid, vid, setid, enabled, days, subject) VALUES (%d, %d, %d, %d, '%s', '%s')", $node->nid, $node->vid, $node->setid, $node->enabled, $node->days, $node->subject);
+}
+
+/**
+ * Implementation of hook_update().
+ */
+function schedule_email_update($node) {
+  if($node->revision) {
+    // New node or new revision
+    schedule_email_insert($node);
+  }
+  else {
+    db_query("UPDATE {schedule_email} SET setid = %d, enabled = %d, days = '%s', subject = '%s' WHERE vid = %d", $node->setid, $node->enabled, $node->days, $node->subject, $node->vid);
+  }
+}
+
+/**
+ * Implementation of hook_delete().
+ */
+function schedule_email_delete($node) {
+  db_query("DELETE FROM {schedule_email} WHERE nid = %d", $node->nid);
+}
+
+/**
+ * Implemenation of hook_nodeapi().
+ */
+function schedule_email_nodeapi(&$node, $op, $teaser, $page) {
+  switch($op) {
+    case 'delete revision':
+      db_query("DELETE FROM {schedule_email} WHERE vid = %d", $node->vid);
+    break;
+  }
+}
+
+/**
+ * Implementation of hook_load().
+ */
+function schedule_email_load($node) {
+  $add = db_fetch_object(db_query("SELECT setid, enabled, days, subject FROM {schedule_email} WHERE vid = %d", $node->vid));
+  return $add;
+}
+
+/**
+ * Implementation of hook_view().
+ */
+function schedule_email_view($node, $teaser = FALSE, $page = FALSE) {
+  $node = node_prepare($node, $teaser);
+  $node->content['custom_fields'] = array(
+    '#value' => theme('schedule_email', $node),
+    '#weight' => 1,
+  );
+  return $node;
+}
+
+/**
+ * Implementation of hook_theme().
+ */
+function schedule_email_theme() {
+  return array(
+    'schedule_email' => array(
+      'arguments' > array('node'),
+    ),
+  );
+}
+
+/**
+ * Function theme
+ */
+function theme_schedule_email($node) {
+  $output = '';
+  $output = '<div class="subject">' . $node->subject . '</div>';
+  return $output;
+}
+
+function schedule_email_mail($key, &$message, $params) {
+  $language = $message['language'];
+  $variables = user_mail_tokens($params['account'], $language);
+  
+  switch($key) {
+    case 'invite':
+       // Override Reply-To address.
+        if (!variable_get('invite_use_users_email_replyto', 0)) {
+          $reply_to = variable_get('invite_manual_reply_to', '');
+          $message['headers']['Reply-To'] = $reply_to;
+        }
+    break;
+  }
+
+  $message['subject'] = t($params['subject'], array(), $language->language);
+  $message['body'][] = t($params['message'], array(), $language->language);
+
+}
+
+/**
+ * Implements hook_cron().
+ */
+function schedule_email_cron() {
+  
+}
+
+/**
+ * Callback for page to send emails manually
+ */
+function schedule_email_page_email_send() {
+  $output = '';
+  $se = new ScheduleEmail();
+  $log = $se->get_email_log();
+  foreach($log as $item) {
+    $output .= '<br/>' . $item;
+  }
+  if(!$output) {
+   $output = 'No emails to send.';
+  }
+  return $output;  
+}
+
+function schedule_email_log_email($seid, $uid, $iid) {
+   db_query("INSERT INTO {schedule_email_sent} (seid, timestamp, uid, iid) VALUES(%d, %d, %d, %d)", $seid, time(), $uid, $iid);
+}
