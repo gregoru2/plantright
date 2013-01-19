@@ -273,7 +273,7 @@ function schedule_email_mail($key, &$message, $params) {
  * Implements hook_cron().
  */
 function schedule_email_cron() {
-  
+  $se = new ScheduleEmail();
 }
 
 /**
