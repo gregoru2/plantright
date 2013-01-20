@@ -1,0 +1,115 @@
+<?php
+
+/**
+ * Stream a PDF to the browser using
+ *
+ * @param $html
+ *   HTML to use to render the PDF
+ * @param $filename
+ *   The desired filename for the streamed PDF
+ * @param $directives
+ *   An optional array of directives to run on the DOMPDF object before streaming it to the browser.
+ *   Possible directives are: set_base_path, set_host, set_paper, set_protocol
+ * @see <a href="http://www.digitaljunkies.ca/dompdf/usage.php#dompdf_reference">DOMPDF Class Reference</a>
+ *
+ * Example usage:
+ * <?php 
+ *   $html = '<h1>Hello World</h1>';
+ *   $filename = 'hello_world.pdf';
+ *   $directives = array(
+ *     'set_protocol' => 'file://',
+ *     'set_paper' => array('letter', 'landscape')
+ *   );
+ * ?>
+ */
+function dompdf_stream_pdf($html, $filename, $directives = array()) {
+  require_once drupal_get_path('module', 'dompdf') . '/dompdf/dompdf_config.inc.php';
+  $allowed_directives = array(
+    'set_base_path', 
+    'set_host', 
+    'set_paper', 
+    'set_protocol',
+  );
+  
+  $dompdf = new DOMPDF();
+  $dompdf->load_html($html);
+  
+  foreach ($directives as $directive => $params) {
+    if (in_array($directive, $allowed_directives)) {
+      call_user_func_array(array($dompdf, $directive), $params);
+    }
+  }
+  
+  $dompdf->render();
+  $dompdf->stream($filename);
+}
+
+
+/**
+ * Implementation of hook_views_api()
+ */
+function dompdf_views_api() {
+  return array(
+    'api' => 2,
+  );
+}
+
+
+/**
+ * Menu callback for print a view
+ */
+function dompdf_print_view($view_name) {
+  $view = views_get_view($view_name);
+  
+
+  // Theme our view's output. 
+  $html = theme('dompdf_print_view', $view);
+
+  // Stream to PDF.
+  $filename = $view_name .".pdf";
+  dompdf_stream_pdf($html, $filename);
+}
+
+/**
+ * Implementation of hook_theme().
+ *
+ */
+function dompdf_theme($existing, $type, $theme, $path) {
+  return array(
+    'dompdf_print_view' => array(
+      'arguments' => array('view' => NULL,),
+      ),
+    );
+}
+
+
+/**
+ * Theme function for printing a view
+ */
+function theme_dompdf_print_view($view) {
+  global $base_url;
+
+  // TODO keep "edit, export, clone" links out of output.
+  // TODO keep exposed forms out, too.
+
+  // Tweak the view before output here. (Haven't tested effectiveness of this.)
+
+  // DEBUG
+  // To debug, comment out the dompdf_stream_pdf() call in dompdf_print_view().
+  // Then you can output $view here to check your manipulations.
+  // dpm($view);
+
+  // Tell views to build the view content.
+  $content = $view->preview('default');
+  $body .= $content;
+
+
+  $html = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n";
+  $html .= '<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">';
+  $html .= "<head>\n<title>". $title ."</title>\n";
+  $html .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
+  $html .= '<base href="'. $base_url .'/" />' . "\n";
+  $html .= "<style type=\"text/css\">\n@import url(". $base_url ."/misc/print.css);\n</style>\n";
+  $html .= "</head>\n<body>\n". $body ."\n</body>\n</html>\n";
+  return $html;
+}

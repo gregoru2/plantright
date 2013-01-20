@@ -1,0 +1,16 @@
+#quiz-certificate {
+  text-align: center;
+  margin:2em auto;
+}
+.certificate-text {
+}
+.certificate-name {
+  font-size:2em;
+  font-weight:bold;
+  margin:1em auto;
+}
+.certificate-quiz {
+  font-size:2em;
+  font-weight:bold;
+  margin:1em auto;
+}

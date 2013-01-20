@@ -1,0 +1,11 @@
+name = "dompdf"
+description = "Simple API wrapper for the dompdf HTML to PDF converter"
+dependencies[] = views_bonus_export
+core = 6.x
+
+; Information added by drupal.org packaging script on 2011-02-25
+version = "6.x-1.x-dev"
+core = "6.x"
+project = "dompdf"
+datestamp = "1298619126"
+
