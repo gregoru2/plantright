@@ -1,5 +1,5 @@
 <?php
-ini_set('dislay_errors', true);
+
 /**
  * @file
  * Module code for schedule email
