@@ -98,6 +98,7 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
   }
   if ($form_id == 'business_node_form') {
     $form['#redirect'] = 'invite';
+    $form['buttons']['submit']['#value'] = 'Register Store';
     //$form['#']
   }
   if ($form_id == 'invite_form') {
@@ -107,7 +108,7 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     $form['#redirect'] = "user/$user->uid";
     $form['title']['#type'] = 'hidden';
   }
-  //dpm($form);
+  dpm($form);
 }
 
 
