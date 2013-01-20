@@ -3,6 +3,9 @@
  * @file
  * Module code for schedule email
  */
+DEFINE('QUIZ_CERTIFICATE_PROFILE', 'survey_profile');
+DEFINE('QUIZ_CERTIFICATE_PROFILE_FNAME', 'field_fname');
+DEFINE('QUIZ_CERTIFICATE_PROFILE_LNAME', 'field_lname');
 
 /**
  * Implementation of hook_menu().
@@ -182,6 +185,23 @@ function quiz_certificate_theme($existing, $type, $theme, $path) {
 function quiz_certificate_preprocess_quiz_certificate(&$vars) {
   $vars['title'] = $vars['quiz']->title;
   $vars['name'] = $vars['account']->name;
+
+  if ($profile = content_profile_load(QUIZ_CERTIFICATE_PROFILE, $vars['account']->uid)) {
+    // Profile exists. Replace the username with the profile name
+    
+    $fname = $profile->{QUIZ_CERTIFICATE_PROFILE_FNAME};
+    if($fname) {
+      $fname = $fname[0]['value'];
+      $name = $fname;
+    }
+    $lname = $profile->{QUIZ_CERTIFICATE_PROFILE_LNAME};
+    if($lname) {
+      $lname = $lname[0]['value'];
+      $name = $name . ($name ? ' ' : '') . $lname;
+    }
+    $vars['name'] = $name;
+  }
+
   $vars['download_url'] = filter_xss($_GET['q']) . '/pdf';
   $vars['download_link'] = l(t('download certificate'), $vars['download_url']);
 }
