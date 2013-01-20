@@ -148,7 +148,7 @@ function schedule_email_install() {
   drupal_install_schema('schedule_email');
   drupal_set_message(t('The Schedule Email tables have been created.'));
   
-  // drupal_write_record doesn't work in hook_install()
+  // Drupal_write_record doesn't work in hook_install().
   db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('register', 'Send email X days after registration')");
   db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('invite', 'If user has not registered, send reminder X days after invite')");
 }
