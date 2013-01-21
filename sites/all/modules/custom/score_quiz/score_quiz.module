@@ -34,6 +34,13 @@ function score_quiz_quiz_finished($quiz, $score) {
       $retailer->field_is_certified[0]['value'] = 1;
       node_save($retailer);
     }
+    $results = db_query('select * from users u 
+                        inner join content_type_retail_member rm on rm.uid = u.uid
+                        inner join users_roles ur on ur.uid = u.uid
+                        where rm.field_retailer_nid = %d', $retailer->nid);
+    while($result = db_fetch_object($results)) {
+      dpm($result);
+    }
     //dpm($retailer);
   }
   /*
