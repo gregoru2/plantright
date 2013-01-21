@@ -295,3 +295,31 @@ function schedule_email_page_email_send() {
 function schedule_email_log_email($seid, $uid, $iid) {
    db_query("INSERT INTO {schedule_email_sent} (seid, timestamp, uid, iid) VALUES(%d, %d, %d, %d)", $seid, time(), $uid, $iid);
 }
+
+/**
+ * Implementation of hook_db_rewrite_sql().
+ */
+function schedule_email_db_rewrite_sql($query, $primary_table, $primary_field, $args) {
+  // Exclude the quiz nodes from queries for users who don't have permission.
+  $node_table = $primary_table;
+  switch ($primary_field) {
+    case 'nid':
+      // Node query.
+      $access = (user_access('administer nodes') || user_access('view any schedule email'));
+      if (!$access && $query) {
+
+        $return = array();
+        if(user_access('view own schedule email')) {
+          global $user;
+          $return['where'] = "($node_table.type != 'schedule_email' OR $node_table.uid = ". (int)$user->uid .")";
+        }
+        else {
+          $return['where'] = "($node_table.type != 'schedule_email')";
+        }
+
+        return $return;
+      }
+      break;
+
+  }
+}
