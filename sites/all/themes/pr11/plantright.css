@@ -2711,3 +2711,7 @@ div.plantCare img {
   padding-left: 10px;
   background: url(/images/5x5_sq_bullet.png) left 7px no-repeat;
 }
+
+#content div.alternatives ul.altRegions strong {
+  display: block;
+}
