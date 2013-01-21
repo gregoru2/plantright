@@ -2694,3 +2694,20 @@ div#autocomplete {
 
 #edit-field-is-certified-value-wrapper {
   display: none; }
+
+div.plantCare img {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+#content div.alternatives ul.altRegions {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+#content div.alternatives ul.altRegions li {
+  display: inline-block;
+  margin: 0px 10px 0px 0px;
+  padding-left: 10px;
+  background: url(/images/5x5_sq_bullet.png) left 7px no-repeat;
+}
