@@ -2590,43 +2590,62 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
   padding-left: 180px; }
 
 .block-retailer_progress {
-  width: 50%;
+  width: 380px;
   margin-top: 35px;
   float: right;
   margin-left: 1em; }
   .block-retailer_progress #progress-block {
     border: 1px solid #debea1;
     border-radius: 3px;
-    padding: 1em;
+    padding: .5em;
     background: white; }
-    .block-retailer_progress #progress-block h2 {
-      margin-top: 0;
+    .block-retailer_progress #progress-block h2#the-checklist {
       text-align: center;
-      font-size: 16px;
+/*      text-transform: uppercase;	*/
+      font-size: 23px;
+      margin: 0;
+	  padding: 0 2px 2px 2px;
+      background-color: #4d3c14;
+	  color: #fff;
+	  width: 100%;
+	  }
+    .block-retailer_progress #progress-block h3 {
+      margin: .1em .5em 1em .5em;
+      text-align: center;
+      font-size: 14px;
       font-weight: bold;
-      margin-bottom: 1em; }
-    .block-retailer_progress #progress-block h3#the-checklist {
-      text-align: center;
-      text-transform: uppercase;
-      font-size: 26px;
-      margin-top: 0;
-      color: #4d3c14; }
+	  color: #4d3c14;}
+	  
+    .block-retailer_progress #progress-block .item {
+		clear: both;
+		margin-top: 1em .5em .5em .5em;
+	  	padding: 5px;
+	}
     .block-retailer_progress #progress-block .item p.desc {
-      background: url(/images/incomplete.png) left 0px no-repeat;
-      font-size: 16px;
+      background: url(/images/incomplete.png) left -5px no-repeat;
+      font-size: 14px;
+	  line-height: 19px;
       padding-left: 24px;
-      line-height: 2;
+	  padding-bottom: 2px;
       margin: 0.25em 0 0; }
+	  
+    .block-retailer_progress #progress-block .item p.desc a {
+		font-weight: normal;	
+		color: #ae5123;
+		text-decoration: underline;
+	}
     .block-retailer_progress #progress-block .item.complete p.desc {
+		padding-top: 5px;
       background: url(/images/complete.png) left 0px no-repeat; }
     .block-retailer_progress #progress-block .item p.status {
-      margin: 0;
+      margin: 0 0 0 26px;
       font-style: italic;
       color: #888888;
       line-height: 1; }
     .block-retailer_progress #progress-block a.dropdown-toggle {
       display: block;
       margin-bottom: 5px;
+	  margin-left: 26px;
       padding-left: 10px;
       background: url(/images/arrow-collapsed.png) left center no-repeat; }
       .block-retailer_progress #progress-block a.dropdown-toggle.expanded {
