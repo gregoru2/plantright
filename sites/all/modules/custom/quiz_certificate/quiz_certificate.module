@@ -234,3 +234,16 @@ function quiz_certificate_create_certificate_pdf($quiz, $account) {
   return;
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * Hides the correct answer on the results page.
+ * This can be moved into a seperate module if hiding the correct answer is
+ * needed by not the certificate.
+ */
+function quiz_certificate_form_quiz_report_form_alter(&$form, &$form_state) {
+  foreach($form as &$response) {
+    if (isset($response['response']) && isset($response['response']['#value'])) {      
+      $response['response']['#value'] = preg_replace('/<img [^>]* alt="Should have chosen" [^>]* \/>/', '', $response['response']['#value']);
+    }
+  }
+}
