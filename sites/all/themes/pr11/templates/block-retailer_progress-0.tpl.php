@@ -58,7 +58,7 @@ $group_quiz_progress = (count($content['certified_buyers']) >= $content['total_b
 
     <div id="invite-staff" class="item <?php print $invites_sent ?>">
       <?php if ($content['invites']): ?>
-        <p class="desc">You've invite your staff to join.</p>
+        <p class="desc">You've invited your staff to join.</p>
       <?php else : ?>
         <p class="desc"><a href="/invite">Invite your staff to join.</a></p>
       <?php endif; ?>
