@@ -1292,7 +1292,7 @@ function invite_resend($invite) {
   global $user;
 
   // Inviter must match current user and invitation must have expired.
-  if ($invite->uid == $user->uid && $invite->expiry < time()) {
+  if ($invite->uid == $user->uid) {
     return drupal_get_form('invite_form', 'page', $invite);
   }
 

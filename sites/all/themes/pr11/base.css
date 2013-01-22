@@ -98,7 +98,7 @@ ul.links.inline li a {
 
 .prose ul li { list-style:disc; }
 
-.prose img { display:block; }
+/*.prose img { display:block; }*/
 
 /* Excluding Drupal structures */
 .prose .links,
