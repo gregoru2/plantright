@@ -12,3 +12,4 @@ sites/default/files/backup_migrate
 *.DS_Store
 *.sass-cache
 *.swp
+sites/default/files

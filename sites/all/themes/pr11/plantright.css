@@ -982,8 +982,14 @@ div.-submitted {
 
 img#plantCareKey {
   border-top: solid 1px #78a22f;
-  margin: 10px 0 0;
-  padding: 6px 0 0; }
+  border-bottom: solid 1px #78a22f;
+  margin: 10px 0 0 0;
+  padding: 6px 0;
+}
+
+#content div.alternatives div.item {
+  border-bottom: solid 1px #cdc4a6;
+}
 
 #content div.alternatives ul.altRegions {
   margin-left: 0;
@@ -995,8 +1001,7 @@ img#plantCareKey {
   float: left;
   width: 100%; }
   #content div.alternatives div.item h2 {
-    border-top: solid 1px #78a22f;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 10px;
     padding-top: 10px;
     font-weight: 700; }
