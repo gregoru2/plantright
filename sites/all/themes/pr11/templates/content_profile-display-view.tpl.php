@@ -30,7 +30,7 @@ global $user;
     <div class="profile-item">
       <div class="label">Roles:</div>
       <?php foreach ($node->user_roles as $key => $val): ?>
-        <div class="value"><?php print $val ?></div>
+        <div class="value"><?php print $val ?></div><br />
       <?php endforeach; ?>
     </div>
   <?php endif; ?>
