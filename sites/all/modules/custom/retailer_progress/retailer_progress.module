@@ -16,6 +16,7 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
 
   if ($op == 'view') {
 //    dpm($user);
+    $user->profile_info[] = node_load(array('uid' => $user->uid, 'type' => 'retail_member'));
     $profile = node_load(array('uid' => $user->uid, 'type' => 'retail_member'));
     $results = db_query(' select * from {content_type_retail_member} rm
                           inner join node n on n.nid = rm.nid

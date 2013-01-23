@@ -52,6 +52,14 @@ $group_quiz_progress = (count($content['certified_buyers']) >= $content['total_b
       <p class="desc">Create an account at PlantRight.org</p>
       <p class="status">Completed</p>
     </div>
+
+    <div id="store-registered" class="item <?php print $content['store_registered'] ?>">
+       <?php if ($user->profile_info[0]->field_retailer[0]['nid']): ?>
+        <p class="desc">You've chosen your nursery.</p>
+      <?php else : ?>
+        <p class="desc"><a href="/node/<?php print($user->profile_info[0]->nid) ?>/edit">Choose your nursery.</a></p>
+      <?php endif; ?>
+    </div> 
     
     <div id="review-material" class="item <?php print $user_quiz_progress ?>">
       <p class="desc">Review the PlantRight 101 training materials</p>

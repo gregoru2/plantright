@@ -92,7 +92,6 @@ $group_quiz_progress = (count($content['certified_buyers']) >= $content['total_b
     </div>
 
     <div id="pass-quiz" class="item <?php print $group_quiz_progress ?>">
-      <?php dpm($content) ?>
       <?php if ($content['total_buyers'] <= count($certified_buyers)): ?>
         <p class="desc">Congratulations! All plant buyers have passed our 10 question quiz.</p>
       <?php else : ?>
