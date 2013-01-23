@@ -30,9 +30,9 @@ global $user;
     <div class="profile-item">
       <div class="label">Roles:</div>
       <?php foreach ($node->user_roles as $key => $val): ?>
-        <div class="value"><?php print $val ?></div><br />
+        <div class="role_values"><div class="value"><?php print $val ?></div></div>
       <?php endforeach; ?>
-    </div>
+	</div>
   <?php endif; ?>
   <?php if ($node->type == 'retail_member'): ?>
     <h3>Retailer</h3>

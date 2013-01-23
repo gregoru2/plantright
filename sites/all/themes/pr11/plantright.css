@@ -623,9 +623,16 @@ body#page-user-password form, body#page-user form {
   font-size: 1em; }
 
 form#user-pass:before {
-  content: "Password recovery"; }
+  content: "Password recovery";
+  font-weight: bold;
+  font-size: 1.2em; }
 form#user-login:before {
-  content: "User login"; }
+  content: "User login";
+  font-weight: bold;
+  font-size: 1.2em;
+  }
+
+
 form#user-login .description {
   font-size: 0.85em;
   line-height: 0.8em;
@@ -2596,17 +2603,16 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
   .block-retailer_progress #progress-block {
     border: 1px solid #debea1;
     border-radius: 3px;
-    padding: .5em;
+    padding: 5px;
     background: white; }
     .block-retailer_progress #progress-block h2#the-checklist {
       text-align: center;
 /*      text-transform: uppercase;	*/
       font-size: 23px;
-      margin: 0;
+      margin: 0 ;
 	  padding: 0 2px 2px 2px;
       background-color: #4d3c14;
 	  color: #fff;
-	  width: 100%;
 	  }
     .block-retailer_progress #progress-block h3 {
       margin: .1em .5em 1em .5em;
@@ -2622,7 +2628,8 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
 	}
     .block-retailer_progress #progress-block .item p.desc {
       background: url(/images/incomplete.png) left -5px no-repeat;
-      font-size: 14px;
+      font-size: 15px;
+	  color: #444;
 	  line-height: 19px;
       padding-left: 24px;
 	  padding-bottom: 2px;
@@ -2641,10 +2648,34 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
       font-style: italic;
       color: #888888;
       line-height: 1; }
+	  
+	.block-retailer_progress #progress-block .item span.progress_option {
+		font-size: 12px;
+		color: #888888;
+		line-height: 1; }	  
+	.block-retailer_progress #progress-block .item span.progress_option a {
+		text-decoration: none;
+	}
+
+	.block-retailer_progress #progress-block .item span.progress_option a:after {
+		padding: 2px;
+		font-size: 1.6em;
+		position: relative;
+		bottom: -2px;
+		left: 0px;
+		content: '\203A';
+	}
+	.block-retailer_progress #progress-block .item span.checklist_fineprint {
+	font-size: .8em;
+	color: #948c75;
+	display: block;
+	font-style: italic;
+	}
+	
     .block-retailer_progress #progress-block a.dropdown-toggle {
       display: block;
       margin-bottom: 5px;
-	  margin-left: 26px;
+	  margin-left: 18px;
       padding-left: 10px;
       background: url(/images/arrow-collapsed.png) left center no-repeat; }
       .block-retailer_progress #progress-block a.dropdown-toggle.expanded {
@@ -2718,13 +2749,31 @@ div#autocomplete {
     padding: 1em; }
 
 .content-profile-display .profile-item {
-  padding: 2px 0; }
+  padding: 0;
+  margin-bottom: 0px;
+  position: relative;
+  overflow: hidden;
+  }
   .content-profile-display .profile-item .label {
-    display: inline-block;
-    width: 100px;
-    font-weight: bold; }
+	float: left;
+    width: 95px; 
+	padding-right: 5px;
+    font-weight: bold;
+	text-align: right;
+	line-height: 1.2em;
+	}
   .content-profile-display .profile-item .value {
-    display: inline-block; }
+	  display: inline-block;
+	float: right;
+	width: 270px;
+	margin-bottom: 7px;
+	line-height: 1.2em;
+	}
+.content-profile-display .profile-item .role_values {
+	float: right;
+	width: 270px;
+	}
+
 
 #edit-field-is-certified-value-wrapper {
   display: none; }

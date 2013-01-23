@@ -49,16 +49,16 @@ $group_quiz_progress = (count($content['certified_buyers']) >= $content['total_b
     
     <div id="store-registered" class="item <?php print $content['store_registered'] ?>">
        <?php if ($content['store_registered'] == 'complete'): ?>
-        <p class="desc">You've register a store account for your nursery.</p>
+        <p class="desc">You've register your nursery.</p>
       <?php else : ?>
-        <p class="desc"><a href="/node/add/business">Register a store account for your nursery.</a></p>
+        <p class="desc"><a href="/node/add/business">Register your nursery.</a></p>
       <?php endif; ?>
     </div> 
 	
 
     <div id="invite-staff" class="item <?php print $invites_sent ?>">
       <?php if ($content['invites']): ?>
-        <p class="desc">You've invited your staff to join. Want to <a href="/invite">invite more</a>?</p>
+        <p class="desc">You've invited your staff to join. <span class="progress_option"><a href="/invite">Manage invitations</a></span></p>
       <?php else : ?>
         <p class="desc"><a href="/invite">Invite your staff to join.</a></p>
       <?php endif; ?>
@@ -85,7 +85,7 @@ $group_quiz_progress = (count($content['certified_buyers']) >= $content['total_b
 
     <div id="review-material" class="item <?php print $user_quiz_progress ?>">
       <?php if (in_array(11, array_keys($user->roles))): ?>
-        <p class="desc">You've reviewed the PlantRight 101 training materials. You can always <a href="/plantright-101-training">revisit these materials</a>.</p>
+        <p class="desc">You've reviewed the PlantRight 101 training materials. <span class="progress_option"><a href="/plantright-101-training">Revisit study materials</a></span></p>
       <?php else : ?>
         <p class="desc"><a href="/plantright-101-training">Please review the PlantRight 101 training materials.</a></p>
       <?php endif; ?>
@@ -93,7 +93,7 @@ $group_quiz_progress = (count($content['certified_buyers']) >= $content['total_b
 
     <div id="pass-quiz" class="item <?php print $group_quiz_progress ?>">
       <?php if ($content['total_buyers'] <= count($certified_buyers)): ?>
-        <p class="desc">Congratulations! All plant buyers have passed our 10 question quiz.</p>
+        <p class="desc">Congratulations! All plant buyers at your nursery have passed our 10 question quiz.</p>
       <?php else : ?>
         <p class="desc">All plant buyers must pass our 10 question quiz.</p>
         <a href="#" class="dropdown-toggle">Plant buyer progress details</a>

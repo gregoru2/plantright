@@ -43,41 +43,40 @@ $group_quiz_progress = (count($content['certified_buyers']) >= $content['total_b
 <?php endif;?>
 
   <div id="progress-block" class="content">
-    <h2>Becoming a PlantRight Partner</h2>
-    <h3 id="the-checklist">The Checklist</h3>
+	<h2 id="the-checklist">Your Progress</h2>
+    <h3>Steps to Becoming a PlantRight Partner</h3>
+    
     <p>This checklist shows your completed steps and what's still required to become a certified PlantRight Partner nursery.</p>
     
     <div id="store-registered" class="item <?php print $content['store_registered'] ?>">
-      <p class="desc">Register a store account for your nursery</p>
-      <?php if ($content['store_registered'] == 'complete'): ?>
-        <p class="status">Completed</p>
+       <?php if ($content['store_registered'] == 'complete'): ?>
+        <p class="desc">You've register your nursery.</p>
       <?php else : ?>
-        <p class="status"><a href="/node/add/business">Register your nursery now</a></p>
+        <p class="desc"><a href="/node/add/business">Register your nursery.</a></p>
       <?php endif; ?>
-    </div>
+    </div> 
 
     <div id="invite-staff" class="item <?php print $invites_sent ?>">
-      <p class="desc">Invite your staff to join.</p>
       <?php if ($content['invites']): ?>
-        <p class="status">Completed but, <a href="/invite">feel free to invite more</a></p>
+        <p class="desc">You've invited your staff to join. <span class="progress_option"><a href="/invite">Manage invitations</a></span></p>
       <?php else : ?>
-        <p class="status"><a href="/invite">Invite Staff</a></p>
+        <p class="desc"><a href="/invite">Invite your staff to join.</a></p>
       <?php endif; ?>
     </div>
 
     <div id="invite-status" class="item <?php print $invite_progress ?>">
-      <p class="desc">All staff members register at PlantRight.org</p>
       <?php if ($total_invites > 0 && $total_invites == $accepted_invites): ?>
-        <p class="status">Completed</p>
+      <p class="desc">All staff members are register at PlantRight.org.</p>
       <?php else : ?>
-      <a href="#" class="dropdown-toggle">Your progress details</a>
+      <p class="desc">All staff members need to register at PlantRight.org.</p>
+      <a href="#" class="dropdown-toggle">Staff progress details</a>
       <div class="dropdown">
         <h4><?php print $accepted_invites ?> of <?php print $total_invites ?> staff members have registered</h4>
         <progress value="<?php print $invite_percentage ?>" max="100" style="width:100%" ></progress>
         <p>We're still waiting for:</p>
         <ul>
         <?php foreach($ignored_invites as $invite): ?>
-          <li><?php print $invite->email ?> - <a href="/invite/resend/<?php print $invite->reg_code ?>">resend invite</a></li>
+          <li><?php print $invite->email ?> - <a href="/invite/resend/<?php print $invite->reg_code ?>">resend invitation</a></li>
         <?php endforeach; ?>
         </ul>
       </div>
@@ -85,31 +84,30 @@ $group_quiz_progress = (count($content['certified_buyers']) >= $content['total_b
     </div>
 
     <div id="review-material" class="item <?php print $user_quiz_progress ?>">
-      <p class="desc">Review the PlantRight 101 training materials</p>
       <?php if (in_array(11, array_keys($user->roles))): ?>
-        <p class="status">Complete</p>
+        <p class="desc">You've reviewed the PlantRight 101 training materials. <span class="progress_option"><a href="/plantright-101-training">Revisit study materials</a></span></p>
       <?php else : ?>
-        <p class="status"><a href="/plantright-101-training">PlantRight 101 training page</a></p>
+        <p class="desc"><a href="/plantright-101-training">Please review the PlantRight 101 training materials.</a></p>
       <?php endif; ?>
     </div>
 
     <div id="pass-quiz" class="item <?php print $group_quiz_progress ?>">
-      <p class="desc">All plant buyers pass our 10 question quiz</p>
-      <?php if ($content['total_buyers'] >= count($certified_buyers)): ?>
-        <p class="status">Complete</p>
+      <?php if ($content['total_buyers'] <= count($certified_buyers)): ?>
+        <p class="desc">Congratulations! All plant buyers at your nursery have passed our 10 question quiz.</p>
       <?php else : ?>
-        <a href="#" class="dropdown-toggle">Your progress details</a>
+        <p class="desc">All plant buyers must pass our 10 question quiz.</p>
+        <a href="#" class="dropdown-toggle">Plant buyer progress details</a>
         <div class="dropdown">
           <h4><?php print count($content['certified_buyers']) ?> of <?php print $content['total_buyers'] ?> are certified</h4>
           <p>We're still waiting for:</p>
           <ul>
-          <?php if ($slackers): ?>
-            <?php foreach ($slackers as $slacker): ?>
-              <li><?php print $slacker->email ?></li>
-            <?php endforeach; ?>
-          <?php else: ?>
-            <li>Some folks who haven't registered yet.</li>
-          <?php endif; ?>
+            <?php if ($slackers): ?>
+              <?php foreach ($slackers as $slacker): ?>
+                <li><?php print $slacker->email ?></li>
+              <?php endforeach; ?>
+            <?php else: ?>
+              <li>Some folks who haven't registered yet.</li>
+            <?php endif; ?>
           </ul>
         </div>
       <?php endif; ?>
