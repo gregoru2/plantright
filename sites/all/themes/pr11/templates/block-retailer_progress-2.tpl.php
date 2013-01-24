@@ -62,19 +62,19 @@ $group_quiz_progress = (count($content['certified_buyers']) >= $content['total_b
 
     <div id="review-material" class="item <?php print $user_quiz_progress ?>">
       <?php if (in_array(11, array_keys($user->roles))): ?>
-        <p class="desc">You've reviewed the PlantRight 101 training materials. <span class="progress_option"><a href="/plantright-101-training">Revisit study materials</a></span></p>
+        <p class="desc">You've reviewed the training materials and passed the quiz. <span class="progress_option"><a href="/plantright-101-training">Revisit study materials</a></span></p>
       <?php else : ?>
-        <p class="desc"><a href="/plantright-101-training">Please review the PlantRight 101 training materials.</a></p>
+        <p class="desc"><a href="/plantright-101-training">Review the PlantRight 101 training materials and take the 10-question quiz.</a></p>
       <?php endif; ?>
-    </div>
+    </div> 
 
-    <div id="take-quiz" class="item <?php print $user_quiz_progress ?>">
+    <!--<div id="take-quiz" class="item <?php print $user_quiz_progress ?>">
       <?php if (in_array(11, array_keys($user->roles))): ?>
         <p class="desc">You've passed our 10 question quiz.</p>
       <?php else : ?>
         <p class="desc"><a href="/node/1421/take">Take our 10 question quiz here.</a></p>
       <?php endif; ?>
-    </div>
+    </div> -->
 
     <div id="pass-quiz" class="item <?php print $group_quiz_progress ?>">
       <?php if ($content['total_buyers'] >= count($certified_buyers)): ?>
