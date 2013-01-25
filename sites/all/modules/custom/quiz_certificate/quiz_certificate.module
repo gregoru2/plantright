@@ -53,7 +53,7 @@ function quiz_certificate_menu() {
  */
 function quiz_certificate_perm() {
   return array(
-    'view own quiz certificate', 
+    'view own quiz certificate',
     'view any quiz certificate',
     'view certificates for own quiz',
   );
@@ -73,7 +73,7 @@ function quiz_certificate_access_my_certificate($quiz) {
 
   if(!quiz_is_passed($user->uid, $quiz->nid, $quiz->vid)) {
     // No access to the page if user hasn't passed the quiz.
-    return false;  
+    return false;
   }
 
   if (user_access('view own quiz certificate') && !quiz_access_results($quiz)) {
@@ -110,7 +110,7 @@ function quiz_certificate_form_alter(&$form, &$form_state, $form_id) {
   if($form_id != 'quiz_results_manage_results_form' || !user_access('view any quiz certificate') || !user_access('view certificates for own quiz')) {
     return;
   }
-  
+
   foreach($form['table']['hover_menu'] as $key => &$item) {
     list($nid, $rid) = explode('-', $key);
     if (quiz_certificate_result_has_passed($nid, $rid)) {
@@ -123,15 +123,15 @@ function quiz_certificate_form_alter(&$form, &$form_state, $form_id) {
  * Callback for quiz certificate page.
  */
 function quiz_certificate_admin_certificate($quiz, $rid) {
-  $uid = db_result(db_query('SELECT uid FROM {quiz_node_results} WHERE result_id = %d', $rid));
-  $account = user_load($uid);
-  return quiz_certificate_create_certificate($quiz, $account);
+  $result = db_fetch_object(db_query('SELECT uid FROM {quiz_node_results} WHERE result_id = %d', $rid));
+  $account = user_load($result->uid);
+  return quiz_certificate_create_certificate($quiz, $account, $result);
 }
 
 function quiz_certificate_admin_certificate_pdf($quiz, $rid) {
-  $uid = db_result(db_query('SELECT uid FROM {quiz_node_results} WHERE result_id = %d', $rid));
-  $account = user_load($uid);
-  return quiz_certificate_create_certificate_pdf($quiz, $account);
+  $result = db_fetch_object(db_query('SELECT uid FROM {quiz_node_results} WHERE result_id = %d', $rid));
+  $account = user_load($result->uid);
+  return quiz_certificate_create_certificate_pdf($quiz, $account, $result);
 }
 
 function quiz_certificate_access_certificates($quiz, $rid = NULL) {
@@ -157,7 +157,7 @@ function quiz_certificate_access_certificates($quiz, $rid = NULL) {
     // This quiz result isn't passing, no access.
     return FALSE;
   }
-  
+
   if (user_access('view any quiz certificate')) {
     return TRUE;
   }
@@ -173,11 +173,11 @@ function quiz_certificate_theme($existing, $type, $theme, $path) {
   return array(
     'quiz_certificate' => array(
       'template' => 'quiz-certificate',
-      'arguments' => array('quiz' => NULL, 'account' => NULL),
+      'arguments' => array('quiz' => NULL, 'account' => NULL, 'result' => NULL),
     ),
     'quiz_certificate_pdf' => array(
       'template' => 'quiz-certificate-pdf',
-      'arguments' => array('certificate' => NULL),
+      'arguments' => array('certificate' => NULL, 'img' => NULL, 'directory' => NULL),
     ),
   );
 }
@@ -185,10 +185,11 @@ function quiz_certificate_theme($existing, $type, $theme, $path) {
 function quiz_certificate_preprocess_quiz_certificate(&$vars) {
   $vars['title'] = $vars['quiz']->title;
   $vars['name'] = $vars['account']->name;
+  $vars['date'] = format_date($vars['result']->time_end, 'custom', 'F j, Y');
 
   if ($profile = content_profile_load(QUIZ_CERTIFICATE_PROFILE, $vars['account']->uid)) {
     // Profile exists. Replace the username with the profile name
-    
+
     $fname = $profile->{QUIZ_CERTIFICATE_PROFILE_FNAME};
     if($fname) {
       $fname = $fname[0]['value'];
@@ -203,9 +204,18 @@ function quiz_certificate_preprocess_quiz_certificate(&$vars) {
   }
 
   $vars['download_url'] = filter_xss($_GET['q']) . '/pdf';
-  $vars['download_link'] = l(t('download certificate'), $vars['download_url']);
+  $vars['download_link'] = l(t('Download My Certificate'), $vars['download_url']);
 }
 
+function quiz_certificate_preprocess_quiz_certificate_pdf(&$vars) {
+  if (isset($_GET['html'])) {
+    $vars['directory'] = '/' . drupal_get_path('module','quiz_certificate');
+  }
+  else {
+    $vars['directory'] = dirname(__FILE__);
+  }
+  $vars['img'] = 'certificate-pdf.jpg';
+}
 
 /**
  * Helper function to determine if quiz has been passed.
@@ -218,20 +228,53 @@ function quiz_certificate_result_has_passed($nid, $rid) {
 /**
  * Helper function to create the certificate.
  */
-function quiz_certificate_create_certificate($quiz, $account) {
+function quiz_certificate_create_certificate($quiz, $account, $result = NULL) {
+  if (!$result) {
+    $result = quiz_certificate_get_users_passing_result($quiz, $account);
+  }
+
   drupal_add_css(drupal_get_path('module', 'quiz_certificate') . '/quiz_certificate.css');
-  $output = theme('quiz_certificate', $quiz, $account);
+  $output = theme('quiz_certificate', $quiz, $account, $result);
   return $output;
 }
 
-function quiz_certificate_create_certificate_pdf($quiz, $account) {
-  $certificate = theme('quiz_certificate', $quiz, $account);
+function quiz_certificate_create_certificate_pdf($quiz, $account, $result = NULL) {
+  if (!$result) {
+    $result = quiz_certificate_get_users_passing_result($quiz, $account);
+  }
+
+  $certificate = theme('quiz_certificate', $quiz, $account, $result);
+  
   $output = theme('quiz_certificate_pdf', $certificate);
   $filename = 'certificate-' . strtolower(str_replace(array('/', ' '), '-', check_plain($quiz->title . '-' . $account->name)));
+
+  $directives = array(
+    'set_paper' => array(
+      'letter', 'landscape',
+    ),
+  );
   
-  dompdf_stream_pdf($output, $filename);
-  
+  if (isset($_GET['html'])) {
+    print $output;
+  }
+  else {
+    dompdf_stream_pdf($output, $filename, $directives);
+  }
   return;
+}
+
+function quiz_certificate_get_users_passing_result($quiz, $account) {
+  // No current
+    $passing_score = '';
+    // TODO: Alter query to sort by date passed
+    $result = db_fetch_object(db_query("SELECT *
+      FROM {quiz_node_results} qnrs
+      INNER JOIN {quiz_node_properties} USING (vid, nid)
+      WHERE qnrs.vid = %d AND qnrs.nid = %d AND qnrs.uid =%d AND score >= pass_rate 
+      ORDER BY qnrs.time_end DESC LIMIT 1",
+      $quiz->vid, $quiz->nid, $account->uid
+    ));
+    return $result;
 }
 
 /**
@@ -242,7 +285,7 @@ function quiz_certificate_create_certificate_pdf($quiz, $account) {
  */
 function quiz_certificate_form_quiz_report_form_alter(&$form, &$form_state) {
   foreach($form as &$response) {
-    if (isset($response['response']) && isset($response['response']['#value'])) {      
+    if (isset($response['response']) && isset($response['response']['#value'])) {
       $response['response']['#value'] = preg_replace('/<img [^>]* alt="Should have chosen" [^>]* \/>/', '', $response['response']['#value']);
     }
   }
