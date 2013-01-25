@@ -62,9 +62,10 @@ $group_quiz_progress = (count($content['certified_buyers']) >= $content['total_b
     
     <div id="review-material" class="item <?php print $user_quiz_progress ?>">
       <?php if (in_array(11, array_keys($user->roles))): ?>
-        <p class="desc">You've reviewed the training materials and passed the quiz. <span class="progress_option"><a href="/plantright-101-training">Revisit study materials</a></span></p>
+       <p class="desc">You've reviewed the training materials and passed the quiz. <span class="progress_option"><a href="/plantright-101-training">Revisit study materials</a></span></p>
       <?php else : ?>
         <p class="desc"><a href="/plantright-101-training">Review the PlantRight 101 training materials and take the 10-question quiz.</a></p>
+		<span class="checklist_fineprint">This step is required for plant buyers, recommended for all.</span>
       <?php endif; ?>
     </div>
 
