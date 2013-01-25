@@ -2666,10 +2666,11 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
 		content: '\203A';
 	}
 	.block-retailer_progress #progress-block .item span.checklist_fineprint {
-	font-size: .8em;
+	font-size: 1em;
 	color: #948c75;
 	display: block;
 	font-style: italic;
+	margin-left: 26px;
 	}
 	
     .block-retailer_progress #progress-block a.dropdown-toggle {
