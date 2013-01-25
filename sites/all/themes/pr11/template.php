@@ -268,7 +268,11 @@ function pr11_preprocess_node(&$vars) {
     if ($vars['node']->type == 'retail_member') {
       $vars['node']->retailer = node_load($vars['node']->field_retailer[0][nid]);
     }
-    $vars['node']->user_roles = $user->roles;
+    $user_roles = $user->roles;
+    if (($key = array_search('authenticated user', $user_roles)) !== false) {
+      unset($user_roles[$key]);
+    }
+    $vars['node']->user_roles = $user_roles;
   }
   //dpm($vars);
 }
