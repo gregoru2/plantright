@@ -3,7 +3,7 @@
  * @file
  * Module code for schedule email
  */
-DEFINE('QUIZ_CERTIFICATE_PROFILE', 'survey_profile');
+DEFINE('QUIZ_CERTIFICATE_PROFILE', 'retail_member');
 DEFINE('QUIZ_CERTIFICATE_PROFILE_FNAME', 'field_fname');
 DEFINE('QUIZ_CERTIFICATE_PROFILE_LNAME', 'field_lname');
 
