@@ -123,15 +123,15 @@ function quiz_certificate_form_alter(&$form, &$form_state, $form_id) {
  * Callback for quiz certificate page.
  */
 function quiz_certificate_admin_certificate($quiz, $rid) {
-  $result = db_fetch_object(db_query('SELECT * FROM {quiz_node_results} WHERE result_id = %d', $rid));
-  $account = user_load($result->uid);
-  return quiz_certificate_create_certificate($quiz, $account, $result);
+  $uid = db_result(db_query('SELECT uid FROM {quiz_node_results} WHERE result_id = %d', $rid));
+  $account = user_load($uid);
+  return quiz_certificate_create_certificate($quiz, $account);
 }
 
 function quiz_certificate_admin_certificate_pdf($quiz, $rid) {
-  $result = db_fetch_object(db_query('SELECT * FROM {quiz_node_results} WHERE result_id = %d', $rid));
-  $account = user_load($result->uid);
-  return quiz_certificate_create_certificate_pdf($quiz, $account, $result);
+  $uid = db_result(db_query('SELECT uid FROM {quiz_node_results} WHERE result_id = %d', $rid));
+  $account = user_load($uid);
+  return quiz_certificate_create_certificate_pdf($quiz, $account);
 }
 
 function quiz_certificate_access_certificates($quiz, $rid = NULL) {
