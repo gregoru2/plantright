@@ -100,7 +100,7 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     $form['#redirect'] = 'invite';
     $form['buttons']['submit']['#value'] = 'Register Store';
     //$form['#']
-    dpm($form);
+    //dpm($form);
     $pledge = <<<PLEDGE
       <h3>RETAIL PARTNER AGREEMENT (for pilot program)</h3>
 
