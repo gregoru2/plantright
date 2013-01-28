@@ -21,6 +21,9 @@ Drupal.behaviors.tao = function (context) {
       return false;
     });
   });
+  $('body#page-node-add-business input#edit-title').change(function(){
+    $('span.nursery-name').text($(this).val()); 
+ });
 };
 
 jQuery(document).ready(function($) {
@@ -60,8 +63,4 @@ jQuery(document).ready(function($) {
     $('#tab-box').height(boxHeight);
   });
   $('#block-admin-account li:eq(1)').remove();
-  $('#page-node-add-business input#edit-title').change(function(){
-    $('span.nursery-name').text($(this).val()); 
-    console.log($(this).val());
-  });
 });
