@@ -18,6 +18,7 @@ stylesheets[print][] = "reset.css"
 stylesheets[print][] = "base.css"
 stylesheets[print][] = "print.css"
 stylesheets[screen][] = "plantright.css"
+stylesheets[screen and (max-width: 480px)][] = "pr-mobile.css"
 
 ; Omit core stylesheets.
 ; Note that several stylesheets are left included because of their non-invasive
