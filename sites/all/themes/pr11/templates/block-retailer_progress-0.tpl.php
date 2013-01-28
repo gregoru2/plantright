@@ -35,7 +35,6 @@ $invites_sent = $content['invites'] ? "complete" : "incomplete";
 $invite_progress = ($invite_percentage == 100) ? "complete" : "incomplete";
 $user_quiz_progress = in_array(11, array_keys($user->roles)) ? "complete" : "incomplete" ;
 $group_quiz_progress = (!empty($content['certified_buyers']) && count($content['certified_buyers']) >= $content['total_buyers']) ? "complete" : "incomplete";
-dpm($content);
 ?>
 <div id="block-<?php print $block->module .'-'. $block->delta; ?>" class="block block-<?php print $block->module ?>">
 <?php if ($block->subject): ?>
