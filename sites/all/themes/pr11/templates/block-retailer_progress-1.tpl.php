@@ -34,7 +34,7 @@ $invite_percentage = ($accepted_invites / $total_invites) * 100;
 $invites_sent = $content['invites'] ? "complete" : "incomplete";
 $invite_progress = ($invite_percentage == 100) ? "complete" : "incomplete";
 $user_quiz_progress = in_array(11, array_keys($user->roles)) ? "complete" : "incomplete" ;
-$group_quiz_progress = (count($content['certified_buyers']) >= $content['total_buyers']) ? "complete" : "incomplete";
+$group_quiz_progress = (!empty($content['certified_buyers']) && count($content['certified_buyers']) >= $content['total_buyers']) ? "complete" : "incomplete";
 
 ?>
 <div id="block-<?php print $block->module .'-'. $block->delta; ?>" class="block block-<?php print $block->module ?>">
@@ -93,7 +93,7 @@ $group_quiz_progress = (count($content['certified_buyers']) >= $content['total_b
     </div>
 
     <div id="pass-quiz" class="item <?php print $group_quiz_progress ?>">
-      <?php if ($content['total_buyers'] <= count($certified_buyers)): ?>
+      <?php if (!empty($certified_buyers) && $content['total_buyers'] <= count($certified_buyers)): ?>
         <p class="desc">Congratulations! All plant buyers at your nursery have passed our 10 question quiz.</p>
       <?php else : ?>
         <p class="desc">All plant buyers must pass our 10 question quiz.</p>
