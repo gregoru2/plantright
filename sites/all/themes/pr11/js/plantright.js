@@ -63,4 +63,10 @@ jQuery(document).ready(function($) {
     $('#tab-box').height(boxHeight);
   });
   $('#block-admin-account li:eq(1)').remove();
+  $('ul.primary-tabs li a').each(function(){
+    //console.log($(this).text());
+    if($(this).text() === 'Invitations') {
+      $(this).parent().remove();
+    }
+  });
 });
