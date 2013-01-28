@@ -66,9 +66,9 @@ $group_quiz_progress = (count($content['certified_buyers']) >= $content['total_b
 
     <div id="invite-status" class="item <?php print $invite_progress ?>">
       <?php if ($total_invites > 0 && $total_invites == $accepted_invites): ?>
-      <p class="desc">All staff members are register at PlantRight.org.</p>
+      <p class="desc">All plant buyers are register at PlantRight.org.</p>
       <?php else : ?>
-      <p class="desc">All staff members need to register at PlantRight.org.</p>
+      <p class="desc">All plant buyers need to register at PlantRight.org.</p>
       <a href="#" class="dropdown-toggle">Staff progress details</a>
       <div class="dropdown">
         <h4><?php print $accepted_invites ?> of <?php print $total_invites ?> staff members have registered</h4>
@@ -87,7 +87,8 @@ $group_quiz_progress = (count($content['certified_buyers']) >= $content['total_b
       <?php if (in_array(11, array_keys($user->roles))): ?>
         <p class="desc">You've reviewed the training materials and passed the quiz. <span class="progress_option"><a href="/plantright-101-training">Revisit study materials</a></span></p>
       <?php else : ?>
-        <p class="desc"><a href="/plantright-101-training">Review the PlantRight 101 training materials and take the 10-question quiz.</a></p>
+         <p class="desc"><a href="/plantright-101-training">Review the PlantRight 101 training materials and take the 10-question quiz.</a></p>
+		<span class="checklist_fineprint">This step is required for plant buyers, recommended for all.</span>
       <?php endif; ?>
     </div>
 

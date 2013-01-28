@@ -8,32 +8,11 @@
 
 <html>
   <head>
-    <style type="text/css">
-      #quiz-certificate {
-        background:#eee;
-        height:945px;
-        width:725px;
-        text-align: center;
-      }
-      .certificate-text {
-        margin-top:250px;
-      }
-      .certificate-name {
-        font-size:2em;
-        font-weight:bold;
-        margin:1em auto;
-      }
-      .certificate-quiz {
-        font-size:2em;
-        font-weight:bold;
-        margin:1em auto;
-      }
-      #quiz-certificate-download {
-        display:none;
-      }
-    </style>
+    <link type="text/css" rel="stylesheet" media="all" href="<?php print $directory; ?>/quiz-certificate-pdf.css" />
   </head>
   <body>
+<div id="quiz-certificate-image"><img src="<?php print $directory . '/' . $img; ?>" width="1054px" height="812px" /></div>
+<?php //image has to be inline not background to control DPI ?>
 <?php print $certificate; ?>
   </body>
 </html>

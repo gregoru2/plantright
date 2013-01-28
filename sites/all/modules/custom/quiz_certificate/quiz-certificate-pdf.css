@@ -1,0 +1,59 @@
+@page { 
+  margin: 0px;
+}
+body {
+  font-family: Helvetica, Verdana, sans-serif;
+}
+#quiz-certificate-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+#quiz-certificate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 1054px;
+  height: 812px;
+  page-break-before: avoid;
+  page-break-after: avoid;
+  page-break-inside: avoid;
+  overflow: hidden;
+}
+#quiz-certificate .certificate-name {
+  position:absolute;
+  top: 342px;
+  left: 288px;
+  width: 718px;
+  /*
+  left: 370px;
+  width: 635px;
+  */
+  text-align: center;
+  /*
+  color:#79a13f;
+  */
+  color:#78a13f;
+  font-size:55pt;
+  text-transform: uppercase;
+}
+#quiz-certificate .certificate-date {
+  position: absolute;
+  top: 626px;
+  left: 48px;
+  width: 270px;
+  text-align: center;
+  color:#0f0f0f;
+  font-size: 18pt;
+}
+#quiz-certificate-download {
+  display: none;
+  height: 0;
+}
+#quiz-certificate .certificate-text, #quiz-certificate .certificate-text-2,
+#quiz-certificate .certificate-quiz {
+  display: none;
+  height: 0;
+}

@@ -1,16 +1,34 @@
 #quiz-certificate {
+  font-family: Helvetica, Verdana, sans-serif;
   text-align: center;
-  margin:2em auto;
+  margin: 2em auto;
+  width: 780px;
+  height: 603px;
+  background: url(certificate-web.png) no-repeat top left;
+  position: relative;
 }
-.certificate-text {
+#quiz-certificate .certificate-text, #quiz-certificate .certificate-text-2,
+#quiz-certificate .certificate-quiz {
+  display: none;
 }
-.certificate-name {
-  font-size:2em;
-  font-weight:bold;
-  margin:1em auto;
+#quiz-certificate .certificate-name {
+  position:absolute;
+  top: 232px;
+  left: 214px;
+  font-size: 4em;
+  font-weight: bold;
+  margin: 1em auto;
+  width: 532px;
+  text-align:center;
+  color:#79a13f;
+  text-transform: uppercase;
 }
-.certificate-quiz {
-  font-size:2em;
-  font-weight:bold;
-  margin:1em auto;
+#quiz-certificate .certificate-date {
+  position: absolute;
+  top: 467px;
+  left: 37px;
+  width: 200px;
+  text-align:center;
+  color:#0f0f0f;
+  font-size: 1.3em;
 }

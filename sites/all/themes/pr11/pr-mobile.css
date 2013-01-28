@@ -1,0 +1,102 @@
+/* =================== Mobile CSS for Partner Resources ====================== */
+
+div#footer div#block-block-1, div#footer div#copyright, div#footer div#block-block-2, div#footer div#footernav {
+	display: block;
+	width: auto;
+	text-align: center;
+  padding: 0px;
+  float: none;}
+div#footer div#block-block-1 {
+	padding-top: 5px;
+}
+
+
+body#page-partner-resources #prContainer	{
+	width: 98%;
+}
+body#page-partner-resources #prContainer #main	{
+	width: 98%;
+	border-top: solid 7px #4b3c17;
+	margin-top: 0px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+body#page-partner-resources #prContainer #page	{
+	position: relative;
+}
+body#page-partner-resources #prContainer #left, body#page-partner-resources #prContainer #page #leftnav	{
+	margin-top: 112.5em;
+	width: 90%;
+}
+
+
+body#page-partner-resources #content ul#partner_downloads	{
+	width: auto;
+	text-align: center;
+}
+body#page-partner-resources	#content ul#partner_downloads li	{
+	display: block;
+	width: auto;
+	margin: .5em 0px;
+}
+body#page-partner-resources	#content ul#partner_downloads li a	{
+	width: 90%;
+}
+
+
+body#page-partner-resources	#header p#tagline {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #4e3c14;
+	text-align: right;
+	max-width: 200px;
+	}
+
+
+body#page-partner-resources	div#resources_list {
+	position: relative;
+  float: none;
+  width: 100%;
+  margin-top: 1em; 
+  padding-bottom: 9em;}
+  div#resources_list > div {
+    width: 100%;
+    float: none;
+    margin: 1em 0;
+    padding: 0px; }
+  div#resources_list div#training_and_education, 
+  div#resources_list div#outreach_and_marketing {
+    padding: 0px; }
+  div#resources_list div#resources_feedback {
+    background-color: #e5dec7;
+    text-align: center;
+    font-weight: 700;
+    line-height: 2.5ex;
+    color: #4d3c14;
+    border-top: solid 2px #a15334;
+    padding: 9px 4px;
+	position: absolute;
+	bottom: 10px;
+	left: 0px;
+	}
+	
+	div#resources_list > div > h3 {
+  margin-top: 1.3em;
+  font-weight: bold;
+  }
+  
+body#page-partner-resources	.prose div#resources_list h5 {
+      font-weight: 700;
+      margin: .2em 0 0 0; }
+	  
+  div#resources_list > div > h4 {
+    background-color: #e5dec7;
+    font-weight: 700;
+    padding: 2px 5px; }
+  div#resources_list > div > ul {
+    padding-left: 0;
+    margin-top: 12px; }
+    div#resources_list > div > ul li {
+      margin-bottom: 8px; }
