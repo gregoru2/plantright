@@ -138,7 +138,6 @@ PLEDGE;
     $form['field_pledge']['#prefix'] = $pledge;
   }
   if ($form_id == 'invite_form') {
-    drupal_set_message('<p>This is a good place to put some intro copy for managers to let them know what they\'re supposed to here.  Can we come up with that?');
     $form['#redirect'] = 'user';
   }
   if ($form_id == 'retail_member_node_form') {
