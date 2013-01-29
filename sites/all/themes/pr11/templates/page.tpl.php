@@ -4,6 +4,7 @@
     <?php print $head ?>
     <?php print $styles ?>
     <title><?php print $head_title ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700,800' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
 <?php if ($is_front):?><link rel="stylesheet" href="/sites/default/files/agile_carousel/agile_carousel.css"><?php endif; ?>

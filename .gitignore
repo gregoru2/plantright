@@ -13,3 +13,4 @@ sites/default/files/backup_migrate
 *.sass-cache
 *.swp
 sites/default/files
+pdfs
