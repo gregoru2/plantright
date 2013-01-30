@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Module code for schedule email
+ * Module code for quiz certificate
  */
 DEFINE('QUIZ_CERTIFICATE_PROFILE', 'retail_member');
 DEFINE('QUIZ_CERTIFICATE_PROFILE_FNAME', 'field_fname');
