@@ -1,0 +1,29 @@
+#pledge-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+#pledge-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+#pdf-pledge {
+  position:relative;
+}
+#pdf-pledge .download-name {
+  position: absolute;
+  top: 410px;
+  left: 190px;
+  width: 350px;
+  text-align: center;
+}
+#pdf-pledge .download-date {
+  position: absolute;
+  top: 938px;
+  left: 92px;
+  width: 352px;
+  text-align: center;
+}
