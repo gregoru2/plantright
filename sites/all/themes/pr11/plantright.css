@@ -23,7 +23,7 @@ sup {
 h1, h2, h3, h4, h5 {
   clear: left; }
 
-#content .big.brown, #content h2.pageTitle {
+#content .big.brown, #content h2.pageTitle, .prose h2.pageTitle  {
   font-family: "Open Sans", Helvetica, Arial sans-serif;
   font-weight: 600;
   font-size: 2.1em;
@@ -217,16 +217,17 @@ body[id*="invites"] ul.secondary-tabs li {
 div#console {
   color: #c3321a;
   background-color: white;
-  border: dashed 1px #888888;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  border: solid #a15334;
+  border-top-width: 2px;
+  border-bottom-width: 3px;
+  border-right: none;
+  border-left: none;
   z-index: 1000;
   margin-bottom: 5px;
   margin-top: 5px; }
   div#console .messages {
     font-size: 15px;
-    line-height: 1.5; }
+    line-height: 1.5;}
     div#console .messages.status {
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
@@ -235,13 +236,10 @@ div#console {
       padding: 8px 6px; }
     div#console .messages.error {
       font-size: 1.2em;
-      background-color: pink;
+      background-color: #fdf86a;
       color: black;
       border: solid 0 black;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      border-radius: 5px;
-      padding: 4px; }
+      padding: 6px; }
 	  
 	  
 	  
@@ -345,6 +343,9 @@ div.contentBox {
   color: #444444;
   margin-bottom: 20px;
   }
+#page-homepage #content	{
+	margin-bottom: 0px;
+}
   #content div.contentBox p {
     color: #1f1f1f;
     line-height: 2.8ex;
