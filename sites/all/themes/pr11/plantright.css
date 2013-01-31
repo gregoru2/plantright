@@ -2808,7 +2808,7 @@ div.plantCare img {
 
 /* Hide the annoying password warning box */
 
-div.password-description.error	{
+div.password-description.error, div.password-description.warning	{
 	display: none !important;
 }
 span.password-strength	{
