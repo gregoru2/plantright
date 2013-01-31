@@ -7,7 +7,7 @@
  * Theme implementation to display a content-profile.
  */
 global $user;
-dpm($user);
+//dpm($user);
 ?>
 <div class="content-profile-display" id="content-profile-display-<?php print $type; ?>">
   <?php if (isset($tabs)) : ?>

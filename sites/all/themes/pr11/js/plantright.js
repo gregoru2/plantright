@@ -69,4 +69,6 @@ jQuery(document).ready(function($) {
       $(this).parent().remove();
     }
   });
+  $('#page-user-0 #content').remove();
+  $('#page-user-0 .messages li:last').remove();
 });
