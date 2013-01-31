@@ -45,7 +45,7 @@ jQuery(document).ready(function($) {
   });
   $('#progress-block .dropdown').hide();
   $('#progress-block a.dropdown-toggle').click(function(e) {
-    console.log(this);
+    //console.log(this);
     $(this).toggleClass('expanded');
     $(this).next('.dropdown').toggle();
     e.preventDefault();
