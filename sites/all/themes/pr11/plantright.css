@@ -157,6 +157,7 @@ ul.primary-tabs {
     display: inline;
     margin-left: 1px;
 	padding: 4px 9px 3px 7px;
+	background: white;
   	background: rgba(255,255,255,1);
 	border-bottom: 2px #fff solid;
 	-webkit-border-top-left-radius: 5px;
@@ -1256,7 +1257,10 @@ div.signup_for_training {
       background: linear-gradient(to bottom, #5d801f 1%, #306008 100%);
       /* W3C */
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5d801f', endColorstr='#306008',GradientType=0 );
-      /* IE6-9 */ }
+      /* IE6-9 */
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px; }
 
 form.form-horizontal input[type=submit] {
   margin-left: 180px;
