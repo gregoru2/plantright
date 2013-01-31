@@ -1,5 +1,8 @@
 /* =================== Mobile CSS for Partner Resources ====================== */
 
+/* ==================================================================
+   ======= Commenting out entire style sheet for pilot program launch 
+   ==================================================================
 div#footer div#block-block-1, div#footer div#copyright, div#footer div#block-block-2, div#footer div#footernav {
 	display: block;
 	width: auto;
@@ -100,3 +103,7 @@ body#page-partner-resources	.prose div#resources_list h5 {
     margin-top: 12px; }
     div#resources_list > div > ul li {
       margin-bottom: 8px; }
+	  
+   ==================================================================
+   ======= Commenting out entire style sheet for pilot program launch 
+   ================================================================== */
