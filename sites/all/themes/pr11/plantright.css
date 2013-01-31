@@ -171,6 +171,10 @@ ul.primary-tabs {
       color: #ac512a;
       float: none;
 	  }
+	  
+body#page-node-1421-take ul.primary-tabs li:first-child, body#page-node-1421-take ul.primary-tabs li:nth-child(2)	{
+	display: none;
+}
 
 
 ul.secondary-tabs {
@@ -2801,3 +2805,18 @@ div.plantCare img {
   display: block;
 }
 
+
+/* Hide the annoying password warning box */
+
+div.password-description.error	{
+	display: none !important;
+}
+span.password-strength	{
+	display: none !important;
+}
+
+/* make mismatch bolder */
+span.password-confirm span.error	{
+	font-weight: bold;
+	text-transform: uppercase;
+}
