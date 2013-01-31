@@ -24,7 +24,7 @@ img {
   top: 206px;
 }
 #agreement-text-2 {
-  top: 386px;
+  top: 385px;
 }
 #agreement-text-1, #agreement-text-2 {
   left: 282px;
@@ -44,22 +44,22 @@ img {
 }
 #agreement-text-3 .address {
   left: 83px;
-  top: 41px;
+  top: 43px;
   width: 640px;
 }
 #agreement-text-3 .city {
   left: 57px;
-  top: 84px;
+  top: 86px;
   width: 432px;
 }
 #agreement-text-3 .zip {
   left: 556px;
-  top: 84px;
+  top: 86px;
   width: 164px;
 }
 #agreement-text-3 .phone {
   left: 71px;
-  top: 127px;
+  top: 129px;
   width: 415px;
 }
 #agreement-text-3 .email {

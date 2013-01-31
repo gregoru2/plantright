@@ -103,11 +103,15 @@ function pdf_downloads_preprocess_pdf_download_agreement(&$vars) {
 
   if ($business && $business->title) {
     $vars['name'] = $business->title;
-    $vars['address'] = 'TEST';
-    $vars['city'] = 'test';
-    $vars['zip'] = 'test';
-    $vars['phone'] = 'testing';
-    $vars['email'] = 'test';
+    if (isset($business->locations) && isset($business->locations[0])) {
+      $location = $business->locations[0];
+
+      $vars['address'] = $location['street'] . ( $location['additional'] ?  ', ' . $location['additional'] : '');
+      $vars['city'] = $location['city'];
+      $vars['zip'] = $location['postal_code'];
+      $vars['phone'] = $location['phone'];
+      $vars['email'] = $location['email'];
+    }
   }
   else {
     $vars['name'] = $vars['data']['account']->name;
