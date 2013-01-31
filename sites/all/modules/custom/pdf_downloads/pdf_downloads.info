@@ -1,0 +1,4 @@
+name = "PDF Downloads"
+description = "PDF Files for download."
+core = 6.x
+dependencies[] = dompdf

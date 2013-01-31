@@ -1,0 +1,207 @@
+<?php
+/**
+ * @file
+ * Module code
+ */
+
+define('PDF_DOWNLOADS_USER_PROFILE', 'retail_member');
+define('PDF_DOWNLOADS_BUSINESS_FIELD', 'field_retailer');
+define('PDF_DOWNLOADS_BUSINESS_NODE_TYPE', 'business');
+
+/**
+ * Implementation of hook_menu().
+ */
+function pdf_downloads_menu() {
+  $items['download/pledge'] = array(
+    'title' => 'PlantRight Pledge',
+    'page callback' => 'pdf_downloads_pledge_pdf',
+    'access arguments' => array('access pledge download'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['download/agreement'] = array(
+    'title' => 'PlantRight Retail Partner Agreement',
+    'page callback' => 'pdf_downloads_agreement_pdf',
+    'access arguments' => array('access partner agreement download'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function pdf_downloads_perm() {
+  return array(
+    'access pledge download',
+    'access partner agreement download'
+  );
+}
+
+/**
+ * Callback for pledge pdf.
+ */
+function pdf_downloads_pledge_pdf() {
+  global $user;
+  $account = user_load($user->uid);
+  $vars = array(
+    'account' => $account,
+    'img_file' => 'pledge-pdf.jpg',
+    'css_file' => 'pledge-pdf.css',
+    'filename' => 'plantright-pledge',
+    'orientation' => 'portrait',
+    'path' => 'pledge',
+    'pages' => 1,
+  );
+  $vars['download'] = theme('pdf_download_pledge', $vars);
+
+  return pdf_downloads_create_pdf($vars);
+}
+
+/**
+ * Callback for partner agreement pdf.
+ */
+function pdf_downloads_agreement_pdf() {
+  global $user;
+  $account = user_load($user->uid);
+  $vars = array(
+    'account' => $account,
+    'css_file' => 'agreement-pdf.css',
+    'filename' => 'plantright-agreement',
+    'orientation' => 'portrait',
+    'path' => 'agreement',
+    'pages' => 2,
+  );
+  $vars['download'] = theme('pdf_download_agreement', $vars);
+
+  return pdf_downloads_create_pdf($vars);
+}
+
+/**
+ * Implemenation of hook_theme().
+ */
+function pdf_downloads_theme($existing, $type, $theme, $path) {
+  return array(
+    'pdf_download_agreement' => array(
+      'template' => 'agreement',
+      'arguments' => array('data' => NULL),
+    ),
+    'pdf_download_pledge' => array(
+      'template' => 'pledge',
+      'arguments' => array('data' => NULL),
+    ),
+    'pdf_download_pdf' => array(
+      'template' => 'download-pdf',
+      'arguments' => array('data' => NULL),
+    ),
+  );
+}
+
+function pdf_downloads_preprocess_pdf_download_agreement(&$vars) {
+  pdf_downloads_process_vars($vars);
+
+  $business = pdf_downloads_get_user_business($vars['data']['account']->uid);
+
+  if ($business && $business->title) {
+    $vars['name'] = $business->title;
+    if (isset($business->locations) && isset($business->locations[0])) {
+      $location = $business->locations[0];
+
+      $vars['address'] = $location['street'] . ( $location['additional'] ?  ', ' . $location['additional'] : '');
+      $vars['city'] = $location['city'];
+      $vars['zip'] = $location['postal_code'];
+      $vars['phone'] = $location['phone'];
+      $vars['email'] = $location['email'];
+    }
+  }
+  else {
+    $vars['name'] = $vars['data']['account']->name;
+  }
+
+  $vars['date'] = format_date(time(), 'custom', 'F j, Y');
+}
+
+function pdf_downloads_preprocess_pdf_download_pledge(&$vars) {
+  pdf_downloads_process_vars($vars);
+  $vars['name'] = pdf_downloads_get_user_business_name($vars['data']['account']->uid);
+  if (!$vars['name']) {
+    $vars['name'] = $vars['data']['account']->name;
+  }
+  
+
+  $vars['date'] = format_date(time(), 'custom', 'F j, Y');
+}
+
+function pdf_downloads_get_user_business($uid) {
+  if ($profile = content_profile_load(PDF_DOWNLOADS_USER_PROFILE, $uid)) {
+    // Profile exists. Replace the username with the profile name
+     if ($field_business = $profile->{PDF_DOWNLOADS_BUSINESS_FIELD}) {
+       $bid = $field_business[0]['nid'];
+       $business = node_load($bid);
+       return $business;
+     }
+  }
+}
+
+function pdf_downloads_get_user_business_name($uid) {
+  $business = pdf_downloads_get_user_business($uid);
+  if ($business) {
+    return $business->title;
+  }
+}
+
+function pdf_downloads_process_vars(&$vars) {
+  if (isset($_GET['html'])) {
+    $vars['directory'] = '/' . drupal_get_path('module','pdf_downloads');
+  }
+  else {
+    $vars['directory'] = dirname(__FILE__);
+  }
+  foreach ($vars['data'] as $key => $val) {
+    $vars[$key] = $val;
+  }
+  
+  if ($vars['data']['orientation'] == 'portrait') {
+    $vars['page_height'] = '1054';
+    $vars['page_width'] = '812';
+  }
+  else {
+    $vars['page_width'] = '1054';
+    $vars['page_height'] = '812';
+  }
+
+  if (!$vars['orientation']) {
+    $vars['orientation'] = 'portrait';
+  }
+  
+  if (isset($vars['pages'])) {
+    $vars['height'] = $vars['pages'] * $vars['page_height'] . 'px';
+  }
+  
+  $vars['page_width'] .= 'px';
+  $vars['page_height'] .= 'px';
+}
+
+function pdf_downloads_preprocess_pdf_download_pdf(&$vars) {
+  pdf_downloads_process_vars($vars);
+
+  unset($vars['data']);
+}
+
+function pdf_downloads_create_pdf($vars) {
+  $output = theme('pdf_download_pdf', $vars);
+  $filename = $vars['filename'] . '-' . strtolower(str_replace(array('/', ' '), '-', check_plain($vars['account']->name)));
+
+  $directives = array(
+    'set_paper' => array(
+      'letter', $vars['orientation'] == 'portrait' ? 'portrait' : 'landscape',
+    ),
+  );
+
+  if (isset($_GET['html'])) {
+    print $output;
+  }
+  else {
+    dompdf_stream_pdf($output, $filename, $directives);
+  }
+  return;
+}

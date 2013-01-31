@@ -1,0 +1,74 @@
+body {
+  
+}
+img {
+  margin-left: 5px;
+  padding: 0;
+}
+.text {
+  position: absolute;
+  z-index: 10;
+}
+#page-1, #page-2 {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+#agreement-image-1 {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+#agreement-text-1 {
+  top: 206px;
+}
+#agreement-text-2 {
+  top: 385px;
+}
+#agreement-text-1, #agreement-text-2 {
+  left: 282px;
+  width: 233px;
+  text-align: center;
+}
+#agreement-text-3 {
+  top: 476px;
+  left: 0;
+}
+.subtext {
+  position:absolute;
+}
+#agreement-text-3 .name {
+  left: 130px;
+  width: 520px;
+}
+#agreement-text-3 .address {
+  left: 83px;
+  top: 43px;
+  width: 640px;
+}
+#agreement-text-3 .city {
+  left: 57px;
+  top: 86px;
+  width: 432px;
+}
+#agreement-text-3 .zip {
+  left: 556px;
+  top: 86px;
+  width: 164px;
+}
+#agreement-text-3 .phone {
+  left: 71px;
+  top: 129px;
+  width: 415px;
+}
+#agreement-text-3 .email {
+  left: 64px;
+  top: 170px;
+  width: 423px;
+}
+#agreement-image-2 {
+  page-break-before: avoid;
+  page-break-after: avoid;
+  page-break-inside: avoid;
+}

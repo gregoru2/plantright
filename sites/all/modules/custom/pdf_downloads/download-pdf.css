@@ -1,0 +1,18 @@
+@page {
+  margin: 0px;
+}
+body {
+  font-family: 'AvenirLTStd-Book', Helvetica, Verdana, sans-serif;
+}
+#download-download {
+  display: none;
+  height: 0;
+}
+#download {
+  overflow:hidden;
+  page-break-before: avoid;
+  page-break-after: avoid;
+  page-break-inside: avoid;
+  margin:0;
+  padding:0;
+}
