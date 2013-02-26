@@ -1,5 +1,5 @@
 <?php
-// $Id: autoassignrole-path.inc,v 1.1.2.3 2009/09/21 19:21:18 cyberswat Exp $
+// $Id: autoassignrole-path.inc,v 1.2 2009/09/25 16:08:43 cyberswat Exp $
 
 /**
  * @file

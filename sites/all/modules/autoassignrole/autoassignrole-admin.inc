@@ -1,5 +1,5 @@
 <?php
-// $Id: autoassignrole-admin.inc,v 1.1.2.18 2010/05/11 14:24:21 cyberswat Exp $
+// $Id: autoassignrole-admin.inc,v 1.4 2010/10/10 12:32:34 cyberswat Exp $
 
 /**
  * @file
@@ -107,7 +107,7 @@ function autoassignrole_admin_form() {
     $form['autoassignrole_settings_page'][$k]["path_registration_$k"] = array(
       '#type' => 'radios',
       '#title' => t('Default Registration Page'),
-      '#default_value' => (isset($defaults[$k]['registration']) ? 1 : 0),
+      '#default_value' => (isset($defaults[$k]['registration']) ? $defaults[$k]['registration'] : 0),
       '#description' => t('Should this path replace the default user/register path?'),
       '#options' => array(1 => t('Yes'), 0 => t('No')),
     );
@@ -277,7 +277,7 @@ function autoassignrole_admin_form_validate($form_id, &$form_state) {
           form_set_error("path_display_$rid", t('If a path serves as the default user registration page it can not have a Display Method of Tabs on registration page'));
         }
       }
-      
+
       // Check that a display option is set
       if ($display == '') {
         form_set_error("path_display_$rid", t('Please select a valid display method for enabled URL role assignments'));
@@ -300,7 +300,7 @@ function autoassignrole_admin_form_validate($form_id, &$form_state) {
               form_set_error("path_$rid", '\''. check_plain($path) .'\' '. t('is already in use as a path'));
             }
           }
-          
+
           // if the menu items are being displayed as tabs on user/* the path can
           // not be constructed in a way that makes the tab a child of an existing
           // tab.  register/* and password/* will fail
@@ -322,7 +322,7 @@ function autoassignrole_admin_form_validate($form_id, &$form_state) {
       }
     }
   }
-  
+
   // If the registration array has more than one item in it throw an error
   if (count($registration) > 1) {
     form_set_error(NULL, t('Only one path can can serve as the default user register page'));
@@ -359,7 +359,7 @@ function autoassignrole_admin_form_submit($form_id, &$form_state) {
   if (isset($matches[1])) {
     db_query($sql, $matches[1], 'node_user_register');
   }
-  
+
 
 
   // Role assignment based on path
