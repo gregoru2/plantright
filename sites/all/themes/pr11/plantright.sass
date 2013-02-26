@@ -31,6 +31,13 @@ h1, h2, h3, h4, h5
     color: #4d3c14
     margin: 25px 0 22px
 
+.prose h2.pageTitle
+  font-family: "Open Sans", Helvetica, Arial sans-serif
+  font-weight: 600
+  font-size: 2.1em
+  color: #4d3c14
+  margin: 25px 0 22px
+
 h2, h3, h4, h5, h6
   font-family: "Open Sans", Helvetica, Arial sans-serif
   font-weight: 600
@@ -77,7 +84,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a
   width: 780px
   float: left
   border-top: solid 77px #4b3c17
-  margin-top: -95px
+  margin-top: -101px
   padding: 0 0 20px
 
 body
@@ -130,46 +137,96 @@ body
       background: url(/images/donate_button_2012.png) no-repeat left -78px
       color: #a83000
 
-ul
-  &.primary-tabs
-    color: #c9c1b0
-    font-size: 0.95em
-    position: absolute
-    top: 120px
-    left: 180px
-    background: rgba(0, 0, 0, 0)
-    li
-      display: inline
-      margin-left: 3px
-      &:before
-        content: " | "
-      &:first-child:before
-        content: ""
-      a
-        color: #e0dacc
-        float: none
-  &.secondary-tabs
-    display: block
-    width: 100%
-    border-bottom: solid 1px #a45031
-    margin: 10px 0
-    padding: 0
-    li
-      display: inline
-      margin: 10px 10px 0 0
-      padding: 2px 6px 0
-      &.active
-        border: solid 1px #a45031
-        border-bottom: none
-        background-color: #f7f5f2
+/* old primary tab style 
+ *ul.primary-tabs {
+ *  color: #c9c1b0;
+ *  font-size: 0.95em;
+ *  position: absolute;
+ *  top: 120px;
+ *  left: 180px;
+ *  background: rgba(0, 0, 0, 0); }
+ *  ul.primary-tabs li {
+ *    display: inline;
+ *    margin-left: 3px; }
+ *    ul.primary-tabs li:before {
+ *      content: " | "; }
+ *    ul.primary-tabs li:first-child:before {
+ *      content: ""; }
+ *    ul.primary-tabs li a {
+ *      color: #e0dacc;
+ *      float: none; }
+
+ul.primary-tabs
+  color: #ac512a
+  position: absolute
+  top: 119px
+  right: 20px
+  li
+    display: inline
+    margin-left: 1px
+    padding: 4px 9px 3px 7px
+    background: white
+    background: rgba(255, 255, 255, 1)
+    border-bottom: 2px white solid
+    -webkit-border-top-left-radius: 5px
+    -webkit-border-top-right-radius: 5px
+    -moz-border-radius-topleft: 5px
+    -moz-border-radius-topright: 5px
+    border-top-left-radius: 5px
+    border-top-right-radius: 5px
+    box-shadow: -4px -4px 4px rgba(76, 61, 20, 0.25)
+    a
+      color: #ac512a
+      float: none
+
+body#page-node-1421-take ul.primary-tabs li
+  &:first-child, &:nth-child(2)
+    display: none
+
+ul.secondary-tabs
+  display: block
+  width: 100%
+  border-bottom: solid 1px #a45031
+  margin: 10px 0
+  padding: 0
+  li
+    display: inline
+    margin: 10px 10px 0 0
+    padding: 2px 6px 0
+    &.active
+      border: solid 1px #a45031
+      border-bottom: none
+      background-color: #f7f5f2
+
+body[id*="invites"] ul.secondary-tabs li
+  font-size: 1.13em
+  margin: 10px 10px 0 0
+  padding: 5px 12px
+  border: solid 1px #b7ab86
+  border-bottom: none
+  background-color: #efebdf
+  -webkit-border-top-left-radius: 5px
+  -webkit-border-top-right-radius: 5px
+  -moz-border-radius-topleft: 5px
+  -moz-border-radius-topright: 5px
+  border-top-left-radius: 5px
+  border-top-right-radius: 5px
+  &.active
+    border: solid 1px #a45031
+    border-bottom: none
+    background-color: #a45031
+    color: #fff
+    a
+      color: #fff
 
 div#console
   color: #c3321a
   background-color: white
-  border: dashed 1px #888888
-  -webkit-border-radius: 5px
-  -moz-border-radius: 5px
-  border-radius: 5px
+  border: solid #a15334
+  border-top-width: 2px
+  border-bottom-width: 3px
+  border-right: none
+  border-left: none
   z-index: 1000
   margin-bottom: 5px
   margin-top: 5px
@@ -184,13 +241,21 @@ div#console
       padding: 8px 6px
     &.error
       font-size: 1.2em
-      background-color: pink
+      background-color: #fdf86a
       color: black
       border: solid 0 black
-      -webkit-border-radius: 5px
-      -moz-border-radius: 5px
-      border-radius: 5px
-      padding: 4px
+      padding: 6px
+
+body[id*="invites"] div#console
+  border: none
+  margin: 20px 0px 10px 0px
+  color: #000
+  div.help
+    border: none
+    margin: 20px 0px 10px 0px
+    color: #000
+  p
+    margin: 10px 0px
 
 #left
   #block-menu-primary-links ul.menu a, #block-menu-menu-survey-menu ul.menu a, #block-menu-menu-pre-survey-menu ul.menu a, #block-menu-menu-survey-admin ul.menu a, #block-menu-menu-retailer-menu ul.menu a
@@ -275,6 +340,12 @@ div
   font-size: 1.1em
   line-height: 2.8ex
   color: #444444
+  margin-bottom: 20px
+
+#page-homepage #content
+  margin-bottom: 0px
+
+#content
   div.contentBox
     p
       color: #1f1f1f
@@ -568,16 +639,20 @@ form input.form-submit
 
 body
   &#page-user-password form, &#page-user form
-    font-size: 1.5em
+    font-size: 1em
 
 form
   &#user-pass:before
     content: "Password recovery"
+    font-weight: bold
+    font-size: 1.2em
   &#user-login
     &:before
       content: "User login"
+      font-weight: bold
+      font-size: 1.2em
     .description
-      font-size: 0.6em
+      font-size: 0.85em
       line-height: 0.8em
       margin-top: 0
       margin-bottom: 10px
@@ -590,10 +665,10 @@ form
     padding: 20px 15px 0
   &#user-pass input#edit-name, &#user-login input
     background: white
-    font-size: 0.75em
+    font-size: 1em
     line-height: 0.7em
   &#user-pass label, &#user-login label
-    font-size: 0.75em
+    font-size: 1em
   &#user-pass input#edit-submit, &#user-login input#edit-submit
     font-size: 14px
     line-height: 20px
@@ -649,7 +724,7 @@ html.js
   input
     &.form-autocomplete
       background-position: 100% 2px
-      background: #fff url(/images/throbber-small.gif)
+      background: white url(/images/throbber-small.gif)
       max-width: 96%
       li
         list-style: none
@@ -961,10 +1036,13 @@ div.-submitted
 
 img#plantCareKey
   border-top: solid 1px #78a22f
-  margin: 10px 0 0
-  padding: 6px 0 0
+  border-bottom: solid 1px #78a22f
+  margin: 10px 0 0 0
+  padding: 6px 0
 
 #content div.alternatives
+  div.item
+    border-bottom: solid 1px #cdc4a6
   ul.altRegions
     margin-left: 0
     padding-left: 0
@@ -975,8 +1053,7 @@ img#plantCareKey
     float: left
     width: 100%
     h2
-      border-top: solid 1px #78a22f
-      margin-top: 20px
+      margin-top: 10px
       margin-bottom: 10px
       padding-top: 10px
       font-weight: 700
@@ -1106,7 +1183,7 @@ h3.fold
     text-decoration: none
     border-bottom: dotted 1px #d8cfb4
     padding-bottom: 1px
-    font-size: .9em
+    font-size: 0.9em
     &:before
       content: "+ "
   &.open a:before
@@ -1208,20 +1285,23 @@ div.signup_for_training
       text-decoration: none
       background-color: #486a05
       /* Old browsers
-      background: -moz-linear-gradient(top, rgb(93, 128, 31) 1%, rgb(48, 96, 8) 100%)
+      background: -moz-linear-gradient(top, #5d801f 1%, #306008 100%)
       /* FF3.6+
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, rgb(93, 128, 31)), color-stop(100%, rgb(48, 96, 8)))
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5d801f), color-stop(100%, #306008))
       /* Chrome,Safari4+
-      background: -webkit-linear-gradient(top, rgb(93, 128, 31) 1%, rgb(48, 96, 8) 100%)
+      background: -webkit-linear-gradient(top, #5d801f 1%, #306008 100%)
       /* Chrome10+,Safari5.1+
-      background: -o-linear-gradient(top, rgb(93, 128, 31) 1%, rgb(48, 96, 8) 100%)
+      background: -o-linear-gradient(top, #5d801f 1%, #306008 100%)
       /* Opera 11.10+
-      background: -ms-linear-gradient(top, rgb(93, 128, 31) 1%, rgb(48, 96, 8) 100%)
+      background: -ms-linear-gradient(top, #5d801f 1%, #306008 100%)
       /* IE10+
-      background: linear-gradient(to bottom, rgb(93, 128, 31) 1%, rgb(48, 96, 8) 100%)
+      background: linear-gradient(to bottom, #5d801f 1%, #306008 100%)
       /* W3C
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5d801f', endColorstr='#306008',GradientType=0 )
       /* IE6-9
+      -webkit-border-radius: 10px
+      -moz-border-radius: 10px
+      border-radius: 10px
 
 form.form-horizontal input[type=submit]
   margin-left: 180px
@@ -1402,7 +1482,7 @@ form
       color: #f3eddf
       font-weight: 400
       font-size: 1.05em
-      text-align: left
+      text-align: center
       border-color: rgba(77, 60, 20, 0.3)
       margin: 5px auto 20px
       padding: 1px 6px 3px
@@ -1999,6 +2079,8 @@ h2.comments-header
 
 div.content-profile-display
   border: none
+  a.btn-primary
+    margin-top: 1em
   .field .field-label-inline-first
     display: inline-block
     width: 120px
@@ -2064,34 +2146,34 @@ ul#partner_downloads li
     text-decoration: none
     background-color: #486a05
     /* Old browsers
-    background: -moz-linear-gradient(top, rgb(93, 128, 31) 1%, rgb(48, 96, 8) 100%)
+    background: -moz-linear-gradient(top, #5d801f 1%, #306008 100%)
     /* FF3.6+
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, rgb(93, 128, 31)), color-stop(100%, rgb(48, 96, 8)))
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5d801f), color-stop(100%, #306008))
     /* Chrome,Safari4+
-    background: -webkit-linear-gradient(top, rgb(93, 128, 31) 1%, rgb(48, 96, 8) 100%)
+    background: -webkit-linear-gradient(top, #5d801f 1%, #306008 100%)
     /* Chrome10+,Safari5.1+
-    background: -o-linear-gradient(top, rgb(93, 128, 31) 1%, rgb(48, 96, 8) 100%)
+    background: -o-linear-gradient(top, #5d801f 1%, #306008 100%)
     /* Opera 11.10+
-    background: -ms-linear-gradient(top, rgb(93, 128, 31) 1%, rgb(48, 96, 8) 100%)
+    background: -ms-linear-gradient(top, #5d801f 1%, #306008 100%)
     /* IE10+
-    background: linear-gradient(to bottom, rgb(93, 128, 31) 1%, rgb(48, 96, 8) 100%)
+    background: linear-gradient(to bottom, #5d801f 1%, #306008 100%)
     /* W3C
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5d801f', endColorstr='#306008',GradientType=0 )
     /* IE6-9
   &#download_agreement a:hover
-    background-color: #493E13
+    background-color: #493e13
     /* Old browsers
-    background: -moz-linear-gradient(top, rgb(107, 83, 40) 1%, rgb(73, 62, 19) 100%)
+    background: -moz-linear-gradient(top, #6b5328 1%, #493e13 100%)
     /* FF3.6+
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, rgb(107, 83, 40)), color-stop(100%, rgb(73, 62, 19)))
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #6b5328), color-stop(100%, #493e13))
     /* Chrome,Safari4+
-    background: -webkit-linear-gradient(top, rgb(107, 83, 40) 1%, rgb(73, 62, 19) 100%)
+    background: -webkit-linear-gradient(top, #6b5328 1%, #493e13 100%)
     /* Chrome10+,Safari5.1+
-    background: -o-linear-gradient(top, rgb(107, 83, 40) 1%, rgb(73, 62, 19) 100%)
+    background: -o-linear-gradient(top, #6b5328 1%, #493e13 100%)
     /* Opera 11.10+
-    background: -ms-linear-gradient(top, rgb(107, 83, 40) 1%, rgb(73, 62, 19) 100%)
+    background: -ms-linear-gradient(top, #6b5328 1%, #493e13 100%)
     /* IE10+
-    background: linear-gradient(to bottom, rgb(107, 83, 40) 1%, rgb(73, 62, 19) 100%)
+    background: linear-gradient(to bottom, #6b5328 1%, #493e13 100%)
     /* W3C
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b5328', endColorstr='#493e13',GradientType=0 )
     /* IE6-9
@@ -2332,8 +2414,7 @@ div
 #content dl.contactMethods, .profile dl
   margin: 12px 0
 
-/*
- *#content ul.ftp_plant_thumbs li img, body.partner_only #header p#tagline_partner {
+/*#content ul.ftp_plant_thumbs li img, body.partner_only #header p#tagline_partner {
  *  display: block; }
 
 div#map, .plant-care strong, #ygyeyc .float-left, .controls-row [class*=span], .row-fluid .controls-row [class*=span]
@@ -2482,8 +2563,7 @@ div.poll div.bar
 .view-region-invasives-list .views-row-odd, #view-id-region_alteratives_list-page_1 .views-row-odd
   background-color: #f1f1f1
 
-/*
- *h3.fold {
+/*h3.fold {
  *  margin-top: 0; }
 
 div
@@ -2661,44 +2741,77 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
     padding-left: 180px
 
 .block-retailer_progress
-  width: 50%
+  width: 380px
   margin-top: 35px
   float: right
   margin-left: 1em
   #progress-block
     border: 1px solid #debea1
     border-radius: 3px
-    padding: 1em
+    padding: 5px
     background: white
-    h2
-      margin-top: 0
+    h2#the-checklist
       text-align: center
-      font-size: 16px
+      /*      text-transform: uppercase;
+      font-size: 23px
+      margin: 0
+      padding: 0 2px 2px 2px
+      background-color: #4d3c14
+      color: #fff
+    h3
+      margin: 0.1em 0.5em 1em 0.5em
+      text-align: center
+      font-size: 14px
       font-weight: bold
-      margin-bottom: 1em
-    h3#the-checklist
-      text-align: center
-      text-transform: uppercase
-      font-size: 26px
-      margin-top: 0
-      color: #4D3C14
+      color: #4d3c14
     .item
+      clear: both
+      margin-top: 1em 0.5em 0.5em 0.5em
+      padding: 5px
       p.desc
-        background: url(/images/incomplete.png) left 0px no-repeat
-        font-size: 16px
+        background: url(/images/incomplete.png) left -5px no-repeat
+        font-size: 15px
+        color: #444
+        line-height: 19px
         padding-left: 24px
-        line-height: 2
+        padding-bottom: 2px
         margin: 0.25em 0 0
+        a
+          font-weight: normal
+          color: #ae5123
+          text-decoration: underline
       &.complete p.desc
+        padding-top: 5px
         background: url(/images/complete.png) left 0px no-repeat
       p.status
-        margin: 0
+        margin: 0 0 0 26px
         font-style: italic
         color: #888888
         line-height: 1
+      span
+        &.progress_option
+          font-size: 12px
+          color: #888888
+          line-height: 1
+          a
+            text-decoration: none
+            &:after
+              padding: 2px
+              font-size: 1.6em
+              position: relative
+              bottom: -2px
+              left: 0px
+              content: '\203A'
+        &.checklist_fineprint
+          font-size: 1em
+          color: #948c75
+          display: block
+          font-style: italic
+          margin-left: 26px
     a.dropdown-toggle
       display: block
       margin-bottom: 5px
+      margin-left: 18px
       padding-left: 10px
       background: url(/images/arrow-collapsed.png) left center no-repeat
       &.expanded
@@ -2726,18 +2839,18 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
           font-style: italic
 
 form#user-register
-  #edit-field-fname-0-value-wrapper,
-  #edit-field-lname-0-value-wrapper,
-  #edit-field-retailer-0-nid-nid-wrapper
-    width: 330px
+  #edit-field-fname-0-value-wrapper, #edit-field-lname-0-value-wrapper, #edit-field-retailer-0-nid-nid-wrapper
+    width: 315px
     float: left
     margin-right: 3em
   fieldset.captcha
     clear: both
+  #edit-field-city-1-0-value-wrapper
+    clear: left
 
 div#autocomplete
   background: white
-  border: 1px solid #888
+  border: 1px solid #888888
   border-radius: 0 0 3px 3px
   ul, li
     list-style: none
@@ -2753,13 +2866,13 @@ div#autocomplete
     font-weight: normal
     display: inline-block
     cursor: pointer
-    border: 1px solid #888
+    border: 1px solid #888888
     position: relative
     top: 2px
     margin-bottom: 0
     margin-right: -5px
     padding: 0.3em 0.5em
-    background: #eee
+    background: #eeeeee
     z-index: 2
     &.active
       background: white
@@ -2769,18 +2882,62 @@ div#autocomplete
     position: absolute
     top: 0
     left: 0
-    border: 1px solid #888
+    border: 1px solid #888888
     padding: 1em
 
-.content-profile-display
-  .profile-item
-    padding: 2px 0
-    .label
-      display: inline-block
-      width: 100px
-      font-weight: bold
-    .value
-      display: inline-block
+.content-profile-display .profile-item
+  padding: 0
+  margin-bottom: 0px
+  position: relative
+  overflow: hidden
+  .label
+    float: left
+    width: 95px
+    padding-right: 5px
+    font-weight: bold
+    text-align: right
+    line-height: 1.2em
+  .value
+    display: inline-block
+    float: right
+    width: 270px
+    margin-bottom: 7px
+    line-height: 1.2em
+  .role_values
+    float: right
+    width: 270px
 
 #edit-field-is-certified-value-wrapper
   display: none
+
+div.plantCare img
+  display: inline-block
+  margin: 0 10px
+
+#content div.alternatives ul.altRegions
+  margin-left: 0
+  padding-left: 0
+  li
+    display: inline-block
+    margin: 0px 10px 0px 0px
+    padding-left: 10px
+    background: url(/images/5x5_sq_bullet.png) left 7px no-repeat
+  strong
+    display: block
+
+/* Hide the annoying password warning box
+
+div.password-description
+  &.error, &.warning
+    display: none !important
+
+span
+  &.password-strength
+    display: none !important
+  &.password-confirm span.error
+    font-weight: bold
+    text-transform: uppercase
+
+/* make mismatch bolder
+
+
