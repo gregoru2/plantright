@@ -1,5 +1,5 @@
 <?php
-// $Id$
+
 /**
  * @file
  * Scores the user's quiz and gives them privileges if they pass.
@@ -20,7 +20,7 @@ function score_quiz_quiz_finished($quiz, $score) {
     // Check number of designated buyers in that nursery's field_number_of_buyers
     $num_buyers = $retailer->field_number_of_buyers[0]['value'];
     // Get users that belong to that nursery, are buyers, and have passed the quiz.
-    $query = db_query('select distinct uid 
+    $query = db_query('select distinct uid
                        from {users_roles} where uid in
                        (select ur.uid from {content_type_retail_member} rm
                        INNER JOIN {node} n on rm.nid = n.nid
@@ -32,8 +32,6 @@ function score_quiz_quiz_finished($quiz, $score) {
     while($result = db_fetch_object($query)) {
       array_push($results, $result);
     }
-    //dpm($results);
-    //dpm(array($result->count, $num_buyers));
     // If the number of designated buyers and the number of users with 11 AND 7 or 8 match, then set field_is_certified to 1
     if ($retailer->field_is_certified[0]['value']) {
       db_query('insert into {users_roles} (uid, rid) values (%d, %d)', $user->uid, 13);
@@ -47,19 +45,12 @@ function score_quiz_quiz_finished($quiz, $score) {
         }
       }
     }
-    //dpm($retailer);
   }
-  /*
-	if($score[percentage_score] >= 80) {
-		db_query('INSERT INTO {users_roles} (uid, rid) VALUES (%d, %d)', $user->uid, 4);
-		drupal_set_message(t('Congratulations, you passed the quiz!'));
-		drupal_goto($path = 'spring-nursery-survey/instructions');
-		watchdog('quiz', 'User %user passed the quiz.', array('%user' => $user->name));
-	}
-	else {
-		drupal_set_message(t('You did not pass the quiz.  Please try again.'));
-		drupal_goto($path = 'spring-survey-quiz');
-		watchdog('quiz', 'User %user did not pass the quiz.', array('%user' => $user->name));
-	}
-  */
+  
+  if ($quiz->nid == 332 && $score[percentage_score] >= $quiz->pass_rate) {
+    db_query('INSERT INTO {users_roles} (uid, rid) VALUES (%d, %d)', $user->uid, 4);
+    drupal_set_message(t('Congratulations, you passed the quiz!'));
+    drupal_goto($path = 'spring-nursery-survey/instructions');
+    watchdog('quiz', 'User %user passed the quiz.', array('%user' => $user->name));
+  }
 }

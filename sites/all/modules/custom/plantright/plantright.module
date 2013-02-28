@@ -84,15 +84,7 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
 //    $form['#tree'] = TRUE;
     $form['account']['mail']['#description'] = 'A valid e-mail address. All e-mails from the system will be sent to this address.<br />
       The e-mail address is not made public and your information will not be sold, or shared with others.';
-//    if($_SESSION['invite_code']) {
-//      $invite_uid = db_fetch_object(db_query('select uid from invite where reg_code = %s', $_SESSION['invite_code']));
-//      $retailer = node_load(array('type' => 'business', 'uid' => $invite_uid));
-      // This eventually leads to auto-populating the retailer field for invited users.
-      // As soon as I can figure out where content profile is hooking in to the user
-      // reg form.  
-    //}
-    //dpm($form);
-    //dpm($_SESSION);
+    $form['name']['#type'] = 'hidden';
   }
   if ($form_id == 'user_login' || $form_id == 'user_login_block') {
     $form['#action'] = NULL;
@@ -234,6 +226,3 @@ function plantright_user_pass_reset(&$form_state, $uid, $timestamp, $hashed_pass
     }
   }
 }
-
-
-
