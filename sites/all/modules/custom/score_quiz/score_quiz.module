@@ -7,6 +7,7 @@
 
 function score_quiz_quiz_finished($quiz, $score) {
 	global $user;
+  //dpm($quiz);
   // if this quiz taker passed the quiz
   if ($quiz->nid == '1421' && $score[percentage_score] == $quiz->pass_rate) {
     // give them role 11 - certified
@@ -47,7 +48,7 @@ function score_quiz_quiz_finished($quiz, $score) {
     }
   }
   
-  if ($quiz->nid == 332 && $score[percentage_score] >= $quiz->pass_rate) {
+  if ($quiz->nid == '332' && $score[percentage_score] >= $quiz->pass_rate) {
     db_query('INSERT INTO {users_roles} (uid, rid) VALUES (%d, %d)', $user->uid, 4);
     drupal_set_message(t('Congratulations, you passed the quiz!'));
     drupal_goto($path = 'spring-nursery-survey/instructions');
