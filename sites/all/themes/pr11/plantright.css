@@ -959,6 +959,7 @@ span.password-confirm span.error { font-weight: bold; text-transform: uppercase;
 #content .grid-trio .grid-wrapper p, #content .grid-duo .grid-wrapper p { margin: 1em 2.5%; }
 #content .grid-trio .grid-wrapper h3, #content .grid-duo .grid-wrapper h3 { background: #d8cfb4; color: #ac512a; padding: 0.3em; text-align: center; font-weight: normal; margin-bottom: 0; }
 #content .grid-trio .grid-wrapper p.cta, #content .grid-duo .grid-wrapper p.cta { background: #78a22e; color: white; text-align: center; margin: 0; padding: 0.3em; }
+#content .grid-trio .grid-wrapper p.cta a, #content .grid-duo .grid-wrapper p.cta a { font-weight: normal; color: white; }
 #content .grid-trio .grid-wrapper a:hover, #content .grid-duo .grid-wrapper a:hover { text-decoration: none; }
 #content .grid-trio .learn-more, #content .grid-duo .learn-more { display: none; }
 #content .grid-trio { width: 31%; }
