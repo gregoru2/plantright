@@ -950,11 +950,16 @@ span.password-strength { display: none !important; }
 span.password-confirm span.error { font-weight: bold; text-transform: uppercase; }
 
 /* make mismatch bolder */
-#content .grid-trio { width: 31%; margin-right: 2%; float: left; }
-#content .grid-trio .trio-wrapper { border: 1px solid #d8cfb4; padding-bottom: 0; }
-#content .grid-trio .trio-wrapper p { margin: 0.3em; }
-#content .grid-trio .trio-wrapper h3 { background: #d8cfb4; color: #ac512a; padding: 0.3em; text-align: center; font-weight: normal; }
-#content .grid-trio .trio-wrapper p.cta { background: #78a22e; color: white; text-align: center; margin: 0; padding: 0.3em; }
-#content .grid-trio .trio-wrapper a:hover { text-decoration: none; }
-#content .grid-trio .trio-wrapper a:before { content: "+"; }
-#content .grid-trio .learn-more { display: none; }
+#content .grid-trio, #content .grid-duo { margin-right: 2%; float: left; }
+#content .grid-trio .grid-wrapper, #content .grid-duo .grid-wrapper { border: 1px solid #d8cfb4; padding-bottom: 0; }
+#content .grid-trio .grid-wrapper p, #content .grid-duo .grid-wrapper p { margin: 1em 2.5%; }
+#content .grid-trio .grid-wrapper h3, #content .grid-duo .grid-wrapper h3 { background: #d8cfb4; color: #ac512a; padding: 0.3em; text-align: center; font-weight: normal; margin-bottom: 0; }
+#content .grid-trio .grid-wrapper p.cta, #content .grid-duo .grid-wrapper p.cta { background: #78a22e; color: white; text-align: center; margin: 0; padding: 0.3em; }
+#content .grid-trio .grid-wrapper a:hover, #content .grid-duo .grid-wrapper a:hover { text-decoration: none; }
+#content .grid-trio .grid-wrapper a:before, #content .grid-duo .grid-wrapper a:before { content: "+"; }
+#content .grid-trio .learn-more, #content .grid-duo .learn-more { display: none; }
+#content .grid-trio { width: 31%; }
+#content .grid-duo { width: 48%; }
+#content .pane { padding-top: 90px; }
+#content .pane.partnership { background: url(/images/pr_acct_icon_nursery.png) 5% top no-repeat; }
+#content .pane.survey { background: url(/images/pr_acct_icon_survey.png) 5% top no-repeat; }
