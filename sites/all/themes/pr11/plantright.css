@@ -919,7 +919,7 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
 
 form#user-register #edit-field-fname-0-value-wrapper, form#user-register #edit-field-lname-0-value-wrapper, form#user-register #edit-field-retailer-0-nid-nid-wrapper { width: 315px; float: left; margin-right: 3em; }
 form#user-register fieldset.captcha { clear: both; }
-form#user-register #edit-field-city-1-0-value-wrapper { clear: left; }
+form#user-register #edit-field-city-1-0-value-wrapper, form#user-register #edit-field-retailer-nid-nid-wrapper { clear: left; }
 
 div#autocomplete { background: white; border: 1px solid #888888; border-radius: 0 0 3px 3px; }
 div#autocomplete ul, div#autocomplete li { list-style: none; margin-left: 0.25em; }
