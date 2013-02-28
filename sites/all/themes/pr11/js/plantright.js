@@ -34,9 +34,10 @@ jQuery(document).ready(function($) {
   });
   $('#page-node-add-survey-photos input#edit-field-survey-image-field-survey-image-add-more').val('Add another photo');
   $('.folded').hide();
-  $('h3.fold').click(function() {
+  $('.fold').click(function(e) {
     $(this).toggleClass('open');
     $(this).next('.folded').toggle();
+    e.preventDefault();
   });
   $('.testimonial-nav a').each(function(){
     if (this.href === window.location.href) {

@@ -950,6 +950,10 @@ span.password-strength { display: none !important; }
 span.password-confirm span.error { font-weight: bold; text-transform: uppercase; }
 
 /* make mismatch bolder */
+#content ul.grid-trio, #content ul.grid-duo { margin: 0; }
+#content ul.grid-trio .folded, #content ul.grid-duo .folded { padding-top: 1em; }
+#content ul.grid-trio li, #content ul.grid-duo li { margin-left: 1em; list-style: none; }
+#content ul.grid-trio li a, #content ul.grid-duo li a { font-weight: normal; }
 #content .grid-trio, #content .grid-duo { margin-right: 2%; float: left; }
 #content .grid-trio .grid-wrapper, #content .grid-duo .grid-wrapper { border: 1px solid #d8cfb4; padding-bottom: 0; }
 #content .grid-trio .grid-wrapper p, #content .grid-duo .grid-wrapper p { margin: 1em 2.5%; }
