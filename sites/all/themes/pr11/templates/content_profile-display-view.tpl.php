@@ -28,11 +28,6 @@ global $user;
       <div class="value"><?php print $profile_item['value'] ?></div>
     </div>
     <?php endforeach; ?>
-    <div class="profile-item">
-      <div class="label">Roles:</div>
-      <?php foreach ($node->user_roles as $key => $val): ?>
-        <div class="role_values"><div class="value"><?php print $val ?></div></div>
-      <?php endforeach; ?>
 	</div>
   <?php endif; ?>
   <?php if ($node->type == 'retail_member'): ?>

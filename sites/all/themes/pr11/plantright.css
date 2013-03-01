@@ -931,9 +931,9 @@ div#autocomplete ul, div#autocomplete li { list-style: none; margin-left: 0.25em
 #tabbed .tab-content { clear: both; position: absolute; top: 0; left: 0; border: 1px solid #888888; padding: 1em; }
 
 .content-profile-display .profile-item { padding: 0; margin-bottom: 0px; position: relative; overflow: hidden; }
-.content-profile-display .profile-item .label { float: left; width: 95px; padding-right: 5px; font-weight: bold; text-align: right; line-height: 1.2em; }
-.content-profile-display .profile-item .value { display: inline-block; float: right; width: 270px; margin-bottom: 7px; line-height: 1.2em; }
-.content-profile-display .profile-item .role_values { float: right; width: 270px; }
+.content-profile-display .profile-item .label { display: inline-block; width: 95px; padding-right: 5px; font-weight: bold; text-align: right; line-height: 1.2em; }
+.content-profile-display .profile-item .value { display: inline-block; margin-bottom: 7px; line-height: 1.2em; }
+.content-profile-display .profile-item .role_values { display: inline-block; }
 
 #edit-field-is-certified-value-wrapper { display: none; }
 
