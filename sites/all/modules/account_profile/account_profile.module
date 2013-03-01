@@ -39,11 +39,8 @@ function account_profile_perm() {
 function account_profile_form_alter(&$form, $form_state, $form_id) {
   //$profile = variable_get('account_profile_main_profile', key(content_profile_get_types('names'))); // get main profile name
   global $user;
-  //dpm($form);
-  if ($form_id == 'survey_profile_node_form' || $form_id == 'retail_member_node_form') {
-    if (content_profile_page_access($form['#node']->type, $user)) {
-      $profile = $form_id;
-    }
+  if ($form['#node']->uid == $user->uid && content_profile_page_access($form['#node']->type, $user)) {
+    $profile = $form_id;
   }
   switch ($form_id) {
     case 'user_profile_form':
