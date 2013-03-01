@@ -46,6 +46,6 @@ global $user;
     <?php endif; ?>
   <?php endif; ?>
   <?php global $user; if ($user->uid == $node->uid): ?>
-    <a class="btn-primary" href="/node/<?php print $node->nid ?>/edit">Edit Profile</a>
+    <a class="btn-primary" href="/node/<?php print $node->nid ?>/edit">Edit Profile/Password</a>
   <?php endif; ?>
 </div>
