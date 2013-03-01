@@ -104,6 +104,7 @@ function email_registration_form_alter(&$form, $form_state, $form_id) {
  *
  */
 function custom_email_registration_name_submit($form, &$form_state) {
+  dpm($form);
   if (!isset($form_state['user'])) {
     return;
   }

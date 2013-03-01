@@ -77,4 +77,10 @@ jQuery(document).ready(function($) {
     $('.messages').html(str);
     document.title = 'Please activate your account (check your email)';
   }
+  $('#user-login-form #edit-name-wrapper label').text('Email:');
+  $('#user-register').submit(function(form){
+    $name = $('#edit-mail').val().split('@')[0];
+    $('#edit-name').val($name);
+    form.submit();
+  });
 });
