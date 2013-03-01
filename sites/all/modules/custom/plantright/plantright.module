@@ -97,6 +97,10 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     $form['contact']['#prefix'] = '<div class="contact-info">';
     $form['contact']['#suffix'] = '</div>';
   }
+  if ($form_id == 'survey_profile_node_form' || $form_id == 'retail_member_node_form') {
+    $form['title']['#type'] = 'hidden';
+    $form['account']['name']['#type'] = 'hidden';
+  }
   if ($form_id == 'business_node_form') {
     $form['#redirect'] = 'invite';
     $form['buttons']['submit']['#value'] = 'Register Store';
