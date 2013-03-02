@@ -205,10 +205,14 @@ function plantright_user_pass_reset(&$form_state, $uid, $timestamp, $hashed_pass
           $rids = array_keys($user->roles);
           if (in_array(7, $rids) || in_array(8, $rids) || in_array(9, $rids) || in_array(10, $rids)) {
             $node = node_load(array('type' => 'retail_member', 'uid' => $user->uid));
-            drupal_set_message('Reset your password so you don\'t forget it!', 'status');
+            drupal_set_message('Please reset your password.', 'status');
+            drupal_goto('node/' . $node->nid . '/edit');
+          } elseif (in_array(14, $rids)) {
+            $node = node_load(array('type' => 'survey_profile', 'uid' => $user->uid));
+            drupal_set_message('Please reset your password.', 'status');
             drupal_goto('node/' . $node->nid . '/edit');
           } else {
-            drupal_goto('user/' . $user->uid);
+            drupal_goto('/user' . $user->uid);
           }
         }
         else {
