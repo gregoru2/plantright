@@ -37,9 +37,9 @@ function account_profile_perm() {
  * Implementation of hook_form_alter().
  */
 function account_profile_form_alter(&$form, $form_state, $form_id) {
-  //$profile = variable_get('account_profile_main_profile', key(content_profile_get_types('names'))); // get main profile name
   global $user;
-  if ($form['#node']->uid == $user->uid && content_profile_page_access($form['#node']->type, $user)) {
+  if (variable_get('content_profile_use_'. $form['#node']->type, FALSE) 
+      && content_profile_page_access($form['#node']->type, $user)) {
     $profile = $form_id;
   }
   switch ($form_id) {
