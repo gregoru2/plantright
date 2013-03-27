@@ -1,4 +1,5 @@
-  <head>
+<?php ?>
+<head>
     <?php print $head ?>
     <?php print $styles ?>
     <title><?php print $head_title ?></title>
@@ -22,25 +23,24 @@
 
 </script>
 </head>
-<body>
+<body style="background: #fff; font-size: 1.05em;">
+<div id="content" style="margin-left: 20px;">
+<img src="/images/logo_no_tagline.png" height="100px" width="auto" style="float: right; margin: 0 20px;" />
 <a name="target"></a><h2 class="pageTitle">Choose Your Role</h2>
 
-<p>Please select the option that best describes your role at the nursery where you work.</p>
+<p>Please select the option that best describes your role<br>at the nursery where you work.</p>
+<p>&nbsp;</p>
 
-<ul class="grid-trio">
-  <a href="#" class="fold btn-primary">I'm a Nursery Manager or Owner</a>
-  <div class="folded">
-    <li><a href="/manager-buyer/register" target="_blank">I <strong><u>am authorized</u></strong> to order plants for the nursery</a></li>
-    <li><a href="/retail-manager/register" target="_blank">I am <strong><u>not authorized</u></strong> to order plants for the nursery</a></li>
-  </div>
+<ul class="grid-duo">
+  <div class="btn-primary" style="margin-bottom:10px; font-size: 1.1em;">I'm a Nursery Manager or Owner</div>
+    <li><a href="/manager-buyer/register" target="_blank" onclick="parent.window.location='/manager-buyer/register'; parent.Lightbox.end();">I <strong>am authorized</strong> to order plants for the nursery</a></li>
+    <li><a href="/retail-manager/register" target="_blank" onclick="parent.window.location='/retail-manager/register'; parent.Lightbox.end();">I am <strong>not authorized</strong> to order plants for the nursery</a></li>
 </ul>
-
-<ul class="grid-trio">
-  <a href="#" class="fold btn-primary">I'm a Nursery Employee</a>
-  <div class="folded">
-    <li><a href="/employee-buyer/register" target="_blank">I <strong><u>am authorized</u></strong> to order plants for the nursery</a></li>
-    <li><a href="/retail-employee/register" target="_blank">I am <strong><u>not authorized</u></strong> to order plants for the nursery</a></li>
-  </div>
+<ul class="grid-duo">
+  <div class="btn-primary" style="margin-bottom:10px; font-size: 1.1em;">I'm a Nursery Employee</div>
+    <li><a href="/employee-buyer/register" target="_blank" onclick="parent.window.location='/employee-buyer/register'; parent.Lightbox.end();">I <strong>am authorized</strong> to order plants for the nursery</a></li>
+    <li><a href="/retail-employee/register" target="_blank" onclick="parent.window.location='/retail-employee/register'; parent.Lightbox.end();">I am <strong>not authorized</strong> to order plants for the nursery</a></li>
 </ul>
+</div>
 </body>
 
