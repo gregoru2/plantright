@@ -30,7 +30,7 @@ $total_invites = $content['total_invites'];
 $ignored_invites = $content['ignored_invites'];
 $accepted_invites = $content['accepted_invites'];
 if ($total_invites = 0) {
-  $invite_percentage = "n/a"
+  $invite_percentage = "n/a";
 }
 else {
   if ($total_invites > 0) {
