@@ -283,12 +283,11 @@ function schedule_email_page_email_send() {
   $output = '';
   $se = new ScheduleEmail();
   $log = $se->get_email_log();
-  $output = array();
   foreach($log as $item) {
-    $output[]= $item;
+    $output .= '<br/>' . $item;
   }
   if(!$output) {
-   $output[] = 'No emails to send.';
+   $output = 'No emails to send.';
   }
   return $output;  
 }

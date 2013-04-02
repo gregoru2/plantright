@@ -153,21 +153,6 @@ PLEDGE;
   //dpm($form);
 }
 
-/**
- * Implementation of hook_nodeapi('update_index').
- */
-function plantright_taxonomy_node_update_index(&$node) {
-  $output = array();
-  if( is_array($node->taxonomy) ){
-    foreach ($node->taxonomy as $term) {
-      $output[] = $term->name;
-    }
-  }
-  if (count($output)) {
-    return '<strong>('. implode(', ', $output) .')</strong>';
-  }
-}
-
 function plantright_menu_alter(&$items) {
   $items['user/reset/%/%/%'] = array(
     'title' => 'Reset password',
