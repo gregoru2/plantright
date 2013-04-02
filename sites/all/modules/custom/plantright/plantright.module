@@ -155,7 +155,7 @@ PLEDGE;
 
 /**
  * Implementation of hook_nodeapi('update_index').
- */
+ *
 function plantright_taxonomy_node_update_index(&$node) {
   $output = array();
   if( is_array($node->taxonomy) ){
