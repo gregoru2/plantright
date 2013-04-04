@@ -70,11 +70,9 @@ jQuery(document).ready(function($) {
       $(this).parent().remove();
     }
   });
-  if ($('#page-user-0').length) {
+  if ($('#page-user-thanks').length) {
     $('#content').remove();
     $('.messages ul').remove();
-    str = '<p>A validation email has been sent to your email address.  In order to gain full access to the site, you will need to follow the instructions in that message.  If it does not show up within the next 15 minutes, please check your spam folder and adjust your settings to accept mail from admin@plantright.org.</p><p>If that does not work, please feel free to <a href="mailto:grischardson@suscon.org">contact us</a> and we will do our best to assist you.</p>';
-    $('.messages').html(str);
     document.title = 'Please activate your account (check your email)';
   }
   $('#user-login-form #edit-name-wrapper label').text('Email:');
