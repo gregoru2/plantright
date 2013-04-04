@@ -71,7 +71,6 @@ jQuery(document).ready(function($) {
     }
   });
   if ($('#page-user-thanks').length) {
-    $('#content').remove();
     $('.messages ul').remove();
     document.title = 'Please activate your account (check your email)';
   }
