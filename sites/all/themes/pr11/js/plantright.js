@@ -70,7 +70,7 @@ jQuery(document).ready(function($) {
       $(this).parent().remove();
     }
   });
-  if ($('#page-user-thanks').length) {
+  if ($('#page-user-0').length) {
     $('.messages ul').remove();
     document.title = 'Please activate your account (check your email)';
   }
