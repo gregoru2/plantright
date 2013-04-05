@@ -27,7 +27,6 @@
 global $user;
 
 $content = $block->content;
-dpm($content);
 $total_invites = $content['total_invites'];
 $ignored_invites = $content['ignored_invites'];
 $accepted_invites = $content['accepted_invites'];
