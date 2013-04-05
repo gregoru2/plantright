@@ -25,7 +25,9 @@
  * @see template_preprocess_block()
  */
 global $user;
+
 $content = $block->content;
+dpm($content);
 $total_invites = $content['total_invites'];
 $ignored_invites = $content['ignored_invites'];
 $accepted_invites = $content['accepted_invites'];
@@ -63,7 +65,7 @@ $group_quiz_progress = (!empty($content['certified_buyers']) && count($content['
        <?php if ($user->profile_info[0]->field_retailer[0]['nid']): ?>
         <p class="desc">You've chosen your nursery. <span class="progress_option"><a href="/node/<?php print $node->nid ?>/edit">Edit profile</a></span></p>
       <?php else : ?>
-        <p class="desc"><a href="/node/<?php print($user->profile_info[0]->nid) ?>/edit">Choose your nursery.</a></p>
+        <p class="desc"><a href="/node/<?php print($content->profile_nid); ?>/edit">Choose your nursery.</a></p>
       <?php endif; ?>
     </div> 
 

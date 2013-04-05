@@ -29,7 +29,7 @@ global $user;
     </div>
     <?php endforeach; ?>
 	</div>
-  <?php dpm($user);endif; ?>
+  <?php endif; ?>
   <?php if ($node->type == 'retail_member'): ?>
     <h3>Retailer</h3>
     <?php if ($node->retailer): ?>

@@ -25,7 +25,9 @@
  * @see template_preprocess_block()
  */
 global $user;
+
 $content = $block->content;
+dpm($content);
 $total_invites = $content['total_invites'];
 $ignored_invites = $content['ignored_invites'];
 $accepted_invites = $content['accepted_invites'];
@@ -57,7 +59,7 @@ $group_quiz_progress = (!empty($content['certified_buyers']) && count($content['
     
     <div id="store-registered" class="item <?php print $content['store_registered'] ?>">
        <?php if ($content['store_registered'] == 'complete'): ?>
-        <p class="desc">You've register your nursery.</p>
+        <p class="desc">You've registered your nursery.</p>
       <?php else : ?>
         <p class="desc"><a href="/node/add/business">Register your nursery.</a></p>
       <?php endif; ?>
