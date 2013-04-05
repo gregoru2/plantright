@@ -44,6 +44,9 @@ global $user;
       <a class="btn-primary" href="/node/1421/certificate">Your Certificate of Achievement</a>
       <a class="btn-primary" href="/partner-resources">Partner Resources</a>
     <?php endif; ?>
+    <?php if(!in_array(11, array_keys($user->roles))): ?>
+      <span class="btn-primary-grey">Partner Resources</span>
+    <?php endif; ?>
   <?php endif; ?>
   <?php global $user; if ($user->uid == $node->uid): ?>
     <a class="btn-primary" href="/node/<?php print $node->nid ?>/edit">Edit Profile/Password</a>
