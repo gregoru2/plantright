@@ -110,14 +110,14 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     $pledge = <<<PLEDGE
       <h3>RETAIL PARTNER AGREEMENT (for pilot program)</h3>
 
-      <p>This agreement is entered between <span class="nursery-name"></span> and Sustainable Conservation, a 501c3 nonprofit that runs the PlantRight initiative. Since 2005, Sustainable Conservation has been collaborating with California’s horticultural industry to identify cost-effective, voluntary measures to stop the sale of known invasive plants and to prevent the introduction of new invasive varieties. Sustainable Conservation recognizes nursery retailers’ leadership role in increasing consumer awareness about the serious, costly problem posed by invasive plants. This joint-partnership effort aims to promote healthy local economies and ecosystems by encouraging the sale of non-invasive, climate-appropriate plants for California gardens and landscapes.</p>
+      <p>This agreement is entered between <span class="nursery-name"></span> and Sustainable Conservation, a 501c3 nonprofit that runs the PlantRight initiative. Since 2005, Sustainable Conservation has been collaborating with Californiaâ€™s horticultural industry to identify cost-effective, voluntary measures to stop the sale of known invasive plants and to prevent the introduction of new invasive varieties. Sustainable Conservation recognizes nursery retailersâ€™ leadership role in increasing consumer awareness about the serious, costly problem posed by invasive plants. This joint-partnership effort aims to promote healthy local economies and ecosystems by encouraging the sale of non-invasive, climate-appropriate plants for California gardens and landscapes.</p>
 
       <p>As an authorized representative of <span class="nursery-name"></span>, our store agrees to adopt the principles of PlantRight during this pilot program (from the present date to June 2013). As part of this agreement:</p>
 
       <p>We recognize that:</p>
 <ul>
-      <li>Invasive plants are a threat to California’s natural ecosystems and economy. They crowd out existing plants and wildlife, increase fire severity, reduce agricultural yields, decrease land value, impact water supply, and degrade recreational opportunities. Over $82 million is spent managing invasive plants in our state each year, yet they continue to spread.</li>
-      <li>California’s nursery industry has a key role to play in preventing the introduction and proliferation of invasive plants.</li>
+      <li>Invasive plants are a threat to Californiaâ€™s natural ecosystems and economy. They crowd out existing plants and wildlife, increase fire severity, reduce agricultural yields, decrease land value, impact water supply, and degrade recreational opportunities. Over $82 million is spent managing invasive plants in our state each year, yet they continue to spread.</li>
+      <li>Californiaâ€™s nursery industry has a key role to play in preventing the introduction and proliferation of invasive plants.</li>
       <li>Offering non-invasive plants to our customers is a key component to providing regionally appropriate plant recommendations.</li>
       <li>PlantRight conducts a survey of randomly selected nurseries each spring to document the availability of the invasive plants on its list. This is a voluntary, non-regulatory effort through which the identity of surveyed stores is protected and only aggregated data is publicly released.</li>
 </ul>
@@ -128,17 +128,17 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
       <li>Encourage all sales staff to complete the PlantRight 101 training course and pass the test.</li>
       <li>Make every reasonable effort to communicate our PlantRight policy to staff, customers and vendors. (Communication vehicles may include: staff training, print materials, customer service, do-not-buy lists, email, website and social media.)</li>
       <li>Appoint a PlantRight liaison as a primary point of contact.</li>
-      <li>Revisit this agreement with PlantRight on an annual basis as PlantRight’s invasive plant list is annually reviewed and may change as new information becomes available.</li>
+      <li>Revisit this agreement with PlantRight on an annual basis as PlantRightâ€™s invasive plant list is annually reviewed and may change as new information becomes available.</li>
 </ul>  
 
       <p>We will receive:</p>
 <ul>
       <li>Free PlantRight 101 training for our staff.</li>
-      <li>Online access to PlantRight’s Partner Toolkit and educational resources (e.g. the latest PlantRight invasive plants list, editorial content, research, on-going training materials and invasive plant trivia, as well as marketing materials, signage, etc.) to help communicate our PlantRight policy to customers, staff and vendors.</li>
+      <li>Online access to PlantRightâ€™s Partner Toolkit and educational resources (e.g. the latest PlantRight invasive plants list, editorial content, research, on-going training materials and invasive plant trivia, as well as marketing materials, signage, etc.) to help communicate our PlantRight policy to customers, staff and vendors.</li>
       <li>90-days advance notice, should any new plants be added to the PlantRight invasive plants list.</li>
-      <li>A list of non-invasive plants to recommend to customers and vendors as suitable alternatives to the plants on PlantRight’s invasive list.</li>
+      <li>A list of non-invasive plants to recommend to customers and vendors as suitable alternatives to the plants on PlantRightâ€™s invasive list.</li>
       <li>Recognition for our commitment to, and collaboration with, PlantRight. This recognition will take the form of publicity via quarterly PlantRight press coverage and articles (online and offline).*</li>
-      <li>Listing (our company name and contact information) in PlantRight’s online business directory.*</li>
+      <li>Listing (our company name and contact information) in PlantRightâ€™s online business directory.*</li>
 </ul>
 PLEDGE;
     $form['field_pledge']['#prefix'] = $pledge;
