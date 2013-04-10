@@ -27,6 +27,7 @@
 global $user;
 
 $content = $block->content;
+$profile_nid = $content['profile_nid'];
 $total_invites = $content['total_invites'];
 $ignored_invites = $content['ignored_invites'];
 $accepted_invites = $content['accepted_invites'];
