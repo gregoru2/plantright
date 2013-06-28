@@ -151,8 +151,64 @@ PLEDGE;
     $form['title']['#type'] = 'hidden';
   }
   //dpm($form);
-}
+  
+  /*from changes to account_profile module*/
+  if (variable_get('content_profile_use_'. $form['#node']->type, FALSE) 
+      && content_profile_page_access($form['#node']->type, $user)) {
+    $profile = $form_id;
+  }
+  switch ($form_id) {
+    case 'user_profile_form':
+        if (variable_get('account_profile_redirect', TRUE)) {
+          if (isset($_REQUEST['destination'])) {
+            $destination = $_REQUEST['destination'];
+            unset($_REQUEST['destination']);
+            drupal_goto($_GET['q'] . "/$profile", array('destination' => $destination));
+          }
+          else {
+             drupal_goto($_GET['q'] . "/$profile");
+          }
+          // header("Location: " . base_path() . $_GET['q'] . "/$profile");
+          exit;
+        }
+    break;
+    case $profile:
+      /* integration with account form */
+      if (is_numeric(arg(1))) { // activate only on edit page (not on registration page)
+          // check if we are on a user account or node edit page
+          if (arg(0) == 'user') { // on account edit page
+            $user = user_load(arg(1));  
+          } elseif (arg(0) == 'node') { // on content profile node edit page
+            $node = node_load(arg(1));
+            $user = user_load($node->uid);
+          }
 
+          module_load_include('pages.inc', 'user');
+
+          $form['account_profile_uid'] = array(
+            '#type' => 'value',
+            '#value' => $user->uid,
+          );
+
+          $account_form = user_profile_form(array(), $user);
+          unset($account_form['submit'], $account_form['delete']); // remove duplicated Save button and Delete
+          $form = array_merge($account_form, $form);
+          $form['#validate'][] = 'account_profile_form_validate';
+          $form['#validate'][] = 'user_validate_picture';
+          $form['#submit'][] = 'account_profile_form_submit';
+          $form['#submit'][] = 'account_profile_user_profile_submit';
+      }
+      /* Integration with Notifications autosubscribe module  */ 
+      if (module_exists('notifications_autosubscribe')) {
+        // Call hook_form_alter from notifications_autosubscribe
+        // Simulating we are on the user edit form so the
+        // autosubscribe check box is included on the form
+        notifications_autosubscribe_form_alter($form, $form_state, 'user_profile_form');
+      }
+    break;
+    default:
+  }
+}
 
 function plantright_menu_alter(&$items) {
   $items['user/reset/%/%/%'] = array(

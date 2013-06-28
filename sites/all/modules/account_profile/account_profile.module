@@ -37,11 +37,7 @@ function account_profile_perm() {
  * Implementation of hook_form_alter().
  */
 function account_profile_form_alter(&$form, $form_state, $form_id) {
-  global $user;
-  if (variable_get('content_profile_use_'. $form['#node']->type, FALSE) 
-      && content_profile_page_access($form['#node']->type, $user)) {
-    $profile = $form_id;
-  }
+  $profile = variable_get('account_profile_main_profile', key(content_profile_get_types('names'))); // get main profile name
   switch ($form_id) {
     case 'user_profile_form':
         if (variable_get('account_profile_redirect', TRUE)) {
@@ -57,7 +53,7 @@ function account_profile_form_alter(&$form, $form_state, $form_id) {
           exit;
         }
     break;
-    case $profile:
+    case $profile . '_node_form':
       /* integration with account form */
       if (is_numeric(arg(1))) { // activate only on edit page (not on registration page)
           // check if we are on a user account or node edit page

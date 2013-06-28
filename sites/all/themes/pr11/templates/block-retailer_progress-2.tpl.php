@@ -25,11 +25,26 @@
  * @see template_preprocess_block()
  */
 global $user;
+
 $content = $block->content;
+
+$sql = "SELECT * FROM node WHERE type = '%s' AND uid = %d";
+$query = db_query("SELECT * FROM node WHERE type = '%s' AND uid = %d", 'retail_member', $user->uid);
+while ($result= db_fetch_object($query)) {
+	$profile_nid = $result->nid;
+}
+
 $total_invites = $content['total_invites'];
 $ignored_invites = $content['ignored_invites'];
 $accepted_invites = $content['accepted_invites'];
-$invite_percentage = ($accepted_invites / $total_invites) * 100;
+if ($total_invites = 0) {
+  $invite_percentage = "n/a";
+}
+else {
+  if ($total_invites > 0) {
+    $invite_percentage = ($accepted_invites / $total_invites) * 100;
+  }
+}
 //dpm($user);
 $invites_sent = $content['invites'] ? "complete" : "incomplete";
 $invite_progress = ($invite_percentage == 100) ? "complete" : "incomplete";
@@ -54,9 +69,9 @@ $group_quiz_progress = (!empty($content['certified_buyers']) && count($content['
     
     <div id="store-registered" class="item <?php print $content['store_registered'] ?>">
        <?php if ($user->profile_info[0]->field_retailer[0]['nid']): ?>
-        <p class="desc">You've chosen your nursery. <span class="progress_option"><a href="/node/<?php print $node->nid ?>/edit">Edit profile</a></span></p>
+        <p class="desc">You've chosen your nursery. <span class="progress_option"><a href="/node/<?php print $profile_nid; ?>/edit">Edit profile</a></span></p>
       <?php else : ?>
-        <p class="desc"><a href="/node/<?php print($user->profile_info[0]->nid) ?>/edit">Choose your nursery.</a></p>
+        <p class="desc"><a href="/node/<?php print $profile_nid; ?>/edit">Choose your nursery.</a></p>
       <?php endif; ?>
     </div> 
 
