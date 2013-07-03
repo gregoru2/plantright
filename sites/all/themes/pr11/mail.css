@@ -1,0 +1,11 @@
+/**
+ * Mimemail styles
+ */
+
+body {
+  font-family: Palatino,Calibri,Helvetica,Arial,sans-serif;
+  font-size: 12pt;
+}
+a {
+  color: #ac512a !important;
+}
