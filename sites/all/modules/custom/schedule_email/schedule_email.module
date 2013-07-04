@@ -4,16 +4,15 @@
  * @file
  * Module code for schedule email
  */
-
 require 'scheduleemail.class.inc';
 
 /**
  * Implementation of hook_help().
  */
 function schedule_email_help() {
-  switch($path) {
-   case 'admin/help#schedule_email':
-     return t('Defines the schedule email content type and sends emails on cron based on the schedule selected.');
+  switch ($path) {
+    case 'admin/help#schedule_email':
+      return t('Defines the schedule email content type and sends emails on cron based on the schedule selected.');
   }
 }
 
@@ -52,25 +51,25 @@ function schedule_email_node_info() {
  * Implementation of hook_access().
  */
 function schedule_email_access($op, $node, $account) {
-  switch($op) {
+  switch ($op) {
     case 'create':
       return user_access('create schedule email', $account);
-    break;
+      break;
     case 'update':
       if (user_access('edit any schedule email', $account) || (user_access('edit own schedule email', $account) && user_owns_schedule_email($account->uid, $node->nid))) {
         return TRUE;
       }
-    break;
+      break;
     case 'delete':
       if (user_access('delete any schedule email', $account) || (user_access('delete own schedule email', $account) && user_owns_schedule_email($account->uid, $node->nid))) {
         return TRUE;
       }
-    break;
+      break;
     case 'view':
-      if(user_access('view any schedule email', $account) || (user_access('view own schedule email', $account) && user_owns_schedule_email($account->uid, $node->nid))) {
+      if (user_access('view any schedule email', $account) || (user_access('view own schedule email', $account) && user_owns_schedule_email($account->uid, $node->nid))) {
         return TRUE;
       }
-    break;
+      break;
   }
 
   return FALSE;
@@ -158,7 +157,7 @@ function schedule_email_form(&$node, $form_state) {
   if ($type->has_body) {
     $form['body_field'] = node_body_field($node, $type->body_label, $type->min_word_count);
   }
-  
+
   $form['token_help'] = array(
     '#title' => t('Replacement patterns'),
     '#type' => 'fieldset',
@@ -183,7 +182,7 @@ function schedule_email_insert($node) {
  * Implementation of hook_update().
  */
 function schedule_email_update($node) {
-  if($node->revision) {
+  if ($node->revision) {
     // New node or new revision
     schedule_email_insert($node);
   }
@@ -203,10 +202,10 @@ function schedule_email_delete($node) {
  * Implemenation of hook_nodeapi().
  */
 function schedule_email_nodeapi(&$node, $op, $teaser, $page) {
-  switch($op) {
+  switch ($op) {
     case 'delete revision':
       db_query("DELETE FROM {schedule_email} WHERE vid = %d", $node->vid);
-    break;
+      break;
   }
 }
 
@@ -253,20 +252,19 @@ function theme_schedule_email($node) {
 function schedule_email_mail($key, &$message, $params) {
   $language = $message['language'];
   $variables = user_mail_tokens($params['account'], $language);
-  
-  switch($key) {
+
+  switch ($key) {
     case 'invite':
-       // Override Reply-To address.
-        if (!variable_get('invite_use_users_email_replyto', 0)) {
-          $reply_to = variable_get('invite_manual_reply_to', '');
-          $message['headers']['Reply-To'] = $reply_to;
-        }
-    break;
+      // Override Reply-To address.
+      if (!variable_get('invite_use_users_email_replyto', 0)) {
+        $reply_to = variable_get('invite_manual_reply_to', '');
+        $message['headers']['Reply-To'] = $reply_to;
+      }
+      break;
   }
 
   $message['subject'] = t($params['subject'], array(), $language->language);
   $message['body'][] = t($params['message'], array(), $language->language);
-
 }
 
 /**
@@ -283,17 +281,17 @@ function schedule_email_page_email_send() {
   $output = '';
   $se = new ScheduleEmail();
   $log = $se->get_email_log();
-  foreach($log as $item) {
+  foreach ($log as $item) {
     $output .= '<br/>' . $item;
   }
-  if(!$output) {
-   $output = 'No emails to send.';
+  if (!$output) {
+    $output = 'No emails to send.';
   }
-  return $output;  
+  return $output;
 }
 
 function schedule_email_log_email($seid, $uid, $iid) {
-   db_query("INSERT INTO {schedule_email_sent} (seid, timestamp, uid, iid) VALUES(%d, %d, %d, %d)", $seid, time(), $uid, $iid);
+  db_query("INSERT INTO {schedule_email_sent} (seid, timestamp, uid, iid) VALUES(%d, %d, %d, %d)", $seid, time(), $uid, $iid);
 }
 
 /**
@@ -309,9 +307,9 @@ function schedule_email_db_rewrite_sql($query, $primary_table, $primary_field, $
       if (!$access && $query) {
 
         $return = array();
-        if(user_access('view own schedule email')) {
+        if (user_access('view own schedule email')) {
           global $user;
-          $return['where'] = "($node_table.type != 'schedule_email' OR $node_table.uid = ". (int)$user->uid .")";
+          $return['where'] = "($node_table.type != 'schedule_email' OR $node_table.uid = " . (int) $user->uid . ")";
         }
         else {
           $return['where'] = "($node_table.type != 'schedule_email')";
@@ -320,6 +318,5 @@ function schedule_email_db_rewrite_sql($query, $primary_table, $primary_field, $
         return $return;
       }
       break;
-
   }
 }
