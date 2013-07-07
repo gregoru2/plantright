@@ -86,6 +86,7 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
       The e-mail address is not made public and your information will not be sold, or shared with others.';
     $form['name']['#type'] = 'hidden';
     $form['name']['#default_value'] = user_password();
+	$form['#after_build'] = array('plantright_user_register_after_build');
   }
   if ($form_id == 'user_login' || $form_id == 'user_login_block') {
     $form['#action'] = NULL;
@@ -101,6 +102,7 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'survey_profile_node_form' || $form_id == 'retail_member_node_form') {
     $form['title']['#type'] = 'hidden';
     $form['account']['name']['#type'] = 'hidden';
+	$form['#after_build'] = array('plantright_user_register_after_build');
   }
   if ($form_id == 'business_node_form') {
     $form['#redirect'] = 'invite';
@@ -208,6 +210,11 @@ PLEDGE;
     break;
     default:
   }
+}
+
+function plantright_user_register_after_build(&$form, &$form_state) {
+  $form['field_retailer']['nid']['nid']['#options'][''] = t('Store not registered yet');
+  return $form;
 }
 
 function plantright_menu_alter(&$items) {
