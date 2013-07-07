@@ -70,8 +70,10 @@ $group_quiz_progress = (!empty($content['certified_buyers']) && count($content['
     <div id="store-registered" class="item <?php print $content['store_registered'] ?>">
        <?php if ($user->profile_info[0]->field_retailer[0]['nid']): ?>
         <p class="desc">You've chosen your nursery. <span class="progress_option"><a href="/node/<?php print $profile_nid; ?>/edit">Edit profile</a></span></p>
-      <?php else : ?>
+      <?php else if ($profile_nid): ?>
         <p class="desc"><a href="/node/<?php print $profile_nid; ?>/edit">Choose your nursery.</a></p>
+      <?php else : ?>
+	    <p class="desc"><a href="/node/add/retail-member">Choose your nursery</a></p>
       <?php endif; ?>
     </div> 
     
