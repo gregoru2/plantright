@@ -13,12 +13,13 @@
 }
 #quiz-certificate .certificate-name {
   position:absolute;
-  top: 232px;
-  left: 214px;
-  font-size: 4em;
+  top: 205px;
+  left: 205px;
+  font-size: 3.8em;
+  line-height: .8em;
   font-weight: bold;
   margin: 1em auto;
-  width: 532px;
+  width: 548px;
   text-align:center;
   color:#79a13f;
   text-transform: uppercase;

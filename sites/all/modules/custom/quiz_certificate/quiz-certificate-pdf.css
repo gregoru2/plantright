@@ -24,7 +24,7 @@ body {
 }
 #quiz-certificate .certificate-name {
   position:absolute;
-  top: 342px;
+  top: 347px;
   left: 288px;
   width: 718px;
   /*
@@ -36,7 +36,8 @@ body {
   color:#79a13f;
   */
   color:#78a13f;
-  font-size:55pt;
+  font-size:52pt;
+  line-height: 75%;
   text-transform: uppercase;
 }
 #quiz-certificate .certificate-date {
