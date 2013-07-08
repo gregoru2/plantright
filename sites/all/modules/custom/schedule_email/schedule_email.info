@@ -2,3 +2,4 @@ name = "Schedule Email"
 description = "Schedule emails X days after a user registers or X days after a user is invited"
 core = 6.x
 dependencies[] = invite
+dependencies[] = plantright

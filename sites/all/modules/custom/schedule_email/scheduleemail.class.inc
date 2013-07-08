@@ -81,6 +81,27 @@ class ScheduleEmail {
     while ($account = db_fetch_array($result)) {
       $account['mail'] = $account['email'];
       $account['inviter'] = $account['uid'];
+      $inviter_user = user_load($account['uid']);
+      $account['from-mail'] = $inviter_user->mail;
+      $account['from-name'] = $inviter_user->name;
+
+      if ($profile = content_profile_load(PLANTRIGHT_RETAIL_PROFILE, $inviter_user->uid)) {
+        // Profile exists. Replace the username with the profile name
+
+        if ($fname = $profile->{PLANTRIGHT_RETAIL_PROFILE_FNAME}) {
+          $fname = $fname[0]['value'];
+          $name = $fname;
+        }
+
+        if ($lname = $profile->{PLANTRIGHT_RETAIL_PROFILE_LNAME}) {
+          $lname = $lname[0]['value'];
+          $name = $name . ($name ? ' ' : '') . $lname;
+        }
+
+        if ($name) {
+          $account['from-name'] = $name;
+        }
+      }
       $account['data'] = unserialize($account['data']);
       unset($account['uid']);
       $accounts[] = $account;
@@ -101,7 +122,19 @@ class ScheduleEmail {
       $key = $email->name_short;
       $to = isset($account->mail) ? $account->mail : $account['mail'];
       $language = isset($account->language) && $account->language ? $account->language : language_default();
-      $from = variable_get('site_mail', '');
+
+      if (isset($account['from-mail']) && isset($account['from-name'])) {
+        $from = $account['from-name'] . '<' . $account['from-mail'] . '>';
+      }
+      else if(isset($account['from-mail'])) {
+        $from = $account['from-mail'];
+      }
+      else if (isset($account['from-name'])) {
+        $from = $account['from-name'] . '<' . variable_get('site_mail', '') . '>';
+      }
+      else {
+        $from = variable_get('site_mail', '');
+      }
       $send = TRUE;
 
       $params['subject'] = check_plain(decode_entities($email->subject));
