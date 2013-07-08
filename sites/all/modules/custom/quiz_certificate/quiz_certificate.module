@@ -3,9 +3,6 @@
  * @file
  * Module code for quiz certificate
  */
-DEFINE('QUIZ_CERTIFICATE_PROFILE', 'retail_member');
-DEFINE('QUIZ_CERTIFICATE_PROFILE_FNAME', 'field_fname');
-DEFINE('QUIZ_CERTIFICATE_PROFILE_LNAME', 'field_lname');
 
 /**
  * Implementation of hook_menu().
@@ -187,22 +184,7 @@ function quiz_certificate_preprocess_quiz_certificate(&$vars) {
   $vars['name'] = $vars['account']->name;
   $vars['date'] = format_date($vars['result']->time_end, 'custom', 'F j, Y');
 
-  if ($profile = content_profile_load(QUIZ_CERTIFICATE_PROFILE, $vars['account']->uid)) {
-    // Profile exists. Replace the username with the profile name
-
-    $fname = $profile->{QUIZ_CERTIFICATE_PROFILE_FNAME};
-    if($fname) {
-      $fname = $fname[0]['value'];
-      $name = $fname;
-    }
-    $lname = $profile->{QUIZ_CERTIFICATE_PROFILE_LNAME};
-    if($lname) {
-      $lname = $lname[0]['value'];
-      $name = $name . ($name ? ' ' : '') . $lname;
-    }
-    $vars['name'] = $name;
-  }
-
+  $vars['name'] = plantright_get_user_profile_name($vars['account']);
   $vars['download_url'] = filter_xss($_GET['q']) . '/pdf';
   $vars['download_link'] = l(t('Download My Certificate'), $vars['download_url']);
 }
@@ -244,7 +226,7 @@ function quiz_certificate_create_certificate_pdf($quiz, $account, $result = NULL
   }
 
   $certificate = theme('quiz_certificate', $quiz, $account, $result);
-  
+
   $output = theme('quiz_certificate_pdf', $certificate);
   $filename = 'certificate-' . strtolower(str_replace(array('/', ' '), '-', check_plain($quiz->title . '-' . $account->name)));
 
@@ -253,7 +235,7 @@ function quiz_certificate_create_certificate_pdf($quiz, $account, $result = NULL
       'letter', 'landscape',
     ),
   );
-  
+
   if (isset($_GET['html'])) {
     print $output;
   }

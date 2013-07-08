@@ -2,3 +2,4 @@ name = "Quiz Certificate"
 description = "Create a certificate when user passes quiz."
 core = 6.x
 dependencies[] = dompdf
+dependencies[] = plantright
