@@ -198,11 +198,15 @@ PLEDGE;
           unset($form['account']);
           $account_form = user_profile_form(array(), $user);
           unset($account_form['submit'], $account_form['delete']); // remove duplicated Save button and Delete
-          $form = array_merge($account_form, $form);
+          $form = array_merge($form, $account_form);
           $form['#validate'][] = 'account_profile_form_validate';
           $form['#validate'][] = 'user_validate_picture';
           $form['#submit'][] = 'account_profile_form_submit';
           $form['#submit'][] = 'account_profile_user_profile_submit';
+
+          // Reorder the form elements.
+          $form['mimemail']['#weight'] = $form['contact']['#weight'] = 100;
+          $form['account']['#weight'] = 90;
       }
       /* Integration with Notifications autosubscribe module  */
       if (module_exists('notifications_autosubscribe')) {
