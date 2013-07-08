@@ -83,25 +83,7 @@ class ScheduleEmail {
       $account['inviter'] = $account['uid'];
       $inviter_user = user_load($account['uid']);
       $account['from-mail'] = $inviter_user->mail;
-      $account['from-name'] = $inviter_user->name;
-
-      if ($profile = content_profile_load(PLANTRIGHT_RETAIL_PROFILE, $inviter_user->uid)) {
-        // Profile exists. Replace the username with the profile name
-
-        if ($fname = $profile->{PLANTRIGHT_RETAIL_PROFILE_FNAME}) {
-          $fname = $fname[0]['value'];
-          $name = $fname;
-        }
-
-        if ($lname = $profile->{PLANTRIGHT_RETAIL_PROFILE_LNAME}) {
-          $lname = $lname[0]['value'];
-          $name = $name . ($name ? ' ' : '') . $lname;
-        }
-
-        if ($name) {
-          $account['from-name'] = $name;
-        }
-      }
+      $account['from-name'] = plantright_get_user_profile_name($inviter_user);
       $account['data'] = unserialize($account['data']);
       unset($account['uid']);
       $accounts[] = $account;
