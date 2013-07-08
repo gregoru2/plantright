@@ -328,3 +328,37 @@ function plantright_user_pass_reset(&$form_state, $uid, $timestamp, $hashed_pass
     }
   }
 }
+
+/**
+ * Implementation of hook_mail_alter().
+ */
+function plantright_mail_alter(&$message) {
+  switch ($message['id']) {
+    // For the invite, set the inviter's name to their profile name.
+    // Instead of their user account name.
+    case 'invite_invite':
+      $inviter_user = user_load(array('mail' => $message['from']));
+      if ($inviter_user_name = plantright_get_user_profile_name($inviter_user)) {
+        $message['from'] = $inviter_user_name . '<' . $inviter_user->mail . '>';
+        $message['headers']['From'] = $inviter_user_name . '<' . $inviter_user->mail . '>';
+      }
+      break;
+  }
+}
+
+function plantright_get_user_profile_name($account) {
+  if ($profile = content_profile_load(PLANTRIGHT_RETAIL_PROFILE, $account->uid)) {
+    // Profile exists. Replace the username with the profile name
+    $fname = $profile->{PLANTRIGHT_RETAIL_PROFILE_FNAME};
+    if ($fname) {
+      $fname = $fname[0]['value'];
+      $name = $fname;
+    }
+    $lname = $profile->{PLANTRIGHT_RETAIL_PROFILE_LNAME};
+    if ($lname) {
+      $lname = $lname[0]['value'];
+      $name = $name . ($name ? ' ' : '') . $lname;
+    }
+  }
+  return $name ? $name : $account->name;
+}
