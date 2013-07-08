@@ -1,5 +1,15 @@
 <?php
 
+DEFINE('PLANTRIGHT_RETAIL_PROFILE', 'retail_member');
+DEFINE('PLANTRIGHT_RETAIL_PROFILE_FNAME', 'field_fname');
+DEFINE('PLANTRIGHT_RETAIL_PROFILE_LNAME', 'field_lname');
+DEFINE('PLANTRIGHT_RETAIL_PROFILE_NURSERY', 'field_retailer');
+
+/**
+ * Include token support.
+ */
+require_once drupal_get_path('module', 'plantright') . '/plantright_token.inc';
+
 function plantright_flag($action, $flag, $content_id, $account) {
 	if($action == 'flag' && $flag->name == 'nursery_flag') {
 		$node = node_load($content_id);
