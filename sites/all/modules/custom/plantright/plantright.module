@@ -11,33 +11,31 @@ DEFINE('PLANTRIGHT_RETAIL_PROFILE_NURSERY', 'field_retailer');
 require_once drupal_get_path('module', 'plantright') . '/plantright_token.inc';
 
 function plantright_flag($action, $flag, $content_id, $account) {
-	if($action == 'flag' && $flag->name == 'nursery_flag') {
-		$node = node_load($content_id);
-		//dpm($node->field_surveying_user);
-		$member = array();
-		$member['uid'] = $account->uid;
-		array_push($node->field_surveying_user, $member);
-		//dpm($node->field_surveying_user);
-		node_save($node);
-	}
-	if($action == 'unflag' && $flag->name == 'nursery_flag') {
-	  $node = node_load($content_id);
-	  $users = $node->field_surveying_user;
-	  $node->field_surveying_user = removeElementWithValue($users, "uid", $account->uid);
-	  node_save($node);
-	}
+  if ($action == 'flag' && $flag->name == 'nursery_flag') {
+    $node = node_load($content_id);
+    //dpm($node->field_surveying_user);
+    $member = array();
+    $member['uid'] = $account->uid;
+    array_push($node->field_surveying_user, $member);
+    //dpm($node->field_surveying_user);
+    node_save($node);
+  }
+  if ($action == 'unflag' && $flag->name == 'nursery_flag') {
+    $node = node_load($content_id);
+    $users = $node->field_surveying_user;
+    $node->field_surveying_user = removeElementWithValue($users, "uid", $account->uid);
+    node_save($node);
+  }
 }
 
-function removeElementWithValue($array, $key, $value){
-  foreach($array as $subKey => $subArray){
-    if($subArray[$key] == $value){
+function removeElementWithValue($array, $key, $value) {
+  foreach ($array as $subKey => $subArray) {
+    if ($subArray[$key] == $value) {
       unset($array[$subKey]);
     }
   }
   return $array;
 }
-
-
 
 function plantright_user($op, &$edit, &$account, $category = NULL) {
   //dpm(array($op, $account));
@@ -65,7 +63,6 @@ function _plantright_login_action(&$form, &$form_state) {
       in_array(8, $rids) ||
       in_array(9, $rids) || in_array(10, $rids)) {
     drupal_goto("user/$user->uid");
-
   }
 //  $node = node_load(array('uid' => $account->uid, 'type' => 'retail_member'));
 //  $rids = array_keys($user->roles);
@@ -87,7 +84,6 @@ function _plantright_login_action(&$form, &$form_state) {
 //  }
 }
 
-
 function plantright_form_alter(&$form, &$form_state, $form_id) {
   global $user;
   if ($form_id == 'user_register') {
@@ -96,7 +92,7 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
       The e-mail address is not made public and your information will not be sold, or shared with others.';
     $form['name']['#type'] = 'hidden';
     $form['name']['#default_value'] = user_password();
-	  $form['#after_build'] = array('plantright_user_register_after_build');
+    $form['#after_build'] = array('plantright_user_register_after_build');
   }
   if ($form_id == 'user_login' || $form_id == 'user_login_block') {
     $form['#action'] = NULL;
@@ -114,7 +110,7 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     if (isset($form['account']['name'])) {
       $form['account']['name']['#type'] = 'hidden';
     }
-	  $form['#after_build'] = array('plantright_user_register_after_build');
+    $form['#after_build'] = array('plantright_user_register_after_build');
   }
   if ($form_id == 'business_node_form') {
     $form['#redirect'] = 'invite';
@@ -166,57 +162,58 @@ PLEDGE;
   }
   //dpm($form);
 
-  /*from changes to account_profile module*/
-  if (variable_get('content_profile_use_'. $form['#node']->type, FALSE)
+  /* from changes to account_profile module */
+  if (variable_get('content_profile_use_' . $form['#node']->type, FALSE)
       && content_profile_page_access($form['#node']->type, $user)) {
     $profile = $form_id;
   }
   switch ($form_id) {
     case 'user_profile_form':
-        if (variable_get('account_profile_redirect', TRUE)) {
-          if (isset($_REQUEST['destination'])) {
-            $destination = $_REQUEST['destination'];
-            unset($_REQUEST['destination']);
-            drupal_goto($_GET['q'] . "/$profile", array('destination' => $destination));
-          }
-          else {
-             drupal_goto($_GET['q'] . "/$profile");
-          }
-          // header("Location: " . base_path() . $_GET['q'] . "/$profile");
-          exit;
+      if (variable_get('account_profile_redirect', TRUE)) {
+        if (isset($_REQUEST['destination'])) {
+          $destination = $_REQUEST['destination'];
+          unset($_REQUEST['destination']);
+          drupal_goto($_GET['q'] . "/$profile", array('destination' => $destination));
         }
-    break;
+        else {
+          drupal_goto($_GET['q'] . "/$profile");
+        }
+        // header("Location: " . base_path() . $_GET['q'] . "/$profile");
+        exit;
+      }
+      break;
     case $profile:
       /* integration with account form */
       if (is_numeric(arg(1))) { // activate only on edit page (not on registration page)
-          // check if we are on a user account or node edit page
-          if (arg(0) == 'user') { // on account edit page
-            $user = user_load(arg(1));
-          } elseif (arg(0) == 'node') { // on content profile node edit page
-            $node = node_load(arg(1));
-            $user = user_load($node->uid);
-          }
+        // check if we are on a user account or node edit page
+        if (arg(0) == 'user') { // on account edit page
+          $user = user_load(arg(1));
+        }
+        elseif (arg(0) == 'node') { // on content profile node edit page
+          $node = node_load(arg(1));
+          $user = user_load($node->uid);
+        }
 
-          module_load_include('pages.inc', 'user');
+        module_load_include('pages.inc', 'user');
 
-          $form['account_profile_uid'] = array(
-            '#type' => 'value',
-            '#value' => $user->uid,
-          );
-          //Remove account so in case its set, account form version is used.
-          $form['account'] = NULL;
-          unset($form['account']);
-          $account_form = user_profile_form(array(), $user);
-          unset($account_form['submit'], $account_form['delete']); // remove duplicated Save button and Delete
-          $form = array_merge($form, $account_form);
-          $form['#validate'][] = 'account_profile_form_validate';
-          $form['#validate'][] = 'user_validate_picture';
-          $form['#submit'][] = 'account_profile_form_submit';
-          $form['#submit'][] = 'account_profile_user_profile_submit';
+        $form['account_profile_uid'] = array(
+          '#type' => 'value',
+          '#value' => $user->uid,
+        );
+        //Remove account so in case its set, account form version is used.
+        $form['account'] = NULL;
+        unset($form['account']);
+        $account_form = user_profile_form(array(), $user);
+        unset($account_form['submit'], $account_form['delete']); // remove duplicated Save button and Delete
+        $form = array_merge($form, $account_form);
+        $form['#validate'][] = 'account_profile_form_validate';
+        $form['#validate'][] = 'user_validate_picture';
+        $form['#submit'][] = 'account_profile_form_submit';
+        $form['#submit'][] = 'account_profile_user_profile_submit';
 
-          // Reorder the form elements.
-          $form['mimemail']['#weight'] = $form['contact']['#weight'] = 100;
-          $form['account']['#weight'] = 90;
+        // Reorder the form elements.
+        $form['mimemail']['#weight'] = $form['contact']['#weight'] = 100;
+        $form['account']['#weight'] = 90;
       }
       /* Integration with Notifications autosubscribe module  */
       if (module_exists('notifications_autosubscribe')) {
@@ -225,7 +222,7 @@ PLEDGE;
         // autosubscribe check box is included on the form
         notifications_autosubscribe_form_alter($form, $form_state, 'user_profile_form');
       }
-    break;
+      break;
     default:
   }
 }
@@ -261,7 +258,7 @@ function plantright_user_pass_reset(&$form_state, $uid, $timestamp, $hashed_pass
     $timeout = 86400;
     $current = time();
     // Some redundant checks for extra security ?
-    if ($timestamp < $current && $account = user_load(array('uid' => $uid, 'status' => 1)) ) {
+    if ($timestamp < $current && $account = user_load(array('uid' => $uid, 'status' => 1))) {
       // Deny one-time login to blocked accounts.
       if (drupal_is_denied('user', $account->name) || drupal_is_denied('mail', $account->mail)) {
         drupal_set_message(t('You have tried to use a one-time login for an account which has been blocked.'), 'error');
@@ -289,28 +286,30 @@ function plantright_user_pass_reset(&$form_state, $uid, $timestamp, $hashed_pass
             $node = node_load(array('type' => 'retail_member', 'uid' => $user->uid));
             drupal_set_message('Please reset your password.', 'status');
 
-			if ($node) {
+            if ($node) {
               drupal_goto('node/' . $node->nid . '/edit');
-			}
-			else {
-			  drupal_goto();
-			}
-          } elseif (in_array(14, $rids)) {
+            }
+            else {
+              drupal_goto();
+            }
+          }
+          elseif (in_array(14, $rids)) {
             $node = node_load(array('type' => 'survey_profile', 'uid' => $user->uid));
             drupal_set_message('Please reset your password.', 'status');
             if ($node) {
               drupal_goto('node/' . $node->nid . '/edit');
-			}
-			else {
-			  drupal_goto();
-			}
-          } else {
+            }
+            else {
+              drupal_goto();
+            }
+          }
+          else {
             drupal_goto('user/' . $user->uid);
           }
         }
         else {
           $form['message'] = array('#value' => t('<p>This is a one-time login for %user_name and will expire on %expiration_date.</p><p>Click on this button to login to the site and change your password.</p>', array('%user_name' => $account->name, '%expiration_date' => format_date($timestamp + $timeout))));
-          $form['help'] = array('#value' => '<p>'. t('This login can be used only once.') .'</p>');
+          $form['help'] = array('#value' => '<p>' . t('This login can be used only once.') . '</p>');
           $form['submit'] = array('#type' => 'submit', '#value' => t('Log in'));
           $form['#action'] = url("user/reset/$uid/$timestamp/$hashed_pass/login");
           return $form;
@@ -346,19 +345,46 @@ function plantright_mail_alter(&$message) {
   }
 }
 
+/**
+ * Helper function. Returns user's profile name.
+ */
 function plantright_get_user_profile_name($account) {
-  if ($profile = content_profile_load(PLANTRIGHT_RETAIL_PROFILE, $account->uid)) {
-    // Profile exists. Replace the username with the profile name
-    $fname = $profile->{PLANTRIGHT_RETAIL_PROFILE_FNAME};
-    if ($fname) {
-      $fname = $fname[0]['value'];
-      $name = $fname;
+  static $plantright_user_profile_name;
+  if (!isset($plantright_user_profile_name)) {
+    if ($profile = content_profile_load(PLANTRIGHT_RETAIL_PROFILE, $account->uid)) {
+      // Profile exists. Replace the username with the profile name
+      $fname = $profile->{PLANTRIGHT_RETAIL_PROFILE_FNAME};
+      if ($fname) {
+        $fname = $fname[0]['value'];
+        $name = $fname;
+      }
+      $lname = $profile->{PLANTRIGHT_RETAIL_PROFILE_LNAME};
+      if ($lname) {
+        $lname = $lname[0]['value'];
+        $name = $name . ($name ? ' ' : '') . $lname;
+      }
     }
-    $lname = $profile->{PLANTRIGHT_RETAIL_PROFILE_LNAME};
-    if ($lname) {
-      $lname = $lname[0]['value'];
-      $name = $name . ($name ? ' ' : '') . $lname;
-    }
+    $plantright_user_profile_name = $name ? $name : $account->name;
   }
-  return $name ? $name : $account->name;
+
+  return $plantright_user_profile_name;
+}
+
+/**
+ * Helper function. Returns user's profile nursery.
+ */
+function plantright_get_user_profile_nursery($account) {
+  static $plantright_user_profile_nursery;
+  if (!isset($plantright_user_profile_nursery)) {
+    if ($profile = content_profile_load(PLANTRIGHT_RETAIL_PROFILE, $account->uid)) {
+      if ($profile->{PLANTRIGHT_RETAIL_PROFILE_NURSERY} && isset($profile->{PLANTRIGHT_RETAIL_PROFILE_NURSERY}[0]) && $nursery_nid = $profile->{PLANTRIGHT_RETAIL_PROFILE_NURSERY}[0]['nid']) {
+        $nursery = node_load($nursery_nid);
+        if ($nursery) {
+          $nursery_name = check_plain($nursery->title);
+        }
+      }
+    }
+    $plantright_user_profile_nursery = $nursery_name ? $nursery_name : 'our nursery';
+  }
+  return $plantright_user_profile_nursery;
 }

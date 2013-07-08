@@ -11,31 +11,8 @@
 function plantright_token_values($type = 'all', $object = NULL) {
   $values = array();
   if ($type == 'invite' && is_object($object)) {
-    $inviter_user = $object->inviter;
-    $name = $inviter_user->name;
-    $nursery_name = 'our nursery';
-    if ($profile = content_profile_load(PLANTRIGHT_RETAIL_PROFILE, $inviter_user->uid)) {
-      // Profile exists. Replace the username with the profile name
-
-      $fname = $profile->{PLANTRIGHT_RETAIL_PROFILE_FNAME};
-      if ($fname) {
-        $fname = $fname[0]['value'];
-        $name = $fname;
-      }
-      $lname = $profile->{PLANTRIGHT_RETAIL_PROFILE_LNAME};
-      if ($lname) {
-        $lname = $lname[0]['value'];
-        $name = $name . ($name ? ' ' : '') . $lname;
-      }
-
-      if ($profile->{PLANTRIGHT_RETAIL_PROFILE_NURSERY} && isset($profile->{PLANTRIGHT_RETAIL_PROFILE_NURSERY}[0]) && $nursery_nid = $profile->{PLANTRIGHT_RETAIL_PROFILE_NURSERY}[0]['nid']) {
-          $nursery = node_load($nursery_nid);
-          $nursery_name = check_plain($nursery->title);
-      }
-    }
-
-    $values['pr-inviter-name'] = check_plain($name);
-    $values['pr-inviter-nursery'] = check_plain($nursery_name);
+    $values['pr-inviter-name'] = check_plain(plantright_get_user_profile_name($object->inviter));
+    $values['pr-inviter-nursery'] = check_plain(plantright_get_user_profile_nursery($object->inviter));
   }
   return $values;
 }
