@@ -15,7 +15,7 @@ function plantright_flag($action, $flag, $content_id, $account) {
 	  $users = $node->field_surveying_user;
 	  $node->field_surveying_user = removeElementWithValue($users, "uid", $account->uid);
 	  node_save($node);
-	}  
+	}
 }
 
 function removeElementWithValue($array, $key, $value){
@@ -51,8 +51,8 @@ function _plantright_login_action(&$form, &$form_state) {
   global $user;
   $rids = array_keys($user->roles);
   // if a Retailer member,
-  if (in_array(7, $rids) || 
-      in_array(8, $rids) || 
+  if (in_array(7, $rids) ||
+      in_array(8, $rids) ||
       in_array(9, $rids) || in_array(10, $rids)) {
     drupal_goto("user/$user->uid");
 
@@ -86,7 +86,7 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
       The e-mail address is not made public and your information will not be sold, or shared with others.';
     $form['name']['#type'] = 'hidden';
     $form['name']['#default_value'] = user_password();
-	$form['#after_build'] = array('plantright_user_register_after_build');
+	  $form['#after_build'] = array('plantright_user_register_after_build');
   }
   if ($form_id == 'user_login' || $form_id == 'user_login_block') {
     $form['#action'] = NULL;
@@ -101,8 +101,10 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
   }
   if ($form_id == 'survey_profile_node_form' || $form_id == 'retail_member_node_form') {
     $form['title']['#type'] = 'hidden';
-    $form['account']['name']['#type'] = 'hidden';
-	$form['#after_build'] = array('plantright_user_register_after_build');
+    if (isset($form['account']['name'])) {
+      $form['account']['name']['#type'] = 'hidden';
+    }
+	  $form['#after_build'] = array('plantright_user_register_after_build');
   }
   if ($form_id == 'business_node_form') {
     $form['#redirect'] = 'invite';
@@ -131,7 +133,7 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
       <li>Make every reasonable effort to communicate our PlantRight policy to staff, customers and vendors. (Communication vehicles may include: staff training, print materials, customer service, do-not-buy lists, email, website and social media.)</li>
       <li>Appoint a PlantRight liaison as a primary point of contact.</li>
       <li>Revisit this agreement with PlantRight on an annual basis as PlantRight’s invasive plant list is annually reviewed and may change as new information becomes available.</li>
-</ul>  
+</ul>
 
       <p>We will receive:</p>
 <ul>
@@ -153,9 +155,9 @@ PLEDGE;
     $form['title']['#type'] = 'hidden';
   }
   //dpm($form);
-  
+
   /*from changes to account_profile module*/
-  if (variable_get('content_profile_use_'. $form['#node']->type, FALSE) 
+  if (variable_get('content_profile_use_'. $form['#node']->type, FALSE)
       && content_profile_page_access($form['#node']->type, $user)) {
     $profile = $form_id;
   }
@@ -179,7 +181,7 @@ PLEDGE;
       if (is_numeric(arg(1))) { // activate only on edit page (not on registration page)
           // check if we are on a user account or node edit page
           if (arg(0) == 'user') { // on account edit page
-            $user = user_load(arg(1));  
+            $user = user_load(arg(1));
           } elseif (arg(0) == 'node') { // on content profile node edit page
             $node = node_load(arg(1));
             $user = user_load($node->uid);
@@ -191,7 +193,9 @@ PLEDGE;
             '#type' => 'value',
             '#value' => $user->uid,
           );
-
+          //Remove account so in case its set, account form version is used.
+          $form['account'] = NULL;
+          unset($form['account']);
           $account_form = user_profile_form(array(), $user);
           unset($account_form['submit'], $account_form['delete']); // remove duplicated Save button and Delete
           $form = array_merge($account_form, $form);
@@ -200,7 +204,7 @@ PLEDGE;
           $form['#submit'][] = 'account_profile_form_submit';
           $form['#submit'][] = 'account_profile_user_profile_submit';
       }
-      /* Integration with Notifications autosubscribe module  */ 
+      /* Integration with Notifications autosubscribe module  */
       if (module_exists('notifications_autosubscribe')) {
         // Call hook_form_alter from notifications_autosubscribe
         // Simulating we are on the user edit form so the
