@@ -157,7 +157,13 @@ PLEDGE;
     $form['#redirect'] = 'user';
   }
   if ($form_id == 'retail_member_node_form') {
-    $form['#redirect'] = "user/$user->uid";
+    if ($user->uid) {
+      $form['#redirect'] = "user/$user->uid";
+    }
+    else {
+      $form['#redirect'] = "user";
+    }
+
     $form['title']['#type'] = 'hidden';
   }
   //dpm($form);
