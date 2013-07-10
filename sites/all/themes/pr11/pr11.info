@@ -12,6 +12,7 @@ regions[content] = "Content"
 regions[footer] = "Footer"
 ;scripts[] = "js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js"
 scripts[] = "js/plantright.js"
+scripts[] = "js/ga-events.js"
 
 stylesheets[screen][] = "reset.css"
 stylesheets[screen][] = "drupal.css"
