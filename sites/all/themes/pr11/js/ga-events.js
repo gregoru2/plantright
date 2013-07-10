@@ -11,15 +11,10 @@ jQuery(document).ready(function($) {
     var href = $(this).attr('href');
     if (href && (href.match(/^https?\:/i)) && (!href.match(document.domain))) {
       $(this).mousedown(function(e) {
+        e.preventDefault();
         var extLink = href.replace(/^https?\:\/\//i, '');
         _gaq.push(['_trackEvent', 'External', 'Click', extLink]);
-        if ($(this).attr('target') == undefined || $(this).attr('target').toLowerCase() != '_blank') {
-          e.preventDefault();
-          setTimeout(function() {
-            window.open(href);
-          }, 200);
-          return false;
-        }
+        window.open(href);
       });
     }
     else if (href && href.match(/^mailto\:/i)) {
@@ -30,16 +25,11 @@ jQuery(document).ready(function($) {
     }
     else if (href && href.match(filetypes)) {
       $(this).mousedown(function(e) {
+        e.preventDefault();
         var extension = (/[.]/.exec(href)) ? /[^.]+$/.exec(href) : undefined;
         var filePath = href;
-        //_gaq.push(['_trackEvent', 'Download', extension, filePath]);
-        if ($(this).attr('target') == undefined || $(this).attr('target').toLowerCase() != '_blank') {
-          e.preventDefault();
-          setTimeout(function() {
-            window.open(href);
-          }, 200);
-          return false;
-        }
+        _gaq.push(['_trackEvent', 'Download', extension, filePath]);
+        window.open(href);
       });
     }
   });
