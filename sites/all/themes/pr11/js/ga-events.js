@@ -16,27 +16,27 @@ jQuery(document).ready(function($) {
         if ($(this).attr('target') == undefined || $(this).attr('target').toLowerCase() != '_blank') {
           e.preventDefault();
           setTimeout(function() {
-            location.href = href;
+            window.open(href);
           }, 200);
           return false;
         }
       });
     }
     else if (href && href.match(/^mailto\:/i)) {
-      $(this).mousedown(function() {
+      $(this).mousedown(function(e) {
         var mailLink = href.replace(/^mailto\:/i, '');
         _gaq.push(['_trackEvent', 'Email', 'Click', mailLink]);
       });
     }
     else if (href && href.match(filetypes)) {
-      $(this).mousedown(function() {
+      $(this).mousedown(function(e) {
         var extension = (/[.]/.exec(href)) ? /[^.]+$/.exec(href) : undefined;
         var filePath = href;
-        _gaq.push(['_trackEvent', 'Download', extension, filePath]);
+        //_gaq.push(['_trackEvent', 'Download', extension, filePath]);
         if ($(this).attr('target') == undefined || $(this).attr('target').toLowerCase() != '_blank') {
           e.preventDefault();
           setTimeout(function() {
-            location.href = baseHref + href;
+            window.open(href);
           }, 200);
           return false;
         }
