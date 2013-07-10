@@ -40,6 +40,12 @@ jQuery(document).ready(function($) {
         _gaq.push(['_trackEvent', 'Download', extension, filePath]);
       });
     }
+    else if (href && href.match(/.*\/certificate\/pdf/i)) {
+      $(this).mousedown(function(e) {
+        var filePath = href;
+        _gaq.push(['_trackEvent', 'Download', 'pdf', filePath]);
+      });
+    }
   });
 });
 
