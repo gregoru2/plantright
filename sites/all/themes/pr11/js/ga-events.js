@@ -12,10 +12,14 @@ jQuery(document).ready(function($) {
     if (href && (href.match(/^https?\:/i)) && (!href.match(document.domain))) {
       $(this).click(function(e) {
         e.preventDefault();
+        window.open(href);
+        _gaq.push(['_trackEvent', 'External', 'Click', extLink]);
       });
       $(this).mousedown(function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+        if (e.which == 1) {
+          return;
+        }
+
         var extLink = href.replace(/^https?\:\/\//i, '');
         window.open(href);
         _gaq.push(['_trackEvent', 'External', 'Click', extLink]);
@@ -30,10 +34,14 @@ jQuery(document).ready(function($) {
     else if (href && href.match(filetypes)) {
       $(this).click(function(e) {
         e.preventDefault();
+        window.open(href);
+        _gaq.push(['_trackEvent', 'Download', extension, filePath]);
       });
       $(this).mousedown(function(e) {
-        e.stopPropagation();
-        e.preventDefault();
+        if (e.which == 1) {
+          return;
+        }
+
         var extension = (/[.]/.exec(href)) ? /[^.]+$/.exec(href) : undefined;
         var filePath = href;
         window.open(href);
