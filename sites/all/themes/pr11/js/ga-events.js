@@ -12,6 +12,7 @@ jQuery(document).ready(function($) {
     if (href && (href.match(/^https?\:/i)) && (!href.match(document.domain))) {
       $(this).click(function(e) {
         e.preventDefault();
+        var extLink = href.replace(/^https?\:\/\//i, '');
         window.open(href);
         _gaq.push(['_trackEvent', 'External', 'Click', extLink]);
       });
@@ -34,6 +35,8 @@ jQuery(document).ready(function($) {
     else if (href && href.match(filetypes)) {
       $(this).click(function(e) {
         e.preventDefault();
+        var extension = (/[.]/.exec(href)) ? /[^.]+$/.exec(href) : undefined;
+        var filePath = href;
         window.open(href);
         _gaq.push(['_trackEvent', 'Download', extension, filePath]);
       });
