@@ -10,48 +10,63 @@ jQuery(document).ready(function($) {
   $('a').each(function() {
     var href = $(this).attr('href');
     if (href && (href.match(/^https?\:/i)) && (!href.match(document.domain))) {
+      // External Links.
+      var log_ext_event = function() {
+        var extLink = href.replace(/^https?\:\/\//i, '');
+        _gaq.push(['_trackEvent', 'External', 'Click', extLink]);
+      }
+
+      // Click on mousedown. Mousedown is for right/middle click.
+      // Need to use click for left click to get prevent popup blocking.
       $(this).click(function(e) {
         e.preventDefault();
-        var extLink = href.replace(/^https?\:\/\//i, '');
         window.open(href);
-        _gaq.push(['_trackEvent', 'External', 'Click', extLink]);
+        log_ext_event();
       });
       $(this).mousedown(function(e) {
-        if (e.which == 1) {
+        if (e.which == 1) { // Exclude left click.
           return;
         }
 
-        var extLink = href.replace(/^https?\:\/\//i, '');
         window.open(href);
-        _gaq.push(['_trackEvent', 'External', 'Click', extLink]);
+        log_ext_event();
       });
     }
     else if (href && href.match(/^mailto\:/i)) {
+      // Mail Links.
       $(this).mousedown(function(e) {
         var mailLink = href.replace(/^mailto\:/i, '');
         _gaq.push(['_trackEvent', 'Email', 'Click', mailLink]);
       });
     }
     else if (href && href.match(filetypes)) {
-      $(this).click(function(e) {
-        e.preventDefault();
+      // File Links.
+      var log_file_event = function() {
         var extension = (/[.]/.exec(href)) ? /[^.]+$/.exec(href) : undefined;
+        extension = extension[0];
         var filePath = href;
         window.open(href);
         _gaq.push(['_trackEvent', 'Download', extension, filePath]);
+      }
+
+      // Click on mousedown. Mousedown is for right/middle click.
+      // Need to use click for left click to get prevent popup blocking.
+      $(this).click(function(e) {
+        e.preventDefault();
+        log_file_event();
+        window.open(href);
       });
       $(this).mousedown(function(e) {
-        if (e.which == 1) {
+        if (e.which == 1) { // Exclude left click.
           return;
         }
 
-        var extension = (/[.]/.exec(href)) ? /[^.]+$/.exec(href) : undefined;
-        var filePath = href;
+        log_file_event();
         window.open(href);
-        _gaq.push(['_trackEvent', 'Download', extension, filePath]);
       });
     }
     else if (href && href.match(/.*\/certificate\/pdf/i)) {
+      // Certificate Links.
       $(this).mousedown(function(e) {
         var filePath = href;
         _gaq.push(['_trackEvent', 'Download', 'pdf', filePath]);
