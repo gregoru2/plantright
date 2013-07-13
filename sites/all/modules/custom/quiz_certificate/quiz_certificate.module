@@ -73,7 +73,7 @@ function quiz_certificate_access_my_certificate($quiz) {
     return false;
   }
 
-  if (user_access('view own quiz certificate') && !quiz_access_results($quiz)) {
+  if (user_access('view own quiz certificate')) {
     $answered = db_result(db_query_range(
       'SELECT 1
        FROM {quiz_node_results}
