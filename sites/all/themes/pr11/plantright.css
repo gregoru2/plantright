@@ -45,6 +45,7 @@ ul.primary-tabs li { display: inline; margin-left: 1px; padding: 4px 9px 3px 7px
 ul.primary-tabs li a { color: #ac512a; float: none; }
 
 body#page-node-1421-take ul.primary-tabs li:first-child, body#page-node-1421-take ul.primary-tabs li:nth-child(2) { display: none; }
+body#page-node-2949-take ul.primary-tabs li:first-child, body#page-node-2949-take ul.primary-tabs li:nth-child(2) { display: none; }
 
 ul.secondary-tabs { display: block; width: 100%; border-bottom: solid 1px #a45031; margin: 10px 0; padding: 0; }
 ul.secondary-tabs li { display: inline; margin: 10px 10px 0 0; padding: 2px 6px 0; }
