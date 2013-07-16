@@ -970,6 +970,8 @@ span.password-confirm span.error { font-weight: bold; text-transform: uppercase;
 #content .pane { padding-top: 90px; }
 #content .pane.partnership { background: url(/images/pr_acct_icon_nursery.png) 50% top no-repeat; }
 #content .pane.survey { background: url(/images/pr_acct_icon_survey.png) 50% top no-repeat; }
+#content .pane.cont-ed { background: url(/images/pr_acct_icon_education.png) 50% top no-repeat;
+}
 
 /* lightbox */
 #imageDataContainer, #imageDataContainer #imageData {height: 40px;}
