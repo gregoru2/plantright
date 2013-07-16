@@ -63,7 +63,7 @@ body[id*="invites"] div#console { border: none; margin: 20px 0px 10px 0px; color
 body[id*="invites"] div#console div.help { border: none; margin: 20px 0px 10px 0px; color: black; }
 body[id*="invites"] div#console p { margin: 10px 0px; }
 
-#left #block-menu-primary-links ul.menu a, #left #block-menu-menu-survey-menu ul.menu a, #left #block-menu-menu-pre-survey-menu ul.menu a, #left #block-menu-menu-survey-admin ul.menu a, #left #block-menu-menu-retailer-menu ul.menu a { font-family: "Open Sans", Helvetica, Arial sans-serif; font-size: 16px; font-weight: 700; }
+#left #block-menu-primary-links ul.menu a, #left #block-menu-menu-survey-menu ul.menu a, #left #block-menu-menu-pre-survey-menu ul.menu a, #left #block-menu-menu-survey-admin ul.menu a, #left #block-menu-menu-retailer-menu ul.menu a, #left #block-menu-menu-continuing-education-menu ul.menu a { font-family: "Open Sans", Helvetica, Arial sans-serif; font-size: 16px; font-weight: 700; }
 #left #block-menu-primary-links ul.menu li.dhtml-menu li a:hover, #left #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a:hover, #left #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a:hover, #left #block-menu-menu-survey-admin ul.menu li.dhtml-menu li a:hover { color: #403000; text-decoration: none; }
 
 #block-menu-menu-survey-menu, #block-menu-menu-pre-survey-menu, #block-menu-menu-survey-admin { margin-top: 12px; }
@@ -716,23 +716,23 @@ div.links ul, div.terms ul { margin: 0; padding: 0; }
 
 #content ol#fourSteps, ul#partner_downloads { margin: 0; padding: 0; }
 
-#block-menu-primary-links ul.menu li, #leftnav ul.menu li, #block-menu-menu-retailer-menu ul.menu li { border-bottom: solid 1px #d8cfb4; padding: 10px 0; }
+#block-menu-primary-links ul.menu li, #leftnav ul.menu li, #block-menu-menu-retailer-menu ul.menu li, #block-menu-menu-continuing-education-menu ul.menu li { border-bottom: solid 1px #d8cfb4; padding: 10px 0; }
 
 ul.menu li.dhtml-menu.collapsed a, #leftnav ul.menu li.dhtml-menu.collapsed a { display: block; background: url(/images/arrow-collapsed.png) no-repeat 0 8px; margin-left: -11px; padding-left: 11px; }
 
 ul.menu li.dhtml-menu.expanded a, #leftnav ul.menu li.dhtml-menu.expanded a { display: block; background: url(/images/arrow-expanded.png) no-repeat 0 9px; margin-left: -11px; padding-left: 11px; }
 
-#block-menu-primary-links ul.menu.expanded ul, #block-menu-menu-survey-menu ul.menu.expanded ul, #block-menu-menu-pre-survey-menu ul.menu.expanded ul, #block-menu-menu-survey-admin ul.menu.expanded ul, #leftnav ul.menu.expanded ul, #block-menu-menu-retailer-menu ul.menu.expanded ul { margin-top: 10px; }
+#block-menu-primary-links ul.menu.expanded ul, #block-menu-menu-survey-menu ul.menu.expanded ul, #block-menu-menu-pre-survey-menu ul.menu.expanded ul, #block-menu-menu-survey-admin ul.menu.expanded ul, #leftnav ul.menu.expanded ul, #block-menu-menu-retailer-menu ul.menu.expanded ul, #block-menu-menu-continuing-education-menu ul.menu.expanded ul { margin-top: 10px; }
 
 .form-horizontal input + .help-block, .form-horizontal select + .help-block, .form-horizontal textarea + .help-block { margin-top: 10px; }
 
 #left #block-menu-primary-links ul.menu li.dhtml-menu li a, #left #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-survey-admin ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
-#left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
-#left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu a, #left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li a { color: #78a22e; }
+#left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
+#left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu a, #left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu a, #left #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu li a { color: #78a22e; }
 
 #leftnav ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
 
-#block-menu-primary-links ul.menu li.dhtml-menu li, #block-menu-menu-survey-menu ul.menu li.dhtml-menu li, #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li, #block-menu-menu-survey-admin ul.menu li.dhtml-menu li, #leftnav ul.menu li.dhtml-menu li, #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li { border-top: solid 1px #eae8dc; border-bottom: none; padding: 6px 0; }
+#block-menu-primary-links ul.menu li.dhtml-menu li, #block-menu-menu-survey-menu ul.menu li.dhtml-menu li, #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li, #block-menu-menu-survey-admin ul.menu li.dhtml-menu li, #leftnav ul.menu li.dhtml-menu li, #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li, #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu li { border-top: solid 1px #eae8dc; border-bottom: none; padding: 6px 0; }
 
 #block-user-0 label, #block-masquerade-0 label { font-weight: 400; }
 
