@@ -61,7 +61,9 @@ function _plantright_login_action(&$form, &$form_state) {
   // if a Retailer member,
   if (in_array(7, $rids) ||
       in_array(8, $rids) ||
-      in_array(9, $rids) || in_array(10, $rids)) {
+      in_array(9, $rids) || 
+      in_array(10, $rids) ||
+      in_array(15, $rids)) {
     drupal_goto("user/$user->uid");
   }
 //  $node = node_load(array('uid' => $account->uid, 'type' => 'retail_member'));
