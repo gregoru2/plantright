@@ -44,6 +44,7 @@ $invites_sent = $content['invites'] ? "complete" : "incomplete";
 $invite_progress = ($invite_percentage == 100) ? "complete" : "incomplete";
 $user_quiz_progress = in_array(11, array_keys($user->roles)) ? "complete" : "incomplete" ;
 $group_quiz_progress = (!empty($content['certified_buyers']) && count($content['certified_buyers']) >= $content['total_buyers']) ? "complete" : "incomplete";
+$certified_buyers = $content['certified_buyers'];
 
 ?>
 <div id="block-<?php print $block->module .'-'. $block->delta; ?>" class="block block-<?php print $block->module ?>">
@@ -54,16 +55,16 @@ $group_quiz_progress = (!empty($content['certified_buyers']) && count($content['
   <div id="progress-block" class="content">
 	<h2 id="the-checklist">Your Progress</h2>
     <h3>Steps to Becoming a PlantRight Partner</h3>
-    
+
     <p>This checklist shows your completed steps and what's still required to become a certified PlantRight Partner nursery.</p>
-    
+
     <div id="store-registered" class="item <?php print $content['store_registered'] ?>">
        <?php if ($content['store_registered'] == 'complete'): ?>
         <p class="desc">You've registered your nursery.</p>
       <?php else : ?>
         <p class="desc"><a href="/node/add/business">Register your nursery.</a></p>
       <?php endif; ?>
-    </div> 
+    </div>
 
     <div id="invite-staff" class="item <?php print $invites_sent ?>">
       <?php if ($content['invites']): ?>
