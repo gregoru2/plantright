@@ -1,9 +1,14 @@
 <?php
 
 DEFINE('PLANTRIGHT_RETAIL_PROFILE', 'retail_member');
-DEFINE('PLANTRIGHT_RETAIL_PROFILE_FNAME', 'field_fname');
-DEFINE('PLANTRIGHT_RETAIL_PROFILE_LNAME', 'field_lname');
 DEFINE('PLANTRIGHT_RETAIL_PROFILE_NURSERY', 'field_retailer');
+
+DEFINE('PLANTRIGHT_CONTINUING_EDUCATION_PROFILE', 'continuing_education_member');
+DEFINE('PLANTRIGHT_SURVEY_PROFILE', 'survey_profile');
+
+DEFINE('PLANTRIGHT_PROFILE_FNAME', 'field_fname');
+DEFINE('PLANTRIGHT_PROFILE_LNAME', 'field_lname');
+
 
 /**
  * Include token support.
@@ -358,14 +363,22 @@ function plantright_mail_alter(&$message) {
 function plantright_get_user_profile_name($account) {
   static $plantright_user_profile_name;
   if (!isset($plantright_user_profile_name)) {
+    $profile = NULL;
     if ($profile = content_profile_load(PLANTRIGHT_RETAIL_PROFILE, $account->uid)) {
+    }
+    else if ($profile = content_profile_load(PLANTRIGHT_CONTINUING_EDUCATION_PROFILE, $account->uid)) {
+    }
+    else if ($profile = content_profile_load(PLANTRIGHT_SURVEY_PROFILE, $account->uid)) {
+    }
+      
+    if ($profile) {
       // Profile exists. Replace the username with the profile name
-      $fname = $profile->{PLANTRIGHT_RETAIL_PROFILE_FNAME};
+      $fname = $profile->{PLANTRIGHT_PROFILE_FNAME};
       if ($fname) {
         $fname = $fname[0]['value'];
         $name = $fname;
       }
-      $lname = $profile->{PLANTRIGHT_RETAIL_PROFILE_LNAME};
+      $lname = $profile->{PLANTRIGHT_PROFILE_LNAME};
       if ($lname) {
         $lname = $lname[0]['value'];
         $name = $name . ($name ? ' ' : '') . $lname;
