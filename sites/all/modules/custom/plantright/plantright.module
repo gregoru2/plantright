@@ -364,11 +364,15 @@ function plantright_get_user_profile_name($account) {
   static $plantright_user_profile_name;
   if (!isset($plantright_user_profile_name)) {
     $profile = NULL;
-    if ($profile = content_profile_load(PLANTRIGHT_RETAIL_PROFILE, $account->uid)) {
+    
+    if (in_array(15, array_keys($account->roles))) {
+      $profile = content_profile_load(PLANTRIGHT_CONTINUING_EDUCATION_PROFILE, $account->uid);
     }
-    else if ($profile = content_profile_load(PLANTRIGHT_CONTINUING_EDUCATION_PROFILE, $account->uid)) {
+    else if (in_array(14, array_keys($account->roles))) {
+      $profile = content_profile_load(PLANTRIGHT_SURVEY_PROFILE, $account->uid);
     }
-    else if ($profile = content_profile_load(PLANTRIGHT_SURVEY_PROFILE, $account->uid)) {
+    else {
+        $profile = content_profile_load(PLANTRIGHT_RETAIL_PROFILE, $account->uid);
     }
       
     if ($profile) {

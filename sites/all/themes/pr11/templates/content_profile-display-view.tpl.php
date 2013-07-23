@@ -40,11 +40,20 @@ global $user;
     <?php else: ?>
       <p>Edit your profile to choose an affiliated retailer.</p>
     <?php endif; ?>
-    <?php if(in_array(11, array_keys($user->roles))): ?>
+    <?php
+    print_r($user);
+    if(in_array(11, array_keys($user->roles))): ?>
       <a class="btn-primary" href="/node/1421/certificate">Your Certificate of Achievement</a>
       <a class="btn-primary" href="/partner-resources">Partner Resources</a>
     <?php endif; ?>
   <?php endif; ?>
+  <?php if ($node->type == 'continuing_education_member'): ?>
+    <?php if(in_array(16, array_keys($user->roles))): ?>
+      <a class="btn-primary" href="/node/2949/certificate">Your Certificate of Achievement</a>
+      <a class="btn-primary" href="/continuing-education-resources">Partner Resources</a>
+    <?php endif; ?>
+  <?php endif; ?>
+
   <?php global $user; if ($user->uid == $node->uid): ?>
     <a class="btn-primary" href="/node/<?php print $node->nid ?>/edit">Edit Profile/Password</a>
   <?php endif; ?>
