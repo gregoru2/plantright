@@ -68,10 +68,14 @@ function quiz_certificate_access_my_certificate($quiz) {
     return FALSE;
   }
 
+  /*
+   * Exclude checking if user has passed, because VID is required
+   * and we don't care about the VID.
   if(!quiz_is_passed($user->uid, $quiz->nid, $quiz->vid)) {
     // No access to the page if user hasn't passed the quiz.
     return false;
   }
+   */
 
   if (user_access('view own quiz certificate')) {
     $answered = db_result(db_query_range(
