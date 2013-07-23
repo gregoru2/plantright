@@ -107,12 +107,19 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     $form['contact']['#prefix'] = '<div class="contact-info">';
     $form['contact']['#suffix'] = '</div>';
   }
-  if ($form_id == 'survey_profile_node_form' || $form_id == 'retail_member_node_form') {
+  if ($form_id == 'continuing_education_member_node_form' || $form_id == 'survey_profile_node_form' || $form_id == 'retail_member_node_form') {
     $form['title']['#type'] = 'hidden';
     if (isset($form['account']['name'])) {
       $form['account']['name']['#type'] = 'hidden';
     }
     $form['#after_build'] = array('plantright_user_register_after_build');
+
+    if ($user->uid) {
+      $form['#redirect'] = "user/$user->uid";
+    }
+    else {
+      $form['#redirect'] = "user";
+    }
   }
   if ($form_id == 'business_node_form') {
     $form['#redirect'] = 'invite';
@@ -161,17 +168,6 @@ PLEDGE;
   if ($form_id == 'invite_form') {
     $form['#redirect'] = 'user';
   }
-  if ($form_id == 'retail_member_node_form') {
-    if ($user->uid) {
-      $form['#redirect'] = "user/$user->uid";
-    }
-    else {
-      $form['#redirect'] = "user";
-    }
-
-    $form['title']['#type'] = 'hidden';
-  }
-  //dpm($form);
 
   /* from changes to account_profile module */
   if (variable_get('content_profile_use_' . $form['#node']->type, FALSE)
