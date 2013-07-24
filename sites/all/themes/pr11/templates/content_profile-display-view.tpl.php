@@ -41,7 +41,6 @@ global $user;
       <p>Edit your profile to choose an affiliated retailer.</p>
     <?php endif; ?>
     <?php
-    print_r($user);
     if(in_array(11, array_keys($user->roles))): ?>
       <a class="btn-primary" href="/node/1421/certificate">Your Certificate of Achievement</a>
       <a class="btn-primary" href="/partner-resources">Partner Resources</a>
