@@ -254,7 +254,7 @@ function pr11_preprocess_node(&$vars) {
   if (isset($_GET['print'])) {
     $vars['post_object'] = pr11_print_book_children($vars['node']);
   }
-  if ($vars['type'] == 'retail_member' || $vars['type'] == 'survey_profile') {
+  if ($vars['type'] == 'retail_member' || $vars['type'] == 'survey_profile' || $vars['type'] == 'continuing_education_member') {
     $user = user_load($vars['uid']);
     //dpm($vars);
     $type = ucwords(preg_replace('/_/', ' ', $vars['node']->type));
