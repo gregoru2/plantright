@@ -68,7 +68,7 @@ function quiz_certificate_access_my_certificate($quiz) {
     return FALSE;
   }
 
-  if(!quiz_is_passed($user->uid, $quiz->nid, $quiz->vid)) {
+  if(!quiz_certificate_quiz_is_passed($user->uid, $quiz->nid)) {
     // No access to the page if user hasn't passed the quiz.
     return false;
   }
@@ -245,15 +245,26 @@ function quiz_certificate_create_certificate_pdf($quiz, $account, $result = NULL
   return;
 }
 
+function quiz_certificate_quiz_is_passed($uid, $nid) {
+  $passed = db_result(db_query("SELECT COUNT(result_id) AS passed_count
+    FROM {quiz_node_results} qnrs
+    INNER JOIN {quiz_node_properties} USING (nid)
+    WHERE qnrs.nid = %d AND qnrs.uid =%d AND score >= pass_rate",
+    $nid, $uid
+  ));
+  // Force into boolean context.
+  return ($passed !== FALSE && $passed > 0);
+}
+
 function quiz_certificate_get_users_passing_result($quiz, $account) {
   // No current
     $passing_score = '';
     // TODO: Alter query to sort by date passed
     $result = db_fetch_object(db_query("SELECT *
     FROM {quiz_node_results} qnrs
-    INNER JOIN {quiz_node_properties} USING (vid, nid)
-    WHERE qnrs.vid = %d AND qnrs.nid = %d AND qnrs.uid =%d AND score >= pass_rate ORDER BY qnrs.time_end DESC LIMIT 1",
-      $quiz->vid, $quiz->nid, $account->uid
+    INNER JOIN {quiz_node_properties} USING (nid)
+    WHERE qnrs.nid = %d AND qnrs.uid =%d AND score >= pass_rate ORDER BY qnrs.time_end DESC LIMIT 1",
+    $quiz->nid, $account->uid
     ));
     return $result;
 }
