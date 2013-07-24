@@ -66,7 +66,7 @@ function _plantright_login_action(&$form, &$form_state) {
   // if a Retailer member,
   if (in_array(7, $rids) ||
       in_array(8, $rids) ||
-      in_array(9, $rids) || 
+      in_array(9, $rids) ||
       in_array(10, $rids) ||
       in_array(15, $rids)) {
     drupal_goto("user/$user->uid");
@@ -240,7 +240,12 @@ PLEDGE;
 }
 
 function plantright_user_register_after_build(&$form, &$form_state) {
-  $form['field_retailer']['nid']['nid']['#options'][''] = t('Store not registered yet');
+  if (isset($form['field_retailer'])) {
+    $form['field_retailer']['nid']['nid']['#options'][''] = t('Store not registered yet');
+  }
+  else if (isset($form['group_personal']) && isset($form['group_personal']['field_retailer'])) {
+    $form['group_personal']['field_retailer']['nid']['nid']['#options'][''] = t('Store not registered yet');
+  }
   return $form;
 }
 
@@ -364,7 +369,7 @@ function plantright_get_user_profile_name($account) {
   static $plantright_user_profile_name;
   if (!isset($plantright_user_profile_name)) {
     $profile = NULL;
-    
+
     if (in_array(15, array_keys($account->roles))) {
       $profile = content_profile_load(PLANTRIGHT_CONTINUING_EDUCATION_PROFILE, $account->uid);
     }
@@ -374,7 +379,7 @@ function plantright_get_user_profile_name($account) {
     else {
         $profile = content_profile_load(PLANTRIGHT_RETAIL_PROFILE, $account->uid);
     }
-      
+
     if ($profile) {
       // Profile exists. Replace the username with the profile name
       $fname = $profile->{PLANTRIGHT_PROFILE_FNAME};
