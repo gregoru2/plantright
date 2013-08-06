@@ -34,23 +34,20 @@ $accepted_invites = $content['accepted_invites'];
 if ($total_invites = 0) {
   $invite_percentage = "n/a";
 }
-else {
-  if ($total_invites > 0) {
+else if ($total_invites > 0) {
     $invite_percentage = ($accepted_invites / $total_invites) * 100;
-  }
 }
-//dpm($user);
+
 $invites_sent = $content['invites'] ? "complete" : "incomplete";
 $invite_progress = ($invite_percentage == 100) ? "complete" : "incomplete";
 $user_quiz_progress = in_array(11, array_keys($user->roles)) ? "complete" : "incomplete" ;
 $group_quiz_progress = (!empty($content['certified_buyers']) && count($content['certified_buyers']) >= $content['total_buyers']) ? "complete" : "incomplete";
-$certified_buyers = $content['certified_buyers'];
-
+$remaining_buyers = $content['total_buyers'] - count($content['certified_buyers']);
 ?>
 <div id="block-<?php print $block->module .'-'. $block->delta; ?>" class="block block-<?php print $block->module ?>">
-<?php if ($block->subject): ?>
+  <?php if ($block->subject): ?>
   <h2><?php print $block->subject ?></h2>
-<?php endif;?>
+  <?php endif;?>
 
   <div id="progress-block" class="content">
 	<h2 id="the-checklist">Your Progress</h2>
@@ -103,13 +100,17 @@ $certified_buyers = $content['certified_buyers'];
     </div>
 
     <div id="pass-quiz" class="item <?php print $group_quiz_progress ?>">
-      <?php if (!empty($certified_buyers) && $content['total_buyers'] <= count($certified_buyers)): ?>
-        <p class="desc">Congratulations! All plant buyers at your nursery have passed our 10 question quiz.</p>
+      <?php if ($remaining_buyers <= 0): ?>
+        <p class="desc">All plant buyers at your nursery have completed the PlantRight 101 training.</p>
+        <p class="status">Congratulations!  Visit PlantRight's <a href="/partner-resources">Partner Resources</a>.</p>
       <?php else : ?>
-        <p class="desc">All plant buyers must pass our 10 question quiz.</p>
-        <a href="#" class="dropdown-toggle">Plant buyer progress details</a>
-        <div class="dropdown">
-          <h4><?php print count($content['certified_buyers']) ?> of <?php print $content['total_buyers'] ?> are certified</h4>
+        <p class="desc">All plant buyers must pass the PlantRight 101 training.</p>
+      <?php endif; ?>
+      <a href="#" class="dropdown-toggle">Plant buyer progress details</a>
+      <div class="dropdown">
+        <h4><?php print count($content['certified_buyers']) ?> of <?php print $content['total_buyers'] ?> are certified</h4>
+        <?php if ($remaining_buyers > 0) : ?>
+
           <p>We're still waiting for:</p>
           <ul>
             <?php if ($slackers): ?>
@@ -120,9 +121,9 @@ $certified_buyers = $content['certified_buyers'];
               <li>Some folks who haven't registered yet.</li>
             <?php endif; ?>
           </ul>
-        </div>
       <?php endif; ?>
     </div>
+  </div>
 
   </div>
 </div>
