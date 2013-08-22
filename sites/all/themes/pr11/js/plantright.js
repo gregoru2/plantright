@@ -22,7 +22,7 @@ Drupal.behaviors.tao = function (context) {
     });
   });
   $('body#page-node-add-business input#edit-title').change(function(){
-    $('span.nursery-name').text($(this).val()); 
+    $('span.nursery-name').text($(this).val());
  });
 };
 
@@ -54,7 +54,7 @@ jQuery(document).ready(function($) {
   $('#tabbed .tab-content:not(:first)').hide();
   $('#tabbed h3:first').addClass('active');
   $('#tabbed h3').click(function(){
-    var boxHeight, 
+    var boxHeight,
         thisId = this.id;
     $('#tabbed h3.active').removeClass('active');
     $(this).addClass('active');
@@ -76,10 +76,4 @@ jQuery(document).ready(function($) {
     $('.status').remove();
     document.title = 'Please activate your account (check your email)';
   }
-  $('#user-login-form #edit-name-wrapper label').text('Email:');
-  $('#user-register').submit(function(form){
-    $name = $('#edit-mail').val().split('@')[0];
-    $('#edit-name').val($name);
-    form.submit();
-  });
 });

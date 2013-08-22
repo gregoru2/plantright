@@ -22,6 +22,9 @@ function plantright_init() {
   drupal_add_js(drupal_get_path('module', 'plantright') . '/js/plantright.js');
 }
 
+/**
+ * Implementation of hook_flag().
+ */
 function plantright_flag($action, $flag, $content_id, $account) {
   if ($action == 'flag' && $flag->name == 'nursery_flag') {
     $node = node_load($content_id);
@@ -49,6 +52,9 @@ function removeElementWithValue($array, $key, $value) {
   return $array;
 }
 
+/**
+ * Implementation of hook_user().
+ */
 function plantright_user($op, &$edit, &$account, $category = NULL) {
   //dpm(array($op, $account));
   if ($op == 'login') {
@@ -57,6 +63,9 @@ function plantright_user($op, &$edit, &$account, $category = NULL) {
   }
 }
 
+/**
+ * Implementation of hook_nodeapi().
+ */
 function plantright_nodeapi(&$node, $op) {
   // When retail manager creates a Retailer, set the association
   if ($node->type == 'business' && $op == 'insert') {
@@ -67,6 +76,34 @@ function plantright_nodeapi(&$node, $op) {
   //dpm($node);
 }
 
+/**
+ * Helper function that validates login for special login handling.
+ * Allows for notifying users with shared email addresses to log in using
+ * their username instead.
+ * (The first user to sign up with an email address will be able to log in.
+ * Other users must use their username.)
+ */
+function _plantright_login_validate(&$form, &$form_state) {
+  $entered_name = $form['name']['#value'];
+  if (strpos($entered_name, '@') !== FALSE) {
+    // Logging in as an email address. Check if email is duplicate
+    $count = db_result(db_query('SELECT count(*) FROM {users} WHERE mail = "%s"', $entered_name));
+    if ($count > 1) {
+      // Check if the password is correct for the first user with this address.
+      // (The login will be successful if so.
+      // If not, we need to notify the user to user their username instead.)
+      $name = db_result(db_query("SELECT name FROM {users} WHERE LOWER(mail) = LOWER('%s')", $form_state['values']['name']));
+      $match = db_result(db_query("SELECT count(*) FROM {users} WHERE name = '%s' AND pass = '%s'", $name, md5($form_state['values']['pass'])));
+      if (!$match) {
+        form_set_error('name', t("The email address %mail is shared. Please login with your username instead of your email address.", array('%mail' => $entered_name)));
+      }
+    }
+  }
+}
+
+/**
+ * Helper functiont that handles the user login form submission.
+ */
 function _plantright_login_action(&$form, &$form_state) {
   global $user;
   $rids = array_keys($user->roles);
@@ -98,18 +135,69 @@ function _plantright_login_action(&$form, &$form_state) {
 //  }
 }
 
+/**
+ * Helper function that validates the user registration form.
+ * Allows for handling of the username field with shared email addresses.
+ * And automatically creating usernames for non-shared email addresses.
+ */
+function _plantright_register_validate(&$form, &$form_state) {
+  $username = $form_state['values']['name'];
+  $mail = $form_state['values']['mail'];
+  $mail_taken = db_result(db_query("SELECT mail FROM {users} WHERE name = '%s'", $username));
+
+  if ($mail_taken != $mail) {
+    // The username is not taken or already taken by another email address.
+
+    // Is this user signing up with a shared email address?
+    // If it is a shared email, the user has picked an already taken username.
+    // They will need to choose another. (Drupal will handle that message.)
+    $is_shared_email = db_result(db_query("SELECT name FROM {users} WHERE LOWER(mail) = LOWER('%s')", $mail));
+    if (!$is_shared_email) {
+      // It's not a shared email, automatically set the username.
+
+      // Remove unacceptable characters.
+      $namenew = preg_replace('/[^a-zA-Z0-9.-\s]/', '', $form_state['values']['name']);
+
+      // If username generated from email already exists, append space and number eg:(chris 123)
+      if (db_result(db_query("SELECT count(*) FROM {users} WHERE LOWER(name) = LOWER('%s')", $namenew)) > 0) {
+        // Find the next number available to append to the name.
+        $sql = "SELECT SUBSTRING_INDEX(name,' ',-1) FROM {users} WHERE name REGEXP '%s' ORDER BY CAST(SUBSTRING_INDEX(name,' ',-1) AS UNSIGNED) DESC LIMIT 1";
+        $name_index = db_result(db_query($sql, '^' . $namenew . ' [0-9]+$'));
+        $namenew .= ' ' . ($name_index + 1);
+      }
+
+      form_set_value($form['name'], $namenew, $form_state);
+    }
+  }
+  else {
+    // The username is already assigned to the email address provided.
+    // Prompt the user with an error.
+    // (Javascript will handle showing the username field so users can choose.)
+    form_set_error('name',
+        '<p>' . t('An account has already been created with the email address %mail.  If you are sharing this account with others, you can use this email address as well by creating a new username below.  In the future, you will need to log in with this username, rather than the shared email address.', array('%mail' => $mail)) . '</p>' .
+        '<p>' . t('Not a shared account?  <a href="/user/password">Request a new password</a>, or <a href="/contact">contact PlantRight for assistance</a>.') . '</p>'
+    );
+
+  }
+}
+
+/**
+ * Implementation of hook_form_alter().
+ */
 function plantright_form_alter(&$form, &$form_state, $form_id) {
   global $user;
   if ($form_id == 'user_register') {
 //    $form['#tree'] = TRUE;
     $form['account']['mail']['#description'] = 'A valid e-mail address. All e-mails from the system will be sent to this address.<br />
       The e-mail address is not made public and your information will not be sold, or shared with others.';
-    $form['name']['#type'] = 'hidden';
-    $form['name']['#default_value'] = user_password();
+//    $form['name']['#type'] = 'hidden';
+//    $form['name']['#default_value'] = user_password();
     $form['#after_build'] = array('plantright_user_register_after_build');
+    array_unshift($form['#validate'], '_plantright_register_validate');
   }
   if ($form_id == 'user_login' || $form_id == 'user_login_block') {
     $form['#action'] = NULL;
+    array_unshift($form['#validate'], '_plantright_login_validate');
     $form['#submit'] = array('_plantright_login_action');
   }
   if ($form_id == 'user_pass_reset') {
@@ -244,7 +332,11 @@ PLEDGE;
   }
 }
 
+/**
+ * Helper function that changes the user registration form.
+ */
 function plantright_user_register_after_build(&$form, &$form_state) {
+  // Change "none" on the retailer select field.
   if (isset($form['field_retailer'])) {
     $form['field_retailer']['nid']['nid']['#options'][''] = t('Store not registered yet');
   }
@@ -254,6 +346,9 @@ function plantright_user_register_after_build(&$form, &$form_state) {
   return $form;
 }
 
+/**
+ * Implementation of hook_menu_alter().
+ */
 function plantright_menu_alter(&$items) {
   $items['user/reset/%/%/%'] = array(
     'title' => 'Reset password',
