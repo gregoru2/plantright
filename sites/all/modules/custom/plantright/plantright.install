@@ -1,0 +1,9 @@
+<?php
+
+function plantright_install() {
+  db_query("UPDATE {system} SET weight = 99 WHERE type = 'module' AND name = 'plantright'");
+}
+
+function plantright_update_6001() {
+  db_query("UPDATE {system} SET weight = 99 WHERE type = 'module' AND name = 'plantright'");
+}

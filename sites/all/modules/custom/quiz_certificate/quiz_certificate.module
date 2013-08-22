@@ -68,12 +68,12 @@ function quiz_certificate_access_my_certificate($quiz) {
     return FALSE;
   }
 
-  if(!quiz_certificate_quiz_is_passed($user->uid, $quiz->nid)) {
+  if(!quiz_is_passed($user->uid, $quiz->nid, $quiz->vid)) {
     // No access to the page if user hasn't passed the quiz.
     return false;
   }
 
-  if (user_access('view own quiz certificate')) {
+  if (user_access('view own quiz certificate') && !quiz_access_results($quiz)) {
     $answered = db_result(db_query_range(
       'SELECT 1
        FROM {quiz_node_results}
@@ -186,7 +186,7 @@ function quiz_certificate_preprocess_quiz_certificate(&$vars) {
 
   $vars['name'] = plantright_get_user_profile_name($vars['account']);
   $vars['download_url'] = filter_xss($_GET['q']) . '/pdf';
-  $vars['download_link'] = l(t('Download My Certificate'), $vars['download_url']);
+  $vars['download_link'] = l(t('Download Printable Certificate'), $vars['download_url']);
 }
 
 function quiz_certificate_preprocess_quiz_certificate_pdf(&$vars) {
@@ -245,26 +245,15 @@ function quiz_certificate_create_certificate_pdf($quiz, $account, $result = NULL
   return;
 }
 
-function quiz_certificate_quiz_is_passed($uid, $nid) {
-  $passed = db_result(db_query("SELECT COUNT(result_id) AS passed_count
-    FROM {quiz_node_results} qnrs
-    INNER JOIN {quiz_node_properties} USING (nid)
-    WHERE qnrs.nid = %d AND qnrs.uid =%d AND score >= pass_rate",
-    $nid, $uid
-  ));
-  // Force into boolean context.
-  return ($passed !== FALSE && $passed > 0);
-}
-
 function quiz_certificate_get_users_passing_result($quiz, $account) {
   // No current
     $passing_score = '';
     // TODO: Alter query to sort by date passed
     $result = db_fetch_object(db_query("SELECT *
     FROM {quiz_node_results} qnrs
-    INNER JOIN {quiz_node_properties} USING (nid)
-    WHERE qnrs.nid = %d AND qnrs.uid =%d AND score >= pass_rate ORDER BY qnrs.time_end DESC LIMIT 1",
-    $quiz->nid, $account->uid
+    INNER JOIN {quiz_node_properties} USING (vid, nid)
+    WHERE qnrs.vid = %d AND qnrs.nid = %d AND qnrs.uid =%d AND score >= pass_rate ORDER BY qnrs.time_end DESC LIMIT 1",
+      $quiz->vid, $quiz->nid, $account->uid
     ));
     return $result;
 }

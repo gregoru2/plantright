@@ -44,8 +44,7 @@ ul.primary-tabs { color: #ac512a; position: absolute; top: 119px; right: 20px; }
 ul.primary-tabs li { display: inline; margin-left: 1px; padding: 4px 9px 3px 7px; background: white; background: white; border-bottom: 2px white solid; -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px; border-top-left-radius: 5px; border-top-right-radius: 5px; box-shadow: -4px -4px 4px rgba(76, 61, 20, 0.25); }
 ul.primary-tabs li a { color: #ac512a; float: none; }
 
-body#page-node-1421-take ul.primary-tabs li { display: none; }
-body#page-node-2949-take ul.primary-tabs li { display: none; }
+body#page-node-1421-take ul.primary-tabs li:first-child, body#page-node-1421-take ul.primary-tabs li:nth-child(2) { display: none; }
 
 ul.secondary-tabs { display: block; width: 100%; border-bottom: solid 1px #a45031; margin: 10px 0; padding: 0; }
 ul.secondary-tabs li { display: inline; margin: 10px 10px 0 0; padding: 2px 6px 0; }
@@ -64,10 +63,10 @@ body[id*="invites"] div#console { border: none; margin: 20px 0px 10px 0px; color
 body[id*="invites"] div#console div.help { border: none; margin: 20px 0px 10px 0px; color: black; }
 body[id*="invites"] div#console p { margin: 10px 0px; }
 
-#left #block-menu-primary-links ul.menu a, #left #block-menu-menu-survey-menu ul.menu a, #left #block-menu-menu-pre-survey-menu ul.menu a, #left #block-menu-menu-survey-admin ul.menu a, #left #block-menu-menu-retailer-menu ul.menu a, #left #block-menu-menu-continuing-education-menu ul.menu a { font-family: "Open Sans", Helvetica, Arial sans-serif; font-size: 16px; font-weight: 700; }
-#left #block-menu-primary-links ul.menu li.dhtml-menu li a:hover, #left #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a:hover, #left #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a:hover, #left #block-menu-menu-survey-admin ul.menu li.dhtml-menu li a:hover { color: #403000; text-decoration: none; }
+#left #block-menu-primary-links ul.menu a, #left #block-menu-menu-survey-menu ul.menu a, #left #block-menu-menu-pre-survey-menu ul.menu a, #left #block-menu-menu-survey-admin ul.menu a, #left #block-menu-menu-retailer-menu ul.menu a, #block-menu-menu-continuing-education-menu ul.menu a { font-family: "Open Sans", Helvetica, Arial sans-serif; font-size: 16px; font-weight: 700; }
+#left #block-menu-primary-links ul.menu li.dhtml-menu li a:hover, #left #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a:hover, #left #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a:hover, #left #block-menu-menu-survey-admin ul.menu li.dhtml-menu li a:hover, #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu li a:hover { color: #403000; text-decoration: none; }
 
-#block-menu-menu-survey-menu, #block-menu-menu-pre-survey-menu, #block-menu-menu-survey-admin { margin-top: 12px; }
+#block-menu-menu-survey-menu, #block-menu-menu-pre-survey-menu, #block-menu-menu-survey-admin, #block-menu-menu-continuing-education-menu { margin-top: 12px; }
 
 #block-user-0, #block-masquerade-0 { padding-top: 20px; }
 
@@ -376,6 +375,21 @@ form[action="quiz"] p { font-weight: 700; font-size: 1.1em; }
 div#missed_quiz_qs ul { margin-top: 2px; color: #c82404; }
 div#missed_quiz_qs ul li:first-child { margin-top: 2px; padding-top: 0; }
 
+div#quiz-certificate-download	{
+	position: relative;
+	top: 42px;
+	right: 37px;
+	text-align: right;
+	margin-top: 8px;
+	z-index: 30;
+}
+div#quiz-certificate-download a	{
+	padding: 4px 4px 4px 19px;
+	background: url(/images/printicon.png) no-repeat left 5px;
+	font-size: 1.05em;
+}
+
+
 h3.staff_training_consists { margin-bottom: 0; margin-top: 0; }
 
 ol.staff_training_consists { margin-top: 0; margin-bottom: 20px; font-size: 1.2em; }
@@ -397,7 +411,7 @@ form input[type=submit] { margin-top: 20px; margin-bottom: 20px; }
 
 div#shared-links a { display: block; margin: 1px 0; }
 
-a.btn-primary, .btn-primary, a.btn-success, .btn-success, .btn-info, a.btn-info { display: inline-block; font-size: 14px; font-weight: 400; color: white; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); line-height: 20px; text-align: center; vertical-align: middle; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); background-color: #a15334; border-solid: solid 1px #4d3c14; background-image: linear-gradient(tobottom, #ab7a4b, #a15334); background-repeat: repeat-x; border-color: rgba(77, 60, 20, 0.3); padding: 4px 14px; margin-bottom: 5px; }
+a.btn-primary, .btn-primary, a.btn-success, .btn-success, .btn-info, a.btn-info { margin-bottom: .5em; display: inline-block; font-size: 14px; font-weight: 400; color: white; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); line-height: 20px; text-align: center; vertical-align: middle; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); background-color: #a15334; border-solid: solid 1px #4d3c14; background-image: linear-gradient(tobottom, #ab7a4b, #a15334); background-repeat: repeat-x; border-color: rgba(77, 60, 20, 0.3); padding: 4px 14px; }
 
 a.btn-primary-grey, .btn-primary-grey { display: inline-block; font-size: 14px; font-weight: 400; color: white; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); line-height: 20px; text-align: center; vertical-align: middle; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); background-color: #aaa; border-solid: solid 1px #4d3c14; background-image: linear-gradient(tobottom, #ab7a4b, #a15334); background-repeat: repeat-x; border-color: rgba(77, 60, 20, 0.3); padding: 4px 14px; }
 
@@ -717,7 +731,7 @@ div.links ul, div.terms ul { margin: 0; padding: 0; }
 
 #content ol#fourSteps, ul#partner_downloads { margin: 0; padding: 0; }
 
-#block-menu-primary-links ul.menu li, #leftnav ul.menu li, #block-menu-menu-retailer-menu ul.menu li, #block-menu-menu-continuing-education-menu ul.menu li { border-bottom: solid 1px #d8cfb4; padding: 10px 0; }
+#block-menu-primary-links ul.menu li, #leftnav ul.menu li, #block-menu-menu-retailer-menu ul.menu li { border-bottom: solid 1px #d8cfb4; padding: 10px 0; }
 
 ul.menu li.dhtml-menu.collapsed a, #leftnav ul.menu li.dhtml-menu.collapsed a { display: block; background: url(/images/arrow-collapsed.png) no-repeat 0 8px; margin-left: -11px; padding-left: 11px; }
 
@@ -727,9 +741,9 @@ ul.menu li.dhtml-menu.expanded a, #leftnav ul.menu li.dhtml-menu.expanded a { di
 
 .form-horizontal input + .help-block, .form-horizontal select + .help-block, .form-horizontal textarea + .help-block { margin-top: 10px; }
 
-#left #block-menu-primary-links ul.menu li.dhtml-menu li a, #left #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-survey-admin ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
-#left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
-#left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu a, #left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu a, #left #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu li a { color: #78a22e; }
+#left #block-menu-primary-links ul.menu li.dhtml-menu li a, #left #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-survey-admin ul.menu li.dhtml-menu li a, #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
+#left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
+#left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu a, #left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li a { color: #78a22e; }
 
 #leftnav ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
 
@@ -971,8 +985,6 @@ span.password-confirm span.error { font-weight: bold; text-transform: uppercase;
 #content .pane { padding-top: 90px; }
 #content .pane.partnership { background: url(/images/pr_acct_icon_nursery.png) 50% top no-repeat; }
 #content .pane.survey { background: url(/images/pr_acct_icon_survey.png) 50% top no-repeat; }
-#content .pane.cont-ed { background: url(/images/pr_acct_icon_education.png) 50% top no-repeat; }
-#content .pane.cont-ed { background: url(/images/pr_acct_icon_education.png) 50% top no-repeat; }
 
 /* lightbox */
 #imageDataContainer, #imageDataContainer #imageData {height: 40px;}

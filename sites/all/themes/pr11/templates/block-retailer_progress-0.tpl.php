@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file block.tpl.php
  *
@@ -34,36 +33,35 @@ $accepted_invites = $content['accepted_invites'];
 if ($total_invites = 0) {
   $invite_percentage = "n/a";
 }
-else {
-  if ($total_invites > 0) {
+else if ($total_invites > 0) {
     $invite_percentage = ($accepted_invites / $total_invites) * 100;
-  }
 }
-//dpm($user);
+
 $invites_sent = $content['invites'] ? "complete" : "incomplete";
 $invite_progress = ($invite_percentage == 100) ? "complete" : "incomplete";
-$user_quiz_progress = in_array(11, array_keys($user->roles)) ? "complete" : "incomplete" ;
+$user_quiz_progress = in_array(11, array_keys($user->roles)) ? "complete" : "incomplete";
 $group_quiz_progress = (!empty($content['certified_buyers']) && count($content['certified_buyers']) >= $content['total_buyers']) ? "complete" : "incomplete";
+$remaining_buyers = $content['total_buyers'] - count($content['certified_buyers']);
 ?>
-<div id="block-<?php print $block->module .'-'. $block->delta; ?>" class="block block-<?php print $block->module ?>">
-<?php if ($block->subject): ?>
-  <h2><?php print $block->subject ?></h2>
-<?php endif;?>
+<div id="block-<?php print $block->module . '-' . $block->delta; ?>" class="block block-<?php print $block->module ?>">
+  <?php if ($block->subject): ?>
+    <h2><?php print $block->subject ?></h2>
+  <?php endif; ?>
 
   <div id="progress-block" class="content">
-	<h2 id="the-checklist">Your Progress</h2>
+    <h2 id="the-checklist">Your Progress</h2>
     <h3>Steps to Becoming a PlantRight Partner</h3>
-    
+
     <p>This checklist shows your completed steps and what's still required to become a certified PlantRight Partner nursery.</p>
-    
+
     <div id="store-registered" class="item <?php print $content['store_registered'] ?>">
-       <?php if ($content['store_registered'] == 'complete'): ?>
+      <?php if ($content['store_registered'] == 'complete'): ?>
         <p class="desc">You've registered your nursery.</p>
       <?php else : ?>
         <p class="desc"><a href="/node/add/business">Register your nursery.</a></p>
       <?php endif; ?>
-    </div> 
-	
+    </div>
+
 
     <div id="invite-staff" class="item <?php print $invites_sent ?>">
       <?php if ($content['invites']): ?>
@@ -75,20 +73,20 @@ $group_quiz_progress = (!empty($content['certified_buyers']) && count($content['
 
     <div id="invite-status" class="item <?php print $invite_progress ?>">
       <?php if ($total_invites > 0 && $total_invites == $accepted_invites): ?>
-      <p class="desc">All plant buyers are register at PlantRight.org.</p>
+        <p class="desc">All plant buyers are register at PlantRight.org.</p>
       <?php else : ?>
-      <p class="desc">All plant buyers need to register at PlantRight.org.</p>
-      <a href="#" class="dropdown-toggle">Staff progress details</a>
-      <div class="dropdown">
-        <h4><?php print $accepted_invites ?> of <?php print $total_invites ?> staff members have registered</h4>
-        <progress value="<?php print $invite_percentage ?>" max="100" style="width:100%" ></progress>
-        <p>We're still waiting for:</p>
-        <ul>
-        <?php foreach($ignored_invites as $invite): ?>
-          <li><?php print $invite->email ?> - <a href="/invite/resend/<?php print $invite->reg_code ?>">resend invitation</a></li>
-        <?php endforeach; ?>
-        </ul>
-      </div>
+        <p class="desc">All plant buyers need to register at PlantRight.org.</p>
+        <a href="#" class="dropdown-toggle">Staff progress details</a>
+        <div class="dropdown">
+          <h4><?php print $accepted_invites ?> of <?php print $total_invites ?> staff members have registered</h4>
+          <progress value="<?php print $invite_percentage ?>" max="100" style="width:100%" ></progress>
+          <p>We're still waiting for:</p>
+          <ul>
+            <?php foreach ($ignored_invites as $invite): ?>
+              <li><?php print $invite->email ?> - <a href="/invite/resend/<?php print $invite->reg_code ?>">resend invitation</a></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
       <?php endif; ?>
     </div>
 
@@ -101,16 +99,22 @@ $group_quiz_progress = (!empty($content['certified_buyers']) && count($content['
     </div>
 
     <div id="pass-quiz" class="item <?php print $group_quiz_progress ?>">
-      <?php if (!empty($content['certified_buyers']) && $content['total_buyers'] <= count($content['certified_buyers'])): ?>
-        <p class="desc">Congratulations! All plant buyers at your nursery have passed our 10 question quiz.</p>
+      <?php if ($remaining_buyers <= 0): ?>
+        <p class="desc">All plant buyers at your nursery have completed the PlantRight 101 training.</p>
+        <p class="status">Congratulations!  Visit PlantRight's <a href="/partner-resources">Partner Resources</a>.</p>
       <?php else : ?>
-        <p class="desc">All plant buyers must pass our 10 question quiz.</p>
-        <a href="#" class="dropdown-toggle">Plant buyer progress details</a>
-        <div class="dropdown">
-          <h4><?php print count($content['certified_buyers']) ?> of <?php print $content['total_buyers'] ?> are certified</h4>
+        <p class="desc">All plant buyers must pass the PlantRight 101 training.</p>
+      <?php endif; ?>
+      <a href="#" class="dropdown-toggle">Plant buyer progress details</a>
+      <div class="dropdown">
+        <h4><?php print count($content['certified_buyers']) ?> of <?php print $content['total_buyers'] ?> are certified</h4>
+        <?php if ($remaining_buyers > 0) : ?>
           <p>We're still waiting for:</p>
           <ul>
-            <?php if ($slackers): ?>
+            <?php
+            var_dump($slackers);
+            if ($slackers):
+              ?>
               <?php foreach ($slackers as $slacker): ?>
                 <li><?php print $slacker->email ?></li>
               <?php endforeach; ?>
@@ -118,8 +122,8 @@ $group_quiz_progress = (!empty($content['certified_buyers']) && count($content['
               <li>Some folks who haven't registered yet.</li>
             <?php endif; ?>
           </ul>
-        </div>
-      <?php endif; ?>
+        <?php endif; ?>
+      </div>
     </div>
   </div>
 </div>
