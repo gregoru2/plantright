@@ -14,6 +14,27 @@ function plantright_token_values($type = 'all', $object = NULL) {
     $values['pr-inviter-name'] = check_plain(plantright_get_user_profile_name($object->inviter));
     $values['pr-inviter-nursery'] = check_plain(plantright_get_user_profile_nursery($object->inviter));
   }
+  if ($type == 'node' && !empty($object)) {
+    $node = $object;
+    //$node_owner = db_fetch_object(db_query("SELECT name, mail FROM {users} WHERE uid = %d", $node->uid));
+    $fieldnames = array('field_retailer');
+    $nodetypes = array('retail_member');
+    //$referrers = _plantright_get_retailer_referrer_users($node->nid,  $fieldnames);
+    $referrers = nodereferrer_referrers($node->nid,  $fieldnames, $nodetypes);
+    $mails = array();
+    foreach($referrers as $profile_nid => $val) {
+      $profile = node_load($profile_nid);
+      // Exclude the nursery owner.
+      if ($node->uid != $profile->uid) {
+        $user = user_load($profile->uid);
+        $mails[$user->mail] = $user->mail;
+      }
+    }
+    $mail = implode(',', $mails);
+
+    $values['plantright-business-employees-mail']        = check_plain($mail);
+    $values['plantright-business-employees-mail-raw']    = $mail;
+  }
   return $values;
 }
 
@@ -24,8 +45,12 @@ function plantright_token_list($type = 'all') {
   if ($type == 'invite' || $type == 'all') {
     $tokens['invite']['pr-inviter-name'] = t('The plantright profile name of the user.');
     $tokens['invite']['pr-inviter-nursery'] = t('The plantright nursery of the user.');
-    return $tokens;
   }
+  if ($type == 'node' || $type == 'all') {
+    $tokens['node']['plantright-business-employees-mail']     = t("Comma-seperated list of email addresses of employees of the given retailer nursery.");
+    $tokens['node']['plantright-business-employees-mail-raw'] = t("Comma-seperated list of email addresses of employees of the given retailer nursery.");
+  }
+  return $tokens;
 }
 
 /**
