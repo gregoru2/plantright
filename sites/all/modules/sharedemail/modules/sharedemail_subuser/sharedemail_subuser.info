@@ -1,0 +1,13 @@
+; $Id$
+name = "Shared Email Subuser"
+description = "Integrate Subuser module with Shared Email."
+dependencies[] = "sharedemail"
+dependencies[] = "subuser"
+core = "6.x"
+
+; Information added by drupal.org packaging script on 2011-09-24
+version = "6.x-1.5"
+core = "6.x"
+project = "sharedemail"
+datestamp = "1316908307"
+

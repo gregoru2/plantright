@@ -1,0 +1,11 @@
+
+name = "Shared Email"
+description = Allow site members to use the same email address more than once.
+core = 6.x
+
+; Information added by drupal.org packaging script on 2011-09-24
+version = "6.x-1.5"
+core = "6.x"
+project = "sharedemail"
+datestamp = "1316908307"
+
