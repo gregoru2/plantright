@@ -29,6 +29,8 @@ h1 a, h2 a, h3 a, h4 a, h5 a { font-weight: 600; text-decoration: underline; }
 #prContainer { position: relative; top: -10px; left: 0; width: 948px; background: white; text-align: left; -moz-box-shadow: 38px 0 38px -38px rgba(77, 60, 20, 0.3), -38px 0 38px -38px rgba(77, 60, 20, 0.3); -webkit-box-shadow: 38px 0 38px -38px rgba(77, 60, 20, 0.3), -38px 0 38px -38px rgba(77, 60, 20, 0.3); box-shadow: 38px 0 38px -38px rgba(77, 60, 20, 0.3), -38px 0 38px -38px rgba(77, 60, 20, 0.3); margin: 10px auto; padding: 0 6px 20px; }
 
 #main { width: 780px; float: left; border-top: solid 77px #4b3c17; margin-top: -101px; padding: 0 0 20px; }
+#content { float: left; }
+#right { float: right; }
 
 body.section-news #main h1.page-title, body.section-nursery #main h1.page-title, body.section-flag #main h1.page-title { display: block; font-family: "Open Sans", Helvetica, Arial sans-serif; font-weight: 600; font-size: 2.1em; color: #4d3c14; margin: 25px 0 3px; }
 

@@ -74,25 +74,18 @@
         <?php if ($progress_block) print $progress_block; ?>
         <div id='content' class='clear-block'><?php print $content ?></div>
 		
-		
-		
-<!-- moved the footer into the main  area -->
+<?php // Moved right into main area so it works with the footer moved ?>		
+    <?php if ($right): ?>
+      <div id='right' class='clear-block'><?php print $right ?></div>
+    <?php endif; ?>	
+<?php //moved the footer into the main  area ?>
   <div id="footer"><div class='limiter clear-block'>
     <?php print $feed_icons ?>
     <?php print $footer ?>
     <?php print $footer_message ?>
   </div></div>
-
-
-
-		
+	
     </div>
-	
-	
-
-    <?php if ($right): ?>
-      <div id='right' class='clear-block'><?php print $right ?></div>
-    <?php endif; ?>
 
   </div></div>
 
