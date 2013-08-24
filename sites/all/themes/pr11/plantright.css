@@ -743,7 +743,7 @@ ul.menu li.dhtml-menu.expanded a, #leftnav ul.menu li.dhtml-menu.expanded a { di
 
 #left #block-menu-primary-links ul.menu li.dhtml-menu li a, #left #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-survey-admin ul.menu li.dhtml-menu li a, #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
 #left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
-#left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu a, #left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li a { color: #78a22e; }
+#left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu a, #left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu a, #left #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu li a { color: #78a22e; }
 
 #leftnav ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
 
