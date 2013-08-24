@@ -521,3 +521,15 @@ function plantright_get_user_profile_nursery($account) {
   }
   return $plantright_user_profile_nursery;
 }
+
+/**
+ * Implementation of hook_views_query_alter().
+ */
+function plantright_views_query_alter(&$view, &$query) {
+  // Exclude the node author from rules_vbo_nursery_employees
+  switch ($view->name) {
+    case 'rules_vbo_nursery_employees':
+      $view->query->add_where(0, 'node_node_data_field_retailer__users.uid <> users.uid');
+      break;
+  }
+}
