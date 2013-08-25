@@ -154,12 +154,10 @@ function _pr11_print_book_children($link, &$content, &$zomglimit, $limit = 500) 
 //    }
 //  }
 //  $vars['view']->result = $results;
-//  dpm($vars);
 //  return $vars;
 //}
 //
 //function pr11_preprocess_views_view_field__nursery_list__ops(&$vars) {
-//  //dpm($vars['row']);
 //
 //}
 
@@ -243,7 +241,6 @@ function pr11_preprocess_node(&$vars) {
   $attr['class'] = "node node-{$vars['node']->type}";
   $attr['class'] .= $vars['node']->sticky ? ' sticky' : '';
   $vars['attr'] = $attr;
-  //dpm($vars);
   $vars['hook'] = 'node';
   $vars['is_prose'] = TRUE;
 
@@ -253,7 +250,6 @@ function pr11_preprocess_node(&$vars) {
   }
   if ($vars['type'] == 'retail_member' || $vars['type'] == 'survey_profile' || $vars['type'] == 'continuing_education_member') {
     $user = user_load($vars['uid']);
-    //dpm($vars);
     $type = ucwords(preg_replace('/_/', ' ', $vars['node']->type));
     $vars['node']->readable_type = $type;
     $vars['node']->profile_items['first_name']['label'] = "First Name:";
@@ -271,7 +267,6 @@ function pr11_preprocess_node(&$vars) {
     }
     $vars['node']->user_roles = $user_roles;
   }
-  //dpm($vars);
 }
 
 /**
@@ -292,7 +287,6 @@ function pr11_preprocess_comment(&$vars) {
  */
 function pr11_preprocess_fieldset(&$vars) {
   $element = $vars['element'];
-  //dpm($vars);
   $attr = isset($element['#attributes']) ? $element['#attributes'] : array();
   $attr['class'] = !empty($attr['class']) ? $attr['class'] : '';
   $attr['class'] .= " fieldset ";
