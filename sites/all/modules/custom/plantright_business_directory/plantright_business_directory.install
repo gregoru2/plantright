@@ -1,0 +1,9 @@
+<?php
+
+function plantright_business_directory_install() {
+  db_query("UPDATE {system} SET weight = 99 WHERE type = 'module' AND name = 'plantright_business_directory'");
+}
+
+function plantright_business_directory_update_6001() {
+  db_query("UPDATE {system} SET weight = 99 WHERE type = 'module' AND name = 'plantright_business_directory'");
+}

@@ -1,0 +1,5 @@
+name = Plant Right Business Directory
+description = Customizations to the business directory.
+package = PlantRight
+core = 6.x
+dependencies[] = views
