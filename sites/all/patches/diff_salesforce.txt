@@ -1,0 +1,11 @@
+--- 2013-07-29 salesforce/salesforce/sf_contrib/sf_contrib.module	Wed Jul 24 23:34:08 2013
++++ _GIT/plantright/sites/all/modules/salesforce/sf_contrib/sf_contrib.module	Thu Aug  1 23:41:03 2013
+@@ -334,7 +334,7 @@
+ 
+   // Primary not set, so make first location primary.
+   $source->locations[0]['is_primary'] = 1;
+-  $criteria = array($key => $source->{$key});
++  $criteria = array($key => $source->{$key}, 'vid' => $source->vid);
+   location_save_locations($source->locations, $criteria);
+ 
+   return $source->locations[0][$fieldname];
