@@ -1,0 +1,91 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * Installs tables needed for sf_prematch module.
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+function sf_prematch_install() {
+  drupal_install_schema('sf_prematch');
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function sf_prematch_uninstall() {
+  drupal_uninstall_schema('sf_prematch');
+}
+
+/**
+ * Implementation of hook_schema().
+ */
+function sf_prematch_schema() {
+  $schema['salesforce_prematch'] = array(
+    'description' => t('Drupal to Salesforce object mapping table for pre-creation '),
+    'fields' => array(
+      'name' => array(
+        'description' => 'Foreign key for salesforce_field_map name',
+        'type' => 'varchar',
+        'length' => 64,
+      ),
+      'primary_field' => array(
+        'description' => 'Primary field or object name for use in prematching.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'secondary_field' => array(
+        'description' => 'Secondary field or object name for use in prematching.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+        'default' => '',
+      ),
+      'tertiary_field' => array(
+        'description' => 'Tertiary field or object name for use in prematching.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+        'default' => '',
+      ),
+      'rule' => array(
+        'description' => 'Int identifying rule for prematching (based on constants)',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0
+      ),
+    ),
+    'primary key' => array('name'),
+  );
+
+  return $schema;
+}
+
+
+/**
+ * @see salesforce_api_update_1
+ *
+ */
+function sf_prematch_update_1() {
+  $ret = array();
+  if (!db_column_exists('salesforce_field_map', 'name')) {
+    $ret[] = array('success' => FALSE, 'query' => 'N/A');
+    drupal_set_message(t('There are still updates to be run: Update for sf_prematch was not run. Please run update.php again to complete this update.'), 'warning');
+  }
+  db_add_column($ret, 'salesforce_prematch', 'name', 'varchar(255)');
+  $result = db_query('SELECT fieldmap, name FROM {salesforce_field_map}');
+  while ($row = db_fetch_array($result)) {
+    $sql = 'UPDATE {salesforce_prematch} SET name = "%s" WHERE fieldmap = %d';
+    $update_result = db_query($sql, $name, $fieldmap);
+    $ret[] = array('success' => $update_result !== FALSE, 'query' => check_plain($sql));
+  }
+  db_add_primary_key($ret, 'salesforce_prematch', 'name', array('name'));
+  $ret[] = update_sql('ALTER TABLE {salesforce_prematch} DROP COLUMN fieldmap');
+  return $ret;
+}
