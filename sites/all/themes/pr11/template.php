@@ -574,6 +574,31 @@ function pr11_views_mini_pager($tags = array(), $limit = 10, $element = 0, $para
 }
 
 /**
+ * Override of theme_views_mini_pager for the trivia view.
+ */
+function pr11_views_mini_pager__trivia($tags = array(), $limit = 10, $element = 0, $parameters = array(), $quantity = 9) {
+  global $pager_page_array, $pager_total;
+  $pager_prev = $_SESSION['pr_trivia_pager_previous_page'];
+  $pager_current = $pager_page_array[$element] + 1;
+  $_SESSION['pr_trivia_pager_previous_page'] = $pager_current;
+  
+  $text = t('Give me another!');
+  $links = array();
+  if ($pager_total[$element] > 1) {
+    // If going forward & there is a next page, show next link.
+    if ($pager_current == 1 || $pager_current > $pager_prev) {
+      $links['pager-next'] = theme('pager_next', $text, $limit, $element, 1, $parameters);
+    }
+    // Otherwise, show previous link
+    if (empty($links['pager-next'])) {
+      $links['pager-previous'] = theme('pager_previous', $text, $limit, $element, 1, $parameters);
+    }
+
+    return theme('links', $links, array('class' => 'links pager views-mini-pager'));
+  }
+}
+
+/**
  * Sets the body tag class and id attributes.
  *
  * From the Theme Developer's Guide, http://drupal.org/node/32077
