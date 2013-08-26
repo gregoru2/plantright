@@ -920,7 +920,8 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
 .form-horizontal .help-block { margin-bottom: 0; }
 .form-horizontal .controls:first-child, .form-horizontal .form-actions { padding-left: 180px; }
 
-.block-retailer_progress { width: 380px; margin-top: 35px; float: right; margin-left: 1em; }
+#progress-block-container { width: 380px; float: right; }
+.block-retailer_progress { margin-top: 35px;  margin-left: 1em; }
 .block-retailer_progress #progress-block { border: 1px solid #debea1; border-radius: 3px; padding: 5px; background: white; }
 .block-retailer_progress #progress-block h2#the-checklist { text-align: center; /*      text-transform: uppercase; */ font-size: 23px; margin: 0; padding: 0 2px 2px 2px; background-color: #4d3c14; color: white; }
 .block-retailer_progress #progress-block h3 { margin: 0.1em 0.5em 1em 0.5em; text-align: center; font-size: 14px; font-weight: bold; color: #4d3c14; }

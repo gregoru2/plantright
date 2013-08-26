@@ -71,7 +71,9 @@
         <?php if ($tabs) print $tabs ?>
         <?php if ($tabs2) print $tabs2 ?>
         <?php if ($content_top) print $content_top; ?>
-        <?php if ($progress_block) print $progress_block; ?>
+        <?php if ($progress_block) : ?>
+          <div id="progress-block-container"><?php print $progress_block; ?></div>
+        <?php endif; ?>
         <div id='content' class='clear-block'><?php print $content ?></div>
 		
 <?php // Moved right into main area so it works with the footer moved ?>		
