@@ -45,18 +45,18 @@ function plantright_business_directory_block($op = 'list', $delta = 0, $edit = a
           );
           break;
         case 2:
-          $content = t('PlantRight Certified Nurseries');
+          $content = t('PlantRight Nurseries');
 
           switch (arg(1)) {
             case 'by-county':
               $county = ucwords(urldecode($_REQUEST['county']));
-              $content = t('Certified nurseries in @county', array('@county' => $county));
+              $content = t('Nurseries in @county', array('@county' => $county));
               break;
             case 'by-zip':
               $distance = $_REQUEST['distance']['search_distance'];
               $distance .= ' ' . $_REQUEST['distance']['search_units'] . 's';
               $zip = $_REQUEST['distance']['postal_code'];
-              $content = t('Certified nurseries within <span class="distance">@distance</span> of zip code <span class="zip">@zip</span>', array(
+              $content = t('Nurseries within <span class="distance">@distance</span> of zip code <span class="zip">@zip</span>', array(
                 '@distance' => $distance,
                 '@zip' => $zip,
                   ));
