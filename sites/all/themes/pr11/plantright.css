@@ -710,6 +710,122 @@ body.partner_only #header p#tagline { display: none; }
 body#page-partner-faq #header p#tagline { display: none; }
 body#page-partner-faq #header p#tagline_partner { display: block; }
 
+/* Business Directory styles */
+
+
+body.section-nursery-partners div.views-field-title h4	{
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-size: 1.05em;
+	margin: 0 0 2px 0;
+}
+
+body.section-nursery-partners div.view-content {
+	margin-top: 1em;
+}
+body.section-nursery-partners div.view-content h3 {
+	font-size: 2em;
+}
+
+body.section-nursery-partners div.views-row {
+	border-top: 1px solid #dccdad;
+	padding: 1em;
+}
+body.section-nursery-partners div.views-row-last {
+	border-bottom: 3px double #dccdad;
+}
+
+body.section-nursery-partners div#block-plantright_business_directory-1 ul li	{
+	display: inline-block;
+	padding: 0 6px 0 0;
+	font-size: 1.1em;
+}
+body.section-nursery-partners div#block-plantright_business_directory-1 div.item-list ul li a	{
+	display: inline-block;
+	padding: 0 6px 0 0;
+}
+
+body.section-nursery-partners div#block-plantright_business_directory-1 div.item-list ul li a.active	{
+	font-weight: normal;
+}
+body.section-nursery-partners div#block-plantright_business_directory-1 div.item-list ul li.first:after	{
+	content: '|';
+}
+
+body.section-nursery-partners div#block-plantright_business_directory-1 div.item-list ul li a:visited	{
+	color: #9e5636;
+}
+
+body.section-nursery-partners div#right	{
+	position: relative;
+	top: -70px;
+	left: 0;
+}
+body.section-nursery-partners div#right h3	{
+	margin-top: 0;
+}
+
+body.section-nursery-partners div#block-views--exp-business_directory-page_4, body.section-nursery-partners div#block-views--exp-business_directory-page_2	{
+	border: 1px solid #dccdad; border-radius: 3px; padding: 8px 20px; background: #fff;
+}
+body.section-nursery-partners div#right div.block-views	{
+	margin-top: 2em;
+	position: relative;
+	top: -2em;
+	left: 0;
+}
+
+body.section-nursery-partners div#block-views--exp-business_directory-page_4 form, body.section-nursery-partners div#block-views--exp-business_directory-page_2 form	{
+	padding: 0;
+	margin: 0;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+body.section-nursery-partners div#block-views--exp-business_directory-page_4 form label, body.section-nursery-partners div#block-views--exp-business_directory-page_2 form label	{
+	padding: 0;
+	margin-bottom: 12px;
+}
+
+body.section-nursery-partners div#block-views--exp-business_directory-page_2 form div#edit-distance-postal-code-wrapper label,
+body.section-nursery-partners div#block-views--exp-business_directory-page_2 form div#edit-distance-search-distance-wrapper label	{
+	float: left;
+	width: 70px;
+	padding-right: 5px;
+	text-align: right;
+	margin: 2px 0px;
+}
+
+body.section-nursery-partners div#block-views--exp-business_directory-page_2 form input.form-text	{
+	width: 100px;
+}
+body.section-nursery-partners div#block-views--exp-business_directory-page_2 form select	{
+	width: 90px;
+}
+
+body.section-nursery-partners div#block-views--exp-business_directory-page_4 form select, body.section-nursery-partners div#block-views--exp-business_directory-page_2 form select	{
+background-color: #fff;
+	height: 2em;
+}
+
+body.section-nursery-partners div#block-views--exp-business_directory-page_4 form select	{
+	width: 165px;
+}
+
+body.section-nursery-partners div#block-views--exp-business_directory-page_4 form input.form-submit, body.section-nursery-partners div#block-views--exp-business_directory-page_2 form input.form-submit	{
+	width: 3em;
+	position: absolute;
+	bottom: 0;
+	left: 170px;
+	margin-bottom: 10px;
+	height: 2em;
+	}
+	
+	
+	
+/* END Business Directory styles */
+
 ul.secondary-tabs li a { display: inline-block; }
 
 .input-append input[class*=span], .input-append .uneditable-input[class*=span] { display: inline-block; }
