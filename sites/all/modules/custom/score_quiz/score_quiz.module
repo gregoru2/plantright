@@ -36,14 +36,13 @@ function score_quiz_quiz_finished($quiz, $score) {
     // If the number of designated buyers and the number of users with 11 AND 7 or 8 match, then set field_is_certified to 1
     if ($retailer->field_is_certified[0]['value']) {
       db_query('insert into {users_roles} (uid, rid) values (%d, %d)', $user->uid, 13);
-    } else {
-      if (count($results) >= $num_buyers && $num_buyers >= 1) {
-        $retailer->field_is_certified[0]['value'] = 1;
-        node_save($retailer);
-        foreach($results as $result) {
-          dpm($result);
-          db_query('insert into {users_roles} (uid, rid) values (%d, %d)', $result->uid, 13);
-        }
+    }
+    else if (count($results) >= $num_buyers && $num_buyers >= 1) {
+      $retailer->field_is_certified[0]['value'] = 1;
+      $retailer->field_is_certified_date[0]['value'] = date('Y-m-d H:i:s');
+      node_save($retailer);
+      foreach($results as $result) {
+        db_query('insert into {users_roles} (uid, rid) values (%d, %d)', $result->uid, 13);
       }
     }
   }

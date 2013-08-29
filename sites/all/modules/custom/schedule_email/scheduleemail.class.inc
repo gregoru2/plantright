@@ -57,7 +57,7 @@ class ScheduleEmail {
     return $rows;
   }
 
-  private function get_registered_users_to_email($scheduled_email) {
+  protected function get_registered_users_to_email($scheduled_email) {
     $accounts = array();
     $days_ago_timestamp = strtotime($scheduled_email->days . ' day ago');
     if (!$days_ago_timestamp) {
@@ -71,7 +71,7 @@ class ScheduleEmail {
     return $accounts;
   }
 
-  private function get_invited_users_to_email($scheduled_email) {
+  protected function get_invited_users_to_email($scheduled_email) {
     $accounts = array();
     $days_ago_timestamp = strtotime($scheduled_email->days . ' day ago');
     if (!$days_ago_timestamp) {
@@ -98,20 +98,21 @@ class ScheduleEmail {
    * @param type $accounts
    *   for mimemail, has to be user object or an array with name and email
    */
-  protected function send_scheduled_email($email, $accounts) {
+  protected function send_scheduled_email($email, $accounts, $node = NULL) {
     //need: to, from, subject, body
     foreach ($accounts as $account) {
       $key = $email->name_short;
       $to = isset($account->mail) ? $account->mail : $account['mail'];
       $language = isset($account->language) && $account->language ? $account->language : language_default();
 
-      if (isset($account['from-mail']) && isset($account['from-name'])) {
+      $array = is_array($account);
+      if ($array && isset($account['from-mail']) && isset($account['from-name'])) {
         $from = $account['from-name'] . '<' . $account['from-mail'] . '>';
       }
-      else if(isset($account['from-mail'])) {
+      else if ($array && isset($account['from-mail'])) {
         $from = $account['from-mail'];
       }
-      else if (isset($account['from-name'])) {
+      else if ($array && isset($account['from-name'])) {
         $from = $account['from-name'] . '<' . variable_get('site_mail', '') . '>';
       }
       else {
@@ -121,7 +122,7 @@ class ScheduleEmail {
 
       $params['subject'] = check_plain(decode_entities($email->subject));
       $params['message'] = check_markup(decode_entities($email->body), $email->format);
-      $params = $this->handle_replacements($params, $account);
+      $params = $this->handle_replacements($params, $account, $node);
 
       if (function_exists('mimemail')) {
         mimemail($from, $to, $params['subject'], $params['message']);
@@ -130,15 +131,21 @@ class ScheduleEmail {
         drupal_mail('schedule_email', $key, $to, $language, $params, $from, $send);
       }
 
-      $this->log_email_sent($email, $account);
+      $this->log_email_sent($email, $account, $node->nid);
     }
   }
 
-  private function handle_replacements($params, $account) {
+  private function handle_replacements($params, $account, $node = NULL) {
+    if ($node) {
+      foreach ($params as &$param) {
+        $param = token_replace_multiple($param, array('node' => $node));
+      }
+    }
+
     if (isset($account->uid)) {
       // Account is a user account.
       foreach ($params as &$param) {
-        $param = token_replace_multiple($param, array('user' => $account, 'profile' => $account));
+        $param = token_replace_multiple($param, array('global' => NULL, 'user' => $account, 'profile' => $account));
       }
       return $params;
     }
@@ -158,7 +165,7 @@ class ScheduleEmail {
     }
   }
 
-  private function log_email_sent_db($seid, $account) {
+  private function log_email_sent_db($seid, $account, $nid) {
     if (isset($account->uid) && $account->uid) {
       $uid = $account->uid;
       $iid = 0;
@@ -167,11 +174,11 @@ class ScheduleEmail {
       $uid = 0;
       $iid = isset($account->iid) ? $account->iid : $account['iid'];
     }
-    schedule_email_log_email($seid, $uid, $iid);
+    schedule_email_log_email($seid, $uid, $iid, $nid);
   }
 
-  public function log_email_sent($email, $account) {
-    $this->log_email_sent_db($email->seid, $account);
+  public function log_email_sent($email, $account, $nid) {
+    $this->log_email_sent_db($email->seid, $account, $nid);
     $message = t("Sent @mail email %name", array('@mail' => (isset($account->mail) ? $account->mail : $account['mail']), '%name' => $email->title));
     watchdog('schedule_email', $message);
     $this->sent_log[] = $message;

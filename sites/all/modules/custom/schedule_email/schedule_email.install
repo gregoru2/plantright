@@ -129,6 +129,13 @@ function schedule_email_schema() {
         'not null' => TRUE,
         'default' => 0,
       ),
+      'nid' => array(
+        'description' => 'Node from the {node} table',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
     ),
     'primary key' => array('sesid'),
     'foreign keys' => array(
@@ -151,6 +158,8 @@ function schedule_email_install() {
   // Drupal_write_record doesn't work in hook_install().
   db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('register', 'Send email X days after registration')");
   db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('invite', 'If user has not registered, send reminder X days after invite')");
+  db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('partner_liason', 'Send email to nursery liason X days after partnership')");
+  db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('partner_nonliason', 'Send email to nursery employees X days after partnership')");
 }
 
 /**
@@ -159,4 +168,22 @@ function schedule_email_install() {
 function schedule_email_uninstall() {
   drupal_uninstall_schema('schedule_email');
   drupal_set_message(t('The Schedule Email module has been uninstalled'));
+}
+
+/**
+ * Add types for partner nursery reminders.
+ * Add nid for sent email tracking.
+ */
+function schedule_email_update_6100() {
+  db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('partner_liason', 'Send email to nursery liason X days after partnership')");
+  db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('partner_nonliason', 'Send email to nursery employees X days after partnership')");
+  $spec = array(
+    'description' => 'Node from the {node} table',
+    'type' => 'int',
+    'unsigned' => TRUE,
+    'not null' => TRUE,
+    'default' => 0,
+  );
+  $ret = array();
+  db_add_field($ret, 'schedule_email_sent', 'nid', $spec);
 }

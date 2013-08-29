@@ -5,6 +5,7 @@
  * Module code for schedule email
  */
 require 'scheduleemail.class.inc';
+require 'scheduleemailpartner.class.inc';
 
 /**
  * Implementation of hook_help().
@@ -157,15 +158,18 @@ function schedule_email_form(&$node, $form_state) {
   if ($type->has_body) {
     $form['body_field'] = node_body_field($node, $type->body_label, $type->min_word_count);
   }
-
+  
   $form['token_help'] = array(
     '#title' => t('Replacement patterns'),
     '#type' => 'fieldset',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
+  $form['token_help']['note'] = array(
+    '#value' => t('NOTE: The tokens that apply will depend on the email you are sending. Not all tokens are available to all email types.'),
+  );
   $form['token_help']['help'] = array(
-    '#value' => theme('invite_token_help', array('user', 'profile', 'invite')),
+    '#value' => theme('token_tree', array('node', 'invite', 'user')),
   );
 
   return $form;
@@ -272,6 +276,7 @@ function schedule_email_mail($key, &$message, $params) {
  */
 function schedule_email_cron() {
   $se = new ScheduleEmail();
+  $sep = new ScheduleEmailPartner();
 }
 
 /**
@@ -284,14 +289,21 @@ function schedule_email_page_email_send() {
   foreach ($log as $item) {
     $output .= '<br/>' . $item;
   }
+  
+  $se = new ScheduleEmailPartner();
+  $log = $se->get_email_log();
+  foreach ($log as $item) {
+    $output .= '<br/>' . $item;
+  }
+  
   if (!$output) {
     $output = 'No emails to send.';
   }
   return $output;
 }
 
-function schedule_email_log_email($seid, $uid, $iid) {
-  db_query("INSERT INTO {schedule_email_sent} (seid, timestamp, uid, iid) VALUES(%d, %d, %d, %d)", $seid, time(), $uid, $iid);
+function schedule_email_log_email($seid, $uid, $iid, $nid) {
+  db_query("INSERT INTO {schedule_email_sent} (seid, timestamp, uid, iid, nid) VALUES(%d, %d, %d, %d, %d)", $seid, time(), $uid, $iid, $nid);
 }
 
 /**
