@@ -265,6 +265,7 @@ PLEDGE;
     
     if (!user_access('administer nodes')) {
       $form['field_include_in_retailer_choice']['#access'] = FALSE;
+      $form['field_is_certified_date']['#access'] = FALSE;
     }
   }
   if ($form_id == 'invite_form') {
