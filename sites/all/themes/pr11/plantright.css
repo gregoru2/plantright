@@ -53,6 +53,7 @@ ul.primary-tabs li { display: inline; margin-left: 1px; padding: 4px 9px 3px 7px
 ul.primary-tabs li a { color: #ac512a; float: none; }
 
 body#page-node-1421-take ul.primary-tabs li:first-child, body#page-node-1421-take ul.primary-tabs li:nth-child(2) { display: none; }
+body#page-node-2949-take ul.primary-tabs li:first-child, body#page-node-2949-take ul.primary-tabs li:nth-child(2) { display: none; }
 
 ul.secondary-tabs { display: block; width: 100%; border-bottom: solid 1px #a45031; margin: 10px 0; padding: 0; }
 ul.secondary-tabs li { display: inline; margin: 10px 10px 0 0; padding: 2px 6px 0; }
@@ -71,7 +72,7 @@ body[id*="invites"] div#console { border: none; margin: 20px 0px 10px 0px; color
 body[id*="invites"] div#console div.help { border: none; margin: 20px 0px 10px 0px; color: black; }
 body[id*="invites"] div#console p { margin: 10px 0px; }
 
-#left #block-menu-primary-links ul.menu a, #left #block-menu-menu-survey-menu ul.menu a, #left #block-menu-menu-pre-survey-menu ul.menu a, #left #block-menu-menu-survey-admin ul.menu a, #left #block-menu-menu-retailer-menu ul.menu a, #block-menu-menu-continuing-education-menu ul.menu a { font-family: "Open Sans", Helvetica, Arial sans-serif; font-size: 16px; font-weight: 700; }
+#left #block-menu-primary-links ul.menu a, #left #block-menu-menu-survey-menu ul.menu a, #left #block-menu-menu-pre-survey-menu ul.menu a, #left #block-menu-menu-survey-admin ul.menu a, #left #block-menu-menu-retailer-menu ul.menu a, #left #block-menu-menu-continuing-education-menu ul.menu a { font-family: "Open Sans", Helvetica, Arial sans-serif; font-size: 16px; font-weight: 700; }
 #left #block-menu-primary-links ul.menu li.dhtml-menu li a:hover, #left #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a:hover, #left #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a:hover, #left #block-menu-menu-survey-admin ul.menu li.dhtml-menu li a:hover, #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu li a:hover { color: #403000; text-decoration: none; }
 
 #block-menu-menu-survey-menu, #block-menu-menu-pre-survey-menu, #block-menu-menu-survey-admin, #block-menu-menu-continuing-education-menu { margin-top: 12px; }
@@ -739,7 +740,7 @@ div.links ul, div.terms ul { margin: 0; padding: 0; }
 
 #content ol#fourSteps, ul#partner_downloads { margin: 0; padding: 0; }
 
-#block-menu-primary-links ul.menu li, #leftnav ul.menu li, #block-menu-menu-retailer-menu ul.menu li { border-bottom: solid 1px #d8cfb4; padding: 10px 0; }
+#block-menu-primary-links ul.menu li, #leftnav ul.menu li, #block-menu-menu-retailer-menu ul.menu li, #block-menu-menu-continuing-education-menu ul.menu li { border-bottom: solid 1px #d8cfb4; padding: 10px 0; }
 
 ul.menu li.dhtml-menu.collapsed a, #leftnav ul.menu li.dhtml-menu.collapsed a { display: block; background: url(/images/arrow-collapsed.png) no-repeat 0 8px; margin-left: -11px; padding-left: 11px; }
 
@@ -750,7 +751,7 @@ ul.menu li.dhtml-menu.expanded a, #leftnav ul.menu li.dhtml-menu.expanded a { di
 .form-horizontal input + .help-block, .form-horizontal select + .help-block, .form-horizontal textarea + .help-block { margin-top: 10px; }
 
 #left #block-menu-primary-links ul.menu li.dhtml-menu li a, #left #block-menu-menu-survey-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-pre-survey-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-survey-admin ul.menu li.dhtml-menu li a, #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
-#left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
+#left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li a,  #left #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
 #left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu a, #left #block-menu-menu-retailer-menu ul.menu li.dhtml-menu li a, #left #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu a, #left #block-menu-menu-continuing-education-menu ul.menu li.dhtml-menu li a { color: #78a22e; }
 
 #leftnav ul.menu li.dhtml-menu li a { display: block; background: none; margin-left: 0; padding-left: 0; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; color: #7f4128; }
@@ -922,9 +923,10 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
 
 #progress-block-container { width: 380px; float: right; }
 .block-retailer_progress { margin-top: 35px;  margin-left: 1em; }
-.block-retailer_progress #progress-block { border: 1px solid #debea1; border-radius: 3px; padding: 5px; background: white; }
-.block-retailer_progress #progress-block h2#the-checklist { text-align: center; /*      text-transform: uppercase; */ font-size: 23px; margin: 0; padding: 0 2px 2px 2px; background-color: #4d3c14; color: white; }
+.block-retailer_progress #progress-block { border: 1px solid #dccdad; border-radius: 3px; padding: 2px; background: white; }
+.block-retailer_progress #progress-block h2#the-checklist { text-align: center; font-size: 23px; margin: 0; padding: 0 2px 2px 2px; background-color: #78a723; color: #fff; }
 .block-retailer_progress #progress-block h3 { margin: 0.1em 0.5em 1em 0.5em; text-align: center; font-size: 14px; font-weight: bold; color: #4d3c14; }
+.block-retailer_progress #progress-block p, .block-retailer_progress #progress-block div { margin: 5px; }
 .block-retailer_progress #progress-block .item { clear: both; margin-top: 1em 0.5em 0.5em 0.5em; padding: 5px; }
 .block-retailer_progress #progress-block .item p.desc { background: url(/images/incomplete.png) left -5px no-repeat; font-size: 15px; color: #444444; line-height: 19px; padding-left: 24px; padding-bottom: 2px; margin: 0.25em 0 0; }
 .block-retailer_progress #progress-block .item p.desc a { font-weight: normal; color: #ae5123; text-decoration: underline; }
@@ -943,6 +945,13 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
 .block-retailer_progress #progress-block .dropdown ul { margin: 0; }
 .block-retailer_progress #progress-block .dropdown li { list-style: none; font-size: 12px; font-weight: bold; color: #444444; margin-left: 10px; }
 .block-retailer_progress #progress-block .dropdown li a { font-style: italic; }
+
+#block-views-trivia-block_1 .view-trivia {  width: 345px; float: right; }
+#main .view-trivia { margin: 20px 0px; border: 1px solid #dccdad; border-radius: 3px; padding: 10px; background: #fff; }
+#main .view-trivia .view-header h3 { color: #78a723; font-size: 25px; font-style: italic; font-weight: 400; letter-spacing: 1px; margin: 0px; }
+#main .view-trivia .view-content { margin: .5em 0; font-size: 1.2em; line-height: 1.4em; }
+#main .view-trivia ul.links {  margin: .5em 0 0 0; font-size: 1em; list-style: none; }
+#main .view-trivia ul.links li { list-style: none; margin: 0; padding: 0; }
 
 form#user-register #edit-field-fname-0-value-wrapper, form#user-register #edit-field-lname-0-value-wrapper, form#user-register #edit-field-retailer-0-nid-nid-wrapper { width: 315px; float: left; margin-right: 3em; }
 form#user-register fieldset.captcha { clear: both; }
@@ -992,8 +1001,9 @@ span.password-confirm span.error { font-weight: bold; text-transform: uppercase;
 #content .grid-trio { width: 31%; }
 #content .grid-duo { width: 48%; }
 #content .pane { padding-top: 90px; }
-#content .pane.partnership { background: url(/images/pr_acct_icon_nursery.png) 50% top no-repeat; }
-#content .pane.survey { background: url(/images/pr_acct_icon_survey.png) 50% top no-repeat; }
+#content .pane.partnership { background: url(/images/pr_acct_icon_nursery.png) 50% 5px no-repeat; }
+#content .pane.survey { background: url(/images/pr_acct_icon_survey.png) 50% 10px no-repeat; }
+#content .pane.cont-ed { background: url(/images/pr_acct_icon_education.png) 50% 12px no-repeat; }
 
 /* lightbox */
 #imageDataContainer, #imageDataContainer #imageData {height: 40px;}
