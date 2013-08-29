@@ -533,3 +533,28 @@ function plantright_views_query_alter(&$view, &$query) {
       break;
   }
 }
+
+/**
+ * Performs a query to get all employees of a retail nursery.
+ */
+function plantright_get_retailer_employees($retailer, $include_liason = TRUE) {
+   // If liason should not be included.
+  if (!$include_liason) {
+    $join = ' inner join node rn on rm.field_retailer_nid = rn.nid ';
+    $where = ' AND u.uid != rn.uid';
+  }
+  else {
+    $join = $where = '';
+  }
+  $results = db_query('select u.uid from {content_type_retail_member} rm
+                         inner join node n on n.nid = rm.nid
+                         inner join users u on n.uid = u.uid' . $join .
+                        'where rm.field_retailer_nid = %d' . $where, $retailer->nid);
+  
+  $fellow_citizens = array();
+  while ($result = db_fetch_object($results)) {
+    array_push($fellow_citizens, user_load($result->uid));
+  }
+  
+  return $fellow_citizens;
+}
