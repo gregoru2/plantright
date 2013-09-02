@@ -70,33 +70,31 @@ function sf_import_drush_command() {
  */
 function drush_sf_import_sf_get_updated() {
 
-  if (function_exists('_sf_import_get_updated_records')) {
-    drush_print('Checking for updated records...');
-    $records = _sf_import_get_updated_records();
-    if (is_array($records) && count($records) > 0) {
-      drush_print("Returned " . count($records) . " record(s)");
-      $table = array(array('SFID', 'Fieldmap', 'Time Imported'));
-      $results = array_merge($table, $records);
+  drush_print('Checking for updated records...');
+  $records = sf_import_import_records();
+  if (is_array($records) && count($records) > 0) {
+    drush_print("Returned " . count($records) . " record(s)");
+    $table = array(array('SFID', 'Fieldmap', 'Time Imported'));
+    $results = array_merge($table, $records);
+    drush_print_table($results);
+    $no_process = drush_get_option('no-process', FALSE);
+    if ($no_process) {
+      return;
+    }
+    drush_print("Processing records...");
+    $process = _sf_import_process_records();
+    if (is_array($process) && count($process) > 0) {
+      drush_print("Processed " . count($process) . " record(s)");
+      $table = array(array('SFID', 'OID', 'Fieldmap'));
+      $results = array_merge($table, $process);
       drush_print_table($results);
-      $no_process = drush_get_option('no-process', FALSE);
-      if ($no_process) {
-        return;
-      }
-      drush_print("Processing records...");
-      $process = _sf_import_process_records();
-      if (is_array($process) && count($process) > 0) {
-        drush_print("Processed " . count($process) . " record(s)");
-        $table = array(array('SFID', 'OID', 'Fieldmap'));
-        $results = array_merge($table, $process);
-        drush_print_table($results);
-      }
-      else {
-        drush_print('Did not process any records.');
-      }
     }
     else {
-      drush_print('No new records.');
+      drush_print('Did not process any records.');
     }
+  }
+  else {
+    drush_print('No new records.');
   }
 }
 
@@ -304,13 +302,17 @@ function drush_sf_import($fieldmap_key) {
       }
     }
 
+    if ($exists) {
+      $existing_oid = $existing[$record->Id];
+    } else {
+      $existing_oid = NULL;
+    }
+
     $oid = FALSE;
-    if (isset($existing[$record->Id])) {
-      try {
-        $oid = $function($record->Id, $map->name, $existing[$record->Id]);
-      } catch (Exception $e) {
-        drush_log("Error importing record $record->Id : " . $e->getMessage(), 'error');
-      }
+    try {
+      $oid = $function($record->Id, $map->name, $existing_oid);
+    } catch (Exception $e) {
+      drush_log("Error importing record $record->Id : " . $e->getMessage(), 'error');
     }
 
     if (!$oid) {

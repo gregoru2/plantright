@@ -334,7 +334,7 @@ function _sf_contrib_export_location($source, $fieldname, $drupal_field_definiti
 
   // Primary not set, so make first location primary.
   $source->locations[0]['is_primary'] = 1;
-  $criteria = array($key => $source->{$key}, 'vid' => $source->vid);
+  $criteria = array($key => $source->{$key});
   location_save_locations($source->locations, $criteria);
 
   return $source->locations[0][$fieldname];

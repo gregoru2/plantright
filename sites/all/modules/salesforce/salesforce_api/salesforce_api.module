@@ -970,11 +970,15 @@ function salesforce_api_fieldmap_export_create($name, $drupal_data = NULL) {
       $value = $drupal_data->$drupal_fieldname;
     }
 
-    // Ignore null values for non-nillable fields
+    // Ignore null values for non-nillable fields. We also explicitly set all
+    // empty strings to NULL so they too can be subject to these checks.
+    if ($value === "") {
+      $value = NULL;
+    }
     if (is_null($value) && !$nillable) {
       continue;
     }
-    elseif (!$value && $nillable && !empty($map->fields[$sf_fieldname])) {
+    elseif (is_null($value) && $nillable && !empty($map->fields[$sf_fieldname])) {
       $fieldsToNull[] = $sf_fieldname;
       continue;
     }
@@ -1014,6 +1018,8 @@ function salesforce_api_fieldmap_export_create($name, $drupal_data = NULL) {
         break;
 
       case 'email':
+        // Remove spaces.
+        $value = trim($value);
         if (salesforce_api_valid_email_address($value)) {
           $object->$sf_fieldname  = $value;
         }
@@ -1060,8 +1066,8 @@ function salesforce_api_fieldmap_export_create($name, $drupal_data = NULL) {
 
     }
     $max_len = $sf_field_definition['salesforce']['length'];
-    if ($max_len && drupal_strlen($object->$sf_fieldname) > $max_len) {
-      $object->$sf_fieldname = substr($object->$sf_fieldname, 0, $max_len);
+    if ($max_len && isset($object->$sf_fieldname) && drupal_strlen($object->$sf_fieldname) > $max_len) {
+      $object->$sf_fieldname = drupal_substr($object->$sf_fieldname, 0, $max_len);
     }
   }
 
@@ -1585,6 +1591,8 @@ function salesforce_api_object_to_fieldmap_fields($object)  {
       foreach ($booleans as $bool) {
         if (empty($sf_definition['sf_type'])) {
           $sf_definition['sf_type'] = (int)$source[$bool] * constant('SALESFORCE_FIELD_' . strtoupper($bool));
+        } else {
+          $sf_definition['sf_type'] |= (int)$source[$bool] * constant('SALESFORCE_FIELD_' . strtoupper($bool));
         }
       }
       $fieldmap_object['fields'][$field->name] = array(
