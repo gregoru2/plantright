@@ -23,25 +23,42 @@
  * @see template_preprocess()
  * @see template_preprocess_block()
  */
-global $user;
-
+$account = $content['account'];
 $content = $block->content;
-$profile_nid = $content['profile_nid'];
-$total_invites = $content['total_invites'];
-$ignored_invites = $content['ignored_invites'];
-$accepted_invites = $content['accepted_invites'];
-if ($total_invites = 0) {
-  $invite_percentage = "n/a";
-}
-else if ($total_invites > 0) {
-    $invite_percentage = ($accepted_invites / $total_invites) * 100;
-}
 
-$invites_sent = $content['invites'] ? "complete" : "incomplete";
-$invite_progress = ($invite_percentage == 100) ? "complete" : "incomplete";
-$user_quiz_progress = in_array(11, array_keys($user->roles)) ? "complete" : "incomplete";
-$group_quiz_progress = (!empty($content['certified_buyers']) && count($content['certified_buyers']) >= $content['total_buyers']) ? "complete" : "incomplete";
-$remaining_buyers = $content['total_buyers'] - count($content['certified_buyers']);
+$invites_count = count($content['invites']);
+$invites_sent = $invites_count ? "complete" : "incomplete";
+$ignored_invites = $content['ignored_invites'];
+
+$registered_staff_count = $content['registered_staff_count'];
+$total_buyers_count = $content['total_buyers_count'];
+
+$registered_buyers = $content['registered_buyers'];
+$registered_buyers_count = count($registered_buyers);
+$register_percentage = $total_buyers_count > 0 ? ($registered_buyers_count / $total_buyers_count) * 100 : 'n/a';
+$register_progress = ($register_percentage == 100) ? "complete" : "incomplete";
+
+$registered_nonbuyers = $content['registered_nonbuyers'];
+$registered_nonbuyers_count = count($registered_nonbuyers);
+
+$certified_buyers = $content['certified_buyers'];
+$certified_buyers_count = count($certified_buyers);
+$slacker_buyers = $content['slacker_buyers'];
+$uncertified_buyers_count = $total_buyers_count - $registered_buyers_count;
+
+$certified_nonbuyers = $content['certified_nonbuyers'];
+$certified_nonbuyers_count = count($certified_nonbuyers);
+$slacker_nonbuyers = $content['slacker_nonbuyers'];
+
+$user_quiz_status = $content['account_quiz_status'];
+$user_quiz_progress = $user_quiz_status ? "complete" : "incomplete";
+$group_quiz_progress = ($total_buyers_count > 0 && $certified_buyers_count >= $total_buyers_count) ? "complete" : "incomplete";
+
+// If registration progress is complete, user doesn't need to send any invites.
+if ($register_progress == 'complete') {
+  $invites_sent = 'complete';
+  $invites_count = $registered_buyers;
+}
 ?>
 <div id="block-<?php print $block->module . '-' . $block->delta; ?>" class="block block-<?php print $block->module ?>">
   <?php if ($block->subject): ?>
@@ -64,34 +81,62 @@ $remaining_buyers = $content['total_buyers'] - count($content['certified_buyers'
 
 
     <div id="invite-staff" class="item <?php print $invites_sent ?>">
-      <?php if ($content['invites']): ?>
+      <?php if ($invites_count): ?>
         <p class="desc">You've invited your staff to join. <span class="progress_option"><a href="/invite">Manage invitations</a></span></p>
       <?php else : ?>
         <p class="desc"><a href="/invite">Invite your staff to join.</a></p>
       <?php endif; ?>
     </div>
 
-    <div id="invite-status" class="item <?php print $invite_progress ?>">
-      <?php if ($total_invites > 0 && $total_invites == $accepted_invites): ?>
-        <p class="desc">All plant buyers are register at PlantRight.org.</p>
+    <div id="invite-status" class="item <?php print $register_progress ?>">
+      <?php if ($total_buyers_count > 0 && $total_buyers_count <= $registered_buyers_count): ?>
+        <p class="desc">All plant buyers are registered at PlantRight.org.</p>
       <?php else : ?>
         <p class="desc">All plant buyers need to register at PlantRight.org.</p>
-        <a href="#" class="dropdown-toggle">Staff progress details</a>
-        <div class="dropdown">
-          <h4><?php print $accepted_invites ?> of <?php print $total_invites ?> staff members have registered</h4>
-          <progress value="<?php print $invite_percentage ?>" max="100" style="width:100%" ></progress>
-          <p>We're still waiting for:</p>
-          <ul>
-            <?php foreach ($ignored_invites as $invite): ?>
-              <li><?php print $invite->email ?> - <a href="/invite/resend/<?php print $invite->reg_code ?>">resend invitation</a></li>
-            <?php endforeach; ?>
-          </ul>
-        </div>
       <?php endif; ?>
+       <a href="#" class="dropdown-toggle">Registration progress details</a>
+        <div class="dropdown">
+          <h4><?php print $registered_buyers_count ?> of <?php print $total_buyers_count ?> buyers and <?php print $registered_nonbuyers_count; ?> staff have created PlantRight accounts</h4>
+          <progress value="<?php print $register_percentage ?>" max="100" style="width:100%" ></progress>
+          <?php if ($registered_buyers_count) : ?>
+            <p>Buyers successfully registered:</p>
+            <ul>
+              <?php foreach ($registered_buyers as $u): ?>
+                <?php $profile = node_load(array('uid' => $u->uid, 'type' => 'retail_member')); ?>
+                <?php if ($profile) : ?>
+                  <li><?php print t('@fname @lname', array('@fname' => $profile->field_fname[0]['value'], '@lname' => $profile->field_lname[0]['value'])); ?> </li>
+                <?php else : ?>
+                  <li><?php print $u->mail; ?> </li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif; ?>
+          <?php if ($registered_nonbuyers_count) : ?>
+            <p>Staff successfully registered:</p>
+            <ul>
+              <?php foreach ($registered_nonbuyers as $nonbuyer): ?>
+                <?php $profile = node_load(array('uid' => $nonbuyer->uid, 'type' => 'retail_member')); ?>
+                <?php if ($profile) : ?>
+                  <li><?php print t('@fname @lname', array('@fname' => $profile->field_fname[0]['value'], '@lname' => $profile->field_lname[0]['value'])); ?> </li>
+                <?php else : ?>
+                  <li><?php print $nonbuyer->mail; ?> </li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif; ?>
+          <?php if ($total_invites_count): ?>
+            <p>We're still waiting for:</p>
+            <ul>
+              <?php foreach ($ignored_invites as $invite): ?>
+                <li><?php print $invite->email ?> - <a href="/invite/resend/<?php print $invite->reg_code ?>">resend invitation</a></li>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif; ?>
+        </div>
     </div>
 
     <div id="review-material" class="item <?php print $user_quiz_progress ?>">
-      <?php if (in_array(11, array_keys($user->roles))): ?>
+      <?php if ($user_quiz_status): ?>
         <p class="desc">You've reviewed the training materials and passed the quiz. <span class="progress_option"><a href="/plantright-101-training">Revisit study materials</a></span></p>
       <?php else : ?>
         <p class="desc"><a href="/plantright-101-training">Review the PlantRight 101 training materials and take the 10-question quiz.</a></p>
@@ -99,26 +144,58 @@ $remaining_buyers = $content['total_buyers'] - count($content['certified_buyers'
     </div>
 
     <div id="pass-quiz" class="item <?php print $group_quiz_progress ?>">
-      <?php if ($remaining_buyers <= 0): ?>
+      <?php if ($uncertified_buyers_count <= 0): ?>
         <p class="desc">All plant buyers at your nursery have completed the PlantRight 101 training.</p>
         <p class="status">Congratulations!  Visit PlantRight's <a href="/partner-resources">Partner Resources</a>.</p>
       <?php else : ?>
         <p class="desc">All plant buyers must pass the PlantRight 101 training.</p>
       <?php endif; ?>
-      <a href="#" class="dropdown-toggle">Plant buyer progress details</a>
+      <a href="#" class="dropdown-toggle">Certification progress details</a>
       <div class="dropdown">
-        <h4><?php print count($content['certified_buyers']) ?> of <?php print $content['total_buyers'] ?> are certified</h4>
-        <?php if ($remaining_buyers > 0) : ?>
+        <h4><?php print $certified_buyers_count ?> of <?php print $total_buyers_count ?> buyers and <?php print $certified_nonbuyers_count ?> staff members are certified</h4>
+        
+        <?php if ($certified_buyers_count) : ?>
+            <p>Certified buyers:</p>
+            <ul>
+              <?php foreach ($certified_buyers as $u): ?>
+                <?php $profile = node_load(array('uid' => $u->uid, 'type' => 'retail_member')); ?>
+                <?php if ($profile) : ?>
+                  <li><?php print t('@fname @lname', array('@fname' => $profile->field_fname[0]['value'], '@lname' => $profile->field_lname[0]['value'])); ?> </li>
+                <?php else : ?>
+                  <li><?php print $u->mail; ?> </li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif; ?>
+            
+          <?php if ($certified_nonbuyers_count) : ?>
+            <p>Certified staff:</p>
+            <ul>
+              <?php foreach ($certified_nonbuyers as $u): ?>
+                <?php $profile = node_load(array('uid' => $u->uid, 'type' => 'retail_member')); ?>
+                <?php if ($profile) : ?>
+                  <li><?php print t('@fname @lname', array('@fname' => $profile->field_fname[0]['value'], '@lname' => $profile->field_lname[0]['value'])); ?> </li>
+                <?php else : ?>
+                  <li><?php print $u->mail; ?> </li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif; ?>
+        
+        <?php if ($uncertified_buyers_count > 0) : ?>
           <p>We're still waiting for:</p>
           <ul>
-            <?php
-            var_dump($slackers);
-            if ($slackers):
-              ?>
-              <?php foreach ($slackers as $slacker): ?>
-                <li><?php print $slacker->email ?></li>
+            <?php if (!empty($slacker_buyers)): ?>
+              <?php foreach ($slacker_buyers as $u): ?>
+                <?php $profile = node_load(array('uid' => $u->uid, 'type' => 'retail_member')); ?>
+                <?php if ($profile) : ?>
+                  <li><?php print t('@fname @lname', array('@fname' => $profile->field_fname[0]['value'], '@lname' => $profile->field_lname[0]['value'])); ?> </li>
+                <?php else : ?>
+                  <li><?php print $u->mail; ?> </li>
+                <?php endif; ?>
               <?php endforeach; ?>
-            <?php else: ?>
+            <?php endif; ?>
+            <?php if ($uncertified_buyers_count > count($slacker_buyers)): ?>
               <li>Some folks who haven't registered yet.</li>
             <?php endif; ?>
           </ul>

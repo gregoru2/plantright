@@ -3,3 +3,4 @@ name = Plant Right Retailer Progress meter
 description = Provides progress block for members of the Retailer Certification program
 package = PlantRight
 core = 6.x
+dependencies[] = plantright
