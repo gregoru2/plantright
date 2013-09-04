@@ -27,28 +27,28 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
 
     switch ($delta) {
       case 0:
-        //If user is a manager/buyer, show their block
+        //If user is not a manager/buyer, show empty block.
         if (!in_array(7, $account_roles)) {
           return $block;
         }
         break;
 
       case 1:
-        //If user is an manager/non-buyer, show their block
+        //If user is not an manager/non-buyer, show empty.
         if (!in_array(8, $account_roles)) {
           return $block;
         }
         break;
 
       case 2:
-        // employee/buyer
+        // If a user is not an employee/buyer, show empty.
         if (!in_array(9, $account_roles)) {
           return $block;
         }
         break;
 
       case 3:
-        // employee/non-buyer
+        // If a user is not an employee/non-buyer, show empty.
         if (!in_array(10, $account_roles)) {
           return $block;
         }
