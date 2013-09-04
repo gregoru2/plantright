@@ -46,7 +46,6 @@ global $user;
       </div>
       <?php endforeach; ?>
 	</div>
-	</div>
   <?php endif; ?>
   <?php if ($node->type == 'retail_member'): ?>
     <h3>Retailer</h3>
