@@ -1147,11 +1147,11 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
 
 
 #block-views-trivia-block_1 .view-trivia {  width: 345px; float: right; }
-#main .view-trivia { margin: 20px 0px; border: 1px solid #dccdad; border-radius: 3px; padding: 10px; background: #fff; }
-#main .view-trivia .view-header h3 { color: #78a723; font-size: 25px; font-style: italic; font-weight: 400; letter-spacing: 1px; margin: 0px; }
-#main .view-trivia .view-content { margin: .5em 0; font-size: 1.2em; line-height: 1.4em; }
-#main .view-trivia ul.links {  margin: .5em 0 0 0; font-size: 1em; list-style: none; }
-#main .view-trivia ul.links li { list-style: none; margin: 0; padding: 0; }
+#page .view-trivia { margin: 20px 0px; border: 1px solid #dccdad; border-radius: 3px; padding: 10px; background: #fff; }
+#page .view-trivia .view-header h3 { color: #78a723; font-size: 25px; font-style: italic; font-weight: 400; letter-spacing: 1px; margin: 0px; }
+#page .view-trivia .view-content { margin: .5em 0; font-size: 1.2em; line-height: 1.4em; }
+#page .view-trivia ul.links {  margin: .5em 0 0 0; font-size: 1em; }
+#page .view-trivia ul.links li { list-style: none; margin: 0; padding: 0; }
 
 
 form#user-register #edit-field-fname-0-value-wrapper, form#user-register #edit-field-lname-0-value-wrapper, form#user-register #edit-field-retailer-0-nid-nid-wrapper { width: 315px; float: left; margin-right: 3em; }
