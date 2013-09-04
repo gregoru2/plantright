@@ -44,7 +44,7 @@ $registered_nonbuyers_count = count($registered_nonbuyers);
 $certified_buyers = $content['certified_buyers'];
 $certified_buyers_count = count($certified_buyers);
 $slacker_buyers = $content['slacker_buyers'];
-$uncertified_buyers_count = $total_buyers_count - $registered_buyers_count;
+$uncertified_buyers_count = $total_buyers_count - $certified_buyers_count;
 
 $certified_nonbuyers = $content['certified_nonbuyers'];
 $certified_nonbuyers_count = count($certified_nonbuyers);
@@ -124,7 +124,7 @@ if ($register_progress == 'complete') {
               <?php endforeach; ?>
             </ul>
           <?php endif; ?>
-          <?php if ($total_invites_count): ?>
+          <?php if (count($ignored_invites)): ?>
             <p>We're still waiting for:</p>
             <ul>
               <?php foreach ($ignored_invites as $invite): ?>
@@ -154,7 +154,7 @@ if ($register_progress == 'complete') {
       <div class="dropdown">
         <h4><?php print $certified_buyers_count ?> of <?php print $total_buyers_count ?> buyers and <?php print $certified_nonbuyers_count ?> staff members are certified</h4>
         
-        <?php if ($certified_buyers_count) : ?>
+          <?php if ($certified_buyers_count) : ?>
             <p>Certified buyers:</p>
             <ul>
               <?php foreach ($certified_buyers as $u): ?>
@@ -182,11 +182,21 @@ if ($register_progress == 'complete') {
             </ul>
           <?php endif; ?>
         
-        <?php if ($uncertified_buyers_count > 0) : ?>
+        <?php if ($uncertified_buyers_count > 0 || count($slacker_nonbuyers)) : ?>
           <p>We're still waiting for:</p>
           <ul>
             <?php if (!empty($slacker_buyers)): ?>
               <?php foreach ($slacker_buyers as $u): ?>
+                <?php $profile = node_load(array('uid' => $u->uid, 'type' => 'retail_member')); ?>
+                <?php if ($profile) : ?>
+                  <li><?php print t('@fname @lname', array('@fname' => $profile->field_fname[0]['value'], '@lname' => $profile->field_lname[0]['value'])); ?> </li>
+                <?php else : ?>
+                  <li><?php print $u->mail; ?> </li>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            <?php endif; ?>
+            <?php if (!empty($slacker_nonbuyers)): ?>
+              <?php foreach ($slacker_nonbuyers as $u): ?>
                 <?php $profile = node_load(array('uid' => $u->uid, 'type' => 'retail_member')); ?>
                 <?php if ($profile) : ?>
                   <li><?php print t('@fname @lname', array('@fname' => $profile->field_fname[0]['value'], '@lname' => $profile->field_lname[0]['value'])); ?> </li>
