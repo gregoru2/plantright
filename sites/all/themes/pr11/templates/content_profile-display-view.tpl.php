@@ -22,7 +22,7 @@ global $user;
   <?php if (isset($node->nid) && isset($content)): ?>
     <?php //dpm($node); ?>
     <h2 class="pageTitle">Your PlantRight <?php //print $node->readable_type; ?> Account</h2>
-	<div class="account-greeting">Hello, !<div>
+	<?php /* <div class="account-greeting">Hello, !<div> */ ?>
 	<?php if ((in_array(11, array_keys($user->roles))) || in_array(13, array_keys($user->roles))): // User has passed the quiz ?>
 	  <div class="partner-benefit-links"><h2>Your Partner Benefits</h2>
     <?php endif; ?>
