@@ -44,7 +44,7 @@ $registered_nonbuyers_count = count($registered_nonbuyers);
 $certified_buyers = $content['certified_buyers'];
 $certified_buyers_count = count($certified_buyers);
 $slacker_buyers = $content['slacker_buyers'];
-$uncertified_buyers_count = $total_buyers_count - $certified_buyers_count;
+$uncertified_buyers_count = $total_buyers_count - $registered_buyers_count;
 
 $certified_nonbuyers = $content['certified_nonbuyers'];
 $certified_nonbuyers_count = count($certified_nonbuyers);

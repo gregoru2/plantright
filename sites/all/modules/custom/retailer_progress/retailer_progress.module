@@ -61,7 +61,15 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
     $profile = node_load(array('uid' => $account->uid, 'type' => 'retail_member'));
     if (isset($profile->field_retailer[0]['nid']) && $profile->field_retailer[0]['nid']) {
       $retailer = node_load($profile->field_retailer[0]['nid']);
-      $fellow_citizens = plantright_get_retailer_employees($retailer->nid);
+
+      $results = db_query('select * from {content_type_retail_member} rm
+                         inner join node n on n.nid = rm.nid
+                         inner join users u on n.uid = u.uid
+                         where rm.field_retailer_nid = %d', $retailer->nid);
+      $fellow_citizens = array();
+      while ($result = db_fetch_object($results)) {
+        array_push($fellow_citizens, user_load($result->uid));
+      }
     }
     else {
       $retailer = NULL;
