@@ -37,6 +37,12 @@ h1 a, h2 a, h3 a, h4 a, h5 a { font-weight: 600; text-decoration: underline; }
 .sidebars #right, .sidebar-right #right {
   width: 290px;
 }
+.section-users #right {
+  width: 380px;
+}
+.section-users #content {
+  width: 400px;
+}
 
 body.section-news #main h1.page-title, body.section-nursery #main h1.page-title, body.section-flag #main h1.page-title { display: block; font-family: "Open Sans", Helvetica, Arial sans-serif; font-weight: 600; font-size: 2.1em; color: #4d3c14; margin: 25px 0 3px; }
 
@@ -1118,9 +1124,6 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
 .form-horizontal .help-block { margin-bottom: 0; }
 .form-horizontal .controls:first-child, .form-horizontal .form-actions { padding-left: 180px; }
 
-/* #progress-block-container { width: 380px; float: right; } */
-#progress-block-container { width: 380px; position: absolute; top: 180px; right: 10px; }
-
 .block-retailer_progress { margin-top: 35px;  margin-left: 1em; }
 .block-retailer_progress #progress-block { border: 1px solid #dccdad; border-radius: 3px; padding: 2px; background: white; }
 .block-retailer_progress #progress-block h2#the-checklist { text-align: center; font-size: 23px; margin: 0; padding: 0 2px 2px 2px; background-color: #78a723; color: #fff; }
@@ -1146,7 +1149,7 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
 .block-retailer_progress #progress-block .dropdown li a { font-style: italic; }
 
 
-#block-views-trivia-block_1 .view-trivia {  width: 345px; float: right; }
+#page #block-views-trivia-block_1 {  margin-left: 1em; }
 #page .view-trivia { margin: 20px 0px; border: 1px solid #dccdad; border-radius: 3px; padding: 10px; background: #fff; }
 #page .view-trivia .view-header h3 { color: #78a723; font-size: 25px; font-style: italic; font-weight: 400; letter-spacing: 1px; margin: 0px; }
 #page .view-trivia .view-content { margin: .5em 0; font-size: 1.2em; line-height: 1.4em; }

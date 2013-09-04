@@ -5,8 +5,8 @@
     <?php print $styles ?>
     <title><?php print $head_title ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700,800' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700,800" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel="stylesheet" type="text/css">
 <?php if ($is_front):?><link rel="stylesheet" href="/sites/default/files/agile_carousel/agile_carousel.css"><?php endif; ?>
 <!--[if lte IE 7]>
     <style type="text/css" media="all">@import "<?php print base_path() . path_to_theme() ?>/lte_ie7.css";</style>
@@ -27,23 +27,20 @@
 <body <?php print phptemplate_body_attributes($is_front, $layout); ?>>
   
 <div id="prContainer">
-
-
   <?php print $skipnav ?>
 
-
   <?php if ($header): ?>
-    <div id='header'><div class='limiter clear-block'>
+    <div id="header"><div class="limiter clear-block">
       <?php print $header; ?>
     </div></div>
   <?php endif; ?>
 
-  <div id='branding'><div class='limiter clear-block'>
-    <?php if ($site_name): ?><h1 class='site-name'><?php print $site_name ?></h1><?php endif; ?>
+  <div id="branding"><div class="limiter clear-block">
+    <?php if ($site_name): ?><h1 class="site-name"><?php print $site_name ?></h1><?php endif; ?>
     <?php if ($search_box): ?><div class="block block-theme"><?php print $search_box ?></div><?php endif; ?>
   </div></div>
 
-  <div id='navigation'><div class='limiter clear-block'>
+  <div id="navigation"><div class="limiter clear-block">
     <?php if (isset($primary_links)) : ?>
       <?php print theme('links', $primary_links, array('class' => 'links primary-links')) ?>
     <?php endif; ?>
@@ -52,38 +49,33 @@
     <?php endif; ?>
   </div></div>
 
-  <div id='page'><div class='limiter clear-block'>
+  <div id="page"><div class="limiter clear-block">
 
     <?php if ($left): ?>
-      <div id='left' class='clear-block'><?php print $left ?></div>
+      <div id="left" class="clear-block"><?php print $left ?></div>
     <?php endif; ?>
 
-    <div id='main' class='clear-block'>
+    <div id="main" class="clear-block">
       <?php if ($help || ($show_messages && $messages)): ?>
-        <div id='console'><div class='limiter clear-block'>
+        <div id="console"><div class="limiter clear-block">
           <?php print $help; ?>
           <?php if ($show_messages && $messages): print $messages; endif; ?>
         </div></div>
       <?php endif; ?>
         <?php if ($breadcrumb) print $breadcrumb; ?>
         <?php if ($mission): print '<div id="mission">'. $mission .'</div>'; endif; ?>
-        <?php if ($title): ?><h1 class='page-title'><?php print $title ?></h1><?php endif; ?>
+        <?php if ($title): ?><h1 class="page-title"><?php print $title ?></h1><?php endif; ?>
         <?php if ($tabs) print $tabs ?>
         <?php if ($tabs2) print $tabs2 ?>
         <?php if ($content_top) print $content_top; ?>
-        <?php if ($progress_block) : ?>
-          <div id="progress-block-container"><?php print $progress_block; ?></div>
-        <?php endif; ?>
-        <div id='content' class='clear-block'><?php print $content ?></div>
-		
-<?php // Moved right into main area so it works with the footer moved ?>		
+        <div id="content"><div class="limiter clear-block"><?php print $content ?></div></div>
+				
     <?php if ($right): ?>
-      <div id='right' class='clear-block'><?php print $right ?></div>
+      <div id="right"><div class="limiter clear-block"><?php print $right ?></div></div>
     <?php endif; ?>	
 	
-    </div>
-	<?php //moved the footer into the main  area ?>
-  <div id="footer"><div class='limiter clear-block'>
+  </div>
+  <div id="footer"><div class="limiter clear-block">
     <?php print $feed_icons ?>
     <?php print $footer ?>
     <?php print $footer_message ?>
