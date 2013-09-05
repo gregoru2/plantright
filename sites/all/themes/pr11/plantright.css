@@ -293,10 +293,13 @@ div.poll div.bar div.foreground { background-color: #999999; }
 
 .species-title { font-size: 2em; font-weight: 100; line-height: 100%; padding: 0.3em 0; }
 
-.field-field-common-name { padding-bottom: 1em; }
+.field-field-common-name { padding-bottom: 2em; }
 .field-field-common-name .field-item .field-label-inline-first { font-weight: 100; margin-bottom: 0.5em; }
 
-.field-field-alternatives .field-items a { background-color: #f7f5ed; border: solid 1px #b6976f; font-size: 0.9em; padding: 3px 7px; }
+/*.field-field-alternatives .field-items a { background-color: #f7f5ed; border: solid 1px #b6976f; padding: 3px 7px; margin-bottom: 20px; } */
+.field-field-alternatives .field-items a { border: solid 1px #b6976f; font-size: 1.05em; padding: 6px; margin: 20px 0px; }
+
+.field-field-alternatives + h3	{ margin-top: 20px; }
 
 .node-type-species h3 { padding-top: 1em; font-size: 1.3em; border-top: 2px dashed #d7d7d7; }
 
@@ -701,7 +704,8 @@ h6, #view-id-region_alteratives_list-page_1 .views-field-field-common-name-value
 
 #branding, #navigation, #main h1.page-title { display: none; }
 
-.section-retailer-certification-quiz #main h1.page-title, #page-node-1421-take #main h1.page-title { display: block; font-family: "Open Sans", Helvetica, Arial sans-serif; font-weight: 600; font-size: 2.1em; color: #4d3c14; margin: 25px 0 22px; }
+.section-species #main h1.page-title,  .section-retailer-certification-quiz #main h1.page-title, #page-node-1421-take #main h1.page-title { display: block; font-family: "Open Sans", Helvetica, Arial sans-serif; font-weight: 600; font-size: 2.1em; color: #4d3c14; margin: 25px 0 22px; }
+
 
 #left .block-menu h2.title, #left .block-admin h2.title { display: none; }
 
