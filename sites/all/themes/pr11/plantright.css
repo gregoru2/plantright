@@ -132,6 +132,9 @@ ol { margin: 10px 0 10px 20px; }
 #content ul.ftp_plant_thumbs { margin: 0; }
 #content ul.ftp_plant_thumbs li { list-style-type: none; display: inline-block; margin: 10px 30px 10px 0; }
 
+div.photo-caption.float-right { float: right; border: solid 2px #d9cfb4; margin: 4px 0 10px 12px; padding: 2px; font-size: .9em; line-height: 1.25em; display: inline-block; }
+div.photo-caption.float-left { float: left; border: solid 2px #d9cfb4; margin: 4px 12px 10px 0; padding: 2px; font-size: .9em; line-height: 1.25em; display: inline-block; }
+
 img.float-right { float: right; border: solid 2px #d9cfb4; margin: 4px 0 10px 12px; padding: 2px; }
 img.float-left { float: left; border: solid 2px #d9cfb4; margin: 4px 12px 10px 0; padding: 2px; }
 img.border { margin-top: 4px; border: solid 2px #d9cfb4; padding: 2px; }
