@@ -1,0 +1,180 @@
+Index: swfupload.admin.inc
+===================================================================
+RCS file: /cvs/drupal-contrib/contributions/modules/swfupload/swfupload.admin.inc,v
+retrieving revision 1.1
+diff -u -p -r1.1 swfupload.admin.inc
+--- swfupload.admin.inc	14 Feb 2010 21:12:36 -0000	1.1
++++ swfupload.admin.inc	21 May 2010 14:29:06 -0000
+@@ -134,7 +134,7 @@ function _class_to_classname(&$element) 
+ /**
+  * Create a thumbnail to be shown in the swfupload table
+  */
+-function swfupload_thumb($file) {
++function swfupload_thumb($file, $filepath = '', $size = '32x32') {
+   if (!is_file($file->filepath)) {
+     return FALSE;
+   }
+@@ -142,7 +142,7 @@ function swfupload_thumb($file) {
+   $destination_path = file_directory_path() . '/imagefield_thumbs' . $short_path;
+ 
+   $info = image_get_info($file->filepath);
+-  $size = explode('x', variable_get('swfupload_thumb_size', '32x32'));
++  $size = explode('x', $size);
+ 
+   // Check if the destination image needs to be regenerated to match a new size.
+   if (is_file($destination_path)) {
+@@ -168,6 +168,7 @@ function swfupload_thumb($file) {
+     }
+   }
+ 
++
+   // Create the thumbnail.
+   if ($info['width'] <= $size[0] && $info['height'] <= $size[1]) {
+     file_copy($file->filepath, $destination_path);
+Index: swfupload.module
+===================================================================
+RCS file: /cvs/drupal-contrib/contributions/modules/swfupload/swfupload.module,v
+retrieving revision 1.17
+diff -u -p -r1.17 swfupload.module
+--- swfupload.module	3 May 2010 19:47:52 -0000	1.17
++++ swfupload.module	21 May 2010 14:25:14 -0000
+@@ -226,9 +226,9 @@ function swfupload_add_js($element) {
+     $field['widget']['list_field'] = $field['list_field'];
+     $field['widget']['list_default'] = $field['list_default'];
+     $field['widget']['description_field'] = $field['description_field'];
+-  
++
+     $limit = ($field['multiple'] == 1 ? 0 : ($field['multiple'] == 0 ? 1 : $field['multiple']));
+-  
++
+     $settings['swfupload_settings'][$element['#id']] = array(
+       'module_path' => $path,
+       'flash_url' => base_path() . str_replace('.js', '.swf', array_shift($swfupload_library->scripts['2.2.0.1'])),
+@@ -357,7 +357,7 @@ function swfupload_swfupload(&$file, $op
+ 
+       if (user_access('upload files with swfupload') && ($file = file_save_upload($instance->name, $file->validators, $file->file_path))) {
+         if (image_get_info($file->filepath)) {
+-          $file->thumb = file_create_url(swfupload_thumb_path($file, TRUE));
++          $file->thumb = swfupload_thumb_url($file, $instance, $widget);
+         }
+         break;
+       }
+@@ -367,6 +367,19 @@ function swfupload_swfupload(&$file, $op
+ }
+ 
+ /**
++ * Return the upload thumbnail path for this file.
++ */
++function swfupload_thumb_url($file, $instance, $widget) {
++  if (!empty($widget->upload_thumbnail_type) && $widget->upload_thumbnail_type == 'imagecache') {
++    return imagecache_create_url($widget->upload_thumbnail_imagecache_preset, $file->filepath, TRUE);
++
++  }
++  else {
++    return file_create_url(swfupload_thumb_path($file, TRUE, $widget->upload_thumbnail_basic_setting));
++  }
++}
++
++/**
+  * Implementation of hook_jqp().
+  */
+ function swfupload_jqp() {
+@@ -384,7 +397,7 @@ function swfupload_jqp() {
+ /**
+  * Given a file, return the path the image thumbnail used while editing.
+  */
+-function swfupload_thumb_path($file, $create_thumb = FALSE) {
++function swfupload_thumb_path($file, $create_thumb = FALSE, $size = '32x32') {
+   $file = (object) $file;
+   $short_path = preg_replace('/^' . preg_quote(file_directory_path(), '/') . '/', '', $file->filepath);
+   $filepath = file_directory_path() . '/imagefield_thumbs' . $short_path;
+@@ -392,7 +405,7 @@ function swfupload_thumb_path($file, $cr
+ 
+   if ($create_thumb) {
+     module_load_include('inc', 'swfupload', 'swfupload.admin');
+-    swfupload_thumb($file, $filepath);
++    swfupload_thumb($file, $filepath, $size);
+   }
+   return $filepath;
+ }
+Index: swfupload_widget.inc
+===================================================================
+RCS file: /cvs/drupal-contrib/contributions/modules/swfupload/swfupload_widget.inc,v
+retrieving revision 1.2
+diff -u -p -r1.2 swfupload_widget.inc
+--- swfupload_widget.inc	15 Feb 2010 13:39:55 -0000	1.2
++++ swfupload_widget.inc	21 May 2010 14:09:03 -0000
+@@ -17,6 +17,51 @@ function swfupload_widget_settings_form(
+   else {
+     $form = module_invoke('filefield', 'widget_settings', 'form', $widget);
+   }
++
++
++  // Allow the admin to choose how they'd like their upload thumbnails to appear:
++  $form['upload_thumbnails'] = array(
++    '#type' => 'fieldset',
++    '#title' => t('Upload thumbnails'),
++    '#collapsible' => TRUE,
++    '#collapsed' => TRUE,
++    '#weight' => 8,
++  );
++  $generation_options = array(
++    'basic' => t('Basic'),
++  );
++  if (module_exists('imagecache')) {
++    $generation_options['imagecache'] = t('Imagecache preset');
++  }
++  $form['upload_thumbnails']['upload_thumbnail_type'] = array(
++    '#type' => 'radios',
++    '#title' => t('Thumbnail type'),
++    '#default_value' =>  !empty($widget['upload_thumbnail_type']) ? $widget['upload_thumbnail_type'] : 'basic',
++    '#description' => t('Choose how the upload thumbnail should be generated.'),
++    '#options' => $generation_options,
++  );
++  $form['upload_thumbnails']['upload_thumbnail_basic_setting'] = array(
++    '#type' => 'textfield',
++    '#title' => t('Thumbnail size'),
++    '#default_value' => !empty($widget['upload_thumbnail_basic_setting']) ? $widget['upload_thumbnail_basic_setting'] : '32x32',
++    '#description' => t("Size of the thumbnails displayed if the type is 'Basic'. Format: WIDTHxHEIGHT."),
++  );
++
++  if (module_exists('imagecache')) {
++    $presets = array();
++    foreach (imagecache_presets() as $preset => $name) {
++      $presets[$name['presetname']] = $name['presetname'];
++    }
++    $form['upload_thumbnails']['upload_thumbnail_imagecache_preset'] = array(
++      '#type' => 'select',
++      '#title' => t('Thumbnail Imagecache preset'),
++      '#default_value' => !empty($widget['upload_thumbnail_imagecache_preset']) ? $widget['upload_thumbnail_imagecache_preset'] : '',
++      '#description' => t("Imagecache preset to use to generate thumbnails if the type is 'Imagecache preset'"),
++      '#options' => $presets,
++    );
++  }
++
++
+   return $form;
+ }
+ 
+@@ -30,6 +75,14 @@ function swfupload_widget_settings_valid
+       form_set_error($resolution, t('Please specify a resolution in the format WIDTHxHEIGHT (e.g. 640x480).'));
+     }
+   }
++
++  // Check the basic size setting:
++  if (($widget['upload_thumbnail_type'] == 'basic') && empty($widget['upload_thumbnail_basic_setting'])) {
++    form_set_error('upload_thumbnail_basic_setting', t('Please specify a resolution in the format WIDTHxHEIGHT (e.g. 100x100).'));
++  }
++  if (!empty($widget['upload_thumbnail_basic_setting']) && !preg_match('/^[0-9]+x[0-9]+$/', $widget['upload_thumbnail_basic_setting'])) {
++    form_set_error('upload_thumbnail_basic_setting', t('Please specify a resolution in the format WIDTHxHEIGHT (e.g. 100x100).'));
++  }
+ }
+ 
+ /**
+@@ -37,5 +90,5 @@ function swfupload_widget_settings_valid
+  */
+ function swfupload_widget_settings_save($widget) {
+   $filefield_settings = module_invoke('filefield', 'widget_settings', 'save', $widget);
+-  return array_merge($filefield_settings, array('max_resolution', 'min_resolution', 'alt',  'custom_alt', 'title', 'custom_title', 'title_type', 'default_image', 'use_default_image'));
++  return array_merge($filefield_settings, array('max_resolution', 'min_resolution', 'alt',  'custom_alt', 'title', 'custom_title', 'title_type', 'default_image', 'use_default_image', 'upload_thumbnail_type', 'upload_thumbnail_basic_setting', 'upload_thumbnail_imagecache_preset'));
+ }
