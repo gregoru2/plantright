@@ -223,7 +223,11 @@ $handler->override_option('cache', array(
 $handler->override_option('title', 'Our Nursery Partners');
 $handler->override_option('header_format', '2');
 $handler->override_option('header_empty', 0);
-$handler->override_option('empty', 'No matches found.');
+$handler->override_option('empty', 'No matches found…
+ 
+But not for long! Our retail partner program is just getting started, so we\'re adding new nurseries every week.  Are there stores you\'d like to see become PlantRight Partners?  <a href="http://www.plantright.org/contact">Contact us</a> with your local nurseries’ information, and we’ll give them a call.  Have a contact name, or extra information about your favorite nursery?  All the better.
+
+Thanks for your support and check back soon!');
 $handler->override_option('empty_format', '2');
 $handler->override_option('items_per_page', 100);
 $handler->override_option('use_pager', '1');
@@ -234,6 +238,75 @@ $handler = $view->new_display('page', 'Default', 'page_1');
 $handler->override_option('sorts', array(
   'county' => array(
     'order' => 'ASC',
+    'id' => 'county',
+    'table' => 'location_county',
+    'field' => 'county',
+    'override' => array(
+      'button' => 'Use default',
+    ),
+    'relationship' => 'none',
+  ),
+));
+$handler->override_option('filters', array(
+  'field_is_certified_value' => array(
+    'operator' => '=',
+    'value' => array(
+      'value' => '1',
+      'min' => '',
+      'max' => '',
+    ),
+    'group' => '0',
+    'exposed' => FALSE,
+    'expose' => array(
+      'operator' => FALSE,
+      'label' => '',
+    ),
+    'id' => 'field_is_certified_value',
+    'table' => 'node_data_field_is_certified',
+    'field' => 'field_is_certified_value',
+    'relationship' => 'none',
+  ),
+  'status' => array(
+    'operator' => '=',
+    'value' => '1',
+    'group' => '0',
+    'exposed' => FALSE,
+    'expose' => array(
+      'operator' => FALSE,
+      'label' => '',
+    ),
+    'id' => 'status',
+    'table' => 'node',
+    'field' => 'status',
+    'relationship' => 'none',
+  ),
+  'type' => array(
+    'operator' => 'in',
+    'value' => array(
+      'business' => 'business',
+    ),
+    'group' => '0',
+    'exposed' => FALSE,
+    'expose' => array(
+      'operator' => FALSE,
+      'label' => '',
+    ),
+    'id' => 'type',
+    'table' => 'node',
+    'field' => 'type',
+    'relationship' => 'none',
+  ),
+  'county' => array(
+    'operator' => 'not empty',
+    'value' => '',
+    'group' => '0',
+    'exposed' => FALSE,
+    'expose' => array(
+      'operator' => FALSE,
+      'label' => '',
+      'optional' => FALSE,
+    ),
+    'case' => 1,
     'id' => 'county',
     'table' => 'location_county',
     'field' => 'county',
@@ -482,5 +555,5 @@ $handler->override_option('tab_options', array(
   'name' => 'navigation',
 ));
 
-
+return $view;
 }
