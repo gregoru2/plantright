@@ -12,13 +12,13 @@ define('PDF_DOWNLOADS_BUSINESS_NODE_TYPE', 'business');
  * Implementation of hook_menu().
  */
 function pdf_downloads_menu() {
-  $items['download/pledge.pdf'] = array(
+  $items['download/pledge/pdf'] = array(
     'title' => 'PlantRight Pledge',
     'page callback' => 'pdf_downloads_pledge_pdf',
     'access arguments' => array('access pledge download'),
     'type' => MENU_CALLBACK,
   );
-  $items['download/agreement.pdf'] = array(
+  $items['download/agreement/pdf'] = array(
     'title' => 'PlantRight Retail Partner Agreement',
     'page callback' => 'pdf_downloads_agreement_pdf',
     'access arguments' => array('access partner agreement download'),
