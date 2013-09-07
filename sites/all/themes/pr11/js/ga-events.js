@@ -45,7 +45,6 @@ jQuery(document).ready(function($) {
         var extension = (/[.]/.exec(href)) ? /[^.]+$/.exec(href) : undefined;
         extension = extension[0];
         var filePath = href;
-        window.open(href);
         _gaq.push(['_trackEvent', 'Download', extension, filePath]);
       }
 
@@ -65,7 +64,7 @@ jQuery(document).ready(function($) {
         window.open(href);
       });
     }
-    else if (href && href.match(/.*\/certificate\/pdf/i)) {
+    else if (href && href.match(/.*\/pdf/i)) {
       // Certificate Links.
       $(this).mousedown(function(e) {
         var filePath = href;
