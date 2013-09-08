@@ -555,5 +555,6 @@ $handler->override_option('tab_options', array(
   'name' => 'navigation',
 ));
 
-return $view;
+$views[$view->name] = $view;
+return $views;
 }
