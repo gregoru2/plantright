@@ -107,7 +107,8 @@ function plantright_business_directory_form_alter(&$form, &$form_state, $form_id
             $arg1 = arg(1);
             if ($arg1 == 'by-zip' || $arg1 == 'by-county') {
               $text = t('New search:');
-            } else {
+            }
+            else {
               $text = t('Search by location:');
             }
 
@@ -138,6 +139,43 @@ function plantright_business_directory_form_alter(&$form, &$form_state, $form_id
           break;
       }
       break;
+    case 'business_node_form':
+      $form['#after_build'][] = 'plantright_business_node_form_after_build';
+      $form['#validate'][] = 'plantright_business_node_form_validate';
+      break;
+  }
+}
+
+function plantright_business_node_form_after_build(&$form, &$form_state) {
+//  dpm($form['locations']);
+  if (isset($form['locations'])) {
+    foreach ($form['locations'] as $key => $location) {
+      if (is_array($location)) {
+        if (isset($location['county'])) {
+          $form['locations'][$key]['county']['#type'] = 'select';
+          $form['locations'][$key]['county']['#size'] = 1;
+          $form['locations'][$key]['county']['#options'] = array('' => '- SELECT -') + _plantright_get_counties_by_state('ca');
+        }
+        if (isset($location['province'])) {
+          $form['locations'][$key]['province']['#autocomplete_path'] = FALSE;
+         $form['locations'][$key]['province']['#title'] = t('State');
+          $form['locations'][$key]['province']['#value'] = $location['province']['#default_value'] = 'CA';
+          $form['locations'][$key]['province']['#type'] = 'textfield';
+         $form['locations'][$key]['province']['#attributes']['readonly'] = 'readonly';
+         $form['locations'][$key]['province']['#attributes']['disabled'] = 'disabled';
+        }
+      }
+    }
+  }
+  return $form;
+}
+
+function plantright_business_node_form_validate($form, &$form_state) {
+  $locations = $form_state['values']['locations'];
+  foreach ($locations as $key => $location) {
+    if (($location['street'] || $location['city'] || $location['postal_code']) && !$location['county']) {
+      form_set_error('locations][' . $key . '][county', t('County is required'));
+    }
   }
 }
 
@@ -146,64 +184,64 @@ function _plantright_get_counties_by_state($state) {
     case 'ca':
     case 'california':
       return array(
-        'alameda' => 'Alameda',
-        'alpine' => 'Alpine',
-        'amador' => 'Amador',
-        'butte' => 'Butte',
-        'calaveras' => 'Calaveras',
-        'colusa' => 'Colusa',
-        'contra costa' => 'Contra Costa',
-        'del norte' => 'Del Norte',
-        'el dorado' => 'El Dorado',
-        'fresno' => 'Fresno',
-        'glenn' => 'Glenn',
-        'humboldt' => 'Humboldt',
-        'imperial' => 'Imperial',
-        'inyo' => 'Inyo',
-        'kern' => 'Kern',
-        'kings' => 'Kings',
-        'lake' => 'Lake',
-        'lassen' => 'Lassen',
-        'los angeles' => 'Los Angeles',
-        'madera' => 'Madera',
-        'marin' => 'Marin',
-        'mariposa' => 'Mariposa',
-        'mendocino' => 'Mendocino',
-        'merced' => 'Merced',
-        'modoc' => 'Modoc',
-        'mono' => 'Mono',
-        'monterey' => 'Monterey',
-        'napa' => 'Napa',
-        'nevada' => 'Nevada',
-        'orange' => 'Orange',
-        'placer' => 'Placer',
-        'plumas' => 'Plumas',
-        'riverside' => 'Riverside',
-        'sacramento' => 'Sacramento',
-        'san benito' => 'San Benito',
-        'san bernardino' => 'San Bernardino',
-        'san diego' => 'San Diego',
-        'san francisco' => 'San Francisco',
-        'san joaquin' => 'San Joaquin',
-        'san luis obispo' => 'San Luis Obispo',
-        'san mateo' => 'San Mateo',
-        'santa barbara' => 'Santa Barbara',
-        'santa clara' => 'Santa Clara',
-        'santa cruz' => 'Santa Cruz',
-        'shasta' => 'Shasta',
-        'sierra' => 'Sierra',
-        'siskiyou' => 'Siskiyou',
-        'solano' => 'Solano',
-        'sonoma' => 'Sonoma',
-        'stanislaus' => 'Stanislaus',
-        'sutter' => 'Sutter',
-        'tehama' => 'Tehama',
-        'trinity' => 'Trinity',
-        'tulare' => 'Tulare',
-        'tuolumne' => 'Tuolumne',
-        'ventura' => 'Ventura',
-        'yolo' => 'Yolo',
-        'yuba' => 'Yuba',
+        'Alameda' => 'Alameda',
+        'Alpine' => 'Alpine',
+        'Amador' => 'Amador',
+        'Butte' => 'Butte',
+        'Calaveras' => 'Calaveras',
+        'Colusa' => 'Colusa',
+        'Contra Costa' => 'Contra Costa',
+        'Del Norte' => 'Del Norte',
+        'El Dorado' => 'El Dorado',
+        'Fresno' => 'Fresno',
+        'Glenn' => 'Glenn',
+        'Humboldt' => 'Humboldt',
+        'Imperial' => 'Imperial',
+        'Inyo' => 'Inyo',
+        'Kern' => 'Kern',
+        'Kings' => 'Kings',
+        'Lake' => 'Lake',
+        'Lassen' => 'Lassen',
+        'Los Angeles' => 'Los Angeles',
+        'Madera' => 'Madera',
+        'Marin' => 'Marin',
+        'Mariposa' => 'Mariposa',
+        'Mendocino' => 'Mendocino',
+        'Merced' => 'Merced',
+        'Modoc' => 'Modoc',
+        'Mono' => 'Mono',
+        'Monterey' => 'Monterey',
+        'Napa' => 'Napa',
+        'Nevada' => 'Nevada',
+        'Orange' => 'Orange',
+        'Placer' => 'Placer',
+        'Plumas' => 'Plumas',
+        'Riverside' => 'Riverside',
+        'Sacramento' => 'Sacramento',
+        'San Benito' => 'San Benito',
+        'San Bernardino' => 'San Bernardino',
+        'San Diego' => 'San Diego',
+        'San Francisco' => 'San Francisco',
+        'San Joaquin' => 'San Joaquin',
+        'San Luis Obispo' => 'San Luis Obispo',
+        'San Mateo' => 'San Mateo',
+        'Santa Barbara' => 'Santa Barbara',
+        'Santa Clara' => 'Santa Clara',
+        'Santa Cruz' => 'Santa Cruz',
+        'Shasta' => 'Shasta',
+        'Sierra' => 'Sierra',
+        'Siskiyou' => 'Siskiyou',
+        'Solano' => 'Solano',
+        'Sonoma' => 'Sonoma',
+        'Stanislaus' => 'Stanislaus',
+        'Sutter' => 'Sutter',
+        'Tehama' => 'Tehama',
+        'Trinity' => 'Trinity',
+        'Tulare' => 'Tulare',
+        'Tuolumne' => 'Tuolumne',
+        'Ventura' => 'Ventura',
+        'Yolo' => 'Yolo',
+        'Yuba' => 'Yuba',
       );
       break;
   }
