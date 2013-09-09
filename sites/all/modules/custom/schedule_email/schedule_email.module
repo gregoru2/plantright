@@ -23,6 +23,13 @@ function schedule_email_help() {
 function schedule_email_menu() {
   $items = array();
   $items['admin/content/schedule-email'] = array(
+    'title' => 'Schedule Emails',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('schedule_email_page_email_config'),
+    'type' => MENU_NORMAL_ITEM,
+    'access arguments' => array('administer schedule email'),
+  );
+  $items['admin/content/schedule-email/send'] = array(
     'title' => 'Send Schedule Emails',
     'page callback' => 'schedule_email_page_email_send',
     'type' => MENU_NORMAL_ITEM,
@@ -158,7 +165,7 @@ function schedule_email_form(&$node, $form_state) {
   if ($type->has_body) {
     $form['body_field'] = node_body_field($node, $type->body_label, $type->min_word_count);
   }
-  
+
   $form['token_help'] = array(
     '#title' => t('Replacement patterns'),
     '#type' => 'fieldset',
@@ -275,31 +282,66 @@ function schedule_email_mail($key, &$message, $params) {
  * Implements hook_cron().
  */
 function schedule_email_cron() {
-  $se = new ScheduleEmail();
-  $sep = new ScheduleEmailPartner();
+  if (variable_get('schedule_email_enable', 0)) {
+    $se = new ScheduleEmail();
+    $sep = new ScheduleEmailPartner();
+  }
 }
 
 /**
  * Callback for page to send emails manually
  */
 function schedule_email_page_email_send() {
-  $output = '';
-  $se = new ScheduleEmail();
-  $log = $se->get_email_log();
-  foreach ($log as $item) {
-    $output .= '<br/>' . $item;
+  if (variable_get('schedule_email_enable', 0)) {
+    $output = '';
+    $se = new ScheduleEmail();
+    $log = $se->get_email_log();
+    foreach ($log as $item) {
+      $output .= '<br/>' . $item;
+    }
+
+    $se = new ScheduleEmailPartner();
+    $log = $se->get_email_log();
+    foreach ($log as $item) {
+      $output .= '<br/>' . $item;
+    }
+
+    if (!$output) {
+      $output = t('No emails to send.');
+    }
   }
-  
-  $se = new ScheduleEmailPartner();
-  $log = $se->get_email_log();
-  foreach ($log as $item) {
-    $output .= '<br/>' . $item;
-  }
-  
-  if (!$output) {
-    $output = 'No emails to send.';
+  else {
+    $output = t('Emails disabled');
   }
   return $output;
+}
+
+function schedule_email_page_email_config(&$form_state) {
+  $form = array();
+  $form['send'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'Email Actions',
+  );
+  $form['send']['link'] = array(
+    '#type' => 'markup',
+    '#value' => l(t('Send Emails Now'), 'admin/content/schedule-email/send'),
+  );
+
+  $form['enable'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable'),
+    '#default_value' => variable_get('schedule_email_enable', 0),
+  );
+  
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+  );
+  return $form;
+}
+
+function schedule_email_page_email_config_submit(&$form, &$form_state) {
+  variable_set('schedule_email_enable', $form_state['values']['enable']);
 }
 
 function schedule_email_log_email($seid, $uid, $iid, $nid) {
