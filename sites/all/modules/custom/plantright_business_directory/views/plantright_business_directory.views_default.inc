@@ -213,6 +213,25 @@ $handler->override_option('filters', array(
     'field' => 'type',
     'relationship' => 'none',
   ),
+  'postal_code' => array(
+    'operator' => '!=',
+    'value' => '',
+    'group' => '0',
+    'exposed' => FALSE,
+    'expose' => array(
+      'operator' => FALSE,
+      'label' => '',
+      'optional' => FALSE,
+    ),
+    'case' => 1,
+    'id' => 'postal_code',
+    'table' => 'location',
+    'field' => 'postal_code',
+    'override' => array(
+      'button' => 'Override',
+    ),
+    'relationship' => 'none',
+  ),
 ));
 $handler->override_option('access', array(
   'type' => 'none',
@@ -421,6 +440,25 @@ $handler->override_option('filters', array(
     'relationship' => 'none',
     'gmap_macro' => '',
   ),
+  'postal_code' => array(
+    'operator' => '!=',
+    'value' => '',
+    'group' => '0',
+    'exposed' => FALSE,
+    'expose' => array(
+      'operator' => FALSE,
+      'label' => '',
+      'optional' => FALSE,
+    ),
+    'case' => 1,
+    'id' => 'postal_code',
+    'table' => 'location',
+    'field' => 'postal_code',
+    'override' => array(
+      'button' => 'Use default',
+    ),
+    'relationship' => 'none',
+  ),
 ));
 $handler->override_option('exposed_block', TRUE);
 $handler->override_option('path', 'nursery-partners/by-zip');
@@ -532,6 +570,25 @@ $handler->override_option('filters', array(
     'id' => 'county',
     'table' => 'location_county',
     'field' => 'county',
+    'override' => array(
+      'button' => 'Use default',
+    ),
+    'relationship' => 'none',
+  ),
+  'postal_code' => array(
+    'operator' => '!=',
+    'value' => '',
+    'group' => '0',
+    'exposed' => FALSE,
+    'expose' => array(
+      'operator' => FALSE,
+      'label' => '',
+      'optional' => FALSE,
+    ),
+    'case' => 1,
+    'id' => 'postal_code',
+    'table' => 'location',
+    'field' => 'postal_code',
     'override' => array(
       'button' => 'Use default',
     ),
