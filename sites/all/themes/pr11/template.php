@@ -693,3 +693,10 @@ function pr11_preprocess_location($vars) {
   // Remove below to show again.
   $vars['country_name'] = '';
 }
+
+/**
+ * Implementation of theme_mimemail_message().
+ */
+function pr11_preprocess_mimemail_message(&$vars) {
+  $vars['body'] = str_replace('<br />', '', $vars['body']);
+}

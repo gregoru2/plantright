@@ -9,3 +9,6 @@ body {
 a {
   color: #ac512a !important;
 }
+p {
+  margin-bottom: 10px;
+}
