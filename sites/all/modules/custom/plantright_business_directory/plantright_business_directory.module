@@ -142,12 +142,12 @@ function plantright_business_directory_form_alter(&$form, &$form_state, $form_id
     case 'business_node_form':
       $form['#after_build'][] = 'plantright_business_node_form_after_build';
       $form['#validate'][] = 'plantright_business_node_form_validate';
+      array_unshift($form['#submit'], 'plantright_business_node_form_submit');
       break;
   }
 }
 
 function plantright_business_node_form_after_build(&$form, &$form_state) {
-//  dpm($form['locations']);
   if (isset($form['locations'])) {
     foreach ($form['locations'] as $key => $location) {
       if (is_array($location)) {
@@ -158,11 +158,14 @@ function plantright_business_node_form_after_build(&$form, &$form_state) {
         }
         if (isset($location['province'])) {
           $form['locations'][$key]['province']['#autocomplete_path'] = FALSE;
-         $form['locations'][$key]['province']['#title'] = t('State');
-          $form['locations'][$key]['province']['#value'] = $location['province']['#default_value'] = 'CA';
+          $form['locations'][$key]['province']['#title'] = t('State');
+          if ($location['province']['#value']) {
+            $form['locations'][$key]['province']['#value'] = 'California';
+          }
+          $location['province']['#default_value'] = 'California';
           $form['locations'][$key]['province']['#type'] = 'textfield';
-         $form['locations'][$key]['province']['#attributes']['readonly'] = 'readonly';
-         $form['locations'][$key]['province']['#attributes']['disabled'] = 'disabled';
+          $form['locations'][$key]['province']['#attributes']['readonly'] = 'readonly';
+          $form['locations'][$key]['province']['#attributes']['disabled'] = 'disabled';
         }
       }
     }
@@ -175,6 +178,17 @@ function plantright_business_node_form_validate($form, &$form_state) {
   foreach ($locations as $key => $location) {
     if (($location['street'] || $location['city'] || $location['postal_code']) && !$location['county']) {
       form_set_error('locations][' . $key . '][county', t('County is required'));
+    }
+  }
+}
+
+function plantright_business_node_form_submit($form, &$form_state) {
+  $locations = $form_state['values']['locations'];
+  foreach ($locations as $key => $location) {
+    if (!$location['street'] && !$location['city'] && !$location['postal_code'] && !$location['county']) {
+      // Remove the empty ones, because they're getting saved with the force
+      // to CA option.
+      unset($form_state['values']['locations'][$key]);
     }
   }
 }
