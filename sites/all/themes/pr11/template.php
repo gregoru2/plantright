@@ -699,4 +699,5 @@ function pr11_preprocess_location($vars) {
  */
 function pr11_preprocess_mimemail_message(&$vars) {
   $vars['body'] = str_replace('<br />', '', $vars['body']);
+  $vars['body'] = str_replace('•', '<br />' . '•', $vars['body']);
 }
