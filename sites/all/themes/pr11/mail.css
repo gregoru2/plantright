@@ -3,12 +3,21 @@
  */
 
 body {
-  font-family: Palatino,Calibri,Helvetica,Arial,sans-serif;
+  font-family: Helvetica,Arial,sans-serif;
   font-size: 12pt;
 }
 a {
-  color: #ac512a !important;
+  color: #5a8026 !important;
 }
 p {
   margin-bottom: 10px;
+  line-height: 21px;
+}
+ul {
+	margin: 10px 0px 30px 30px;
+}
+ul li {
+	line-height: 21px;
+	text-indent: -10px;
+	margin: 4px;
 }
