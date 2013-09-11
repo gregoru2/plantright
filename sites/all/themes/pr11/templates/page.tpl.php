@@ -73,14 +73,14 @@
     <?php if ($right): ?>
       <div id="right"><div class="limiter clear-block"><?php print $right ?></div></div>
     <?php endif; ?>	
-	
-  </div>
-  <div id="footer"><div class="limiter clear-block">
+	 <div id="footer"><div class="limiter clear-block">
     <?php print $feed_icons ?>
     <?php print $footer ?>
     <?php print $footer_message ?>
   </div></div>
 
+  </div>
+ 
   </div></div>
 
 
