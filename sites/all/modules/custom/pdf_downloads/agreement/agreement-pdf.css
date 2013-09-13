@@ -21,40 +21,46 @@ img {
   left: 0;
 }
 #agreement-text-1 {
-  top: 206px;
+  top: 155px;
+  left: 258px;
 }
 #agreement-text-2 {
-  top: 385px;
+  top: 322px;
+  left: 258px;
 }
 #agreement-text-1, #agreement-text-2 {
-  left: 282px;
-  width: 233px;
+  width: 238px;
   text-align: center;
+  font-size: .8em;
+  font-weight: bold;
 }
 #agreement-text-3 {
-  top: 476px;
+  top: 360px;
   left: 0;
+  border: 1px solid black;
+  font-size: 1.2em;
 }
 .subtext {
   position:absolute;
 }
 #agreement-text-3 .name {
-  left: 130px;
+  top: 73px;
+  left: 140px;
   width: 520px;
 }
 #agreement-text-3 .address {
-  left: 83px;
-  top: 43px;
+  left: 93px;
+  top: 116px;
   width: 640px;
 }
 #agreement-text-3 .city {
-  left: 57px;
-  top: 86px;
+  left: 77px;
+  top: 158px;
   width: 432px;
 }
 #agreement-text-3 .zip {
-  left: 556px;
-  top: 86px;
+  left: 451px;
+  top: 158px;
   width: 164px;
 }
 #agreement-text-3 .phone {
