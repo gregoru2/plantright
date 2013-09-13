@@ -297,23 +297,23 @@ PLEDGE;
       if (is_numeric(arg(1))) { // activate only on edit page (not on registration page)
         // check if we are on a user account or node edit page
         if (arg(0) == 'user') { // on account edit page
-          $user = user_load(arg(1));
+          $account = user_load(arg(1));
         }
         elseif (arg(0) == 'node') { // on content profile node edit page
           $node = node_load(arg(1));
-          $user = user_load($node->uid);
+          $account = user_load($node->uid);
         }
 
         module_load_include('pages.inc', 'user');
 
         $form['account_profile_uid'] = array(
           '#type' => 'value',
-          '#value' => $user->uid,
+          '#value' => $account->uid,
         );
         //Remove account so in case its set, account form version is used.
         $form['account'] = NULL;
         unset($form['account']);
-        $account_form = user_profile_form(array(), $user);
+        $account_form = user_profile_form(array(), $account);
         unset($account_form['submit'], $account_form['delete']); // remove duplicated Save button and Delete
         $form = array_merge($form, $account_form);
         $form['#validate'][] = 'account_profile_form_validate';
