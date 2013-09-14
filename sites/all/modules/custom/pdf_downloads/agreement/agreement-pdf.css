@@ -43,6 +43,11 @@ img {
 .subtext {
   position:absolute;
 }
+#agreement-text-3 .date {
+  top: 35px;
+  left: 479px;
+  width: 100px;
+}
 #agreement-text-3 .name {
   top: 73px;
   left: 140px;
@@ -72,6 +77,11 @@ img {
   left: 64px;
   top: 170px;
   width: 423px;
+}
+#agreement-text-3 .date-2 {
+  top: 317px;
+  left: 440px;
+  width: 100px;
 }
 #agreement-image-2 {
   page-break-before: avoid;

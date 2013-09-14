@@ -111,13 +111,14 @@ function pdf_downloads_preprocess_pdf_download_agreement(&$vars) {
       $vars['zip'] = $location['postal_code'];
       $vars['phone'] = $location['phone'];
       $vars['email'] = $location['email'];
+      $vars['date'] = format_date(time(), 'custom', 'F j, Y');
     }
   }
   //else {
   //  $vars['name'] = $vars['data']['account']->name;
   //}
 
-  $vars['date'] = format_date(time(), 'custom', 'F j, Y');
+  $vars['date'] = format_date(time(), 'custom', 'n/j/Y');
 }
 
 function pdf_downloads_preprocess_pdf_download_pledge(&$vars) {

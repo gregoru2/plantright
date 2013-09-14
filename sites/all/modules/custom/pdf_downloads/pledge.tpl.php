@@ -16,6 +16,7 @@
     <?php //image has to be inline not background to control DPI  ?>
 
     <div class="download-name"><?php print $name; ?></div>
+    <div class="download-name-2"><?php print $name; ?></div>
     <div class="download-date"><?php print $date; ?></div>
   </div>
 </div>
