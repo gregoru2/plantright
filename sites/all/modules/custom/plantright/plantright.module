@@ -468,11 +468,11 @@ function plantright_mail_alter(&$message) {
 }
 
 /**
- * Helper function. Returns user's profile name.
+ * Helper function. Returns user's profile node.
  */
-function plantright_get_user_profile_name($account) {
-  static $plantright_user_profile_name;
-  if (!isset($plantright_user_profile_name)) {
+function plantright_get_user_profile($account) {
+  static $plantright_user_profile;
+  if (!isset($plantright_user_profile) || !isset($plantright_user_profile[$account->uid])) {
     $profile = NULL;
 
     if (in_array(15, array_keys($account->roles))) {
@@ -484,7 +484,18 @@ function plantright_get_user_profile_name($account) {
     else {
       $profile = content_profile_load(PLANTRIGHT_RETAIL_PROFILE, $account->uid);
     }
+    $plantright_user_profile[$account->uid] = $profile;
+  }
+  return $plantright_user_profile[$account->uid];
+}
 
+/**
+ * Helper function. Returns user's profile name.
+ */
+function plantright_get_user_profile_name($account) {
+  static $plantright_user_profile_name;
+  if (!isset($plantright_user_profile_name) || !isset($plantright_user_profile_name[$account->uid])) {
+    $profile = plantright_get_user_profile($account);
     if ($profile) {
       // Profile exists. Replace the username with the profile name
       $fname = $profile->{PLANTRIGHT_PROFILE_FNAME};
@@ -498,23 +509,25 @@ function plantright_get_user_profile_name($account) {
         $name = $name . ($name ? ' ' : '') . $lname;
       }
     }
-    $plantright_user_profile_name = $name ? $name : $account->name;
+    $plantright_user_profile_name[$account->uid] = $name ? $name : $account->name;
   }
-
-  return $plantright_user_profile_name;
+  return $plantright_user_profile_name[$account->uid];
 }
 
 /**
  * Helper function. Returns user's profile nursery.
  */
-function plantright_get_user_profile_nursery($account) {
+function plantright_get_user_profile_nursery($account, $entities = TRUE) {
   static $plantright_user_profile_nursery;
   if (!isset($plantright_user_profile_nursery)) {
     if ($profile = content_profile_load(PLANTRIGHT_RETAIL_PROFILE, $account->uid)) {
       if ($profile->{PLANTRIGHT_RETAIL_PROFILE_NURSERY} && isset($profile->{PLANTRIGHT_RETAIL_PROFILE_NURSERY}[0]) && $nursery_nid = $profile->{PLANTRIGHT_RETAIL_PROFILE_NURSERY}[0]['nid']) {
         $nursery = node_load($nursery_nid);
         if ($nursery) {
-          $nursery_name = check_plain($nursery->title);
+          $nursery_name = filter_xss($nursery->title);
+          if (!$entities) {
+            $nursery_name = html_entity_decode($nursery_name);
+          }
         }
       }
     }
@@ -558,4 +571,26 @@ function plantright_get_retailer_employees($retailer, $include_liason = TRUE) {
   }
   
   return $fellow_citizens;
+}
+
+function plantright_get_partner_nurseries($entities = TRUE) {
+  $result = db_query("SELECT DISTINCT(node.nid) AS nid, node.title AS node_title, node.type AS node_type, node.nid AS node_nid 
+    FROM {node} node  
+    LEFT JOIN content_type_business node_data_field_is_certified ON node.vid = node_data_field_is_certified.vid 
+    WHERE (node.type in ('business')) AND (node_data_field_is_certified.field_is_certified_value = 1) 
+    GROUP BY nid
+    ORDER BY node_title ASC, node_nid ASC");
+  $nurseries = array();
+  while ($row = db_fetch_array($result)) {
+    $safe_row = array();
+    foreach ($row as $key => $val) {
+      $safe_row[$key] = filter_xss($val);
+      if (!$entities) {
+        $safe_row[$key] = html_entity_decode($safe_row[$key]);
+      }
+    }
+    
+    $nurseries[] = $safe_row;
+  }
+  return $nurseries;
 }
