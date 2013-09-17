@@ -701,3 +701,22 @@ function pr11_preprocess_mimemail_message(&$vars) {
   $vars['body'] = str_replace('<br />', '', $vars['body']);
   $vars['body'] = str_replace('•', '<br />' . '•', $vars['body']);
 }
+
+/**
+ * Preprocess the content profile display view.
+ */
+function pr11_preprocess_user_profile($vars) {
+  $account = user_load(arg(1));
+  $vars['name'] = plantright_get_user_profile_name($account);
+  $vars['node'] = plantright_get_user_profile($account);
+  $vars['user_roles'] = array_keys($account->roles);
+}
+
+/**
+ * Preprocess the content profile display view.
+ */
+function pr11_preprocess_content_profile_display_view($vars) {
+  $vars['user'] = user_load($vars['uid']);
+  $vars['name'] = $vars['node']->profile_items['first_name']['value'] . ' ' . $vars['node']->profile_items['first_name']['value'];
+  $vars['user_roles'] = array_keys($vars['user']->roles);
+}
