@@ -1,0 +1,4 @@
+name = PlantRight Ecomm
+description = Customizations to ecomm.
+package = PlantRight
+core = 6.x
