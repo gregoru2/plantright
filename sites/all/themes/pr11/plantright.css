@@ -734,9 +734,11 @@ div#resources_list div.link_group ul { margin: 0px 8px 10px 8px; }
   padding: 5px;
   text-align: center;
   display: table-cell;
-  height: 277px;
   width: 338px;
   vertical-align: middle;
+}
+.section-merch div.view-merch table td div.views-field-field-image-cache-fid {
+  height: 277px;
 }
 .section-merch .node-product .node-content {
   width: 350px;
