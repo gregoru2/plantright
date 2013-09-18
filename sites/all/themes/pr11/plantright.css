@@ -717,7 +717,6 @@ div#resources_list div.link_group ul { margin: 0px 8px 10px 8px; }
 }
 .section-merch div.view-merch table.grid-2	{
   width: 100%;
-  margin-top: 4em;
 }
 .section-merch div.view-merch table.grid-2 td	{
   width: 50%;
@@ -734,11 +733,18 @@ div#resources_list div.link_group ul { margin: 0px 8px 10px 8px; }
   border: solid 1px #77a423;
   padding: 5px; 
   text-align: center;
+  display: table-cell;
+  height: 277px;
+  width: 338px;
+  vertical-align: middle;
 }
 .section-merch .node-product .node-content, .section-merch .node-product .node-content .product-image,.section-merch .node-product .node-content .product-image .main-product-image  	{
   width: 350px;
   padding: 0px;
   text-align: center;
+}
+.section-merch .node-product .node-content .product-body {
+  margin: 0 .3em;
 }
 .section-merch div.view-merch table td div.views-field-field-image-cache-fid img, .section-merch .node-product .node-content .product-image img	{
   margin: 10px auto; border: solid 1px #dec99f; 
