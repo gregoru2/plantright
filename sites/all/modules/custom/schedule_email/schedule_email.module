@@ -440,7 +440,7 @@ function schedule_email_send_single_email($mail, $node, $obj) {
       if (!$profile) {
         // User doesn't have a retail profile, so they don't have the fields
         // for this email.
-        drupal_set_message(t('Chosen user does not have a retail member profile. The user may not be a retail member.'), 'error');
+        drupal_set_message(t('Chosen user does not have a retail member profile. Users must have a <strong>retail member profile</strong> to receive this type of email. The chosen user may not be a retail member.'), 'error');
         return;
       }
 
@@ -455,11 +455,11 @@ function schedule_email_send_single_email($mail, $node, $obj) {
 
       // Find out if this user is a liason or an employee.
       if ($retailer->uid != $obj->uid && $type == 'partner_liason') {
-        drupal_set_message(t('The chosen user is not a liaison. User must be a liaison.'), 'error');
+        drupal_set_message(t('The chosen user is not a liaison. User must be a <strong>liaison</strong> to receive this type of email.'), 'error');
         return;
       }
       else if ($retailer->uid == $obj->uid && $type == 'partner_nonliason') {
-        drupal_set_message(t('The chosen user is a liaison. User must be a non-liaison. '), 'error');
+        drupal_set_message(t('The chosen user is a liaison. User must be a <strong>non-liaison</strong> to receive this type of email.'), 'error');
         return;
       }
 
