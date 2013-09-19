@@ -454,12 +454,12 @@ function schedule_email_send_single_email($mail, $node, $obj) {
       }
 
       // Find out if this user is a liason or an employee.
-      if ($retailer->uid == $obj->uid && $type != 'partner_liason') {
-        drupal_set_message(t('The chosen user is not a liason. User is an employee.'), 'error');
+      if ($retailer->uid != $obj->uid && $type == 'partner_liason') {
+        drupal_set_message(t('The chosen user is not a liaison. User is an employee.'), 'error');
         return;
       }
-      else if ($retailer->uid != $obj->uid && $type != 'partner_nonliason') {
-        drupal_set_message(t('The chosen user is not an employee. User is a liason. '), 'error');
+      else if ($retailer->uid == $obj->uid && $type == 'partner_nonliason') {
+        drupal_set_message(t('The chosen user is not an employee. User is a liaison. '), 'error');
         return;
       }
 
