@@ -33,7 +33,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a { font-weight: 600; text-decoration: underline; }
 #right { float: right; }
 .sidebars #content, .sidebar-right #content {
   width: 465px;
-} 
+}
 .sidebars #right, .sidebar-right #right {
   width: 290px;
 }
@@ -731,27 +731,32 @@ div#resources_list div.link_group ul { margin: 0px 8px 10px 8px; }
 }
 .section-merch div.view-merch table td div.views-field-field-image-cache-fid, .section-merch .node-product .node-content	{
   border: solid 1px #77a423;
-  padding: 5px; 
+  padding: 5px;
   text-align: center;
   display: table-cell;
-  height: 277px;
   width: 338px;
   vertical-align: middle;
 }
-.section-merch .node-product .node-content, .section-merch .node-product .node-content .product-image,.section-merch .node-product .node-content .product-image .main-product-image  	{
+.section-merch div.view-merch table td div.views-field-field-image-cache-fid {
+  height: 277px;
+}
+.section-merch .node-product .node-content {
   width: 350px;
   padding: 0px;
   text-align: center;
+}
+.section-merch .node-product .node-content .product-image,.section-merch .node-product .node-content .product-image .main-product-image {
+  width: 100%;
 }
 .section-merch .node-product .node-content .product-body {
   margin: 0 .3em;
 }
 .section-merch div.view-merch table td div.views-field-field-image-cache-fid img, .section-merch .node-product .node-content .product-image img	{
-  margin: 10px auto; border: solid 1px #dec99f; 
+  margin: 10px auto; border: solid 1px #dec99f;
 }
 .section-merch div.view-merch table td div.views-field-buyitnowbutton, .section-merch .node-product .node-content .add-to-cart form	{
   clear: both;
-  background-color: #77a423; 
+  background-color: #77a423;
   width: 350px; margin: 0; padding: 0;
 }
 
@@ -783,7 +788,7 @@ div#resources_list div.link_group ul { margin: 0px 8px 10px 8px; }
   font-size: 1.1em;
 }
 .section-cart form input#edit-checkout	{
-  background-color: #77a423; 
+  background-color: #77a423;
   color: #fff;
   font-weight: bold;
   padding-left: 15px;
@@ -1128,15 +1133,15 @@ body#page-user div.content-profile-display	{
   margin: 1em;
 }
 
-.partner-benefit-links a { 
-  font-family: "Open Sans", Helvetica, Arial sans-serif; 
-  font-size: 1.1em; 
-  font-weight: 400; 
-  color: #fff; 
-  text-align: center; 
-  display: block; 
+.partner-benefit-links a {
+  font-family: "Open Sans", Helvetica, Arial sans-serif;
+  font-size: 1.1em;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  display: block;
   margin: 20px 0px;
-  padding: 6px;  
+  padding: 6px;
   background-color: #a15130;
   -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.25);
   -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.25);
@@ -1187,7 +1192,7 @@ span.edit-account-instructions	{
   display: block;
   margin: 0px;
   font-size: .8em;
-  font-weight: normal;	
+  font-weight: normal;
 }
 div.content-profile-display a.btn-primary	{
   margin-top: .2em;
