@@ -29,6 +29,13 @@ function schedule_email_menu() {
     'type' => MENU_NORMAL_ITEM,
     'access arguments' => array('administer schedule email'),
   );
+  $items['admin/content/schedule-email/test'] = array(
+    'title' => 'Test Schedule Emails',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('schedule_email_page_email_test_form'),
+    'type' => MENU_NORMAL_ITEM,
+    'access arguments' => array('administer schedule email'),
+  );
   $items['admin/content/schedule-email/send'] = array(
     'title' => 'Send Schedule Emails',
     'page callback' => 'schedule_email_page_email_send',
@@ -235,7 +242,7 @@ function schedule_email_view($node, $teaser = FALSE, $page = FALSE) {
   $node = node_prepare($node, $teaser);
   $node->content['custom_fields'] = array(
     '#value' => theme('schedule_email', $node),
-    '#weight' => 1,
+    '#weight' => -1,
   );
   return $node;
 }
@@ -256,7 +263,7 @@ function schedule_email_theme() {
  */
 function theme_schedule_email($node) {
   $output = '';
-  $output = '<div class="subject">' . $node->subject . '</div>';
+  $output = '<div class="subject"><strong>Subject: </strong>' . $node->subject . '</div><hr/>';
   return $output;
 }
 
@@ -316,15 +323,154 @@ function schedule_email_page_email_send() {
   return $output;
 }
 
+function schedule_email_page_email_test_form(&$form_state) {
+  $emails = schedule_email_get_all();
+
+  $options = array(
+    '' => t('- Select -'),
+  );
+  foreach ($emails as $email) {
+    $options[$email['nid']] = $email['nid'] . ' : ' . $email['title'];
+  }
+  $values = $form_state['values'];
+  $form['email_id'] = array(
+    '#type' => 'select',
+    '#title' => t('Email'),
+    '#default_value' => isset($values['email_id']) ? $values['email_id'] : '',
+    '#required' => TRUE,
+    '#options' => $options,
+    '#weight' => -4,
+  );
+
+  $form['sendto'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Email address'),
+    '#required' => TRUE,
+    '#default_value' => isset($values['sendto']) ? $values['sendto'] : '',
+  );
+
+  $form['foruser'] = array(
+    '#type' => 'textfield',
+    '#title' => t('User to Similate'),
+    '#description' => t('Choose a user account to simulate for the email. (Data in the email will populate from this user. Emails will not go to the user.)'),
+    '#size' => 30,
+    '#maxlength' => 60,
+    '#autocomplete_path' => 'user/autocomplete',
+    '#default_value' => isset($values['foruser']) ? $values['foruser'] : '',
+  );
+
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Send'),
+  );
+  return $form;
+}
+
+function schedule_email_page_email_test_form_submit($form, &$form_state) {
+  $values = $form_state['values'];
+  $mail = $values['sendto'];
+  $node = node_load($values['email_id']);
+  $obj = user_load(array('name' => $values['foruser']));
+  // d7 : load_user_by_name
+
+  schedule_email_send_single_email($mail, $node, $obj);
+
+  // Rebuild so don't have to re-enter the values each time.
+  $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * Helper function to send a single email.
+ * @param type $mail : email address to send to.
+ * @param type $node : email node object
+ * @param type $obj : Object to retrieve values from (depends on the email).
+ * @return type
+ */
+function schedule_email_send_single_email($mail, $node, $obj) {
+  if ($node->type != 'schedule_email') {
+    drupal_set_message('Node provided is not a schedule email node.', 'error');
+    return;
+  }
+
+  $types = ScheduleEmail::get_types(TRUE);
+  $type = $types[$node->setid];
+  switch ($type) {
+    case 'register':
+      // override the mail, but use user object.
+      $obj->mail = $mail;
+      $accounts = array($obj);
+      $se = new ScheduleEmail(FALSE);
+      $se->send_scheduled_email($node, $accounts);
+      break;
+    case 'invite':
+      // Get an invite for the data.
+      $result = db_query("SELECT * FROM {invite} ORDER BY RAND() LIMIT 1");
+      $account = db_fetch_array($result);
+
+      $account['mail'] = $mail;
+      $account['inviter'] = $obj->uid;
+      $inviter_user = user_load($obj->uid);
+      $account['from-mail'] = $inviter_user->mail;
+      $account['from-name'] = plantright_get_user_profile_name($inviter_user);
+      $account['data'] = unserialize($account['data']);
+
+      $se = new ScheduleEmail(FALSE);
+      $se->send_scheduled_email($node, array($account));
+      drupal_set_message(t('Chosen user was used as inviter. A random invite from was chosen to fill in the invitee data.'));
+      break;
+    case 'partner_liason':
+    case 'partner_nonliason':
+      // override the mail, but use user object.
+      $obj->mail = $mail;
+      $accounts = array($obj);
+
+      // Find out if this user is a liason.
+      $profile = content_profile_load(PLANTRIGHT_RETAIL_PROFILE, $obj->uid);
+      $retailer_nid = $profile->field_retailer[0]['nid'];
+      $retailer = node_load($retailer_nid);
+
+      if ($retailer->uid == $obj->uid && $type != 'partner_liason') {
+        drupal_set_message(t('The chosen user is not a liason. User is an employee.'), 'error');
+        return;
+      }
+      else if ($retailer->uid != $obj->uid && $type != 'partner_nonliason') {
+        drupal_set_message(t('The chosen user is not an employee. User is a liason. '), 'error');
+        return;
+      }
+
+      $se = new ScheduleEmailPartner(FALSE);
+      $se->send_scheduled_email($node, $accounts, $retailer);
+      break;
+
+      // override the mail, but use user object.
+      $obj->mail = $mail;
+      $accounts = array($obj);
+
+      // todo, same as above but check different role.
+
+      $se = new ScheduleEmailPartner(FALSE);
+      $se->send_scheduled_email($node, $accounts, $profile);
+      break;
+  }
+
+  drupal_set_message(t('Test email sent.'));
+}
+
 function schedule_email_page_email_config(&$form_state) {
   $form = array();
   $form['send'] = array(
     '#type' => 'fieldset',
     '#title' => 'Email Actions',
   );
-  $form['send']['link'] = array(
+
+  $items = array(
+    l(t('Send Emails Now'), 'admin/content/schedule-email/send') . t(' Sends emails immediately without waiting for cron.'),
+    l(t('Send Test Email'), 'admin/content/schedule-email/test') . t(' Send an email to a test address.'),
+  );
+
+  $form['send']['links'] = array(
     '#type' => 'markup',
-    '#value' => l(t('Send Emails Now'), 'admin/content/schedule-email/send'),
+    '#value' => theme('item_list', $items),
   );
 
   $form['enable'] = array(
@@ -332,7 +478,7 @@ function schedule_email_page_email_config(&$form_state) {
     '#title' => t('Enable'),
     '#default_value' => variable_get('schedule_email_enable', 0),
   );
-  
+
   $form['actions']['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Save'),
@@ -373,4 +519,23 @@ function schedule_email_db_rewrite_sql($query, $primary_table, $primary_field, $
       }
       break;
   }
+}
+
+/**
+ * Helper function. Returns an array of all nodes of type schedule email.
+ * Array contains nid and title, keyed by nid.
+ */
+function schedule_email_get_all() {
+  $node_type = 'schedule_email';
+  $result = db_query("SELECT nid, title FROM {node} WHERE type = '%s'", $node_type);
+  $nodes = array();
+
+  while ($row = db_fetch_object($result)) {
+    $nodes[$row->nid] = array(
+      'nid' => $row->nid,
+      'title' => $row->title,
+    );
+  }
+
+  return $nodes;
 }

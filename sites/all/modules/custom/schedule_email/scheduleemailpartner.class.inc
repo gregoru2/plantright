@@ -6,27 +6,29 @@
  * Send email class
  */
 class ScheduleEmailPartner extends ScheduleEmail {
-  public function __construct() {
-    $types = self::get_types(TRUE);
+  public function __construct($send = TRUE) {
+    if ($send) {
+      $types = self::get_types(TRUE);
 
-    $setid = array_search('partner_liason', $types);
-    $emails = $this->get_schedule_emails_by_typeid($setid);
-    foreach ($emails as $scheduled_email) {
-      $matches = $this->get_partner_liasons_to_email($scheduled_email);
-      foreach ($matches as $match) {
-        if (!empty($match) && !empty($match['accounts'])) {
-          $this->send_scheduled_email($scheduled_email, $match['accounts'], $match['node']);
+      $setid = array_search('partner_liason', $types);
+      $emails = $this->get_schedule_emails_by_typeid($setid);
+      foreach ($emails as $scheduled_email) {
+        $matches = $this->get_partner_liasons_to_email($scheduled_email);
+        foreach ($matches as $match) {
+          if (!empty($match) && !empty($match['accounts'])) {
+            $this->send_scheduled_email($scheduled_email, $match['accounts'], $match['node']);
+          }
         }
       }
-    }
 
-    $setid = array_search('partner_nonliason', $types);
-    $emails = $this->get_schedule_emails_by_typeid($setid);
-    foreach ($emails as $scheduled_email) {
-      $matches = $this->get_partner_nonliasons_to_email($scheduled_email);
-      foreach ($matches as $match) {
-        if (!empty($match) && !empty($match['accounts'])) {
-          $this->send_scheduled_email($scheduled_email, $match['accounts'], $match['node']);
+      $setid = array_search('partner_nonliason', $types);
+      $emails = $this->get_schedule_emails_by_typeid($setid);
+      foreach ($emails as $scheduled_email) {
+        $matches = $this->get_partner_nonliasons_to_email($scheduled_email);
+        foreach ($matches as $match) {
+          if (!empty($match) && !empty($match['accounts'])) {
+            $this->send_scheduled_email($scheduled_email, $match['accounts'], $match['node']);
+          }
         }
       }
     }

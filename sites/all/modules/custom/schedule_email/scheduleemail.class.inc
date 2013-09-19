@@ -9,19 +9,21 @@ class ScheduleEmail {
 
   private $sent_log = array();
 
-  public function __construct() {
-    $types = self::get_types(TRUE);
-    $setid = array_search('register', $types);
-    $register_emails = $this->get_schedule_emails_by_typeid($setid);
-    foreach ($register_emails as $scheduled_email) {
-      $this->send_scheduled_email($scheduled_email, $this->get_registered_users_to_email($scheduled_email));
-    }
+  public function __construct($send = TRUE) {
+    if ($send) {
+      $types = self::get_types(TRUE);
+      $setid = array_search('register', $types);
+      $register_emails = $this->get_schedule_emails_by_typeid($setid);
+      foreach ($register_emails as $scheduled_email) {
+        $this->send_scheduled_email($scheduled_email, $this->get_registered_users_to_email($scheduled_email));
+      }
 
-    $setid = NULL;
-    $setid = array_search('invite', $types);
-    $invite_emails = $this->get_schedule_emails_by_typeid($setid);
-    foreach ($invite_emails as $scheduled_email) {
-      $this->send_scheduled_email($scheduled_email, $this->get_invited_users_to_email($scheduled_email));
+      $setid = NULL;
+      $setid = array_search('invite', $types);
+      $invite_emails = $this->get_schedule_emails_by_typeid($setid);
+      foreach ($invite_emails as $scheduled_email) {
+        $this->send_scheduled_email($scheduled_email, $this->get_invited_users_to_email($scheduled_email));
+      }
     }
   }
 
@@ -98,7 +100,7 @@ class ScheduleEmail {
    * @param type $accounts
    *   for mimemail, has to be user object or an array with name and email
    */
-  protected function send_scheduled_email($email, $accounts, $node = NULL) {
+  public function send_scheduled_email($email, $accounts, $node = NULL) {
     //need: to, from, subject, body
     foreach ($accounts as $account) {
       $key = $email->name_short;
