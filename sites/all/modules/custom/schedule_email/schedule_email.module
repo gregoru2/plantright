@@ -323,6 +323,9 @@ function schedule_email_page_email_send() {
   return $output;
 }
 
+/**
+ * Callback for form/page to test emails.
+ */
 function schedule_email_page_email_test_form(&$form_state) {
   $emails = schedule_email_get_all();
 
@@ -351,6 +354,7 @@ function schedule_email_page_email_test_form(&$form_state) {
 
   $form['foruser'] = array(
     '#type' => 'textfield',
+    '#required' => TRUE,
     '#title' => t('User to Similate'),
     '#description' => t('Choose a user account to simulate for the email. (Data in the email will populate from this user. Emails will not go to the user.)'),
     '#size' => 30,
@@ -366,12 +370,15 @@ function schedule_email_page_email_test_form(&$form_state) {
   return $form;
 }
 
+/**
+ * Form submit handler for testing emails.
+ */
 function schedule_email_page_email_test_form_submit($form, &$form_state) {
   $values = $form_state['values'];
   $mail = $values['sendto'];
   $node = node_load($values['email_id']);
   $obj = user_load(array('name' => $values['foruser']));
-  // d7 : load_user_by_name
+  // d7 : $obj = load_user_by_name($values['foruser']);
 
   schedule_email_send_single_email($mail, $node, $obj);
 
@@ -384,6 +391,7 @@ function schedule_email_page_email_test_form_submit($form, &$form_state) {
  * @param type $mail : email address to send to.
  * @param type $node : email node object
  * @param type $obj : Object to retrieve values from (depends on the email).
+ *   Usually will be a user object.
  * @return type
  */
 function schedule_email_send_single_email($mail, $node, $obj) {
@@ -398,25 +406,27 @@ function schedule_email_send_single_email($mail, $node, $obj) {
     case 'register':
       // override the mail, but use user object.
       $obj->mail = $mail;
-      $accounts = array($obj);
       $se = new ScheduleEmail(FALSE);
-      $se->send_scheduled_email($node, $accounts);
+      $se->send_scheduled_email($node, array($obj));
       break;
     case 'invite':
-      // Get an invite for the data.
+      // For invites, the provided object is the user who sent the invite.
+      // Get random invite in order to use its data in the body of the message.
       $result = db_query("SELECT * FROM {invite} ORDER BY RAND() LIMIT 1");
       $account = db_fetch_array($result);
 
+      // Set the extra fields we need to send the email.
+      // Override the email address on the invite with the provided email.
       $account['mail'] = $mail;
+      // Override the inviter with the provided user object.
       $account['inviter'] = $obj->uid;
-      $inviter_user = user_load($obj->uid);
-      $account['from-mail'] = $inviter_user->mail;
-      $account['from-name'] = plantright_get_user_profile_name($inviter_user);
+      $account['from-mail'] = $obj->mail;
+      $account['from-name'] = plantright_get_user_profile_name($obj);
       $account['data'] = unserialize($account['data']);
 
       $se = new ScheduleEmail(FALSE);
       $se->send_scheduled_email($node, array($account));
-      drupal_set_message(t('Chosen user was used as inviter. A random invite from was chosen to fill in the invitee data.'));
+      drupal_set_message(t('Chosen user was used as inviter. A random invite was chosen to fill in the invitee data.'));
       break;
     case 'partner_liason':
     case 'partner_nonliason':
@@ -424,17 +434,26 @@ function schedule_email_send_single_email($mail, $node, $obj) {
       $obj->mail = $mail;
       $accounts = array($obj);
 
-      // Find out if this user is a liason.
+      // Load the user's retail profile.
       $profile = content_profile_load(PLANTRIGHT_RETAIL_PROFILE, $obj->uid);
-      
+
       if (!$profile) {
+        // User doesn't have a retail profile, so they don't have the fields
+        // for this email.
         drupal_set_message(t('Chosen user does not have a retail member profile. The user may not be a retail member.'), 'error');
         return;
       }
-      
+
+      // Load the user's retailer info.
       $retailer_nid = $profile->field_retailer[0]['nid'];
       $retailer = node_load($retailer_nid);
 
+      if (!$retailer) {
+        drupal_set_message(t('Chosen user does not have a retailer selected.'), 'error');
+        return;
+      }
+
+      // Find out if this user is a liason or an employee.
       if ($retailer->uid == $obj->uid && $type != 'partner_liason') {
         drupal_set_message(t('The chosen user is not a liason. User is an employee.'), 'error');
         return;
@@ -448,14 +467,11 @@ function schedule_email_send_single_email($mail, $node, $obj) {
       $se->send_scheduled_email($node, $accounts, $retailer);
       break;
 
-      // override the mail, but use user object.
+      // Override the mail, but use user object.
       $obj->mail = $mail;
-      $accounts = array($obj);
-
-      // todo, same as above but check different role.
 
       $se = new ScheduleEmailPartner(FALSE);
-      $se->send_scheduled_email($node, $accounts, $profile);
+      $se->send_scheduled_email($node, array($obj), $profile);
       break;
   }
 
