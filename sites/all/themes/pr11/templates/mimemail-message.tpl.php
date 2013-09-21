@@ -37,11 +37,6 @@ $path = $GLOBALS['base_url'] . '/images';
 <tr><td style="text-align: left; padding: 30px 53px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; line-height: 21px; color: #707070;">
 <?php print $body; ?>
 </td></tr>
-
-<tr><td style="text-align: left; padding: 0px 53px; font-family: Helvetica, Arial, sans-serif; text-align: center;">
-<p style="font-size: 24px; font-weight: 200; color: #6a5834; margin-top: 0px;">Together, we're keeping invasive plants in check.</p>
-</td></tr>
-
 <tr style="margin: 0px; padding: 0px;"><td style="text-align: center; padding: 0px; margin: 0px; background-color: #bcd030;"><img src="<?php print $path; ?>/plantright_email_footer.png" height="95" width="736px" alt="For more information visit www.plantright.org" style=" padding: 0px; margin: 0px;" /></td></tr>
 
 </table>
