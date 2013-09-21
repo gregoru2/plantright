@@ -214,11 +214,14 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     }
     $form['#after_build'] = array('plantright_user_register_after_build');
 
-    if ($user->uid) {
-      $form['#redirect'] = "user/$user->uid";
-    }
-    else {
-      $form['#redirect'] = "user";
+    // Redirect on edit if not an admin.
+    if (!user_access('administer nodes')) {
+      if ($user->uid) {
+        $form['#redirect'] = "user/$user->uid";
+      }
+      else {
+        $form['#redirect'] = "user";
+      }
     }
   }
   if ($form_id == 'business_node_form') {
