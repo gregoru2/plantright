@@ -225,6 +225,7 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     }
   }
   if ($form_id == 'business_node_form') {
+    $form['#after_build'][] = '_plantright_business_node_form_after_build';
     $form['buttons']['submit']['#value'] = 'Register Store';
 
     $nursery_name = isset($form_state['values']['title']) ? $form_state['values']['title'] : '';
@@ -339,6 +340,14 @@ PLEDGE;
       break;
     default:
   }
+}
+
+function _plantright_business_node_form_after_build($form_element, &$form_state) {
+  // Handle text on multi-step node form if this is a new submission.
+  if (!$form_state['values']['nid'] && isset($form_element['buttons']['done'])) {
+    $form_element['buttons']['done']['#value'] = t('Register Store');
+  }
+  return $form_element;
 }
 
 /**
