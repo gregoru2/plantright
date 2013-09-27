@@ -65,7 +65,7 @@
       <a href="/node/2949/certificate">Certificate of Achievement</a>
     </div>
   <?php endif; ?>
-  <?php print strip_tags($profile['content_profile'], '<div><h2>'); ?>
+  <?php print $profile['content_profile']; ?>
   <div class="edit-account-container">
   <?php if ($node): ?>
     <span class="edit-account-instructions">Edit your profile information or change your password:</span>

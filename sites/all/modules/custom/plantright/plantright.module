@@ -56,10 +56,16 @@ function removeElementWithValue($array, $key, $value) {
  * Implementation of hook_user().
  */
 function plantright_user($op, &$edit, &$account, $category = NULL) {
-  //dpm(array($op, $account));
-  if ($op == 'login') {
-    //dpm($account);
-    //dpm($edit);
+  switch ($op) {
+    case 'view':
+      // Remove the p tag wrapper from around content profile.
+      if (isset($account->content['content_profile'])) {
+        $account->content['content_profile']['#suffix'] = '';
+        $account->content['content_profile']['#prefix'] = '';
+        reset($account->content['content_profile']);
+        $account->content['content_profile'][key($account->content['content_profile'])]['#suffix'] = '';
+      }
+      break;
   }
 }
 
@@ -214,14 +220,13 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     }
     $form['#after_build'] = array('plantright_user_register_after_build');
 
-    // Redirect on edit if not an admin.
-    if (!user_access('administer nodes')) {
-      if ($user->uid) {
-        $form['#redirect'] = "user/$user->uid";
-      }
-      else {
-        $form['#redirect'] = "user";
-      }
+    // Redirect on edit back to user page.
+    $account_id = $form['uid']['#value'];
+    if ($account_id) {
+      $form['#redirect'] = "user/$account_id";
+    }
+    else {
+      $form['#redirect'] = "user";
     }
   }
   if ($form_id == 'business_node_form') {

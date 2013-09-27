@@ -36,7 +36,7 @@
             <?php elseif ((in_array(7, $user_roles) || in_array(8, $user_roles)) && !$node->retailer): ?>
               <p>No affiliated retailer. <a href="/node/add/business">Register yours here.</a></p>
             <?php else: ?>
-              <p>Edit your profile to choose an affiliated retailer.</p>
+              <p><a href="/node/<?php print $node->nid ?>/edit">Edit your profile</a> to choose an affiliated retailer.</p>
             <?php endif; ?>
           </div>
         </div>
