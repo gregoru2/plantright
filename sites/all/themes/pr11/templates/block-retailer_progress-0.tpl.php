@@ -112,7 +112,7 @@ if ($register_progress == 'complete') {
             </ul>
           <?php endif; ?>
           <?php if ($registered_nonbuyers_count) : ?>
-            <p>Staff successfully registered:</p>
+            <p>Non-buyers successfully registered:</p>
             <ul>
               <?php foreach ($registered_nonbuyers as $nonbuyer): ?>
                 <?php $profile = node_load(array('uid' => $nonbuyer->uid, 'type' => 'retail_member')); ?>
