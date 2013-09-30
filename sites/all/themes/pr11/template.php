@@ -166,8 +166,15 @@ function _pr11_print_book_children($link, &$content, &$zomglimit, $limit = 500) 
  */
 function pr11_preprocess_page(&$vars) {
   $attr = array();
-  $attr['class'] = $vars['body_classes'];
+  $attr['class'] = trim($vars['body_classes']);
   $attr['class'] .= ' pr11'; // Add the pr11 class so that we can avoid using the 'body' selector
+  if (arg(0) == 'node' && arg(2) == 'edit') {
+    $attr['class'] .= ' node-edit';
+  }
+  else if (arg(0) == 'user' && arg(2) == 'edit') {
+    $attr['class'] .= ' user-edit';
+  }
+
   // Replace screen/all stylesheets with print
   // We want a minimal print representation here for full control.
   if (isset($_GET['print'])) {
@@ -197,8 +204,8 @@ function pr11_preprocess_page(&$vars) {
   // Link site name to frontpage
   $vars['site_name'] = l($vars['site_name'], '<front>');
 
-  // Don't render the attributes yet so subthemes can alter them
   $vars['attr'] = $attr;
+  $vars['body_classes'] = $attr['class'];
 
   // Skip navigation links (508).
   $vars['skipnav'] = "<a id='skipnav' href='#content'>" . t('Skip navigation') . "</a>";
@@ -610,7 +617,7 @@ function pr11_views_mini_pager__trivia($tags = array(), $limit = 10, $element = 
  * @return
  *   string The rendered id and class attributes.
  */
-function phptemplate_body_attributes($is_front = false, $layout = 'none') {
+function phptemplate_body_attributes($is_front = false, $layout = 'none', $attr = array()) {
 
   if ($is_front) {
     $body_id = $body_class = 'homepage';
@@ -629,7 +636,20 @@ function phptemplate_body_attributes($is_front = false, $layout = 'none') {
   $body_class = 'section-' . $body_class;
 
   // Use the same sidebar classes as Garland.
-  $sidebar_class = ($layout == 'both') ? 'sidebars' : "sidebar-$layout";
+  //$sidebar_class = ($layout == 'both') ? 'sidebars' : "sidebar-$layout";
+  
+  foreach($attr as $key => $val) {
+    switch ($key) {
+      case 'class':
+        $body_class .= ' ' . $val;
+        break;
+      case 'id':
+        $body_id = $val;
+        break;
+      default:
+        break;
+    }
+  }
 
   return " id=\"$body_id\" class=\"$body_class $sidebar_class\"";
 }

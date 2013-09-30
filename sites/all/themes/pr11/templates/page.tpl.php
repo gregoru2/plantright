@@ -24,7 +24,7 @@
 
 </script>
 </head>
-<body <?php print phptemplate_body_attributes($is_front, $layout); ?>>
+<body <?php print phptemplate_body_attributes($is_front, $layout, $attr); ?>>
   
 <div id="prContainer">
   <?php print $skipnav ?>

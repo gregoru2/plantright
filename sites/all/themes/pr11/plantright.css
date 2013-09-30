@@ -31,18 +31,11 @@ h1 a, h2 a, h3 a, h4 a, h5 a { font-weight: 600; text-decoration: underline; }
 #main { width: 780px; float: left; border-top: solid 77px #4b3c17; margin-top: -101px; padding: 0 0 20px; }
 #content { float: left; }
 #right { float: right; }
-.sidebars #content, .sidebar-right #content {
-  width: 465px;
-}
-.sidebars #right, .sidebar-right #right {
-  width: 290px;
-}
-.section-users #right, .section-user #right {
-  width: 380px;
-}
-.section-users #content, .section-user #content {
-  width: 400px;
-}
+.sidebars #content, .sidebar-right #content { width: 465px; }
+.sidebars #right, .sidebar-right #right { width: 290px; }
+.section-users #right, .section-user #right { width: 380px; }
+.section-users #content, .section-user #content { width: 400px; }
+.section-user.user-edit #content { width: 100%; }
 
 body.section-news #main h1.page-title, body.section-nursery #main h1.page-title, body.section-flag #main h1.page-title { display: block; font-family: "Open Sans", Helvetica, Arial sans-serif; font-weight: 600; font-size: 2.1em; color: #4d3c14; margin: 25px 0 3px; }
 
@@ -1119,11 +1112,10 @@ fieldset .form-item label { margin: 0px; }
 
 #page-user-registration .form-item input { font-size: 100%; width: auto; }
 
-body#page-user div.content-profile-display	{
-  width: 360px;
+body.section-user #content .profile h2.pageTitle, body.section-users #content .profile h2.pageTitle {
+  margin-bottom: 60px;
 }
 .partner-benefit-links	{
-  margin-top: 60px;
   font-size: 1.2em;
 }
 .partner-benefit-links a	{
@@ -1252,8 +1244,10 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
 .form-horizontal .help-block { margin-bottom: 0; }
 .form-horizontal .controls:first-child, .form-horizontal .form-actions { padding-left: 180px; }
 
-body.section-users ul.primary-tabs, body.section-user ul.primary-tabs { display: none; }
-body.section-users.admin-df ul.primary-tabs, body.section-user.admin-df ul.primary-tabs { display: block; }
+body.section-users ul.primary-tabs, body.section-user ul.primary-tabs,
+body.node-edit ul.primary-tabs, body.user-edit ul.primary-tabs { display: none; }
+body.section-users.admin-df ul.primary-tabs, body.section-user.admin-df ul.primary-tabs,
+body.node-edit.admin-df ul.primary-tabs, body.user-edit.admin-df ul.primary-tabs{ display: block; }
 
 .block-retailer_progress { margin-top: 105px;  margin-left: 1em; }
 .block-retailer_progress #progress-block { border: 1px solid #dccdad; border-radius: 3px; padding: 2px; background: white; }
