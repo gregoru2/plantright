@@ -96,7 +96,7 @@ if ($register_progress == 'complete') {
       <?php endif; ?>
        <a href="#" class="dropdown-toggle">Registration progress details</a>
         <div class="dropdown">
-          <h4><?php print $registered_buyers_count ?> of <?php print $total_buyers_count ?> buyers and <?php print $registered_nonbuyers_count; ?> staff have created PlantRight accounts</h4>
+          <h4><?php print $registered_buyers_count ?> of <?php print $total_buyers_count ?> buyers and <?php print $registered_nonbuyers_count; ?> non-buyer staff have created PlantRight accounts</h4>
           <progress value="<?php print $register_percentage ?>" max="100" style="width:100%" ></progress>
           <?php if ($registered_buyers_count) : ?>
             <p>Buyers successfully registered:</p>
