@@ -52,7 +52,7 @@ function score_quiz_quiz_finished($quiz, $score) {
         while ($result = db_fetch_object($query)) {
           $results[] = $result;
         }
-        
+
         $retailer->field_is_certified[0]['value'] = 1;
         $retailer->field_is_certified_date[0]['value'] = date('Y-m-d H:i:s');
         node_save($retailer);
@@ -137,7 +137,7 @@ function score_quiz_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
 
         if ($retailer->field_is_certified[0]['value']) {
           // Retailer is certified.
-          // Get users with role 11 (passed quiz) 
+          // Get users with role 11 (passed quiz)
           // that don't have the certified retailer member role yet.
           $query = db_query('select distinct uid
                        from {users_roles} where uid in
