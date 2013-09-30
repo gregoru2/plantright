@@ -62,7 +62,7 @@ $group_quiz_progress = ($total_buyers_count > 0 && $certified_buyers_count >= $t
   <div id="progress-block" class="content">
     <h2 id="the-checklist">Your Progress</h2>
     <h3>Steps to Becoming a PlantRight Partner</h3>
-    <p>This checklist shows your completed steps and what's still required to become a certified PlantRight Partner nursery.</p>
+    <p>This checklist shows your completed steps and what's still required to become a PlantRight Retail Nursery Partner.</p>
 
     <div id="register-account" class="item complete">
       <p class="desc">You've created an account at PlantRight.org</p>
@@ -95,7 +95,7 @@ $group_quiz_progress = ($total_buyers_count > 0 && $certified_buyers_count >= $t
       <?php endif; ?>
       <a href="#" class="dropdown-toggle">Your progress details</a>
       <div class="dropdown">
-        <h4><?php print $certified_buyers_count ?> of <?php print $total_buyers_count ?> buyers and <?php print $certified_nonbuyers_count ?> staff members are certified</h4>
+        <h4><?php print $certified_buyers_count ?> of <?php print $total_buyers_count ?> buyers and <?php print $certified_nonbuyers_count ?> staff members PlantRight Graduates</h4>
       </div>
     </div>
 
