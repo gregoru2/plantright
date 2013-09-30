@@ -96,7 +96,7 @@ $group_quiz_progress = ($total_buyers_count > 0 && $certified_buyers_count >= $t
       <?php endif; ?>
       <a href="#" class="dropdown-toggle">Your progress details</a>
       <div class="dropdown">
-        <h4><?php print $certified_buyers_count ?> of <?php print $total_buyers_count ?> buyers and <?php print $certified_nonbuyers_count ?> staff members PlantRight Graduates</h4>
+        <h4><?php print $certified_buyers_count ?> of <?php print $total_buyers_count ?> buyers and <?php print $certified_nonbuyers_count ?> non-buyer staff are PlantRight Graduates</h4>
       </div>
     </div>
 
