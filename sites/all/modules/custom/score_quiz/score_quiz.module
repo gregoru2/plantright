@@ -4,24 +4,27 @@
  * @file
  * Scores the user's quiz and gives them privileges if they pass.
  */
-
 function score_quiz_quiz_finished($quiz, $score) {
-	global $user;
-  //dpm($quiz);
-  // if this quiz taker passed the quiz
+  global $user;
+
+  // Retailer certification quiz passed.
   if ($quiz->nid == '1421' && $score[percentage_score] == $quiz->pass_rate) {
     // give them role 11 - certified
     db_query('Insert into {users_roles} (uid, rid) values (%d, %d)', $user->uid, 11);
 
     // Get quiz taker's nursery that they belong to.
-    $result = db_fetch_object(db_query('select nid from {node} where uid = %d and type="retail_member"', $user->uid));
-    $profile = node_load($result->nid);
-    //dpm($profile);
+    $profile = node_load(array('uid' => $user->uid, 'type' => 'retail_member'));
     $retailer = node_load($profile->field_retailer[0]['nid']);
-    // Check number of designated buyers in that nursery's field_number_of_buyers
-    $num_buyers = $retailer->field_number_of_buyers[0]['value'];
-    // Get users that belong to that nursery, are buyers, and have passed the quiz.
-    $query = db_query('select distinct uid
+
+    // If retailer is already certified, set current user's role appropriately.
+    if ($retailer->field_is_certified[0]['value']) {
+      db_query('insert into {users_roles} (uid, rid) values (%d, %d)', $user->uid, 13);
+    }
+    else {
+      // Check number of designated buyers in that nursery's field_number_of_buyers
+      $num_buyers = $retailer->field_number_of_buyers[0]['value'];
+      // Get users that belong to that nursery, are buyers, and have passed the quiz.
+      $query = db_query('select distinct uid
                        from {users_roles} where uid in
                        (select ur.uid from {content_type_retail_member} rm
                        INNER JOIN {node} n on rm.nid = n.nid
@@ -29,24 +32,24 @@ function score_quiz_quiz_finished($quiz, $score) {
                        INNER JOIN {role} r on r.rid = ur.rid
                        WHERE rm.field_retailer_nid = %d and ur.rid=11)
                        and rid in (7, 9)', $retailer->nid);
-    $results = array();
-    while($result = db_fetch_object($query)) {
-      array_push($results, $result);
-    }
-    // If the number of designated buyers and the number of users with 11 AND 7 or 8 match, then set field_is_certified to 1
-    if ($retailer->field_is_certified[0]['value']) {
-      db_query('insert into {users_roles} (uid, rid) values (%d, %d)', $user->uid, 13);
-    }
-    else if (count($results) >= $num_buyers && $num_buyers >= 1) {
-      $retailer->field_is_certified[0]['value'] = 1;
-      $retailer->field_is_certified_date[0]['value'] = date('Y-m-d H:i:s');
-      node_save($retailer);
-      foreach($results as $result) {
-        db_query('insert into {users_roles} (uid, rid) values (%d, %d)', $result->uid, 13);
+      $results = array();
+      while ($result = db_fetch_object($query)) {
+        $results[] = $result;
+      }
+
+      // If the number of designated buyers and the number of users with 11 AND 7 or 8 match, then set field_is_certified to 1
+      if (count($results) >= $num_buyers && $num_buyers >= 1) {
+        $retailer->field_is_certified[0]['value'] = 1;
+        $retailer->field_is_certified_date[0]['value'] = date('Y-m-d H:i:s');
+        node_save($retailer);
+        foreach ($results as $result) {
+          db_query('insert into {users_roles} (uid, rid) values (%d, %d)', $result->uid, 13);
+        }
       }
     }
   }
 
+  // Spring survey quiz passed.
   if ($quiz->nid == '332' && $score[percentage_score] >= $quiz->pass_rate) {
     db_query('INSERT INTO {users_roles} (uid, rid) VALUES (%d, %d)', $user->uid, 4);
     drupal_set_message(t('Congratulations, you passed the quiz!'));
@@ -62,3 +65,78 @@ function score_quiz_quiz_finished($quiz, $score) {
     watchdog('quiz', 'User %user passed the quiz.', array('%user' => $user->name));
   }
 }
+
+/**
+ * Implementation of quiz_take_alter().
+ */
+function score_quiz_quiz_take_alter($node) {
+  if ($node->nid == '1421') {
+    // Don't let users take the retailer quiz until they've selected a nursery.
+    // (If they take it first, it can't count toward their nursery total.)
+    global $user;
+    $profile = node_load(array('uid' => $user->uid, 'type' => 'retail_member'));
+    $retailer = node_load($profile->field_retailer[0]['nid']);
+
+    if (!$retailer) {
+      if (in_array(array(7, 8), array_keys($user->roles))) {
+        // User is representative.
+        $node->rendered_content = t('<p>You must !link1 or !link2 your nursery before taking the quiz.</p>', array('link1' => l('register', 'node/add/business'), '!link2' => l('choose', 'node/' . $profile->nid)));
+      }
+      else {
+        $node->rendered_content = t('<p>You must !link before taking the quiz.</p>', array('!link' => l('choose your nursery', 'node/' . $profile->nid . '/edit')));
+      }
+    }
+  }
+}
+
+/**
+ * Implementation of hook_nodeapi().
+ */
+function score_quiz_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
+  if ($node->type == 'business') {
+    switch ($op) {
+      case 'update':
+        $retailer = $node;
+        // If node updated, check status of employees. Make sure employees have right
+        // certification status.
+        $num_buyers = $retailer->field_number_of_buyers[0]['value'];
+        // Get users that belong to that nursery, are buyers, and have passed the quiz.
+        $query = db_query('select distinct uid
+                       from {users_roles} where uid in
+                       (select ur.uid from {content_type_retail_member} rm
+                       INNER JOIN {node} n on rm.nid = n.nid
+                       INNER JOIN {users_roles} ur on ur.uid = n.uid
+                       INNER JOIN {role} r on r.rid = ur.rid
+                       WHERE rm.field_retailer_nid = %d and ur.rid=11)
+                       and rid in (7, 9)', $retailer->nid);
+        $results = array();
+        while ($result = db_fetch_object($query)) {
+          $results[] = $result->uid;
+        }
+
+        if ($retailer->field_is_certified[0]['value'] != 1 && count($results) >= $num_buyers && $num_buyers >= 1) {
+          // If the number of designated buyers and the number of users with 11 AND 7 or 8 match, then set field_is_certified to 1
+          $retailer->field_is_certified[0]['value'] = 1;
+          $retailer->field_is_certified_date[0]['value'] = date('Y-m-d H:i:s');
+          node_save($retailer);
+        }
+
+        if ($retailer->field_is_certified[0]['value']) {
+          // Retailer is certified.
+          // Get users that don't have the certified retailer member role yet.
+          $query = db_query('select distinct uid
+                       from {users_roles} where uid IN
+                       (%s) AND uid NOT IN(select distinct uid from {users_roles} where rid = 13)', implode(',', $results));
+          $results = array();
+          while ($result = db_fetch_object($query)) {
+            $results[] = $result;
+          }
+          foreach ($results as $result) {
+            db_query('insert into {users_roles} (uid, rid) values (%d, %d)', $result->uid, 13);
+          }
+        }
+        break;
+    }
+  }
+}
+
