@@ -39,6 +39,20 @@ function score_quiz_quiz_finished($quiz, $score) {
 
       // If the number of designated buyers and the number of users with 11 AND 7 or 8 match, then set field_is_certified to 1
       if (count($results) >= $num_buyers && $num_buyers >= 1) {
+        // Get all users associated with the nursery who've passed the quiz.
+        // (Previous query was just buyers.
+        $query = db_query('select distinct uid
+                       from {users_roles} where uid in
+                       (select ur.uid from {content_type_retail_member} rm
+                       INNER JOIN {node} n on rm.nid = n.nid
+                       INNER JOIN {users_roles} ur on ur.uid = n.uid
+                       INNER JOIN {role} r on r.rid = ur.rid
+                       WHERE rm.field_retailer_nid = %d and ur.rid=11)', $retailer->nid);
+        $results = array();
+        while ($result = db_fetch_object($query)) {
+          $results[] = $result;
+        }
+        
         $retailer->field_is_certified[0]['value'] = 1;
         $retailer->field_is_certified_date[0]['value'] = date('Y-m-d H:i:s');
         node_save($retailer);
@@ -123,10 +137,16 @@ function score_quiz_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
 
         if ($retailer->field_is_certified[0]['value']) {
           // Retailer is certified.
-          // Get users that don't have the certified retailer member role yet.
+          // Get users with role 11 (passed quiz) 
+          // that don't have the certified retailer member role yet.
           $query = db_query('select distinct uid
-                       from {users_roles} where uid IN
-                       (%s) AND uid NOT IN(select distinct uid from {users_roles} where rid = 13)', implode(',', $results));
+                       from {users_roles} where uid in
+                       (select ur.uid from {content_type_retail_member} rm
+                       INNER JOIN {node} n on rm.nid = n.nid
+                       INNER JOIN {users_roles} ur on ur.uid = n.uid
+                       INNER JOIN {role} r on r.rid = ur.rid
+                       WHERE rm.field_retailer_nid = %d and ur.rid=11)
+                       AND uid NOT IN(select distinct uid from {users_roles} where rid = 13)', $retailer->nid);
           $results = array();
           while ($result = db_fetch_object($query)) {
             $results[] = $result;
