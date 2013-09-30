@@ -84,11 +84,8 @@ body[id*="invites"] div#console p { margin: 10px 0px; }
 #block-menu-menu-survey-menu, #block-menu-menu-pre-survey-menu, #block-menu-menu-survey-admin, #block-menu-menu-continuing-education-menu { margin-top: 12px; }
 
 #block-user-0, #block-masquerade-0 { padding-top: 20px; }
-
 #block-user-0 input.form-text, #block-masquerade-0 input.form-text { width: 97%; padding: 1px 2px; }
-
 #block-user-0 .item-list li, #block-masquerade-0 .item-list li { margin: 3px 0; }
-
 #block-user-0 input#edit-submit, #block-masquerade-0 input#edit-submit { width: 100px; display: block; margin: 10px auto 30px; padding: 1px 6px; }
 
 div#content form#user-login { margin-top: 30px; margin-left: 20px; }
@@ -164,6 +161,7 @@ table#quiz-view-table td { padding: 2px; }
 table#quiz-view-table td.quiz-view-table-title { text-align: right; }
 
 div#quiz_progress { margin-top: 20px; font-weight: 700; }
+#quiz-question-answering-form tr.multichoice_row:hover { cursor: pointer; }
 
 .preview .node { background-color: #ffffea; }
 
@@ -1254,6 +1252,9 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
 .form-horizontal .help-block { margin-bottom: 0; }
 .form-horizontal .controls:first-child, .form-horizontal .form-actions { padding-left: 180px; }
 
+body.section-users ul.primary-tabs, body.section-user ul.primary-tabs { display: none; }
+body.section-users.admin-df ul.primary-tabs, body.section-user.admin-df ul.primary-tabs { display: block; }
+
 .block-retailer_progress { margin-top: 105px;  margin-left: 1em; }
 .block-retailer_progress #progress-block { border: 1px solid #dccdad; border-radius: 3px; padding: 2px; background: white; }
 .block-retailer_progress #progress-block h2#the-checklist { text-align: center; font-size: 23px; margin: 0; padding: 0 2px 2px 2px; background-color: #78a723; color: #fff; }
@@ -1285,8 +1286,6 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
 #page .view-trivia .view-content { margin: 0px 10px; font-size: 14px; line-height: 1.4em; }
 #page .view-trivia ul.links {  margin: .5em 10px 10px 10px; font-size: 1em; }
 #page .view-trivia ul.links li { list-style: none; margin: 0; padding: 0; }
-
-
 
 
 form#user-register #edit-field-fname-0-value-wrapper, form#user-register #edit-field-lname-0-value-wrapper, form#user-register #edit-field-retailer-0-nid-nid-wrapper { width: 315px; float: left; margin-right: 3em; }
