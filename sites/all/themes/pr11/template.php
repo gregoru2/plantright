@@ -274,6 +274,12 @@ function pr11_preprocess_node(&$vars) {
     }
     $vars['node']->user_roles = $user_roles;
   }
+
+  // Node 2392 is the registration popup node and has its own template.
+  // Add JS specific to it.
+  if ($vars['node']->nid == '2392') {
+    drupal_add_js(drupal_get_path('theme', 'pr11') . '/js/plantright-registration.js');
+  }
 }
 
 /**

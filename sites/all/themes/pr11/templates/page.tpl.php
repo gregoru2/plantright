@@ -1,13 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language ?>" lang="<?php print $language->language ?>" dir="<?php print $language->dir ?>">
-  <head>
-    <?php print $head ?>
-    <?php print $styles ?>
-    <title><?php print $head_title ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700,800" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel="stylesheet" type="text/css">
-<?php if ($is_front):?><link rel="stylesheet" href="/sites/default/files/agile_carousel/agile_carousel.css"><?php endif; ?>
+<head>
+<?php print $head ?>
+<?php print $styles ?>
+<title><?php print $head_title ?></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"/>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700,800" rel="stylesheet" type="text/css"/>
+<link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel="stylesheet" type="text/css"/>
+<?php if ($is_front):?><link rel="stylesheet" href="/sites/default/files/agile_carousel/agile_carousel.css"/><?php endif; ?>
 <!--[if lte IE 7]>
     <style type="text/css" media="all">@import "<?php print base_path() . path_to_theme() ?>/lte_ie7.css";</style>
   <![endif]-->
