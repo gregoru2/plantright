@@ -65,7 +65,7 @@ class ScheduleEmail {
     if (!$days_ago_timestamp) {
       return;
     }
-    $result = db_query("SELECT u.uid from {users} u LEFT JOIN {schedule_email_sent} ses ON u.uid = ses.uid AND ses.seid = %d WHERE DATE(FROM_UNIXTIME(%d)) = DATE(FROM_UNIXTIME(u.created)) AND ses.uid IS NULL", $scheduled_email->seid, $days_ago_timestamp);
+    $result = db_query("SELECT u.uid from {users} u LEFT JOIN {schedule_email_sent} ses ON u.uid = ses.uid AND ses.seid = %d LEFT JOIN {node} n ON n.uid=u.uid WHERE n.type = 'retail_member' AND DATE(FROM_UNIXTIME(%d)) = DATE(FROM_UNIXTIME(u.created)) AND ses.uid IS NULL", $scheduled_email->seid, $days_ago_timestamp);
 
     while ($account = db_fetch_object($result)) {
       $accounts[] = user_load($account->uid);
