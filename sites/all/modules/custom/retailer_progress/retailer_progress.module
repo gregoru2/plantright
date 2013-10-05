@@ -10,6 +10,8 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
     $block[2]['cache'] = BLOCK_NO_CACHE;
     $block[3]['info'] = t('PlantRight Retailer Employee/Non-Buyer Progress block');
     $block[3]['cache'] = BLOCK_NO_CACHE;
+    $block[4]['info'] = t('PlantRight Partner Resources');
+    $block[4]['cache'] = BLOCK_NO_CACHE;
   }
 
   if ($op == 'view') {
@@ -22,7 +24,7 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
       global $user;
       $account = $user;
     }
-    
+
     $account_roles = array_keys($account->roles);
 
     switch ($delta) {
@@ -52,6 +54,12 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
         if (!in_array(10, $account_roles)) {
           return $block;
         }
+        break;
+      case 4:
+        $content['user_roles'] = $account_roles;
+        $block['content'] = $content;
+        return $block;
+
         break;
     }
 
@@ -140,7 +148,7 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
         }
       }
     }
-    
+
     $total_buyers_count = isset($retailer->field_number_of_buyers[0]) ? $retailer->field_number_of_buyers[0]['value'] : 0;
     // If the number of registered buyers is larger than the total buyers
     // indicated on the form, show registered buyers so it's not confusing.

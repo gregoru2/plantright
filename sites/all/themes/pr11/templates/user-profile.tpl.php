@@ -40,21 +40,7 @@
  */
 ?>
 <div class="profile">
-  <h2 class="pageTitle">Your PlantRight <?php //print $node->readable_type;    ?> Account</h2>
   <!-- <div class="account-greeting">Welcome <?php print $name; ?>!</div> -->
-  <?php
-  if ((in_array(11, $user_roles)) || in_array(13, array_keys($user->roles))):
-    // User is a retail member.
-    ?>
-    <div class="partner-benefit-links">
-      <?php if (in_array(13, $user_roles)): // User's store is partner ?>
-        <a href="/partner-resources">Partner Resources</a>
-      <?php endif; ?>
-      <?php if (in_array(11, $user_roles)): // User has passed the quiz  ?>
-        <a href="/node/1421/certificate">Certificate of Achievement</a>
-      <?php endif; ?>   
-    </div>
-  <?php endif; ?>
 
   <?php
   if (in_array(16, $user_roles)):

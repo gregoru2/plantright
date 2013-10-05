@@ -1134,8 +1134,18 @@ body.section-user #content .profile h2.pageTitle, body.section-users #content .p
   text-align: center;
 }
 .horizontal-box  .right-vertical a {
+	display: block;
   font-size: 1.2em;
 }
+
+.horizontal-box  .right-vertical a:first-child {
+  margin-top: 17px;
+}
+
+.horizontal-box  .right-vertical a.partner_resources_large_link:first-child {
+  margin-top: 20px;
+}
+
 
 .partner-benefit-links a.partner_resources_large_link	{
   display: block;
@@ -1172,45 +1182,6 @@ body.section-user #content .profile h2.pageTitle, body.section-users #content .p
 }
 
 .partner-benefit-links a.partner_resources_large_link:hover { text-decoration: none; background-color: #493e13; /* Old browsers */ background: -moz-linear-gradient(top, #6b5328 1%, #493e13 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #6b5328), color-stop(100%, #493e13)); /* Chrome,Safari4+ */ background: -webkit-linear-gradient(top, #6b5328 1%, #493e13 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(top, #6b5328 1%, #493e13 100%); /* Opera 11.10+ */ background: -ms-linear-gradient(top, #6b5328 1%, #493e13 100%); /* IE10+ */ background: linear-gradient(to bottom, #6b5328 1%, #493e13 100%); /* W3C */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b5328', endColorstr='#493e13',GradientType=0 ); /* IE6-9 */ }
-
-
-
-.partner-benefit-links	{
-  font-size: 1.2em;
-}
-.partner-benefit-links a	{
-  display: block;
-  margin: 1em;
-}
-
-.partner-benefit-links a {
-  font-family: "Open Sans", Helvetica, Arial sans-serif;
-  font-size: 1.1em;
-  font-weight: 400;
-  color: #fff;
-  text-align: center;
-  display: block;
-  margin: 20px 0px;
-  padding: 6px;
-  background-color: #a15130;
-  -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.25);
-  -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.25);
-  box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.25);
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  border-radius: 7px;
-  background: #c99662;
-  background: -moz-linear-gradient(top,  #c99662 0%, #a14f2c 10%, #a14f2c 94%, #542f0e 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c99662), color-stop(10%,#a14f2c), color-stop(94%,#a14f2c), color-stop(100%,#542f0e));
-  background: -webkit-linear-gradient(top,  #c99662 0%,#a14f2c 10%,#a14f2c 94%,#542f0e 100%);
-  background: -o-linear-gradient(top,  #c99662 0%,#a14f2c 10%,#a14f2c 94%,#542f0e 100%);
-  background: -ms-linear-gradient(top,  #c99662 0%,#a14f2c 10%,#a14f2c 94%,#542f0e 100%);
-  background: linear-gradient(to bottom,  #c99662 0%,#a14f2c 10%,#a14f2c 94%,#542f0e 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c99662', endColorstr='#542f0e',GradientType=0 );
-}
-.partner-benefit-links a:hover { text-decoration: none; background-color: #493e13; /* Old browsers */ background: -moz-linear-gradient(top, #6b5328 1%, #493e13 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #6b5328), color-stop(100%, #493e13)); /* Chrome,Safari4+ */ background: -webkit-linear-gradient(top, #6b5328 1%, #493e13 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(top, #6b5328 1%, #493e13 100%); /* Opera 11.10+ */ background: -ms-linear-gradient(top, #6b5328 1%, #493e13 100%); /* IE10+ */ background: linear-gradient(to bottom, #6b5328 1%, #493e13 100%); /* W3C */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b5328', endColorstr='#493e13',GradientType=0 ); /* IE6-9 */ }
-
-
 
 .content-profile-display .partner-account-data	{
   border-bottom: solid 1px #dccdad;
@@ -1363,6 +1334,12 @@ input:-moz-placeholder, textarea:-moz-placeholder, input:-ms-input-placeholder, 
 
 .form-horizontal .help-block { margin-bottom: 0; }
 .form-horizontal .controls:first-child, .form-horizontal .form-actions { padding-left: 180px; }
+
+#page-survey-member-register ul.primary-tabs, #page-continuing-education-register ul.primary-tabs,
+#page-manager-buyer-register ul.primary-tabs, #page-retail-manager-register ul.primary-tabs,
+#page-employee-buyer-register ul.primary-tabs, #page-retail-employee-register ul.primary-tabs {
+  display:none;
+}
 
 body.section-users ul.primary-tabs, body.section-user ul.primary-tabs,
 body.node-edit ul.primary-tabs, body.user-edit ul.primary-tabs { display: none; }
