@@ -1096,15 +1096,32 @@ function salesforce_api_fieldmap_export_create($name, $drupal_data = NULL) {
  */
 function salesforce_api_id_load($type, $id) {
   // Query the main ID table for the associated data.
-  $result = db_query("SELECT sfid, name FROM {salesforce_object_map} WHERE drupal_type = '%s' AND oid = %d", $type, $id);
+  $result = db_query("SELECT sfid, name FROM {salesforce_object_map} WHERE drupal_type = '%s' AND oid = %d ORDER BY created ASC", $type, $id);
 
-  // Return an empty array if no data was found.
-  if (!$data = db_fetch_object($result)) {
-    return (object)array('sfid' => NULL, 'name' => NULL);
+  // List of the modules modified to use multiple mappings.
+  $types_with_multi = array('node');
+  
+  if (in_array($type, $types_with_multi)) {
+  
+    if (!$result) {
+      return NULL;
+    }
+    $data = array();
+    while ($row = db_fetch_object($result)) {
+      $data[$row->name] = $row;
+    }
+    return $data;
   }
   else {
-    // Otherwise return the Salesforce object type and ID.
-    return $data;
+    // Original handling.
+    // Return an empty array if no data was found.
+    if (!$data = db_fetch_object($result)) {
+      return (object)array('sfid' => NULL, 'name' => NULL);
+    }
+    else {
+      // Otherwise return the Salesforce object type and ID.
+      return $data;
+    }
   }
 }
 
@@ -1164,11 +1181,11 @@ function salesforce_api_id_save($drupal_type = NULL, $oid = NULL, $sfid = NULl, 
     // is being performed
     ($op_type == 'export') ? $record->last_export = time() : $record->last_import = time();
     $record->sfid = $sfid;
-    $existing_record = db_fetch_array(db_query("SELECT oid, drupal_type, name, sfid, last_import, last_export, created FROM {salesforce_object_map} WHERE drupal_type = '%s' AND oid = %d", $drupal_type, $oid));
+    $existing_record = db_fetch_array(db_query("SELECT oid, drupal_type, name, sfid, last_import, last_export, created FROM {salesforce_object_map} WHERE drupal_type = '%s' AND oid = %d AND name = '%s'", $drupal_type, $oid, $name));
 
     if ($existing_record['sfid']) {
       // Update the record
-      if (drupal_write_record('salesforce_object_map', $record, array('drupal_type', 'oid'))) {
+      if (drupal_write_record('salesforce_object_map', $record, array('drupal_type', 'oid', 'name'))) {
         salesforce_api_log(SALESFORCE_LOG_ALL, 'On !op, successfully re-saved mapping between Drupal !type !oid and Salesforce ID !sfid with fieldmap !name', array('!op' => $op_type, '!type' => $drupal_type, '!oid' => $oid, '!sfid' => $sfid, '!name' => $name));
         return TRUE;
       }

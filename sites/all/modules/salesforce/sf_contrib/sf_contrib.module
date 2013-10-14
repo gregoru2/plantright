@@ -225,6 +225,10 @@ function _sf_node_export_cck_nodereference($node, $fieldname, $drupal_field_defi
   $sfid = '';
   if ($nid = $node->{$fieldname}[0]['nid']) {
     $sf_data = salesforce_api_id_load('node', $nid);
+
+    // Use the first
+    $sf_data = array_shift($sf_data);
+
     $sfid = isset($sf_data->sfid) ? $sf_data->sfid : '';
   }
   return $sfid;
@@ -237,6 +241,10 @@ function _sf_node_import_cck_nodereference(&$node, $drupal_fieldname, $drupal_fi
   }
   list($drupal_fieldname, $dummy) = explode(':', $drupal_fieldname, 2);
   $node->{$drupal_fieldname}[0]['nid'] = salesforce_api_get_id_with_sfid($sf_data->{$sf_fieldname});
+  // API sends back 18 character ID. We stored 15 character ID.
+  if (empty($node->{$drupal_fieldname}[0]['nid']) && strlen($sf_data->{$sf_fieldname}) == 18) {
+    $node->{$drupal_fieldname}[0]['nid'] = salesforce_api_get_id_with_sfid(substr($sf_data->{$sf_fieldname}, 0, 15));
+  }
 }
 
 // Export sfid of referenced user
@@ -349,7 +357,7 @@ function _sf_contrib_import_location(&$object, $drupal_fieldname, $drupal_field_
   if (empty($object->locations)) {
     $object->locations = array();
   }
-  foreach ($object->locations as $location) {
+  foreach ($object->locations as &$location) {
     if ($location['is_primary'] == 1) {
       $location[$drupal_fieldname] = $sf_data->{$sf_fieldname};
       return;

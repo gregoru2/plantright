@@ -1,0 +1,79 @@
+<?php
+
+/**
+ * Implementation of hook_install().
+ */
+function plantright_sf_install() {
+  drupal_install_schema('plantright_sf');
+  $weight = db_result(db_query("SELECT weight FROM {system} WHERE name = 'sf_node'"));
+  db_query("UPDATE {system} SET weight = %d WHERE name = 'plantright_sf'", ($weight + 1));
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function plantright_sf_uninstall() {
+  drupal_uninstall_schema('plantright_sf');
+}
+
+/**
+ * Implementation of hook_schema().
+ */
+function plantright_sf_schema() {
+  $schema = array();
+  $schema['plantright_sf_object_map'] = array(
+    'description' => t('Drupal to Salesforce object mapping table'),
+    'fields' => array(
+      'name' => array(
+        'description' => 'Foreign key for salesforce_field_map - the fieldmap that corresponds to this record.',
+        'type' => 'varchar',
+        'length' => 64,
+      ),
+      'oid' => array(
+        'description' => 'Specific Drupal object identifier (e.g. node id or comment id)',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0
+      ),
+      'sfid' => array(
+        'description' => 'Salesforce object identifier (e.g. 000000000000000000)',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'drupal_type' => array(
+        'description' => 'Drupal object type (e.g. "node", "comment")',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'created' => array(
+        'description' => 'The UNIX timestamp when the mapping was created.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'last_import' => array(
+        'description' => 'The Unix timestamp when the record was last imported from Salesforce to Drupal.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'last_export' => array(
+        'description' => 'The Unix timestamp when the record was last exported from Drupal to Salesforce.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'indexes' => array(
+      'sfid' => array('sfid'),
+      'name' => array('name'),
+    ),
+    'primary key' => array('sfid', 'oid'),
+  );
+  return $schema;
+}

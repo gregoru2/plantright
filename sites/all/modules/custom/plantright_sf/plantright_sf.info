@@ -1,0 +1,7 @@
+name = "Plantright Salesforce"
+description = "Customizations to salesforce implementation"
+core = 6.x
+dependencies[] = plantright
+dependencies[] = salesforce_api
+dependencies[] = sf_node
+package = PlantRight

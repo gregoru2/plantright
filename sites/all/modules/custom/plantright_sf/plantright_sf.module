@@ -1,0 +1,149 @@
+<?php
+
+/**
+ * hook_nodeapi().
+ */
+function plantright_sf_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
+  switch ($op) {
+    case 'presave':
+      if (empty($node->field_sf_opp_name[0]['value'])) {
+        $node->field_sf_opp_name[0]['value'] = $node->title;
+      }
+      break;
+  }
+}
+
+/**
+ * Implementation of hook_fieldmap_objects_alter().
+ */
+function plantright_sf_fieldmap_objects_alter(&$objects) {
+  // Indicator for primary contact on node retail member.
+  $objects['drupal']['node_retail_member']['fields']['is_primary'] = array(
+    'label' => t('Is Primary'),
+    'export' => '_plantright_sf_export_primary',
+    'import' => '_plantright_sf_import_primary',
+  );
+
+  // Retail member gets its own contact ID from mapping.
+  $objects['drupal']['node_retail_member']['fields']['sf_contact_id'] = array(
+    'label' => t('SF Contact ID'),
+    'export' => '_plantright_sf_export_retail_member_sf_contact_id',
+    'import' => '_plantright_sf_import_retail_member_sf_contact_id',
+  );
+  
+  // Retail member gets its own contact ID from mapping.
+  $objects['drupal']['node_retail_member']['fields']['sf_opp_id'] = array(
+    'label' => t('SF Opportunity ID'),
+    'export' => '_plantright_sf_export_retail_member_sf_opp_id',
+    'import' => '_plantright_sf_import_retail_member_sf_opp_id',
+  );
+
+  // Retailer get its own Account ID from mapping.
+  $objects['drupal']['node_business']['fields']['sf_account_id'] = array(
+    'label' => t('SF Account ID'),
+    'export' => '_plantright_sf_export_business_sf_account_id',
+    'import' => '_plantright_sf_import_business_sf_account_id',
+  );
+
+  // Retailer get its own Opportunity ID from mapping.
+  $objects['drupal']['node_business']['fields']['sf_opp_id'] = array(
+    'label' => t('SF Stage Name'),
+    'export' => '_plantright_sf_export_business_sf_opp_id',
+    'import' => '_plantright_sf_import_business_sf_opp_id',
+  );
+}
+
+/**
+ * Callback for is primary indicator on retail member node.
+ */
+function _plantright_sf_export_primary($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+  // Determine if the user is the node author of their own retailer.
+  $profile = $node;
+  if ($profile->{PLANTRIGHT_RETAIL_PROFILE_NURSERY} && isset($profile->{PLANTRIGHT_RETAIL_PROFILE_NURSERY}[0]) && $nursery_nid = $profile->{PLANTRIGHT_RETAIL_PROFILE_NURSERY}[0]['nid']) {
+    $nursery = node_load($nursery_nid);
+
+    if ($nursery && $nursery->uid == $profile->uid) {
+      return TRUE;
+    }
+    else {
+      return FALSE;
+    }
+  }
+}
+
+function _plantright_sf_import_primary(&$node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+/**
+ * Callback for contact ID
+ */
+function _plantright_sf_export_retail_member_sf_contact_id($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+  // Get current salesforce mapping.
+  return plantright_sf_get_sfid('node_retail_member', 'Contact', $node);
+  
+  //$salesforce = salesforce_api_id_load('node', $node->nid);
+  //return $salesforce->sfid;
+}
+
+function _plantright_sf_import_retail_member_sf_contact_id(&$node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+function _plantright_sf_export_retail_member_sf_opp_id($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+  $retailer_node = node_load($node->field_retailer[0]['nid']);
+  if (!$retailer_node) {
+    return '';
+  }
+  return plantright_sf_get_sfid('node_business', 'Opportunity', $retailer_node);
+}
+
+function _plantright_sf_import_retail_member_sf_opp_id(&$node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+/**
+ * Callback for account ID
+ */
+function _plantright_sf_export_business_sf_account_id($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+  // Get current salesforce mapping.
+  return plantright_sf_get_sfid('node_business', 'Account', $node);
+
+  //$salesforce = salesforce_api_id_load('node', $node->nid);
+  //return $salesforce->sfid;
+}
+
+function _plantright_sf_import_business_sf_account_id(&$node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+/**
+ * Callback for Opportunity ID
+ */
+function _plantright_sf_export_business_sf_opp_id($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+  return plantright_sf_get_sfid('node_business', 'Opportunity', $node);
+}
+
+function _plantright_sf_import_business_sf_opp_id(&$node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+/**
+ * Helper function for the ID fields above.
+ */
+function plantright_sf_get_sfid($drupal, $salesforce, $node) {
+  $conditions = array(
+    'drupal' => $drupal,
+    'salesforce' => $salesforce,
+  );
+  $maps = salesforce_api_salesforce_field_map_load_by($conditions);
+  $map = array_shift($maps);
+
+  // Query the main ID table for the associated data.
+  $data = db_fetch_object(db_query("SELECT sfid, name FROM {salesforce_object_map} WHERE name = '%s' AND oid = %d", $map->name, $node->nid));
+  if ($data) {
+    return $data->sfid;
+  }
+  else {
+    return '';
+  }
+}
