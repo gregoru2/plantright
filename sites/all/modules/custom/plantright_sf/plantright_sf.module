@@ -7,7 +7,7 @@ function plantright_sf_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
   switch ($op) {
     case 'presave':
       if (empty($node->field_sf_opp_name[0]['value'])) {
-        $node->field_sf_opp_name[0]['value'] = $node->title;
+        $node->field_sf_opp_name[0]['value'] = $node->title . '-' . date('Y');
       }
       break;
   }
