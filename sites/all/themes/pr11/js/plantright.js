@@ -23,7 +23,18 @@ Drupal.behaviors.tao = function (context) {
   });
   $('body#page-node-add-business input#edit-title').change(function(){
     $('span.nursery-name').text($(this).val());
- });
+  });
+ 
+  $('#node-2012').each(function() {
+    $('div.partnership p.cta a').click(function(e) {
+      e.preventDefault();
+      var $link = $(this);
+      var url = $link.attr('href');
+      $link.attr('href', url + '?popup');
+      Lightbox.start(this, false, true, false, false);
+      $link.attr('href', url);
+    });
+  });
 };
 
 jQuery(document).ready(function($) {
@@ -44,18 +55,31 @@ jQuery(document).ready(function($) {
       this.className += ' active';
     }
   });
-  $('#progress-block .dropdown').hide();
-  $('#progress-block a.dropdown-toggle').click(function(e) {
-    //console.log(this);
+  $('div.block-retailer_progress .dropdown').hide();
+  $('div.block-retailer_progress a.dropdown-toggle').click(function(e) {
     $(this).toggleClass('expanded');
     $(this).next('.dropdown').toggle();
     e.preventDefault();
   });
+  $('#pr-retailer-progress-partnership-steps').each(function(){
+    var $box = $(this).append($('<div class="content"></div>').append($('#progress-block').html()));
+    $box.addClass('block-retailer-progress');
+    $box.find('.content > p').remove();
+    $box.find('h2').remove();
+    $box.find('h3').remove();
+    
+    $('a.dropdown-toggle', $box).click(function(e) {
+      $(this).toggleClass('expanded');
+      $(this).next('.dropdown').toggle();
+      e.preventDefault();
+    });
+  });
+  
   $('#tabbed .tab-content:not(:first)').hide();
   $('#tabbed h3:first').addClass('active');
   $('#tabbed h3').click(function(){
     var boxHeight,
-        thisId = this.id;
+    thisId = this.id;
     $('#tabbed h3.active').removeClass('active');
     $(this).addClass('active');
     $('.tab-content').hide();

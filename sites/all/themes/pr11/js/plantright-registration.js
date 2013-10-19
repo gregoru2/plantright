@@ -2,13 +2,13 @@
 Drupal.behaviors.plantright_registration = function (context) {
   var choice_step_1 = null; // Primary contact.
   var choice_step_2 = null; // Buyer.
-  
+
   $('#node-2392', context).each(function(){
     var $node = $(this);
     if (choice_step_1 === null) {
       $('#pr-reg-choices-2', $node).hide();
     }
-    
+
     $('#pr-reg-choices-1 li.choice', $node).click(function(e) {
       e.preventDefault();
       var $chosen = $(this);
@@ -30,7 +30,7 @@ Drupal.behaviors.plantright_registration = function (context) {
         $('#pr-reg-choices-2', $node).slideUp(400, function() {
           $('#pr-reg-choices-1 li.choice').not(this).fadeIn(400);
         });
-        
+
       }
     });
     $('#pr-reg-choices-2 li.choice', $node).click(function(e) {
@@ -42,7 +42,7 @@ Drupal.behaviors.plantright_registration = function (context) {
       else {
         choice_step_2 = 0;
       }
-      
+
       var location = '';
       if (choice_step_1 == 0 && choice_step_2 == 0) {
         // Not primary contact. Not buyer.
@@ -60,7 +60,7 @@ Drupal.behaviors.plantright_registration = function (context) {
         // Primary contact. Buyer.
         location = '/manager-buyer/register';
       }
-      
+
       if (location && parent) {
         parent.window.location = location;
       }
@@ -68,7 +68,5 @@ Drupal.behaviors.plantright_registration = function (context) {
         window.location = location;
       }
     });
-
-    
   });
 }

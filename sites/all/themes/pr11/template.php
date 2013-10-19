@@ -165,6 +165,11 @@ function _pr11_print_book_children($link, &$content, &$zomglimit, $limit = 500) 
  * Implementation of preprocess_page().
  */
 function pr11_preprocess_page(&$vars) {
+  $nodes = array(2392);
+  if (isset($_REQUEST['popup']) && in_array($vars['node']->nid, $nodes)) {
+    $vars['template_files'][] = 'page-popup';
+  }
+  
   $attr = array();
   $attr['class'] = trim($vars['body_classes']);
   $attr['class'] .= ' pr11'; // Add the pr11 class so that we can avoid using the 'body' selector

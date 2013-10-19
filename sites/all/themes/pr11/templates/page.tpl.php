@@ -11,20 +11,6 @@
 <!--[if lte IE 7]>
     <style type="text/css" media="all">@import "<?php print base_path() . path_to_theme() ?>/lte_ie7.css";</style>
   <![endif]-->
-<?php if (!user_access('administer nodes')) : ?>
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-23178332-1']);
-    _gaq.push(['_trackPageview']);
-      (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-              ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-
-</script>
-<script type="text/javascript" src="/<?php print drupal_get_path('theme', 'pr11') ?>/js/ga-events.js"></script>
-<?php endif; ?>
 </head>
 <body <?php print phptemplate_body_attributes($is_front, $layout, $attr); ?>>
   
@@ -86,7 +72,21 @@
   </div></div>
 
 
-  <?php print $scripts ?>
+<?php print $scripts ?>
+<?php if (!user_access('administer nodes')) : ?>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-23178332-1']);
+    _gaq.push(['_trackPageview']);
+      (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+              ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+</script>
+<script type="text/javascript" src="/<?php print drupal_get_path('theme', 'pr11') ?>/js/ga-events.js"></script>
+<?php endif; ?>
 <?php if ($is_front): ?>  
 <script src="/sites/default/files/agile_carousel/agile_carousel.alpha.js"></script>
 <script>

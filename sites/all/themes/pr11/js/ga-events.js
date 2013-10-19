@@ -3,6 +3,7 @@
  * Contains code for Google Analytics event tracking.
  */
 
+Drupal.behaviors.plantright_ga_events = function (context) {
 jQuery(document).ready(function($) {
   var filetypes = /\.(rtf|txt|zip|exe|pdf|doc.?|xl.{0,2}|ppt.{0,2}|mp3)$/i;
   var baseHref = 'http://' + document.domain;
@@ -74,4 +75,4 @@ jQuery(document).ready(function($) {
   });
 });
 
-
+}
