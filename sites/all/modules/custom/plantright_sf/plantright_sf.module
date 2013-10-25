@@ -29,7 +29,7 @@ function plantright_sf_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
         }
 
         if ($graduate_count >= $buyer_count) {
-          $node->field_sf_opp_stage[0]['value'] = 'Won';
+          $node->field_sf_opp_stage[0]['value'] = 'Closed Won';
         }
       }
       break;
