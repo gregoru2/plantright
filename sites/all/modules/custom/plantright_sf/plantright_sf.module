@@ -30,7 +30,7 @@ function plantright_sf_fieldmap_objects_alter(&$objects) {
     'export' => '_plantright_sf_export_retail_member_sf_contact_id',
     'import' => '_plantright_sf_import_retail_member_sf_contact_id',
   );
-  
+
   // Retail member gets its own contact ID from mapping.
   $objects['drupal']['node_retail_member']['fields']['sf_opp_id'] = array(
     'label' => t('SF Opportunity ID'),
@@ -50,6 +50,24 @@ function plantright_sf_fieldmap_objects_alter(&$objects) {
     'label' => t('SF Stage Name'),
     'export' => '_plantright_sf_export_business_sf_opp_id',
     'import' => '_plantright_sf_import_business_sf_opp_id',
+  );
+
+  $objects['drupal']['node_business']['fields']['graduates_buyers'] = array(
+    'label' => t('Number of buyer graduates'),
+    'export' => '_plantright_sf_export_business_graduates_buyers',
+    'import' => '_plantright_sf_import_business_graduates_buyers',
+  );
+
+  $objects['drupal']['node_business']['fields']['graduates_all'] = array(
+    'label' => t('Number of all graduates'),
+    'export' => '_plantright_sf_export_business_graduates_all',
+    'import' => '_plantright_sf_import_business_graduates_all',
+  );
+  
+  $objects['drupal']['node_business']['fields']['won'] = array(
+    'label' => t('isWon'),
+    'export' => '_plantright_sf_export_business_won',
+    'import' => '_plantright_sf_import_business_won',
   );
 }
 
@@ -81,7 +99,7 @@ function _plantright_sf_import_primary(&$node, $drupal_fieldname, $drupal_field_
 function _plantright_sf_export_retail_member_sf_contact_id($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
   // Get current salesforce mapping.
   return plantright_sf_get_sfid('node_retail_member', 'Contact', $node);
-  
+
   //$salesforce = salesforce_api_id_load('node', $node->nid);
   //return $salesforce->sfid;
 }
@@ -101,6 +119,7 @@ function _plantright_sf_export_retail_member_sf_opp_id($node, $fieldname, $drupa
 function _plantright_sf_import_retail_member_sf_opp_id(&$node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
   // No import.
 }
+
 /**
  * Callback for account ID
  */
@@ -124,6 +143,86 @@ function _plantright_sf_export_business_sf_opp_id($node, $fieldname, $drupal_fie
 }
 
 function _plantright_sf_import_business_sf_opp_id(&$node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+/**
+ * Callback for buyer graduates.
+ */
+function _plantright_sf_export_business_graduates_buyers($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+  $results = db_query('select * from {content_type_retail_member} rm
+                         inner join node n on n.nid = rm.nid
+                         inner join users u on n.uid = u.uid
+                         where rm.field_retailer_nid = %d', $node->nid);
+
+  $graduate_count = 0;
+  while ($result = db_fetch_object($results)) {
+    $account = user_load($result->uid);
+    $rids = array_keys($account->roles);
+    // If the user is a buyer and passed the quiz.
+    if ((in_array(7, $rids) || in_array(9, $rids)) && in_array(11, $rids)) {
+      $graduate_count++;
+    }
+  }
+
+  return $graduate_count;
+}
+
+function _plantright_sf_import_business_graduates_buyers(&$node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+/**
+ * Callback for all graduates.
+ */
+function _plantright_sf_export_business_graduates_all($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+   $results = db_query('select * from {content_type_retail_member} rm
+                         inner join node n on n.nid = rm.nid
+                         inner join users u on n.uid = u.uid
+                         where rm.field_retailer_nid = %d', $node->nid);
+
+  $graduate_count = 0;
+  while ($result = db_fetch_object($results)) {
+    $account = user_load($result->uid);
+    $rids = array_keys($account->roles);
+    // If the user passed the quiz.
+    if (in_array(11, $rids)) {
+      $graduate_count++;
+    }
+  }
+
+  return $graduate_count;
+}
+
+function _plantright_sf_import_business_graduates_all(&$node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+/**
+ * Callback for buyer graduates.
+ */
+function _plantright_sf_export_business_won($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+  $results = db_query('select * from {content_type_retail_member} rm
+                         inner join node n on n.nid = rm.nid
+                         inner join users u on n.uid = u.uid
+                         where rm.field_retailer_nid = %d', $node->nid);
+
+  $buyer_count = $node->field_number_of_buyers[0]['value'];
+
+  $graduate_count = 0;
+  while ($result = db_fetch_object($results)) {
+    $account = user_load($result->uid);
+    $rids = array_keys($account->roles);
+    // If the user is a buyer and passed the quiz.
+    if ((in_array(7, $rids) || in_array(9, $rids)) && in_array(11, $rids)) {
+      $graduate_count++;
+    }
+  }
+
+  return $graduate_count >= $buyer_count ? 1 : 0;
+}
+
+function _plantright_sf_import_business_won(&$node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
   // No import.
 }
 
