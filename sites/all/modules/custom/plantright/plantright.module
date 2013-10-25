@@ -79,7 +79,12 @@ function plantright_nodeapi(&$node, $op) {
     $retail_member->field_retailer[0]['nid'] = $node->nid;
     node_save($retail_member);
   }
-  //dpm($node);
+  else if ($node->type == 'retail_member' && $op == 'view') {
+    // If user doesn't have permission to edit retail member, redirect to home.
+     if (!node_access('update', $node)) {
+       drupal_goto('');
+     }
+  }
 }
 
 /**
