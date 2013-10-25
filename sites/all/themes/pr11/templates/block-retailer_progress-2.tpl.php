@@ -23,6 +23,8 @@
  * @see template_preprocess()
  * @see template_preprocess_block()
  */
+$classes = '';
+
 $account = $content['account'];
 $content = $block->content;
 
@@ -53,8 +55,12 @@ $slacker_nonbuyers = $content['slacker_nonbuyers'];
 $user_quiz_status = $content['account_quiz_status'];
 $user_quiz_progress = $user_quiz_status ? "complete" : "incomplete";
 $group_quiz_progress = ($total_buyers_count > 0 && $certified_buyers_count >= $total_buyers_count) ? "complete" : "incomplete";
+
+if ($content['progress_complete']) {
+  $classes .= ' progress-complete';
+}
 ?>
-<div id="block-<?php print $block->module . '-' . $block->delta; ?>" class="block block-<?php print $block->module ?>">
+<div id="block-<?php print $block->module . '-' . $block->delta; ?>" class="block block-<?php print $block->module ?><?php print $classes; ?>">
   <?php if ($block->subject): ?>
     <h2><?php print $block->subject ?></h2>
   <?php endif; ?>

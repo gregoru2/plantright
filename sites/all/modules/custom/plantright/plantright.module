@@ -361,6 +361,22 @@ function plantright_user_register_after_build(&$form, &$form_state) {
 }
 
 /**
+ * Implementation of hook_menu().
+ */
+function plantright_menu() {
+  $items = array();
+  $items['invites/user/%user'] = array(
+    'title' => 'Invite Status',
+    'page callback' => 'plantright_invite_status',
+    'page arguments' => array(2),
+    'access callback' => 'plantright_invite_status_access',
+    'access arguments' => array(2),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
  * Implementation of hook_menu_alter().
  */
 function plantright_menu_alter(&$items) {
@@ -602,4 +618,29 @@ function plantright_get_partner_nurseries($entities = TRUE) {
     $nurseries[] = $safe_row;
   }
   return $nurseries;
+}
+
+/**
+ * Page access callback for invite status.
+ */
+function plantright_invite_status_access($account) {
+  if (user_access('administer invitations') || $account->uid == $GLOBALS['user']->uid) {
+    return TRUE;
+  }
+  else {
+    return FALSE;
+  }
+}
+
+/**
+ * Page callback for invite status.
+ */
+function plantright_invite_status($account) {
+  if (module_exists('invite')) {
+    module_load_include('inc', 'invite', 'invite_admin');
+    return invite_admin_details($account);
+  }
+  else {
+    return t('Cannot get invites.');
+  }
 }

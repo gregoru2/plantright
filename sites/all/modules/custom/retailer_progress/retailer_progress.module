@@ -12,6 +12,8 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
     $block[3]['cache'] = BLOCK_NO_CACHE;
     $block[4]['info'] = t('PlantRight Partner Resources');
     $block[4]['cache'] = BLOCK_NO_CACHE;
+    $block[5]['info'] = t('PlantRight Retailer COMPLETE Progress block');
+    $block[5]['cache'] = BLOCK_NO_CACHE;
   }
 
   if ($op == 'view') {
@@ -26,6 +28,35 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
     }
 
     $account_roles = array_keys($account->roles);
+    
+    $content['account'] = $account;
+
+    //$account->profile_info[] = node_load(array('uid' => $account->uid, 'type' => 'retail_member'));
+    $profile = node_load(array('uid' => $account->uid, 'type' => 'retail_member'));
+    if (isset($profile->field_retailer[0]['nid']) && $profile->field_retailer[0]['nid']) {
+      $retailer = node_load($profile->field_retailer[0]['nid']);
+
+      $results = db_query('select * from {content_type_retail_member} rm
+                         inner join node n on n.nid = rm.nid
+                         inner join users u on n.uid = u.uid
+                         where rm.field_retailer_nid = %d', $retailer->nid);
+      $fellow_citizens = array();
+      while ($result = db_fetch_object($results)) {
+        array_push($fellow_citizens, user_load($result->uid));
+      }
+    }
+    else {
+      $retailer = NULL;
+      $fellow_citizens = array();
+    }
+    
+    // If progress is complete, and it's come this far, hide the progress box.
+    if ($retailer->field_is_certified[0]['value'] == 1 && in_array(11, $account_roles)){
+      $content['progress_complete'] = TRUE;
+    }
+    else {
+      $content['progress_complete'] = FALSE;
+    }
 
     switch ($delta) {
       case 0:
@@ -59,33 +90,18 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
         $content['user_roles'] = $account_roles;
         $block['content'] = $content;
         return $block;
-
         break;
-    }
-
-    $content['account'] = $account;
-
-    //$account->profile_info[] = node_load(array('uid' => $account->uid, 'type' => 'retail_member'));
-    $profile = node_load(array('uid' => $account->uid, 'type' => 'retail_member'));
-    if (isset($profile->field_retailer[0]['nid']) && $profile->field_retailer[0]['nid']) {
-      $retailer = node_load($profile->field_retailer[0]['nid']);
-
-      $results = db_query('select * from {content_type_retail_member} rm
-                         inner join node n on n.nid = rm.nid
-                         inner join users u on n.uid = u.uid
-                         where rm.field_retailer_nid = %d', $retailer->nid);
-      $fellow_citizens = array();
-      while ($result = db_fetch_object($results)) {
-        array_push($fellow_citizens, user_load($result->uid));
-      }
-    }
-    else {
-      $retailer = NULL;
-      $fellow_citizens = array();
-    }
+      case 5:
+        // If user has completed quiz & nursery partnered.
+        if (!$content['progress_complete']) {
+          return;
+        }
+        break;
+    }  
 
     $content['profile_nid'] = $profile->nid;
     $content['retailer_nid'] = isset($retailer->nid) ? $retailer->nid : NULL;
+    $content['liaison'] = $retailer->uid == $account->uid;
 
     //Has this manager registered a retailer yet?
     $content['store_registered'] = $retailer ? "complete" : "incomplete";

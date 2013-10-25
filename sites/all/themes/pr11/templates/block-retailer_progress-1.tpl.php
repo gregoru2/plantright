@@ -23,6 +23,8 @@
  * @see template_preprocess()
  * @see template_preprocess_block()
  */
+$classes = '';
+
 $account = $content['account'];
 $content = $block->content;
 
@@ -59,8 +61,12 @@ if ($register_progress == 'complete') {
   $invites_sent = 'complete';
   $invites_count = $registered_buyers;
 }
+
+if ($content['progress_complete']) {
+  $classes .= ' progress-complete';
+}
 ?>
-<div id="block-<?php print $block->module .'-'. $block->delta; ?>" class="block block-<?php print $block->module ?>">
+<div id="block-<?php print $block->module .'-'. $block->delta; ?>" class="block block-<?php print $block->module ?><?php print $classes; ?>">
   <?php if ($block->subject): ?>
   <h2><?php print $block->subject ?></h2>
   <?php endif;?>

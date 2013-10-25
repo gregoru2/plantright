@@ -1366,28 +1366,32 @@ body.node-edit.admin-df ul.primary-tabs, body.user-edit.admin-df ul.primary-tabs
 
 .block-retailer_progress { margin-top: 105px;  margin-left: 1em; }
 body.section-users .block-retailer_progress { margin-top: 30px; }
-.block-retailer_progress #progress-block { border: 1px solid #dccdad; border-radius: 3px; padding: 2px; background: white; }
-.block-retailer_progress #progress-block h2#the-checklist { text-align: center; font-size: 23px; margin: 0; padding: 0 2px 2px 2px; background-color: #78a723; color: #fff; }
-.block-retailer_progress #progress-block h3 { margin: 0.1em 0.5em 1em 0.5em; text-align: center; font-size: 14px; font-weight: bold; color: #4d3c14; }
-.block-retailer_progress #progress-block p, .block-retailer_progress #progress-block div { margin: 5px; }
-.block-retailer_progress #progress-block .item { clear: both; margin-top: 1em 0.5em 0.5em 0.5em; padding: 5px; }
-.block-retailer_progress #progress-block .item p.desc { background: url(/images/incomplete.png) left -5px no-repeat; font-size: 15px; color: #444444; line-height: 19px; padding-left: 24px; padding-bottom: 2px; margin: 0.25em 0 0; }
-.block-retailer_progress #progress-block .item p.desc a { font-weight: normal; color: #ae5123; text-decoration: underline; }
-.block-retailer_progress #progress-block .item.complete p.desc { padding-top: 5px; background: url(/images/complete.png) left 0px no-repeat; }
-.block-retailer_progress #progress-block .item p.status { margin: 0 0 0 26px; font-style: italic; color: #888888; line-height: 1; }
-.block-retailer_progress #progress-block .item span.progress_option { font-size: 12px; color: #888888; line-height: 1; }
-.block-retailer_progress #progress-block .item span.progress_option a { text-decoration: none; }
-.block-retailer_progress #progress-block .item span.progress_option a:after { padding: 2px; font-size: 1.6em; position: relative; bottom: -2px; left: 0px; content: "\203A"; }
-.block-retailer_progress #progress-block .item span.checklist_fineprint { font-size: 1em; color: #948c75; display: block; font-style: italic; margin-left: 26px; }
-.block-retailer_progress #progress-block a.dropdown-toggle { display: block; margin-bottom: 5px; margin-left: 18px; padding-left: 10px; background: url(/images/arrow-collapsed.png) left center no-repeat; }
-.block-retailer_progress #progress-block a.dropdown-toggle.expanded { background: url(/images/arrow-expanded.png) left center no-repeat; }
-.block-retailer_progress #progress-block .dropdown { border-top: 2px solid #d9cfb4; border-bottom: 2px solid #d9cfb4; }
-.block-retailer_progress #progress-block .dropdown .progress-bar { border: 1px solid #d9cfb4; height: 15px; background: url(/images/progress-bg.png) no-repeat; }
-.block-retailer_progress #progress-block .dropdown p { margin: 5px 0; }
-.block-retailer_progress #progress-block .dropdown h4 { margin-top: 10px; }
-.block-retailer_progress #progress-block .dropdown ul { margin: 0; }
-.block-retailer_progress #progress-block .dropdown li { list-style: none; font-size: 12px; font-weight: bold; color: #444444; margin-left: 10px; }
-.block-retailer_progress #progress-block .dropdown li a { font-style: italic; }
+.block-retailer_progress .content { border: 1px solid #dccdad; border-radius: 3px; padding: 2px; background: white; }
+.block-retailer_progress h2#the-checklist { text-align: center; font-size: 23px; margin: 0; padding: 0 2px 2px 2px; background-color: #78a723; color: #fff; }
+.block-retailer_progress h3 { margin: 0.1em 0.5em 1em 0.5em; text-align: center; font-size: 14px; font-weight: bold; color: #4d3c14; }
+.block-retailer_progress p, .block-retailer_progress div { margin: 5px; }
+.block-retailer_progress .item { clear: both; margin-top: 1em 0.5em 0.5em 0.5em; padding: 5px; }
+.block-retailer_progress .item p.desc { background: url(/images/incomplete.png) left -5px no-repeat; font-size: 15px; color: #444444; line-height: 19px; padding-left: 24px; padding-bottom: 2px; margin: 0.25em 0 0; }
+.block-retailer_progress .item p.desc a { font-weight: normal; color: #ae5123; text-decoration: underline; }
+.block-retailer_progress .item.complete p.desc { padding-top: 5px; background: url(/images/complete.png) left 0px no-repeat; }
+.block-retailer_progress .item p.status { margin: 0 0 0 26px; font-style: italic; color: #888888; line-height: 1; }
+.block-retailer_progress .item span.progress_option { font-size: 12px; color: #888888; line-height: 1; }
+.block-retailer_progress .item span.progress_option a { text-decoration: none; }
+/* .block-retailer_progress .item span.progress_option a:after { padding: 2px; font-size: 1.6em; position: relative; bottom: -2px; left: 0px; content: "\203A"; } */
+.block-retailer_progress .item span.checklist_fineprint { font-size: 1em; color: #948c75; display: block; font-style: italic; margin-left: 26px; }
+.block-retailer_progress a.dropdown-toggle { display: block; margin-bottom: 5px; margin-left: 18px; padding-left: 10px; background: url(/images/arrow-collapsed.png) left center no-repeat; }
+.block-retailer_progress a.dropdown-toggle.expanded { background: url(/images/arrow-expanded.png) left center no-repeat; }
+.block-retailer_progress .dropdown { border-top: 2px solid #d9cfb4; border-bottom: 2px solid #d9cfb4; }
+.block-retailer_progress .dropdown .progress-bar { border: 1px solid #d9cfb4; height: 15px; background: url(/images/progress-bg.png) no-repeat; }
+.block-retailer_progress .dropdown p { margin: 5px 0; }
+.block-retailer_progress .dropdown h4 { margin-top: 10px; }
+.block-retailer_progress .dropdown ul { margin: 0; }
+.block-retailer_progress .dropdown li { list-style: none; font-size: 12px; font-weight: bold; color: #444444; margin-left: 10px; }
+.block-retailer_progress .dropdown li a { font-style: italic; }
+.block-retailer_progress.progress-complete { display: none; }
+#pr-retailer-progress-partnership-steps .content { border: none; }
+#progress-block-complete ul ul li { margin: .5em auto; }
+body.section-invites #content { width: 100%; }
 
 
 #page #block-views-trivia-block_1 {  margin-left: 1em; }
