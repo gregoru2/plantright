@@ -61,6 +61,20 @@ function plantright_sf_fieldmap_objects_alter(&$objects) {
     'import' => '_plantright_sf_import_retail_member_sf_opp_id',
   );
 
+  // Retail member's graduate status.
+  $objects['drupal']['node_retail_member']['fields']['graduate_status'] = array(
+    'label' => t('Graduate Status'),
+    'export' => '_plantright_sf_export_retail_member_graduate_status',
+    'import' => '_plantright_sf_import_retail_member_graduate_status',
+  );
+
+  // Retail member buy or nonbuyer.
+  $objects['drupal']['node_retail_member']['fields']['buyer_role'] = array(
+    'label' => t('Buyer Status'),
+    'export' => '_plantright_sf_export_retail_member_buyer_role',
+    'import' => '_plantright_sf_import_retail_member_buyer_role',
+  );
+
   // Retailer get its own Account ID from mapping.
   $objects['drupal']['node_business']['fields']['sf_account_id'] = array(
     'label' => t('SF Account ID'),
@@ -134,6 +148,38 @@ function _plantright_sf_export_retail_member_sf_opp_id($node, $fieldname, $drupa
 }
 
 function _plantright_sf_import_retail_member_sf_opp_id(&$node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+function _plantright_sf_export_retail_member_graduate_status($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+  $account = user_load($node->uid);
+  $roles = array_keys($account->roles);
+  // User has the role for passing quiz.
+  if (in_array(11, $roles)) {
+    return TRUE;
+  }
+  else {
+    return FALSE;
+  }
+}
+
+function _plantright_sf_import_retail_member_graduate_status(&$node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+function _plantright_sf_export_retail_member_buyer_role($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+  $account = user_load($node->uid);
+  $roles = array_keys($account->roles);
+  // User has the role for passing quiz.
+  if (in_array(7, $roles) || in_array(9, $roles)) {
+    return 'Buyer';
+  }
+  else {
+    return 'Non-buyer';
+  }
+}
+
+function _plantright_sf_import_retail_member_buyer_role(&$node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
   // No import.
 }
 
