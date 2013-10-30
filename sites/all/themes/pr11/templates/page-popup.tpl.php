@@ -33,7 +33,7 @@ else:
 <script type="text/javascript" src="/<?php print drupal_get_path('theme', 'pr11') ?>/js/ga-events.js"></script>
 <?php endif; ?>
 </head>
-<body style="background: #fff; font-size: 1.05em;">
+<body class="popup">
 <div id="content">
   <?php if (user_access('administer nodes')) : ?>
     <a href="/node/2392/edit">edit</a>

@@ -1125,7 +1125,7 @@ body.section-user #content .profile h2.pageTitle, body.section-users #content .p
 }
 
 
-.horizontal-box {  
+.horizontal-box {
   box-sizing: border-box;
   /* and for older/other browsers: */
   -moz-box-sizing: border-box;
@@ -1453,3 +1453,6 @@ span.password-confirm span.error { font-weight: bold; text-transform: uppercase;
 #imageDataContainer, #imageDataContainer #imageData {height: 40px;}
 #imageDataContainer #bottomNav {margin-top: 0px; height: 20px; margin-bottom: 0px;}
 #imageDataContainer #bottomNavClose {margin-top: 0px;}
+
+body.popup { background: #fff; font-size: 1.05em; }
+body.popup .popup-hidden { display: none; }
