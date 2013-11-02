@@ -79,8 +79,14 @@ function plantright_nodeapi(&$node, $op) {
     $retail_member->field_retailer[0]['nid'] = $node->nid;
     node_save($retail_member);
   }
-  else if ($node->type == 'retail_member' && $op == 'view') {
+  else if ($node->type == 'retail_member' && $op == 'view' && arg(0) == 'node' && arg(1) == $node->nid) {
     // If user doesn't have permission to edit retail member, redirect to home.
+     if (!node_access('update', $node)) {
+       drupal_goto('');
+     }
+  }
+  else if ($node->type == 'slide' && $op == 'view'  && arg(0) == 'node' && arg(1) == $node->nid) {
+    // If user doesn't have permission to edit slide, redirect to home.
      if (!node_access('update', $node)) {
        drupal_goto('');
      }
@@ -274,7 +280,7 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
 </ul>
 PLEDGE;
     $form['field_pledge']['#prefix'] = $pledge;
-    
+
     if (!user_access('administer nodes')) {
       $form['#redirect'] = 'invite';
       $form['group_admin_only']['#access'] = FALSE;
@@ -594,20 +600,20 @@ function plantright_get_retailer_employees($retailer, $include_liason = TRUE) {
                          inner join node n on n.nid = rm.nid
                          inner join users u on n.uid = u.uid' . $join .
                         'where rm.field_retailer_nid = %d' . $where, $retailer->nid);
-  
+
   $fellow_citizens = array();
   while ($result = db_fetch_object($results)) {
     array_push($fellow_citizens, user_load($result->uid));
   }
-  
+
   return $fellow_citizens;
 }
 
 function plantright_get_partner_nurseries($entities = TRUE) {
-  $result = db_query("SELECT DISTINCT(node.nid) AS nid, node.title AS node_title, node.type AS node_type, node.nid AS node_nid 
-    FROM {node} node  
-    LEFT JOIN content_type_business node_data_field_is_certified ON node.vid = node_data_field_is_certified.vid 
-    WHERE (node.type in ('business')) AND (node_data_field_is_certified.field_is_certified_value = 1) 
+  $result = db_query("SELECT DISTINCT(node.nid) AS nid, node.title AS node_title, node.type AS node_type, node.nid AS node_nid
+    FROM {node} node
+    LEFT JOIN content_type_business node_data_field_is_certified ON node.vid = node_data_field_is_certified.vid
+    WHERE (node.type in ('business')) AND (node_data_field_is_certified.field_is_certified_value = 1)
     GROUP BY nid
     ORDER BY node_title ASC, node_nid ASC");
   $nurseries = array();
@@ -619,7 +625,7 @@ function plantright_get_partner_nurseries($entities = TRUE) {
         $safe_row[$key] = html_entity_decode($safe_row[$key]);
       }
     }
-    
+
     $nurseries[] = $safe_row;
   }
   return $nurseries;

@@ -13,7 +13,7 @@
   <![endif]-->
 </head>
 <body <?php print phptemplate_body_attributes($is_front, $layout, $attr); ?>>
-  
+
 <div id="prContainer">
   <?php print $skipnav ?>
 
@@ -57,10 +57,10 @@
         <?php if ($tabs2) print $tabs2 ?>
         <?php if ($content_top) print $content_top; ?>
         <div id="content"><div class="limiter clear-block"><?php print $content ?></div></div>
-				
+
     <?php if ($right): ?>
       <div id="right"><div class="limiter clear-block"><?php print $right ?></div></div>
-    <?php endif; ?>	
+    <?php endif; ?>
 	 <div id="footer"><div class="limiter clear-block">
     <?php print $feed_icons ?>
     <?php print $footer ?>
@@ -68,7 +68,7 @@
   </div></div>
 
   </div>
- 
+
   </div></div>
 
 
@@ -87,27 +87,8 @@
 </script>
 <script type="text/javascript" src="/<?php print drupal_get_path('theme', 'pr11') ?>/js/ga-events.js"></script>
 <?php endif; ?>
-<?php if ($is_front): ?>  
-<script src="/sites/default/files/agile_carousel/agile_carousel.alpha.js"></script>
-<script>
-    $.getJSON("/sites/default/files/agile_carousel/agile_carousel_data_pr.php", function (data) {
-        $(document).ready(function () {
-            $("#basic_slideshow").agile_carousel({
-                carousel_data: data,
-                carousel_outer_height: 283,
-                carousel_height: 283,
-                slide_height: 283,
-                carousel_outer_width: 770,
-                slide_width: 770,
-                transition_type: "fade",
-                timer: 4000
-            });
-        });
-    });
-</script>
-<?php endif; ?>
-  
-  <?php print $closure ?>
+
+<?php print $closure ?>
 
 </div><!-- end prContainer -->
 

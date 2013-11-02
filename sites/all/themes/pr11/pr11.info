@@ -10,8 +10,11 @@ regions[right] = "Right sidebar"
 regions[content] = "Content"
 regions[footer] = "Footer"
 ;scripts[] = "js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js"
+scripts[] = "js/modernizr.2.6.3.js"
+scripts[] = "js/textshadow/jquery.textshadow.js"
 scripts[] = "js/plantright.js"
 
+stylesheets[screen][] = "js/textshadow/jquery.textshadow.css"
 stylesheets[screen][] = "reset.css"
 stylesheets[screen][] = "drupal.css"
 stylesheets[screen][] = "base.css"
@@ -54,5 +57,3 @@ stylesheets[all][] = "taxonomy.css"
 stylesheets[all][] = "tracker.css"
 stylesheets[all][] = "update.css"
 stylesheets[all][] = "user.css"
-
-
