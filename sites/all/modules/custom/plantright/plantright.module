@@ -452,7 +452,7 @@ function plantright_user_pass_reset(&$form_state, $uid, $timestamp, $hashed_pass
             }
           }
           elseif (in_array(14, $rids)) {
-            $node = node_load(array('type' => 'survey_profile', 'uid' => $user->uid));
+            $node = node_load(array('type' => PLANTRIGHT_SURVEY_PROFILE, 'uid' => $user->uid));
             drupal_set_message('Please reset your password.', 'status');
             if ($node) {
               drupal_goto('node/' . $node->nid . '/edit');
