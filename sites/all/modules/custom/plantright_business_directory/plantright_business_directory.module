@@ -159,9 +159,7 @@ function plantright_business_node_form_after_build(&$form, &$form_state) {
         if (isset($location['province'])) {
           $form['locations'][$key]['province']['#autocomplete_path'] = FALSE;
           $form['locations'][$key]['province']['#title'] = t('State');
-          if ($location['province']['#value']) {
-            $form['locations'][$key]['province']['#value'] = 'California';
-          }
+          $form['locations'][$key]['province']['#value'] = 'California';
           $location['province']['#default_value'] = 'California';
           $form['locations'][$key]['province']['#type'] = 'textfield';
           $form['locations'][$key]['province']['#attributes']['readonly'] = 'readonly';

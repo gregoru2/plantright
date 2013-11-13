@@ -7,3 +7,27 @@ function plantright_business_directory_install() {
 function plantright_business_directory_update_6001() {
   db_query("UPDATE {system} SET weight = 99 WHERE type = 'module' AND name = 'plantright_business_directory'");
 }
+
+/**
+ * Update location data.
+ */
+function plantright_business_directory_update_6002() {
+  $query = "SELECT nid FROM {node} WHERE type='business'";
+  $result = db_query($query);
+
+  while ($nid = db_result($result)) {
+    $node = node_load($nid);
+    $latlon = location_latlon_exact($node->location);
+    $node->locations[0]['latitude'] = $latlon['lat'];
+    $node->locations[0]['longitude'] = $latlon['lon'];
+    
+    foreach ($node->locations as $key => $location) {
+      $latlon = location_latlon_exact($location);
+      $node->locations[$key]['latitude'] = $latlon['lat'];
+      $node->locations[$key]['longitude'] = $latlon['lon'];
+    }
+    
+    $node = node_submit($node);
+    node_save($node);
+  }
+}
