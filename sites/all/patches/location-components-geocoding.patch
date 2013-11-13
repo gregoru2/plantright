@@ -1,0 +1,16 @@
+diff --git a/geocoding/google.inc b/geocoding/google.inc
+index 83573d9..43da742 100644
+--- a/geocoding/google.inc
++++ b/geocoding/google.inc
+@@ -220,6 +220,11 @@ function _google_geocode_get_components($location = array()) {
+   if (empty($location)) {
+     return '';
+   }
++ 
++  // Geocoding doesn't return accurately with street and components.
++  if (!empty($location['street'])) {
++    return;
++  }
+ 
+   $components = array();
+   if (!empty($location['city'])) {

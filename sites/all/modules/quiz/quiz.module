@@ -209,8 +209,7 @@ function quiz_access_my_result($rid) {
  */
 function quiz_access_to_score($quiz_creator = NULL) {
   global $user;
-  if ($quiz_creator == NULL) {
-    $quiz = quiz_get_quiz_from_menu();
+  if ($quiz_creator == NULL && ($quiz = quiz_get_quiz_from_menu())) {
     $quiz_creator = $quiz->uid;
   }
   if (user_access('score any quiz')) {
@@ -838,7 +837,7 @@ function quiz_load($node) {
 function quiz_view($node, $teaser = FALSE, $page = FALSE) {
   drupal_alter('quiz_view', $node, $teaser, $page);
   $node = node_prepare($node, $teaser);
-  
+
   // Number of questions is needed on the statistics page.
   $node->number_of_questions = $node->number_of_random_questions + _quiz_get_num_always_questions($node->vid);
 
@@ -1291,7 +1290,7 @@ function quiz_form(&$node) {
     '#description' => t('If this box is checked most of the quiz specific settings you have made will be remembered and will be your default settings next time you create a quiz.'),
     '#weight' => 49,
   );
-  if (quiz_has_been_answered($node)) {
+  if (quiz_has_been_answered($node) && (!user_access('manual quiz revisioning') || variable_get('quiz_auto_revisioning', 1))) {
     $node->revision = 1;
     $node->log = t('The current revision has been answered. We create a new revision so that the reports from the existing answers stays correct.');
   }
@@ -3346,7 +3345,7 @@ function _quiz_taxonomy_select($value = 0) {
  * @return
  *   An array of questions.
  */
-function quiz_get_questions($quiz_nid = NULL, $quiz_vid = NULL, $include_all_types = TRUE, $nid_keys = FALSE, $include_question = TRUE, $include_random) {
+function quiz_get_questions($quiz_nid = NULL, $quiz_vid = NULL, $include_all_types = TRUE, $nid_keys = FALSE, $include_question = TRUE, $include_random = TRUE) {
   $filter_types = '';
   $questions    = array();
   $wheres    = array();
