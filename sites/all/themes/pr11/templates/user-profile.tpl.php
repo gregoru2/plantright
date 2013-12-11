@@ -42,15 +42,6 @@
 <div class="profile">
   <!-- <div class="account-greeting">Welcome <?php print $name; ?>!</div> -->
 
-  <?php
-  if (in_array(16, $user_roles)):
-  // User has passed the Continuing Education quiz
-  ?>
-    <div class="partner-benefit-links">
-      <a href="/continuing-education-resources">Partner Resources</a>
-      <a href="/node/2949/certificate">Certificate of Achievement</a>
-    </div>
-  <?php endif; ?>
   <?php print $profile['content_profile']; ?>
   <div class="edit-account-container">
   <?php if ($node): ?>

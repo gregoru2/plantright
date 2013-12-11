@@ -1,0 +1,97 @@
+<?php
+
+define('PLANTRIGHT_CE_AMBASSADOR_ROLE', 17);
+
+function plantright_ce_block($op = 'list', $delta = 0, $edit = array()) {
+  if ($op == 'list') {
+    $block[0]['info'] = t('PlantRight Continuing Education Resources');
+    $block[0]['cache'] = BLOCK_NO_CACHE;
+  }
+
+  if ($op == 'view') {
+    $content = array();
+    if (arg(0) == 'user' && is_numeric(arg(1))) {
+      $account = user_load(arg(1));
+    }
+    else {
+      global $user;
+      $account = $user;
+    }
+
+    $account_roles = array_keys($account->roles);
+    
+    $content['user_roles'] = $account_roles;
+    $block['content'] = $content;
+  }
+  return $block;
+}
+
+/**
+ * Implements hook_nodeapi().
+ */
+function plantright_ce_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
+  // Add the JS to the continuing education resources page.
+  if ($node->nid == '2950' && $op == 'view') {
+    global $user;
+
+    if (array_key_exists(PLANTRIGHT_CE_AMBASSADOR_ROLE, $user->roles)) {
+      $is_ambassador = TRUE;
+    }
+    else {
+      $is_ambassador = FALSE;
+    }
+
+    drupal_add_js(array('plantright_ce' => array('ambassador' => $is_ambassador)), 'setting');
+    drupal_add_js(drupal_get_path('module', 'plantright_ce') . '/js/plantright-ce-ambassador.js');
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function plantright_ce_menu() {
+  $items = array();
+
+  // Ajax callback page to grant the ambassador role.
+  $items['ajax/plantright-ce-ambassador'] = array(
+    'page callback' => 'plantright_ce_ambassador_agree',
+    'access callback' => 'plantright_ce_ambassador_agree_access',
+    'access arguments' => array(2),
+  );
+  $items['ajax/plantright-ce-ambassador/%user'] = array(
+    'page callback' => 'plantright_ce_ambassador_agree',
+    'page arguments' => array(2),
+    'access callback' => 'plantright_ce_ambassador_agree_access',
+    'access arguments' => array(2),
+  );
+
+  return $items;
+}
+
+/**
+ * Page callback.
+ */
+function plantright_ce_ambassador_agree($account = NULL) {
+  $success = FALSE;
+
+  if (!$account) {
+    global $user;
+    $account = $user;
+  }
+
+  user_multiple_role_edit(array($account->uid), 'add_role', PLANTRIGHT_CE_AMBASSADOR_ROLE);
+  $success = TRUE;
+
+  return drupal_json(array('success' => $success));
+}
+
+/**
+ * Page access callback.
+ */
+function plantright_ce_ambassador_agree_access($account = NULL) {
+  if (!$account) {
+    global $user;
+    $account = $user;
+  }
+  return user_edit_access($account);
+}

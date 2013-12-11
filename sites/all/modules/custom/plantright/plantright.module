@@ -211,6 +211,11 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
 //    $form['name']['#default_value'] = user_password();
     $form['#after_build'] = array('plantright_user_register_after_build');
     array_unshift($form['#validate'], '_plantright_register_validate');
+
+    if (isset($form['#node']) && isset($form['#node']->type) && 'continuing_education_member' == $form['#node']->type) {
+      $form['#redirect'] = 'node/2948';
+    }
+    
   }
   if ($form_id == 'user_login' || $form_id == 'user_login_block') {
     $form['#action'] = NULL;
@@ -224,7 +229,7 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     $form['contact']['#prefix'] = '<div class="contact-info">';
     $form['contact']['#suffix'] = '</div>';
   }
-  if ($form_id == 'continuing_education_member_node_form' || $form_id == 'survey_profile_node_form' || $form_id == 'retail_member_node_form') {
+  if ($form_id == 'continuing_education_member_node_form' || $form_id == 'survey_profile_node_form' || $form_id == 'retail_member_node_form') {   
     $form['title']['#type'] = 'hidden';
     if (isset($form['account']['name'])) {
       $form['account']['name']['#type'] = 'hidden';

@@ -27,6 +27,8 @@ h5 { font-size: 1.1em; margin: 10px 0 3px; }
 
 h1 a, h2 a, h3 a, h4 a, h5 a { font-weight: 600; text-decoration: underline; }
 
+.smaller	{ font-size: .9em }
+
 #prContainer { position: relative; top: -10px; left: 0; width: 948px; background: white; text-align: left; -moz-box-shadow: 38px 0 38px -38px rgba(77, 60, 20, 0.3), -38px 0 38px -38px rgba(77, 60, 20, 0.3); -webkit-box-shadow: 38px 0 38px -38px rgba(77, 60, 20, 0.3), -38px 0 38px -38px rgba(77, 60, 20, 0.3); box-shadow: 38px 0 38px -38px rgba(77, 60, 20, 0.3), -38px 0 38px -38px rgba(77, 60, 20, 0.3); margin: 10px auto; padding: 0 6px 20px; }
 
 #main { width: 780px; float: left; border-top: solid 77px #4b3c17; margin-top: -101px; padding: 0 0 20px; }
@@ -67,6 +69,7 @@ div#console { color: #c3321a; background-color: white; border: solid #a15334; bo
 div#console .messages { font-size: 15px; line-height: 1.5; }
 div#console .messages.status { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; color: black; padding: 8px 6px; }
 div#console .messages.error { font-size: 1.2em; background-color: #fdf86a; color: black; border: solid 0 black; padding: 6px; }
+#page-continuing-education-resources div#console .messages.status	{ font-size: 1.6em; text-align: center; }
 
 body[id*="invites"] div#console { border: none; margin: 20px 0px 10px 0px; color: black; }
 body[id*="invites"] div#console div.help { border: none; margin: 20px 0px 10px 0px; color: black; }
@@ -185,11 +188,11 @@ div.contentBox#box3 { border-right: none; margin-right: 0; background: url(/imag
 #content div.contentBox p.rnp-2013, 
 #content div.contentBox p.rnp-2013-2, 
 #content div.contentBox p.inv101-2013
-	{font-size: 15px; line-height: 20px;
-	}
+{font-size: 15px; line-height: 20px;
+}
 
 #content div.contentBox p.iwyl-2013 span	{
-	font-size: 1.2em;
+  font-size: 1.2em;
 }
 
 
@@ -252,8 +255,13 @@ table#quiz-view-table { float: right; margin-top: 20px; display: none; padding: 
 table#quiz-view-table td { padding: 2px; }
 table#quiz-view-table td.quiz-view-table-title { text-align: right; }
 
-div#quiz_progress { margin-top: 20px; font-weight: 700; }
+div#quiz_progress { margin-top: 20px; font-weight: 700; font-size: 1.2em; }
 #quiz-question-answering-form tr.multichoice_row:hover { cursor: pointer; }
+#quiz_score_possible	{ font-size: 1.5em; margin-top: 1em; }
+#quiz_score_possible em, #quiz_score_percent em	{ font-style: normal; }
+#quiz_score_possible em:first-child	{ color: #c00; }
+#quiz_score_percent	{ font-size: 1.2em; margin-top: .6em; }
+	
 
 .preview .node { background-color: #ffffea; }
 
@@ -277,7 +285,7 @@ blockquote span.quote_attr	{ font-style: normal; color: #555; }
 #content .highlight-box-right ul	{ margin: .6em 0 0 1em; padding: 0; }
 
 
-hr { height: 1px; border: 1px solid gray; }
+hr { height: 1px; border: none; background-color: #999; width: 95%; }
 
 .form-item input.error, .form-item textarea.error, .form-item select.error { border: 1px solid #aa1144; }
 
@@ -780,18 +788,24 @@ body.partner_only #footer a { color: #f1ead6; }
 
 sup.tm { font-size: 0.75em; position: relative; top: 0; left: 0; font-weight: 400; }
 
-ul#partner_downloads { margin: 0px; padding: 0px; }
+ul#partner_downloads, ul#education_certificate_download { margin: 0px; padding: 0px; }
 
-#content ul#partner_downloads li { list-style-type: none; width: 100%; margin: 0px; padding: 0px; }
+#content ul#partner_downloads li, #content ul#education_certificate_download li { list-style-type: none; width: 100%; margin: 0px; padding: 0px; }
 
-ul#partner_downloads li a { font-family: "Open Sans", Helvetica, Arial sans-serif; font-size: 1.25em; font-weight: 400; color: #fff; text-align: center; display: block; margin: 10px 0px; padding: 10px; border: solid 1px #4c3d14; background-color: #a15130;
-                            -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.25);
-                            -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.25);
-                            box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.25); }
-ul#partner_downloads a:hover { text-decoration: none; background-color: #493e13; /* Old browsers */ background: -moz-linear-gradient(top, #6b5328 1%, #493e13 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #6b5328), color-stop(100%, #493e13)); /* Chrome,Safari4+ */ background: -webkit-linear-gradient(top, #6b5328 1%, #493e13 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(top, #6b5328 1%, #493e13 100%); /* Opera 11.10+ */ background: -ms-linear-gradient(top, #6b5328 1%, #493e13 100%); /* IE10+ */ background: linear-gradient(to bottom, #6b5328 1%, #493e13 100%); /* W3C */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b5328', endColorstr='#493e13',GradientType=0 ); /* IE6-9 */ }
+ul#partner_downloads li a, ul#education_certificate_download li a { font-family: "Open Sans", Helvetica, Arial sans-serif; font-size: 1.25em; font-weight: 400; color: #fff; text-align: center; display: block; margin: 10px 0px; padding: 10px; border: solid 1px #4c3d14; background-color: #a15130;
+                                                                    -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.25);
+                                                                    -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.25);
+                                                                    box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.25);
+-webkit-border-radius: 7px;
+-moz-border-radius: 7px;
+border-radius: 7px; }
+ul#partner_downloads a:hover, ul#education_certificate_download li a:hover { text-decoration: none; background-color: #493e13; /* Old browsers */ background: -moz-linear-gradient(top, #6b5328 1%, #493e13 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #6b5328), color-stop(100%, #493e13)); /* Chrome,Safari4+ */ background: -webkit-linear-gradient(top, #6b5328 1%, #493e13 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(top, #6b5328 1%, #493e13 100%); /* Opera 11.10+ */ background: -ms-linear-gradient(top, #6b5328 1%, #493e13 100%); /* IE10+ */ background: linear-gradient(to bottom, #6b5328 1%, #493e13 100%); /* W3C */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b5328', endColorstr='#493e13',GradientType=0 ); /* IE6-9 */
+-webkit-border-radius: 7px;
+-moz-border-radius: 7px;
+border-radius: 7px; }
 
 div#resources_list { float: left; width: 100%; }
-div#resources_list div#partner_resource_links, div#resources_list div#partner_resource_downloads { width: 360px; float: left; margin: 0px 10px; padding: 0px; }
+div#resources_list div#partner_resource_links, div#resources_list div#partner_resource_downloads, div#resources_list div#training_and_education, div#resources_list div#education_downloads  { width: 360px; float: left; margin: 0px 10px; padding: 0px; }
 div#resources_list div#partner_resource_downloads { padding: 0px; margin-left: 20px; }
 div#resources_list > div > h4 { background-color: #e5dec7; font-weight: 700; padding: 2px 5px; }
 div#resources_list > div > ul { padding-left: 0; margin-top: 12px; }
@@ -799,7 +813,8 @@ div#resources_list > div > ul#partner_downloads { margin-top: 0px; }
 div#resources_list > div > ul li { margin-bottom: 8px; }
 div#resources_list div.link_group { border: solid 1px #dec99f; padding: 2px; margin: 10px 0px 20px 0px; line-height: 1.7em; }
 div#resources_list div.link_group h3 { background-color: #79a724; color: #fff; font-weight: 600; padding: 4px 8px; margin: 0px 0px 10px 0px; }
-div#resources_list div.link_group ul { margin: 0px 8px 10px 8px; }
+div#resources_list div.link_group h4	{ margin: 10px 10px 3px 10px; }
+div#resources_list div.link_group ul, div#resources_list div.link_group ol { margin: 0px 8px 10px 8px; line-height: 1.46; }
 #content .prose div#resources_list div.link_group ul li ul { margin: 4px 5px; }
 #content .prose div#resources_list div.link_group ul li ul li a { font-weight: normal; }
 
@@ -1236,7 +1251,7 @@ body.section-user #content .profile h2.pageTitle, body.section-users #content .p
   border: 1px solid #dccdad; border-radius: 3px; padding: 2px; background:#fff; float: left; }
 .horizontal-box  div.left-vertical { background-color: #78a723; color: #fff; text-shadow: 1px 1px 1px rgba(65, 96, 0, 0.2); font-size: 1.25em; width: 370px; float: left; margin: 0; padding: 15px 20px 20px 20px; line-height: 1.2; font-weight: 200;  }
 .horizontal-box div.left-vertical h3 { color: #fff; font-family: Helvetica, Arial, sans-serif; font-weight: 400; font-size: 1.75em; letter-spacing: 1px; margin: 0 0 10px 0;}
-.horizontal-box div.left-vertical a { color: #fff; }
+.horizontal-box div.left-vertical a { color: #fff; letter-spacing: 1px; }
 .horizontal-box div.left-vertical ul li { margin: .5em 2em; list-style-type: disc; font-weight: bold; }
 /*
 .block-retailer_progress #progress-block h2#the-checklist { text-align: center; font-size: 23px; margin: 0; padding: 0 2px 2px 2px; background-color: #78a723; color: #fff; }
@@ -1311,6 +1326,12 @@ body.section-user #content .profile h2.pageTitle, body.section-users #content .p
 .partner-account-data h2	{
   margin-top: .75em;
 }
+
+.partner-benefit-links.cont-ed-benefits a.partner_resources_large_link	{  margin: 1em auto 1.8em auto; padding: 12px; }
+
+.partner-benefit-links.cont-ed-benefits a.partner_resources_large_link strong	{ font-size: 1.25em; }
+
+
 
 .content-profile-display .partner-account-data .profile-item	{
   margin: 1em 0;
@@ -1557,3 +1578,26 @@ span.password-confirm span.error { font-weight: bold; text-transform: uppercase;
 
 body.popup { background: #fff; font-size: 1.05em; }
 body.popup .popup-hidden { display: none; }
+
+/* continuing education ambassador */
+#ce-resources-terms, #ce-resources-resources { margin-top: 2em; }
+.prose #ce-resources-terms .ce-resources-terms-intro h3 { font-weight: normal; font-size: 1.6em; color: #79a724; margin-bottom: 0px; }
+#ce-resources-terms .ce-resources-terms-intro h4 { font-weight: 600; text-align: center; }
+.ce-resources-term { font-size: 1.7em; font-weight: 200; line-height: 1.25; margin: 30px 0 10px 0; border: solid 1px #dec99f; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; padding: 10px; }
+
+#content .prose .ce-resources-term ul, #content .prose .ce-resources-term ol	{ margin: 6px 0 0 0; padding: 0; }
+#content .prose .ce-resources-term ul li, #content .prose .ce-resources-term ol li { font-size: .7em; font-weight: 400; margin: 3px 0 0 1.3em; }
+
+
+.ce-resources-term-agree { width: 50%; font-size: .8em; font-weight: 600; color: #fff; letter-spacing: 1px; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); text-align: center; margin: 10px 0 5px 0; padding: 6px; border: solid 1px #496b05; background-color: #79a724;
+                           -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.25);
+                           -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.25);
+                           box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.25);
+                           border-radius: 7px;
+                           position: relative;
+                           top: 0px;
+                           left: 25%; }
+.ce-resources-term-agree:hover { cursor: pointer; /* Old browsers */ background: -moz-linear-gradient(top, #5d801f 1%, #306008 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #5d801f), color-stop(100%, #306008)); /* Chrome,Safari4+ */ background: -webkit-linear-gradient(top, #5d801f 1%, #306008 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(top, #5d801f 1%, #306008 100%); /* Opera 11.10+ */ background: -ms-linear-gradient(top, #5d801f 1%, #306008 100%); /* IE10+ */ background: linear-gradient(to bottom, #5d801f 1%, #306008 100%); /* W3C */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5d801f', endColorstr='#306008',GradientType=0 ); }
+.ce-resources-success { font-weight: normal; font-size: 1.3em; line-height: 1.25; margin: 10px; }
+.ce-term-number	{ display: block; color: #c4bb9c; background-color: #fff; width: 10%; margin-top: -30px; position: relative; top: 0px; left: 45%; font-weight: 800; text-align: center; font-size: 1.3em; line-height: 1; margin-bottom: 5px; }
+

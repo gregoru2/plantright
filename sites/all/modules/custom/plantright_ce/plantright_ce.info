@@ -1,0 +1,4 @@
+name = PlantRight Continuing Education
+description = Customizations for continuing education.
+package = PlantRight
+core = 6.x
