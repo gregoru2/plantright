@@ -4,12 +4,12 @@
 Drupal.behaviors.plantright_ce_ambassador = function(context) {
   var is_ambassador = Drupal.settings.plantright_ce.ambassador;
   if (is_ambassador) {
-    $('#ce-resources-terms').hide();
-    $('#ce-resources-resources').show();
+    $('#ce-resources-terms', context).hide();
+    $('#ce-resources-resources', context).show();
   }
   else {
-    var $terms_container = $('#ce-resources-terms').show();
-    var $terms_resources = $('#ce-resources-resources').hide();
+    var $terms_container = $('#ce-resources-terms', context).show();
+    var $terms_resources = $('#ce-resources-resources', context).hide();
     
     var $terms = $terms_container.find('.ce-resources-term').hide();
     var $terms_success = $terms_container.find('.ce-resources-success').hide();
