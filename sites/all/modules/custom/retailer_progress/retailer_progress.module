@@ -19,14 +19,19 @@ function retailer_progress_block($op = 'list', $delta = 0, $edit = array()) {
   if ($op == 'view') {
     $block['content'] = '';
 
-    if (arg(0) == 'user' && is_numeric(arg(1))) {
-      $account = user_load(arg(1));
+    if (arg(0) == 'user' || arg(0) == 'users') {
+      if (is_numeric(arg(1))) {
+        $account = user_load(arg(1));
+      }
+      else {
+        return;
+      }
     }
     else {
       global $user;
       $account = $user;
     }
-
+    
     $account_roles = array_keys($account->roles);
     
     $content['account'] = $account;
