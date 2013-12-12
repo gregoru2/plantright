@@ -94,7 +94,7 @@ if ($content['progress_complete']) {
     </div>
 
     <div id="pass-quiz" class="item <?php print $group_quiz_progress ?>">
-      <?php if ($uncertified_buyers_count <= 0): ?>
+      <?php if ($total_buyers_count > 0 && $uncertified_buyers_count <= 0): ?>
         <p class="desc">All plant buyers at your nursery have completed the PlantRight 101 training.</p>
         <p class="status">Congratulations!  Visit PlantRight's <a href="/partner-resources">Partner Resources</a>.</p>
       <?php else : ?>
