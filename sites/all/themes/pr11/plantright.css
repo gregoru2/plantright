@@ -172,7 +172,10 @@ div.contentBox#box3 { border-right: none; margin-right: 0; background: url(/imag
 
 #page-homepage #content { margin-bottom: 0px; }
 
-#content div.contentBox p { color: #1f1f1f; line-height: 2.8ex; text-shadow: -2px 2px 2px rgba(255, 255, 255, 0.9); margin: 0; padding: 8px 10px 5px 10px; }
+#content div.contentBox p { color: #1f1f1f; line-height: 2.8ex; margin: 0; padding: 8px 10px 5px 10px; }
+#content div.contentBox  { text-shadow: -2px 2px 9px rgba(255, 255, 255, 1); }
+#content div.contentBox h2  { text-shadow: -2px 2px 2px rgba(255, 255, 255, 0.1); }
+
 #content div.contentBox#box1 p { text-align: right; margin-left: 100px; }
 #content div.contentBox#box3 p { margin-right: 80px; }
 #content h2 { font-weight: 400; font-size: 1.5em; }
@@ -201,11 +204,14 @@ div.contentBox#box2.rnp { border-left: solid 1px #e9e6d0; border-right: solid 1p
 div.contentBox#box3.inv101 { border-right: none; margin-right: 0; background: url(/images/pampas_cutout.jpg) no-repeat center 72px; text-align: center;  }
 
 #content div.contentBox#box1.iwyl p { text-align: right; margin-left: 100px; font-weight: bold; }
-#content div.contentBox#box3.inv101 p { margin-right: 0px; }
+
 #content div.contentBox#box2.rnp p.rnp-2013	{ font-weight: normal; line-height: 18px;  }
 #content div.contentBox#box2.rnp p.rnp-2013-2	{ position: relative; top: 136px; font-size: 13px;  }
 #content div.contentBox#box2.rnp p.rnp-2013 a	{ font-size: 18px; display: block;  margin-top: .2em;}
-#content div.contentBox p.inv101-2013 a	{ font-size: 13px; }
+
+#content div.contentBox#box3 p.inv101-2013 { margin-right: 0px; margin-top: 0px; font-size: 13px; line-height: 15px; font-weight: 600; }
+#content div.contentBox#box3 p.inv101-2013 a	{ font-size: 18px; line-height: 20px; display: block;  margin-top: .2em;}
+#content div.contentBox div a	{ font-size: 13px; }
 
 
 
@@ -467,7 +473,7 @@ li span.flag-nursery-dibs a { background-color: #f7f5ed; border: solid 1px #b697
 
 .node-nursery .field-label-inline-first { display: inline-block; width: 130px; text-align: right; margin-right: 10px; }
 
-body#page-horticultural-professionals #donate, body#page-partner-faq #donate, body#page-partner-resources #donate, body#page-plantright-101-training #donate { display: none; }
+body#page-horticultural-professionals #donate, body#page-partner-faq #donate, body#page-partner-resources #donate, body#page-plantright-101-training #donate, body.section-continuing-education #donate { display: none; }
 body#page-horticultural-professionals h3 { color: #78a22e; font-size: 1.7em; margin-top: 2em; }
 
 h2 sup, h3 sup, h4 sup { font-weight: 400; font-size: 0.6em; }
