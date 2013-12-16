@@ -165,6 +165,12 @@ function _pr11_print_book_children($link, &$content, &$zomglimit, $limit = 500) 
  * Implementation of preprocess_page().
  */
 function pr11_preprocess_page(&$vars) {
+  $vars['head'] .= '<link '. drupal_attributes(array(
+    'rel' => 'stylesheet',
+    'type' => 'text/css',
+    'href' => 'http://fonts.googleapis.com/css?family=Oswald:400,700')
+  ) ." />\n";
+  
   $nodes = array(2392);
   if (isset($_REQUEST['popup']) && in_array($vars['node']->nid, $nodes)) {
     $vars['template_files'][] = 'page-popup';
