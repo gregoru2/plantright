@@ -42,9 +42,9 @@ jQuery(document).ready(function($) {
     $('.pr-slide .pr-slide-text').textshadow('2px 7px 5px rgba(0, 0, 0, 0.7)');
     $('.pr-slide .slide-highlight').textshadow('3px 10px 5px rgba(0, 0, 0, 0.5)');
     $('.pr-slide .slide-heading').textshadow('3px 10px 5px rgba(0, 0, 0, 0.5)');
-    $('.pr-slide .slide-attr').textshadow('2px 6px 5px rgba(0, 0, 0, 0.5)');
-    $('.pr-slide .slide-text-left').textshadow('2px 8px 5px rgba(0, 0, 0, 0.5)');
-    $('.pr-slide .slide-link').textshadow('2px 8px 5px rgba(0, 0, 0, 0.5)');
+	$('.pr-slide .slide-attr').textshadow('2px 6px 5px rgba(0, 0, 0, 0.5)');
+	$('.pr-slide .slide-text-left').textshadow('2px 8px 5px rgba(0, 0, 0, 0.5)');
+	$('.pr-slide .slide-link').textshadow('2px 8px 5px rgba(0, 0, 0, 0.5)');
   }
 
   $('#page-node-add-survey-photos input.form-radio').click(function() {
