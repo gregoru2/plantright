@@ -18,7 +18,7 @@
 
       <?php if (!$page && node_access('update', $node)): ?>
         <div class='<?php print $hook ?>-links clear-block'>
-          <li><a href="/node/<?php print $nid; ?>/edit slide">edit slide</a></li>
+          <li><a href="/node/<?php print $nid; ?>/edit">edit slide</a></li>
         </div>
       <?php endif; ?>
     <?php endif; ?>
