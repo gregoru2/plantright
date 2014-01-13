@@ -23,36 +23,6 @@ function plantright_init() {
 }
 
 /**
- * Implementation of hook_flag().
- */
-function plantright_flag($action, $flag, $content_id, $account) {
-  if ($action == 'flag' && $flag->name == 'nursery_flag') {
-    $node = node_load($content_id);
-    //dpm($node->field_surveying_user);
-    $member = array();
-    $member['uid'] = $account->uid;
-    array_push($node->field_surveying_user, $member);
-    //dpm($node->field_surveying_user);
-    node_save($node);
-  }
-  if ($action == 'unflag' && $flag->name == 'nursery_flag') {
-    $node = node_load($content_id);
-    $users = $node->field_surveying_user;
-    $node->field_surveying_user = removeElementWithValue($users, "uid", $account->uid);
-    node_save($node);
-  }
-}
-
-function removeElementWithValue($array, $key, $value) {
-  foreach ($array as $subKey => $subArray) {
-    if ($subArray[$key] == $value) {
-      unset($array[$subKey]);
-    }
-  }
-  return $array;
-}
-
-/**
  * Implementation of hook_user().
  */
 function plantright_user($op, &$edit, &$account, $category = NULL) {

@@ -1,0 +1,4 @@
+name = PlantRight Survey
+description = Customizations for the PlantRight survey. (except survey profiles)
+package = PlantRight
+core = 6.x

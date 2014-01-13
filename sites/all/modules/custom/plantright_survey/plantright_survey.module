@@ -1,0 +1,70 @@
+<?php
+ini_set('display_errors', true);
+/**
+ * Contains customizations for the spring survey.
+ * (Survey user profile customizations are in the Plantright module.)
+ */
+
+function plantright_survey_init() {
+ // dpm('testing');
+  drupal_add_js(drupal_get_path('module', 'plantright_survey') . '/js/plantright_survey.js');
+}
+
+/**
+ * Implementation of hook_flag().
+ */
+function plantright_survey_flag($action, $flag, $content_id, $account) {
+  if ($action == 'flag' && $flag->name == 'nursery_flag') {
+    $node = node_load($content_id);
+    //dpm($node->field_surveying_user);
+    $member = array();
+    $member['uid'] = $account->uid;
+    array_push($node->field_surveying_user, $member);
+    //dpm($node->field_surveying_user);
+    node_save($node);
+  }
+  if ($action == 'unflag' && $flag->name == 'nursery_flag') {
+    $node = node_load($content_id);
+    $users = $node->field_surveying_user;
+    $node->field_surveying_user = removeElementWithValue($users, "uid", $account->uid);
+    node_save($node);
+  }
+}
+
+function removeElementWithValue($array, $key, $value) {
+  foreach ($array as $subKey => $subArray) {
+    if ($subArray[$key] == $value) {
+      unset($array[$subKey]);
+    }
+  }
+  return $array;
+}
+
+function plantright_survey_form_alter(&$form, &$form_state, $form_id) {
+  switch($form_id) {
+    case 'survey_photos_node_form':
+      $form['buttons']['submit']['#submit'][] = 'plantright_survey_survey_photos_node_form_submit';
+      break;
+  }
+
+}
+
+function plantright_survey_survey_photos_node_form_submit(&$form, &$form_state) {
+  if (empty($form_state['values']['nid'])) {
+    // New submission.
+    $key = null;
+    foreach ($_SESSION['messages']['status'] as $status_key => $status) {
+      if (strpos($status, 'has been created')) {
+        $key = $status_key;
+      }
+    }
+
+    if ($key !== null) {
+      $_SESSION['messages']['status'][$key] = t('Congratulations, you have successfully submitted your photos. Please check over them below. If you want to submit more photos for this nursery, please go to <a href="/node/add/survey-photos">Upload Photos</a>.');
+    }
+    
+    // Redirect to the nursery node.
+    $nursery_id = $form_state['values']['field_store_name'][0]['nid'];
+    $form['#redirect'] = 'node/' . $nursery_id;
+  }
+}

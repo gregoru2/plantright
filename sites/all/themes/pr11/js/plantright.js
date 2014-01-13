@@ -47,12 +47,6 @@ jQuery(document).ready(function($) {
 	$('.pr-slide .slide-link').textshadow('2px 8px 5px rgba(0, 0, 0, 0.5)');
   }
 
-  $('#page-node-add-survey-photos input.form-radio').click(function() {
-    $code = $(this).siblings('span.views-field-field-store-code-value').children('.field-content').html();
-    //console.log($code);
-    $('input#edit-title').val($code);
-  });
-  $('#page-node-add-survey-photos input#edit-field-survey-image-field-survey-image-add-more').val('Add another photo');
   $('.folded').hide();
   $('.fold').click(function(e) {
     $(this).toggleClass('open');
