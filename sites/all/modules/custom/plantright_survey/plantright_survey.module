@@ -1,12 +1,12 @@
 <?php
-ini_set('display_errors', true);
+
 /**
  * Contains customizations for the spring survey.
  * (Survey user profile customizations are in the Plantright module.)
  */
+//todo: redirect from /spring-nursery-survey-submission
 
 function plantright_survey_init() {
- // dpm('testing');
   drupal_add_js(drupal_get_path('module', 'plantright_survey') . '/js/plantright_survey.js');
 }
 
@@ -41,12 +41,19 @@ function removeElementWithValue($array, $key, $value) {
 }
 
 function plantright_survey_form_alter(&$form, &$form_state, $form_id) {
-  switch($form_id) {
+  global $user;
+  switch ($form_id) {
     case 'survey_photos_node_form':
       $form['buttons']['submit']['#submit'][] = 'plantright_survey_survey_photos_node_form_submit';
       break;
-  }
+    case 'survey_submission_node_form':
+      $form['#after_build'][] = 'plantright_survey_survey_submission_node_form_after_build';
 
+      // Populate default value for email and name.
+      $form['field_survey_email'][0]['#default_value']['email'] = $user->mail;
+      $form['field_survey_name'][0]['#default_value']['value'] = plantright_get_user_profile_name($user);
+      break;
+  }
 }
 
 function plantright_survey_survey_photos_node_form_submit(&$form, &$form_state) {
@@ -62,9 +69,37 @@ function plantright_survey_survey_photos_node_form_submit(&$form, &$form_state) 
     if ($key !== null) {
       $_SESSION['messages']['status'][$key] = t('Congratulations, you have successfully submitted your photos. Please check over them below. If you want to submit more photos for this nursery, please go to <a href="/node/add/survey-photos">Upload Photos</a>.');
     }
-    
+
     // Redirect to the nursery node.
     $nursery_id = $form_state['values']['field_store_name'][0]['nid'];
     $form['#redirect'] = 'node/' . $nursery_id;
   }
+}
+
+function plantright_survey_survey_submission_node_form_after_build($form, &$form_state) {
+  $form['title']['#weight'] = $form['group_survey_basic']['field_store_name']['#weight'] + 1;
+  $form['group_survey_basic']['field_survey_name']['#weight'] = $form['group_survey_basic']['field_survey_name']['#weight'] + 1;
+  $form['group_survey_basic']['field_survey_email']['#weight'] = $form['group_survey_basic']['field_survey_email']['#weight'] + 1;
+  $form['group_survey_basic']['title'] = $form['title'];
+  unset($form['title']);
+
+  $form['group_survey_basic']['help_text'] = array(
+    '#value' => "<div class=\"description\"><p>Thank you for participating in PlantRight's 2013 Spring Nursery Survey. This form contains PlantRight's list of 19 horticultural invasive plants and is organized by growth form. Please identify plants using their scientific names. Thank you!</p>
+      <p>If there are any invasive species at the nursery you surveyed, please email the photos to <a href=\"mailto:plantright@suscon.org\">plantright@suscon.org</a>. Name each photo using the store code, your last name, the plant name and whether it is of the plant or tag (eg. Monterey2013-01, Smith, pampas grass, plant tag)</p></div>",
+  );
+
+  $form['group_additional']['field_survey_start_time'][0]['#type'] = 'item';
+  $form['group_additional']['field_survey_start_time']['#prefix'] = '<div class="clearfix">';
+  $form['group_additional']['field_survey_start_time']['#suffix'] = '</div>';
+  $form['group_additional']['field_survey_start_time'][0]['hour']['#options'][''] = t('hour');
+  $form['group_additional']['field_survey_start_time'][0]['minute']['#options'][''] = t('minute');
+
+  $form['group_additional']['field_survey_end_time'][0]['#type'] = 'item';
+  $form['group_additional']['field_survey_end_time']['#prefix'] = '<div class="clearfix">';
+  $form['group_additional']['field_survey_end_time']['#suffix'] = '</div>';
+  $form['group_additional']['field_survey_end_time'][0]['hour']['#options'][''] = t('hour');
+  $form['group_additional']['field_survey_end_time'][0]['minute']['#options'][''] = t('minute');
+
+
+  return $form;
 }
