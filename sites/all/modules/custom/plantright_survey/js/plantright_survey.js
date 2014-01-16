@@ -1,5 +1,8 @@
 Drupal.behaviors.plantright_survey = function (context) {
-  $('#page-node-add-survey-photos input.form-radio, #page-node-add-survey-submission input.form-radio, ').click(function() {
+  // Dev note: because radios don't have identifing container, only one set
+  // of radio buttons can be in the given container.
+  // If another needs added, you need a method of identifying the radios.
+  $('#page-node-add-survey-photos input.form-radio, #page-node-add-survey-submission .group-survey-basic input.form-radio, ').click(function() {
     $code = $(this).siblings('span.views-field-field-store-code-value').children('.field-content').html();
     $('input#edit-title').val($code);
   });

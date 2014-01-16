@@ -630,3 +630,14 @@ function plantright_invite_status($account) {
     return t('Cannot get invites.');
   }
 }
+
+/**
+ * Helper function to add an empty select option to a required cck form field.
+ * @param Array $options Element options array
+ * @param String $label Translated string to use as the empty element label.
+ */
+function _plantright_addEmptyOption(&$options, $label = null) {
+  $options = array_reverse($options, true);
+  $options[''] = $label ? $label : t('- select -');
+  $options = array_reverse($options, true);
+}

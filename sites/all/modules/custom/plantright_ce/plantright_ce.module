@@ -100,3 +100,23 @@ function plantright_ce_ambassador_agree_access($account = NULL) {
   }
   return user_edit_access($account);
 }
+
+/**
+ * Implementation of hook_form_alter.
+ */
+function plantright_ce_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
+  switch ($form_id) {
+    case 'continuing_education_member_node_form':
+      $form['field_county_1']['#after_build'][] = 'plantright_ce_ce_profile_node_form_after_build';
+      break;
+  }
+}
+
+/**
+ * Alter nursery user profile form field county.
+ */
+function plantright_ce_ce_profile_node_form_after_build($form, &$form_state) {
+  _plantright_addEmptyOption($form['value']['#options']);
+  return $form;
+}
