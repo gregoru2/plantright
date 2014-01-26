@@ -641,3 +641,22 @@ function _plantright_addEmptyOption(&$options, $label = null) {
   $options[''] = $label ? $label : t('- select -');
   $options = array_reverse($options, true);
 }
+
+/**
+ * Implementation of hook_theme().
+ */
+function plantright_theme($existing) {
+  return array(
+//    'views_view_field__view_name__field_name' => array(
+//      'arguments' => array('view' => NULL, 'field' => NULL, 'row' => NULL),
+//      'template' => 'views-view-field--view-name--field-name',
+//      'original hook' => 'views_view_field',
+//      'path' => drupal_get_path('module', 'plantright_survey') . '/templates',
+//    ),
+    'views_view' => array(
+      'arguments' => array('view' => NULL),
+      'template' => 'views-view',
+      'path' => drupal_get_path('module', 'plantright') . '/templates',
+    ),
+  );
+}
