@@ -1,0 +1,286 @@
+<?php
+
+function plantright_survey_install() {
+  drupal_install_schema('plantright_survey');
+}
+
+function plantright_survey_schema() {
+  $schema['plantright_survey_county_tracking'] = array(
+    'description' => 'County tracking table for plantright survey.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'Primary identifier',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'region' => array(
+        'description' => 'Region the county belongs in',
+        'type' => 'varchar',
+        'length' => '256',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'county' => array(
+        'description' => 'Name of the county',
+        'type' => 'varchar',
+        'length' => '128',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'stores_number_claimed' => array(
+        'description' => 'Number of stores claimed',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'stores_number_total' => array(
+        'description' => 'Total number of stores',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'stores_delta_claimed' => array(
+        'description' => 'Delta of stores total to stores claimed',
+        'type' => 'int',
+        'unsigned' => FALSE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'stores_number_w_data_photos' => array(
+        'description' => 'Number of stores with data and photos submitted',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'stores_percent_surveyed' => array(
+        'description' => 'Percent of stores surveyed',
+        'type' => 'float',
+        'size' => 'normal',
+        'default' => 0,
+        'precision' => 10,
+        'scale' => 2,
+        'not null' => TRUE,
+      ),
+      'stores_delta_data' => array(
+        'description' => 'Delta of stores total to stores with data submitted',
+        'type' => 'int',
+        'unsigned' => FALSE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'unique_keys' => array(
+      'county' => array('county'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['plantright_survey_volunteer_tracking'] = array(
+    'description' => 'Volunteer tracking table for plantright survey.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'Primary identifier',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'description' => 'User id from {users} table',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'passed_quiz' => array(
+        'description' => 'User has passed quiz',
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'data_submitted' => array(
+        'description' => 'User has submitted data',
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'photos_submitted' => array(
+        'description' => 'User has submitted photos',
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'claimed_store' => array(
+        'description' => 'User has claimed a store',
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'unique_keys' => array(
+      'uid' => array('uid'),
+    ),
+    'primary key' => array('id'),
+  );
+  return $schema;
+}
+
+/**
+ * Add county tracking db table.
+ */
+function plantright_survey_update_6001() {
+  $schema = array();
+  $schema['plantright_survey_county_tracking'] = array(
+    'description' => 'County tracking table for plantright survey.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'Primary identifier',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'region' => array(
+        'description' => 'Region the county belongs in',
+        'type' => 'varchar',
+        'length' => '256',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'county' => array(
+        'description' => 'Name of the county',
+        'type' => 'varchar',
+        'length' => '128',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'stores_number_claimed' => array(
+        'description' => 'Number of stores claimed',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'stores_number_total' => array(
+        'description' => 'Total number of stores',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'stores_delta_claimed' => array(
+        'description' => 'Delta of stores total to stores claimed',
+        'type' => 'int',
+        'unsigned' => FALSE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'stores_number_w_data_photos' => array(
+        'description' => 'Number of stores with data and photos submitted',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'stores_percent_surveyed' => array(
+        'description' => 'Percent of stores surveyed',
+        'type' => 'float',
+        'size' => 'normal',
+        'default' => 0,
+        'precision' => 10,
+        'scale' => 2,
+        'not null' => TRUE,
+      ),
+      'stores_delta_data' => array(
+        'description' => 'Delta of stores total to stores with data submitted',
+        'type' => 'int',
+        'unsigned' => FALSE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'unique_keys' => array(
+      'county' => array('county'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $ret = array();
+  db_create_table($ret, 'plantright_survey_county_tracking', $schema['plantright_survey_county_tracking']);
+  return $ret;
+}
+
+/**
+ * Add volunteer tracking table.
+ */
+function plantright_survey_update_6002() {
+  $schema = array();
+  $schema['plantright_survey_volunteer_tracking'] = array(
+    'description' => 'Volunteer tracking table for plantright survey.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'Primary identifier',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'description' => 'User id from {users} table',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'passed_quiz' => array(
+        'description' => 'User has passed quiz',
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'data_submitted' => array(
+        'description' => 'User has submitted data',
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'photos_submitted' => array(
+        'description' => 'User has submitted photos',
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'claimed_store' => array(
+        'description' => 'User has claimed a store',
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'unique_keys' => array(
+      'uid' => array('uid'),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $ret = array();
+  db_create_table($ret, 'plantright_survey_volunteer_tracking', $schema['plantright_survey_volunteer_tracking']);
+  return $ret;
+}
