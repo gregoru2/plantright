@@ -1,0 +1,3 @@
+<?php
+
+include_once('plantright_survey_feature.features.inc');
