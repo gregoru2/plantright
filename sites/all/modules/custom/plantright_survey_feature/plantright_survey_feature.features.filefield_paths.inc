@@ -17,7 +17,7 @@ function plantright_survey_feature_default_filefield_paths() {
       'transliterate' => 0,
     ),
     'filepath' => array(
-      'value' => 'spring-survey-images/2013/user-[author-uid]',
+      'value' => 'spring-survey-images/2014/user-[author-uid]',
       'tolower' => 0,
       'pathauto' => 0,
       'transliterate' => 0,
