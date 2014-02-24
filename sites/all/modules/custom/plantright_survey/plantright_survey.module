@@ -425,6 +425,11 @@ function plantright_views_pre_render($view) {
         }
       }
       break;
+    case 'nursery_list':
+      if (!user_access('administer nodes')) {
+        $view->feed_icon = '';
+      }
+      break;
   }
 }
 

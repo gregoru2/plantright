@@ -185,6 +185,9 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     if (isset($form['#node']) && isset($form['#node']->type) && 'continuing_education_member' == $form['#node']->type) {
       $form['#redirect'] = 'node/2948';
     }
+    else if (isset($form['#node']) && isset($form['#node']->type) && 'survey_profile' == $form['#node']->type) {
+      $form['#redirect'] = 'node/332';
+    }
     
   }
   if ($form_id == 'user_login' || $form_id == 'user_login_block') {
