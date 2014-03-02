@@ -962,6 +962,8 @@ function plantright_survey_feature_views_default_views() {
   $handler->override_option('header', 'Nurseries in Southern California become available to sign up for at noon on March 3rd, 2014. Stores in Northern California will be added on April 21st at noon. If you would like to sign up for a store but there are no stores left to survey in your county, please contact Chris Crawford for assistance at ccrawford@suscon.org. Thank you.
 ');
   $handler->override_option('header_empty', 1);
+  $handler->override_option('empty', 'No unclaimed nurseries.');
+  $handler->override_option('empty_format', '2');
   $handler->override_option('items_per_page', 25);
   $handler->override_option('use_pager', '1');
   $handler->override_option('path', 'spring-nursery-survey/nursery-list');
@@ -1489,6 +1491,8 @@ function plantright_survey_feature_views_default_views() {
     ),
   ));
   $handler->override_option('header', '');
+  $handler->override_option('empty', 'No claimed nurseries.');
+  $handler->override_option('empty_format', '2');
   $handler->override_option('path', 'spring-nursery-survey/claimed-list');
   $handler->override_option('menu', array(
     'type' => 'none',
