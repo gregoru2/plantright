@@ -941,6 +941,23 @@ function plantright_survey_feature_views_default_views() {
         'button' => 'Use default',
       ),
     ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
   ));
   $handler->override_option('header', 'Nurseries in Southern California become available to sign up for at noon on March 3rd, 2014. Stores in Northern California will be added on April 21st at noon. If you would like to sign up for a store but there are no stores left to survey in your county, please contact Chris Crawford for assistance at ccrawford@suscon.org. Thank you.
 ');
@@ -4840,7 +4857,57 @@ function plantright_survey_feature_views_default_views() {
   $view->api_version = '2';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->override_option('relationships', array(
+    'field_store_name_nid' => array(
+      'label' => 'Store Name',
+      'required' => 0,
+      'delta' => -1,
+      'id' => 'field_store_name_nid',
+      'table' => 'node_data_field_store_name',
+      'field' => 'field_store_name_nid',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
   $handler->override_option('fields', array(
+    'title_1' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'absolute' => 0,
+        'link_class' => '',
+        'alt' => '',
+        'rel' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '(nursery not found)',
+      'hide_empty' => 0,
+      'empty_zero' => 1,
+      'hide_alter_empty' => 0,
+      'link_to_node' => 1,
+      'exclude' => 1,
+      'id' => 'title_1',
+      'table' => 'node',
+      'field' => 'title',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_store_name_nid',
+    ),
     'field_survey_image_fid' => array(
       'label' => '',
       'alter' => array(
@@ -4891,7 +4958,7 @@ function plantright_survey_feature_views_default_views() {
         'alter_text' => 0,
         'text' => '',
         'make_link' => 0,
-        'path' => '',
+        'path' => 'node/[nid]',
         'absolute' => 0,
         'link_class' => '',
         'alt' => '',
@@ -4911,12 +4978,45 @@ function plantright_survey_feature_views_default_views() {
       'hide_empty' => 0,
       'empty_zero' => 0,
       'hide_alter_empty' => 1,
-      'link_to_node' => 1,
-      'exclude' => 0,
+      'link_to_node' => 0,
+      'exclude' => 1,
       'id' => 'title',
       'table' => 'node',
       'field' => 'title',
       'relationship' => 'none',
+    ),
+    'nid' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 1,
+        'text' => '[title]',
+        'make_link' => 0,
+        'path' => '',
+        'absolute' => 0,
+        'link_class' => '',
+        'alt' => '',
+        'rel' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'hide_alter_empty' => 0,
+      'link_to_node' => 1,
+      'exclude' => 0,
+      'id' => 'nid',
+      'table' => 'node',
+      'field' => 'nid',
+      'relationship' => 'field_store_name_nid',
     ),
   ));
   $handler->override_option('sorts', array(
@@ -5025,7 +5125,7 @@ function plantright_survey_feature_views_default_views() {
 </ul>
 </div>');
   $handler->override_option('header_format', '2');
-  $handler->override_option('header_empty', 0);
+  $handler->override_option('header_empty', 1);
   $handler->override_option('path', 'survey-photos');
   $handler->override_option('menu', array(
     'type' => 'none',
@@ -5066,12 +5166,15 @@ function plantright_survey_feature_views_default_views() {
     ),
     'field_store_name_nid' => array(
       'label' => 'Store Name',
-      'required' => 1,
+      'required' => 0,
       'delta' => -1,
       'id' => 'field_store_name_nid',
       'table' => 'node_data_field_store_name',
       'field' => 'field_store_name_nid',
       'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
     ),
   ));
   $handler->override_option('fields', array(
@@ -5338,16 +5441,19 @@ function plantright_survey_feature_views_default_views() {
         'html' => 0,
         'strip_tags' => 0,
       ),
-      'empty' => '',
+      'empty' => '(not found)',
       'hide_empty' => 0,
       'empty_zero' => 0,
-      'hide_alter_empty' => 1,
+      'hide_alter_empty' => 0,
       'link_to_node' => 0,
       'exclude' => 0,
       'id' => 'title',
       'table' => 'node',
       'field' => 'title',
       'relationship' => 'field_store_name_nid',
+      'override' => array(
+        'button' => 'Override',
+      ),
     ),
     'field_store_type_value' => array(
       'label' => 'Store Type',
@@ -6057,6 +6163,10 @@ function plantright_survey_feature_views_default_views() {
   $handler->override_option('cache', array(
     'type' => 'none',
   ));
+  $handler->override_option('header_format', '2');
+  $handler->override_option('header_empty', 1);
+  $handler->override_option('empty', 'No survey data.');
+  $handler->override_option('empty_format', '2');
   $handler->override_option('style_plugin', 'table');
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->override_option('path', 'spring-nursery-survey/reports/results');
@@ -6134,12 +6244,15 @@ function plantright_survey_feature_views_default_views() {
     ),
     'field_store_name_nid' => array(
       'label' => 'Store Name',
-      'required' => 1,
+      'required' => 0,
       'delta' => -1,
       'id' => 'field_store_name_nid',
       'table' => 'node_data_field_store_name',
       'field' => 'field_store_name_nid',
       'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
     ),
   ));
   $handler->override_option('fields', array(
@@ -6293,10 +6406,10 @@ function plantright_survey_feature_views_default_views() {
         'html' => 0,
         'strip_tags' => 0,
       ),
-      'empty' => '',
+      'empty' => '(not found)',
       'hide_empty' => 0,
       'empty_zero' => 0,
-      'hide_alter_empty' => 1,
+      'hide_alter_empty' => 0,
       'link_to_node' => 0,
       'exclude' => 0,
       'id' => 'title',
@@ -11099,6 +11212,10 @@ function plantright_survey_feature_views_default_views() {
   $handler->override_option('cache', array(
     'type' => 'none',
   ));
+  $handler->override_option('header_format', '2');
+  $handler->override_option('header_empty', 1);
+  $handler->override_option('empty', 'No survey data.');
+  $handler->override_option('empty_format', '2');
   $handler->override_option('style_plugin', 'table');
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->override_option('path', 'spring-nursery-survey/reports/results-all');
