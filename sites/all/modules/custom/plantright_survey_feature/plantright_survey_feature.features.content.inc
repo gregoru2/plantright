@@ -63,7 +63,7 @@ function plantright_survey_feature_content_default_fields() {
       'default_value_php' => NULL,
       'label' => 'Street Address',
       'weight' => '20',
-      'description' => 'Street Address.',
+      'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
     ),
@@ -126,7 +126,7 @@ function plantright_survey_feature_content_default_fields() {
       'default_value_php' => NULL,
       'label' => 'City',
       'weight' => '21',
-      'description' => 'City',
+      'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
     ),
@@ -367,7 +367,7 @@ submitted|Data submitted',
       'default_value_php' => NULL,
       'label' => 'Phone',
       'weight' => '23',
-      'description' => 'The phone number of this nursery',
+      'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
     ),
@@ -553,7 +553,7 @@ Southern California',
       'default_value_php' => NULL,
       'label' => 'Store Code',
       'weight' => '24',
-      'description' => 'Store Code',
+      'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
     ),
@@ -805,7 +805,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
+      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
       'weight' => '163',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -991,7 +991,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => '\'Cultivar Name\' and/or related plants',
+      'label' => '\'Cultivar Name\' (e.g. Cortaderia selloana ‘Ivory Feathers’)',
       'weight' => '168',
       'description' => '',
       'type' => 'text_textfield',
@@ -1116,7 +1116,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '169',
+      'weight' => '170',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -1185,6 +1185,68 @@ Yes',
     ),
   );
 
+  // Exported field: field_species10_related
+  $fields['survey_data-field_species10_related'] = array(
+    'field_name' => 'field_species10_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species10_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Related Plants in the same genus',
+      'weight' => '169',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
   // Exported field: field_species11_found
   $fields['survey_data-field_species11_found'] = array(
     'field_name' => 'field_species11_found',
@@ -1237,7 +1299,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
+      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
       'weight' => '173',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -1423,7 +1485,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => '\'Cultivar Name\' and/or related plants',
+      'label' => '\'Cultivar Name\' (e.g. Cortaderia selloana ‘Ivory Feathers’)',
       'weight' => '178',
       'description' => '',
       'type' => 'text_textfield',
@@ -1548,7 +1610,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '179',
+      'weight' => '180',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -1617,6 +1679,68 @@ Yes',
     ),
   );
 
+  // Exported field: field_species11_related
+  $fields['survey_data-field_species11_related'] = array(
+    'field_name' => 'field_species11_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species11_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Related Plants in the same genus',
+      'weight' => '179',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
   // Exported field: field_species12_found
   $fields['survey_data-field_species12_found'] = array(
     'field_name' => 'field_species12_found',
@@ -1669,7 +1793,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
+      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
       'weight' => '183',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -1855,7 +1979,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => '\'Cultivar Name\' and/or related plants',
+      'label' => '\'Cultivar Name\' (e.g. Cortaderia selloana ‘Ivory Feathers’)',
       'weight' => '188',
       'description' => '',
       'type' => 'text_textfield',
@@ -1980,7 +2104,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '189',
+      'weight' => '190',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -2049,6 +2173,68 @@ Yes',
     ),
   );
 
+  // Exported field: field_species12_related
+  $fields['survey_data-field_species12_related'] = array(
+    'field_name' => 'field_species12_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species12_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Related Plants in the same genus',
+      'weight' => '189',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
   // Exported field: field_species13_found
   $fields['survey_data-field_species13_found'] = array(
     'field_name' => 'field_species13_found',
@@ -2101,7 +2287,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
+      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
       'weight' => '193',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -2412,7 +2598,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '199',
+      'weight' => '200',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -2481,6 +2667,68 @@ Yes',
     ),
   );
 
+  // Exported field: field_species13_related
+  $fields['survey_data-field_species13_related'] = array(
+    'field_name' => 'field_species13_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species13_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Related Plants in the same genus',
+      'weight' => '199',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
   // Exported field: field_species14_found
   $fields['survey_data-field_species14_found'] = array(
     'field_name' => 'field_species14_found',
@@ -2535,7 +2783,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
+      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
       'weight' => '76',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -2846,7 +3094,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '82',
+      'weight' => '83',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -2915,69 +3163,9 @@ Yes',
     ),
   );
 
-  // Exported field: field_species15_found
-  $fields['survey_data-field_species15_found'] = array(
-    'field_name' => 'field_species15_found',
-    'type_name' => 'survey_data',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'text',
-    'required' => '1',
-    'multiple' => '0',
-    'module' => 'text',
-    'active' => '1',
-    'text_processing' => '0',
-    'max_length' => '',
-    'allowed_values' => 'No
-Yes',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'default_value' => array(
-        '0' => array(
-          'value' => 'No',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
-      'weight' => 0,
-      'description' => '',
-      'type' => 'optionwidgets_buttons',
-      'module' => 'optionwidgets',
-    ),
-  );
-
-  // Exported field: field_species15_grower
-  $fields['survey_data-field_species15_grower'] = array(
-    'field_name' => 'field_species15_grower',
+  // Exported field: field_species14_related
+  $fields['survey_data-field_species14_related'] = array(
+    'field_name' => 'field_species14_related',
     'type_name' => 'survey_data',
     'display_settings' => array(
       'label' => array(
@@ -3025,754 +3213,12 @@ Yes',
       'default_value' => array(
         '0' => array(
           'value' => '',
-          '_error_element' => 'default_value_widget][field_species15_grower][0][value',
+          '_error_element' => 'default_value_widget][field_species14_related][0][value',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Name of Grower (from label)',
-      'weight' => '1',
-      'description' => '',
-      'type' => 'text_textfield',
-      'module' => 'text',
-    ),
-  );
-
-  // Exported field: field_species15_name_common
-  $fields['survey_data-field_species15_name_common'] = array(
-    'field_name' => 'field_species15_name_common',
-    'type_name' => 'survey_data',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'text',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'text',
-    'active' => '1',
-    'text_processing' => '0',
-    'max_length' => '',
-    'allowed_values' => '',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'rows' => 5,
-      'size' => '60',
-      'default_value' => array(
-        '0' => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_species15_name_common][0][value',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => 'Common Name (from label)',
-      'weight' => '3',
-      'description' => '',
-      'type' => 'text_textfield',
-      'module' => 'text',
-    ),
-  );
-
-  // Exported field: field_species15_name_cultivar
-  $fields['survey_data-field_species15_name_cultivar'] = array(
-    'field_name' => 'field_species15_name_cultivar',
-    'type_name' => 'survey_data',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'text',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'text',
-    'active' => '1',
-    'text_processing' => '0',
-    'max_length' => '',
-    'allowed_values' => '',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'rows' => 5,
-      'size' => '60',
-      'default_value' => array(
-        '0' => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_species15_name_cultivar][0][value',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => '\'Cultivar Name\' and/or related plants',
-      'weight' => '5',
-      'description' => '',
-      'type' => 'text_textfield',
-      'module' => 'text',
-    ),
-  );
-
-  // Exported field: field_species15_name_scientific
-  $fields['survey_data-field_species15_name_scientific'] = array(
-    'field_name' => 'field_species15_name_scientific',
-    'type_name' => 'survey_data',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'text',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'text',
-    'active' => '1',
-    'text_processing' => '0',
-    'max_length' => '',
-    'allowed_values' => '',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'rows' => 5,
-      'size' => '60',
-      'default_value' => array(
-        '0' => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_species15_name_scientific][0][value',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => 'Scientific Name (from label)',
-      'weight' => '4',
-      'description' => '',
-      'type' => 'text_textfield',
-      'module' => 'text',
-    ),
-  );
-
-  // Exported field: field_species15_number
-  $fields['survey_data-field_species15_number'] = array(
-    'field_name' => 'field_species15_number',
-    'type_name' => 'survey_data',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'text',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'text',
-    'active' => '1',
-    'text_processing' => '0',
-    'max_length' => '',
-    'allowed_values' => '',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'rows' => 5,
-      'size' => '60',
-      'default_value' => array(
-        '0' => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_species15_number][0][value',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => '# for Sale',
-      'weight' => '6',
-      'description' => '',
-      'type' => 'text_textfield',
-      'module' => 'text',
-    ),
-  );
-
-  // Exported field: field_species15_price
-  $fields['survey_data-field_species15_price'] = array(
-    'field_name' => 'field_species15_price',
-    'type_name' => 'survey_data',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'text',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'text',
-    'active' => '1',
-    'text_processing' => '0',
-    'max_length' => '',
-    'allowed_values' => '',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'rows' => 5,
-      'size' => '60',
-      'default_value' => array(
-        '0' => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_species15_price][0][value',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => 'Price / Size ($5/gallon)',
-      'weight' => '2',
-      'description' => '',
-      'type' => 'text_textfield',
-      'module' => 'text',
-    ),
-  );
-
-  // Exported field: field_species16_found
-  $fields['survey_data-field_species16_found'] = array(
-    'field_name' => 'field_species16_found',
-    'type_name' => 'survey_data',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'text',
-    'required' => '1',
-    'multiple' => '0',
-    'module' => 'text',
-    'active' => '1',
-    'text_processing' => '0',
-    'max_length' => '',
-    'allowed_values' => 'No
-Yes',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'default_value' => array(
-        '0' => array(
-          'value' => 'No',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
-      'weight' => '200',
-      'description' => '',
-      'type' => 'optionwidgets_buttons',
-      'module' => 'optionwidgets',
-    ),
-  );
-
-  // Exported field: field_species16_grower
-  $fields['survey_data-field_species16_grower'] = array(
-    'field_name' => 'field_species16_grower',
-    'type_name' => 'survey_data',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'text',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'text',
-    'active' => '1',
-    'text_processing' => '0',
-    'max_length' => '',
-    'allowed_values' => '',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'rows' => 5,
-      'size' => '60',
-      'default_value' => array(
-        '0' => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_species16_grower][0][value',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => 'Name of Grower (from label)',
-      'weight' => '201',
-      'description' => '',
-      'type' => 'text_textfield',
-      'module' => 'text',
-    ),
-  );
-
-  // Exported field: field_species16_name_common
-  $fields['survey_data-field_species16_name_common'] = array(
-    'field_name' => 'field_species16_name_common',
-    'type_name' => 'survey_data',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'text',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'text',
-    'active' => '1',
-    'text_processing' => '0',
-    'max_length' => '',
-    'allowed_values' => '',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'rows' => 5,
-      'size' => '60',
-      'default_value' => array(
-        '0' => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_species16_name_common][0][value',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => 'Common Name (from label)',
-      'weight' => '203',
-      'description' => '',
-      'type' => 'text_textfield',
-      'module' => 'text',
-    ),
-  );
-
-  // Exported field: field_species16_name_cultivar
-  $fields['survey_data-field_species16_name_cultivar'] = array(
-    'field_name' => 'field_species16_name_cultivar',
-    'type_name' => 'survey_data',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'text',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'text',
-    'active' => '1',
-    'text_processing' => '0',
-    'max_length' => '',
-    'allowed_values' => '',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'rows' => 5,
-      'size' => '60',
-      'default_value' => array(
-        '0' => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_species16_name_cultivar][0][value',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => '\'Cultivar Name\' and/or related plants',
-      'weight' => '205',
-      'description' => '',
-      'type' => 'text_textfield',
-      'module' => 'text',
-    ),
-  );
-
-  // Exported field: field_species16_name_scientific
-  $fields['survey_data-field_species16_name_scientific'] = array(
-    'field_name' => 'field_species16_name_scientific',
-    'type_name' => 'survey_data',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'text',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'text',
-    'active' => '1',
-    'text_processing' => '0',
-    'max_length' => '',
-    'allowed_values' => '',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'rows' => 5,
-      'size' => '60',
-      'default_value' => array(
-        '0' => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_species16_name_scientific][0][value',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => 'Scientific Name (from label)',
-      'weight' => '204',
-      'description' => '',
-      'type' => 'text_textfield',
-      'module' => 'text',
-    ),
-  );
-
-  // Exported field: field_species16_number
-  $fields['survey_data-field_species16_number'] = array(
-    'field_name' => 'field_species16_number',
-    'type_name' => 'survey_data',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'text',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'text',
-    'active' => '1',
-    'text_processing' => '0',
-    'max_length' => '',
-    'allowed_values' => '',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'rows' => 5,
-      'size' => '60',
-      'default_value' => array(
-        '0' => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_species16_number][0][value',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => '# for Sale',
-      'weight' => '206',
-      'description' => '',
-      'type' => 'text_textfield',
-      'module' => 'text',
-    ),
-  );
-
-  // Exported field: field_species16_price
-  $fields['survey_data-field_species16_price'] = array(
-    'field_name' => 'field_species16_price',
-    'type_name' => 'survey_data',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'text',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'text',
-    'active' => '1',
-    'text_processing' => '0',
-    'max_length' => '',
-    'allowed_values' => '',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'rows' => 5,
-      'size' => '60',
-      'default_value' => array(
-        '0' => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_species16_price][0][value',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => 'Price / Size ($5/gallon)',
-      'weight' => '202',
+      'label' => 'Related Plants in the same genus',
+      'weight' => '82',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -3831,7 +3277,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
+      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
       'weight' => '76',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -4017,7 +3463,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => '\'Cultivar Name\' and/or related plants',
+      'label' => '\'Cultivar Name\' (e.g. Cortaderia selloana ‘Ivory Feathers’)',
       'weight' => '81',
       'description' => '',
       'type' => 'text_textfield',
@@ -4142,7 +3588,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '82',
+      'weight' => '83',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -4211,6 +3657,68 @@ Yes',
     ),
   );
 
+  // Exported field: field_species1_related
+  $fields['survey_data-field_species1_related'] = array(
+    'field_name' => 'field_species1_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species1_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Related Plants in the same genus',
+      'weight' => '82',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
   // Exported field: field_species2_found
   $fields['survey_data-field_species2_found'] = array(
     'field_name' => 'field_species2_found',
@@ -4263,7 +3771,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
+      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
       'weight' => '86',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -4449,7 +3957,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => '\'Cultivar Name\' and/or related plants',
+      'label' => '\'Cultivar Name\' (e.g. Cortaderia selloana ‘Ivory Feathers’)',
       'weight' => '91',
       'description' => '',
       'type' => 'text_textfield',
@@ -4574,7 +4082,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '92',
+      'weight' => '93',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -4643,6 +4151,68 @@ Yes',
     ),
   );
 
+  // Exported field: field_species2_related
+  $fields['survey_data-field_species2_related'] = array(
+    'field_name' => 'field_species2_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species2_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Related Plants in the same genus',
+      'weight' => '92',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
   // Exported field: field_species3_found
   $fields['survey_data-field_species3_found'] = array(
     'field_name' => 'field_species3_found',
@@ -4695,7 +4265,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
+      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
       'weight' => '93',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -4881,7 +4451,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => '\'Cultivar Name\' and/or related plants',
+      'label' => '\'Cultivar Name\' (e.g. Cortaderia selloana ‘Ivory Feathers’)',
       'weight' => '98',
       'description' => '',
       'type' => 'text_textfield',
@@ -5006,7 +4576,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '99',
+      'weight' => '100',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -5075,6 +4645,68 @@ Yes',
     ),
   );
 
+  // Exported field: field_species3_related
+  $fields['survey_data-field_species3_related'] = array(
+    'field_name' => 'field_species3_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species3_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Related Plants in the same genus',
+      'weight' => '99',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
   // Exported field: field_species4_found
   $fields['survey_data-field_species4_found'] = array(
     'field_name' => 'field_species4_found',
@@ -5127,7 +4759,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
+      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
       'weight' => '103',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -5313,7 +4945,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => '\'Cultivar Name\' and/or related plants',
+      'label' => '\'Cultivar Name\' (e.g. Cortaderia selloana ‘Ivory Feathers’)',
       'weight' => '108',
       'description' => '',
       'type' => 'text_textfield',
@@ -5438,7 +5070,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '109',
+      'weight' => '110',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -5507,6 +5139,68 @@ Yes',
     ),
   );
 
+  // Exported field: field_species4_related
+  $fields['survey_data-field_species4_related'] = array(
+    'field_name' => 'field_species4_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species4_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Related Plants in the same genus',
+      'weight' => '109',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
   // Exported field: field_species5_found
   $fields['survey_data-field_species5_found'] = array(
     'field_name' => 'field_species5_found',
@@ -5559,7 +5253,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
+      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
       'weight' => '113',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -5745,7 +5439,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => '\'Cultivar Name\' and/or related plants',
+      'label' => '\'Cultivar Name\' (e.g. Cortaderia selloana ‘Ivory Feathers’)',
       'weight' => '118',
       'description' => '',
       'type' => 'text_textfield',
@@ -5870,7 +5564,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '119',
+      'weight' => '120',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -5939,6 +5633,68 @@ Yes',
     ),
   );
 
+  // Exported field: field_species5_related
+  $fields['survey_data-field_species5_related'] = array(
+    'field_name' => 'field_species5_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species5_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Related Plants in the same genus',
+      'weight' => '119',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
   // Exported field: field_species6_found
   $fields['survey_data-field_species6_found'] = array(
     'field_name' => 'field_species6_found',
@@ -5991,7 +5747,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
+      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
       'weight' => '123',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -6174,7 +5930,7 @@ Yes',
       'default_value_php' => NULL,
       'rows' => 5,
       'size' => '60',
-      'label' => '\'Cultivar Name\' and/or related plants',
+      'label' => '\'Cultivar Name\' (e.g. Cortaderia selloana ‘Ivory Feathers’)',
       'weight' => '128',
       'description' => '',
       'type' => 'text_textfield',
@@ -6299,7 +6055,7 @@ Yes',
       'rows' => 5,
       'size' => '60',
       'label' => '# for Sale',
-      'weight' => '129',
+      'weight' => '130',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -6368,6 +6124,68 @@ Yes',
     ),
   );
 
+  // Exported field: field_species6_related
+  $fields['survey_data-field_species6_related'] = array(
+    'field_name' => 'field_species6_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species6_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Related Plants in the same genus',
+      'weight' => '129',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
   // Exported field: field_species7_found
   $fields['survey_data-field_species7_found'] = array(
     'field_name' => 'field_species7_found',
@@ -6420,7 +6238,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
+      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
       'weight' => '133',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -6606,7 +6424,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => '\'Cultivar Name\' and/or related plants',
+      'label' => '\'Cultivar Name\' (e.g. Cortaderia selloana ‘Ivory Feathers’)',
       'weight' => '138',
       'description' => '',
       'type' => 'text_textfield',
@@ -6731,7 +6549,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '139',
+      'weight' => '140',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -6800,6 +6618,68 @@ Yes',
     ),
   );
 
+  // Exported field: field_species7_related
+  $fields['survey_data-field_species7_related'] = array(
+    'field_name' => 'field_species7_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species7_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Related Plants in the same genus',
+      'weight' => '139',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
   // Exported field: field_species8_found
   $fields['survey_data-field_species8_found'] = array(
     'field_name' => 'field_species8_found',
@@ -6852,7 +6732,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
+      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
       'weight' => '143',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -7038,7 +6918,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => '\'Cultivar Name\' and/or related plants',
+      'label' => '\'Cultivar Name\' (e.g. Cortaderia selloana ‘Ivory Feathers’)',
       'weight' => '148',
       'description' => '',
       'type' => 'text_textfield',
@@ -7163,7 +7043,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '149',
+      'weight' => '150',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -7232,6 +7112,68 @@ Yes',
     ),
   );
 
+  // Exported field: field_species8_related
+  $fields['survey_data-field_species8_related'] = array(
+    'field_name' => 'field_species8_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species8_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Related Plants in the same genus',
+      'weight' => '149',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
   // Exported field: field_species9_found
   $fields['survey_data-field_species9_found'] = array(
     'field_name' => 'field_species9_found',
@@ -7284,7 +7226,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant during your survey?',
+      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
       'weight' => '153',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -7470,7 +7412,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => '\'Cultivar Name\' and/or related plants',
+      'label' => '\'Cultivar Name\' (e.g. Cortaderia selloana ‘Ivory Feathers’)',
       'weight' => '158',
       'description' => '',
       'type' => 'text_textfield',
@@ -7595,7 +7537,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '159',
+      'weight' => '160',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -7658,6 +7600,68 @@ Yes',
       'default_value_php' => NULL,
       'label' => 'Price / Size ($5/gallon)',
       'weight' => '155',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species9_related
+  $fields['survey_data-field_species9_related'] = array(
+    'field_name' => 'field_species9_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species9_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Related Plants in the same genus',
+      'weight' => '159',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -8441,13 +8445,14 @@ In the “description” field please enter the plant name and whether it is of 
   // Translatables
   // Included for use with string extractors like potx.
   t('# for Sale');
+  t('\'Cultivar Name\' (e.g. Cortaderia selloana ‘Ivory Feathers’)');
   t('\'Cultivar Name\' and/or related plants');
   t('City');
   t('Common Name (from label)');
   t('County');
   t('Data Status');
   t('Date of Survey');
-  t('Did you find this plant during your survey?');
+  t('Did you find this plant (or any related plants in the same genus) during your survey?');
   t('Email');
   t('End Time');
   t('Name of Grower (from label)');
@@ -8458,6 +8463,7 @@ In the “description” field please enter the plant name and whether it is of 
   t('Photo Status');
   t('Price / Size ($5/gallon)');
   t('Region');
+  t('Related Plants in the same genus');
   t('Scientific Name (from label)');
   t('Start Time');
   t('Store Code');

@@ -104,7 +104,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species1_name_common',
       '4' => 'field_species1_name_scientific',
       '5' => 'field_species1_name_cultivar',
-      '6' => 'field_species1_number',
+      '6' => 'field_species1_related',
+      '7' => 'field_species1_number',
     ),
   );
 
@@ -113,7 +114,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species10',
-    'label' => 'Hedera helix - English ivy',
+    'label' => 'Leucanthemum vulgare - Ox-eye daisy',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -121,7 +122,6 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       ),
       'display' => array(
         'description' => '',
-        'label' => 'above',
         'teaser' => array(
           'format' => 'fieldset',
           'exclude' => 0,
@@ -146,6 +146,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
           'format' => 'fieldset',
           'exclude' => 0,
         ),
+        'label' => 'above',
       ),
     ),
     'weight' => '60',
@@ -156,7 +157,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species10_name_common',
       '4' => 'field_species10_name_scientific',
       '5' => 'field_species10_name_cultivar',
-      '6' => 'field_species10_number',
+      '6' => 'field_species10_related',
+      '7' => 'field_species10_number',
     ),
   );
 
@@ -165,7 +167,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species11',
-    'label' => 'Iris pseudacorus - Yellow water iris (Yellow flag iris)',
+    'label' => 'Nassella (Stipa) tenuissima - Mexican feather grass',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -173,7 +175,6 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       ),
       'display' => array(
         'description' => '',
-        'label' => 'above',
         'teaser' => array(
           'format' => 'fieldset',
           'exclude' => 0,
@@ -198,6 +199,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
           'format' => 'fieldset',
           'exclude' => 0,
         ),
+        'label' => 'above',
       ),
     ),
     'weight' => '61',
@@ -208,7 +210,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species11_name_common',
       '4' => 'field_species11_name_scientific',
       '5' => 'field_species11_name_cultivar',
-      '6' => 'field_species11_number',
+      '6' => 'field_species11_related',
+      '7' => 'field_species11_number',
     ),
   );
 
@@ -217,7 +220,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species12',
-    'label' => 'Leucanthemum vulgare  - Ox-eye daisy',
+    'label' => 'Pennisetum setaceum - Green fountain grass',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -225,7 +228,6 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       ),
       'display' => array(
         'description' => '',
-        'label' => 'above',
         'teaser' => array(
           'format' => 'fieldset',
           'exclude' => 0,
@@ -250,6 +252,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
           'format' => 'fieldset',
           'exclude' => 0,
         ),
+        'label' => 'above',
       ),
     ),
     'weight' => '62',
@@ -260,7 +263,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species12_name_common',
       '4' => 'field_species12_name_scientific',
       '5' => 'field_species12_name_cultivar',
-      '6' => 'field_species12_number',
+      '6' => 'field_species12_related',
+      '7' => 'field_species12_number',
     ),
   );
 
@@ -269,7 +273,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species13',
-    'label' => 'Nassella (Stipa) tenuissima - Mexican feather grass',
+    'label' => 'Triadica (Sapium) sebifera - Chinese tallow tree',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -277,7 +281,6 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       ),
       'display' => array(
         'description' => '',
-        'label' => 'above',
         'teaser' => array(
           'format' => 'fieldset',
           'exclude' => 0,
@@ -302,6 +305,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
           'format' => 'fieldset',
           'exclude' => 0,
         ),
+        'label' => 'above',
       ),
     ),
     'weight' => '63',
@@ -312,7 +316,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species13_name_common',
       '4' => 'field_species13_name_scientific',
       '5' => 'field_species13_name_cultivar',
-      '6' => 'field_species13_number',
+      '6' => 'field_species13_related',
+      '7' => 'field_species13_number',
     ),
   );
 
@@ -321,7 +326,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species14',
-    'label' => 'Pennisetum setaceum - Green fountain grass',
+    'label' => 'Vinca major - Big leaf periwinkle',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -329,7 +334,6 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       ),
       'display' => array(
         'description' => '',
-        'label' => 'above',
         'teaser' => array(
           'format' => 'fieldset',
           'exclude' => 0,
@@ -354,6 +358,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
           'format' => 'fieldset',
           'exclude' => 0,
         ),
+        'label' => 'above',
       ),
     ),
     'weight' => '64',
@@ -364,111 +369,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species14_name_common',
       '4' => 'field_species14_name_scientific',
       '5' => 'field_species14_name_cultivar',
-      '6' => 'field_species14_number',
-    ),
-  );
-
-  // Exported group: group_species15
-  $groups['survey_data-group_species15'] = array(
-    'group_type' => 'standard',
-    'type_name' => 'survey_data',
-    'group_name' => 'group_species15',
-    'label' => ' Triadica (Sapium) sebifera - Chinese tallow tree',
-    'settings' => array(
-      'form' => array(
-        'style' => 'fieldset',
-        'description' => '',
-      ),
-      'display' => array(
-        'description' => '',
-        'label' => 'above',
-        'teaser' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'full' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '4' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '2' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '3' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'token' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-      ),
-    ),
-    'weight' => '65',
-    'fields' => array(
-      '0' => 'field_species15_found',
-      '1' => 'field_species15_grower',
-      '2' => 'field_species15_price',
-      '3' => 'field_species15_name_common',
-      '4' => 'field_species15_name_scientific',
-      '5' => 'field_species15_name_cultivar',
-      '6' => 'field_species15_number',
-    ),
-  );
-
-  // Exported group: group_species16
-  $groups['survey_data-group_species16'] = array(
-    'group_type' => 'standard',
-    'type_name' => 'survey_data',
-    'group_name' => 'group_species16',
-    'label' => 'Vinca major - Big leaf periwinkle',
-    'settings' => array(
-      'form' => array(
-        'style' => 'fieldset',
-        'description' => '',
-      ),
-      'display' => array(
-        'description' => '',
-        'label' => 'above',
-        'teaser' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'full' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '4' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '2' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '3' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'token' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-      ),
-    ),
-    'weight' => '66',
-    'fields' => array(
-      '0' => 'field_species16_found',
-      '1' => 'field_species16_grower',
-      '2' => 'field_species16_price',
-      '3' => 'field_species16_name_common',
-      '4' => 'field_species16_name_scientific',
-      '5' => 'field_species16_name_cultivar',
-      '6' => 'field_species16_number',
+      '6' => 'field_species14_related',
+      '7' => 'field_species14_number',
     ),
   );
 
@@ -520,7 +422,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species2_name_common',
       '4' => 'field_species2_name_scientific',
       '5' => 'field_species2_name_cultivar',
-      '6' => 'field_species2_number',
+      '6' => 'field_species2_related',
+      '7' => 'field_species2_number',
     ),
   );
 
@@ -572,7 +475,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species3_name_common',
       '4' => 'field_species3_name_scientific',
       '5' => 'field_species3_name_cultivar',
-      '6' => 'field_species3_number',
+      '6' => 'field_species3_related',
+      '7' => 'field_species3_number',
     ),
   );
 
@@ -624,7 +528,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species4_name_common',
       '4' => 'field_species4_name_scientific',
       '5' => 'field_species4_name_cultivar',
-      '6' => 'field_species4_number',
+      '6' => 'field_species4_related',
+      '7' => 'field_species4_number',
     ),
   );
 
@@ -676,7 +581,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species5_name_common',
       '4' => 'field_species5_name_scientific',
       '5' => 'field_species5_name_cultivar',
-      '6' => 'field_species5_number',
+      '6' => 'field_species5_related',
+      '7' => 'field_species5_number',
     ),
   );
 
@@ -728,7 +634,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species6_name_common',
       '4' => 'field_species6_name_scientific',
       '5' => 'field_species6_name_cultivar',
-      '6' => 'field_species6_number',
+      '6' => 'field_species6_related',
+      '7' => 'field_species6_number',
     ),
   );
 
@@ -780,7 +687,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species7_name_common',
       '4' => 'field_species7_name_scientific',
       '5' => 'field_species7_name_cultivar',
-      '6' => 'field_species7_number',
+      '6' => 'field_species7_related',
+      '7' => 'field_species7_number',
     ),
   );
 
@@ -832,7 +740,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species8_name_common',
       '4' => 'field_species8_name_scientific',
       '5' => 'field_species8_name_cultivar',
-      '6' => 'field_species8_number',
+      '6' => 'field_species8_related',
+      '7' => 'field_species8_number',
     ),
   );
 
@@ -841,7 +750,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species9',
-    'label' => 'Hedera canariensis - Algerian ivy',
+    'label' => 'Iris pseudacorus - Yellow water iris (Yellow flag iris)',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -849,7 +758,6 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       ),
       'display' => array(
         'description' => '',
-        'label' => 'above',
         'teaser' => array(
           'format' => 'fieldset',
           'exclude' => 0,
@@ -874,6 +782,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
           'format' => 'fieldset',
           'exclude' => 0,
         ),
+        'label' => 'above',
       ),
     ),
     'weight' => '59',
@@ -884,7 +793,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species9_name_common',
       '4' => 'field_species9_name_scientific',
       '5' => 'field_species9_name_cultivar',
-      '6' => 'field_species9_number',
+      '6' => 'field_species9_related',
+      '7' => 'field_species9_number',
     ),
   );
 
@@ -939,7 +849,6 @@ function plantright_survey_feature_fieldgroup_default_groups() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t(' Triadica (Sapium) sebifera - Chinese tallow tree');
   t('Additional Info');
   t('Basic Information');
   t('Carex divulsa (often sold as C. tumulicola Hort.) - Grassland sedge (European Grey Sedge, often sold as Berkeley Sedge)');
@@ -950,12 +859,11 @@ function plantright_survey_feature_fieldgroup_default_groups() {
   t('Egeria densa - Brazilian waterweed');
   t('Eichhornia crassipes - Water hyacinth');
   t('Genista monspessulana - French broom');
-  t('Hedera canariensis - Algerian ivy');
-  t('Hedera helix - English ivy');
   t('Iris pseudacorus - Yellow water iris (Yellow flag iris)');
-  t('Leucanthemum vulgare  - Ox-eye daisy');
+  t('Leucanthemum vulgare - Ox-eye daisy');
   t('Nassella (Stipa) tenuissima - Mexican feather grass');
   t('Pennisetum setaceum - Green fountain grass');
+  t('Triadica (Sapium) sebifera - Chinese tallow tree');
   t('Vinca major - Big leaf periwinkle');
 
   return $groups;
