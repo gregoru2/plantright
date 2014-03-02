@@ -7,6 +7,7 @@
 //todo: redirect from /spring-nursery-survey-submission
 
 define('PLANTRIGHT_ROLES_SURVEY', 14);
+define('PLANTRIGHT_ROLES_SURVEY_PASSED', 4);
 define('PLANTRIGHT_QUIZ_NID_SURVEY', 332);
 define('PLANTRIGHT_NODE_TYPE_NURSERY', 'nursery');
 define('PLANTRIGHT_NODE_TYPE_SURVEY_DATA', 'survey_data');
@@ -561,10 +562,12 @@ function _plantright_survey_volunteer_tracking_build() {
     $photos_submitted = 0;
     $claimed_store = 0;
 
-    $quiz = node_load(PLANTRIGHT_QUIZ_NID_SURVEY);
-    if (quiz_certificate_get_users_passing_result($quiz, $account)) {
-      $passed_quiz = 1;
-    }
+//    $quiz = node_load(PLANTRIGHT_QUIZ_NID_SURVEY);
+//    if (quiz_certificate_get_users_passing_result($quiz, $account)) {
+//      $passed_quiz = 1;
+//    }
+    $rids = array_keys($account->roles);
+    $passed_quiz = in_array(PLANTRIGHT_ROLES_SURVEY_PASSED, $rids);
 
     // See if there are any survey data matches
     $match = db_result(db_query("SELECT nid FROM {node} WHERE uid = %d AND type = '%s' LIMIT 1", $uid, PLANTRIGHT_NODE_TYPE_SURVEY_DATA));
