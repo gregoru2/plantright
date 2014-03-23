@@ -14,7 +14,9 @@ class plantright_survey_handler_field_found_count extends views_handler_field {
     $val = 0;
     foreach ($values as $key => $value) {
       if (preg_match('/field_species\d+_found_value/', $key) && 'Yes' == $value) {
-        $val++;
+//        $val++;
+        $val = 1;
+        break;
       }
     }
     return $val;
