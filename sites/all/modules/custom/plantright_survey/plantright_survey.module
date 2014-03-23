@@ -581,10 +581,12 @@ function _plantright_survey_volunteer_tracking_build() {
       $photos_submitted = 1;
     }
 
-    $flags = flag_get_flags('node', PLANTRIGHT_NODE_TYPE_NURSERY, $account);
+    //$flags = flag_get_flags('node', PLANTRIGHT_NODE_TYPE_NURSERY, $account);
+    $flags = flag_get_user_flags('node', null, $account->uid);
     if (count($flags) && isset($flags[PLANTRIGHT_FLAG_SURVEY])) {
       $claimed_store = 1;
     }
+    unset($flags);
 
     db_query("INSERT INTO {plantright_survey_volunteer_tracking} (uid, passed_quiz, data_submitted, photos_submitted, claimed_store)
 VALUES(%d, %d, %d, %d, %d)", $uid, $passed_quiz, $data_submitted, $photos_submitted, $claimed_store);
