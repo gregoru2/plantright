@@ -13,8 +13,7 @@ class plantright_survey_handler_field_number_count extends views_handler_field {
   function render($values) {
     $val = 0;
     foreach ($values as $key => $value) {
-      if (preg_match('/field_species\d+_number_value/', $key) && $value && $value > 0) {
-//        $val += $value;
+      if (preg_match('/field_species\d+_found_value/', $key) && 'Yes' == $value) {
         $val++;
       }
     }
