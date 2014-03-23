@@ -12,6 +12,9 @@ class plantright_survey_handler_field_time_min extends views_handler_field {
 
   function render($values) {
     $diff_seconds = _plantright_survey_diff_field_time_helper($values);
+    if ($diff_seconds < 0) {
+      return 'time error';
+    }
     return $diff_seconds / 60;
   }
 }

@@ -259,6 +259,7 @@ function plantright_survey_form_alter(&$form, &$form_state, $form_id) {
         '#type' => 'hidden',
         '#value' => $form['#node']->field_store_name[0]['nid'],
       );
+      $form['#validate'][] = 'plantright_survey_data_time_validate_handler';
       $form['#submit'][] = 'plantright_survey_store_name_submit_handler';
       break;
     case 'nursery_node_form':
@@ -268,6 +269,24 @@ function plantright_survey_form_alter(&$form, &$form_state, $form_id) {
       $form['field_county_1']['#after_build'][] = 'plantright_survey_survey_profile_node_form_after_build';
       break;
   }
+}
+
+/**
+ * Make sure start time is less than end time.
+ * @param type $form
+ * @param type $form_state
+ */
+function plantright_survey_data_time_validate_handler(&$form, &$form_state) {
+  $values = $form_state['values'];
+  $times = array(
+    'field_survey_start_time_value' => $values['field_survey_start_time'][0]['hour'] . ':' . $values['field_survey_start_time'][0]['minute'] . $values['field_survey_start_time'][0]['meridiem'],
+    'field_survey_end_time_value' => $values['field_survey_end_time'][0]['hour'] . ':' . $values['field_survey_end_time'][0]['minute'] . $values['field_survey_end_time'][0]['meridiem'],
+  );
+  $diff = _plantright_survey_diff_field_time_helper($times);
+  if ($diff < 0) {
+    form_set_error('field_survey_start_time', t('End time must be after start time.'));
+  }
+  return $form;
 }
 
 /**
@@ -602,6 +621,28 @@ function plantright_survey_views_api() {
     'path' => drupal_get_path('module', 'plantright_survey') . '/views',
       //'template path' => drupal_get_path('module', 'plantright_survey') . '/themes',
   );
+}
+
+function _plantright_survey_diff_field_time_helper($values) {
+  foreach ($values as $key => $value) {
+    if (strpos($key, 'field_survey_start_time_value') !== FALSE) {
+      $start_time = _plantright_survey_field_time_helper($value);
+    }
+    else if (strpos($key, 'field_survey_end_time_value') !== FALSE) {
+      $end_time = _plantright_survey_field_time_helper($value);
+    }
+  }
+  return $end_time - $start_time;
+}
+
+function _plantright_survey_field_time_helper($value) {
+  $time = substr($value, 0, -2);
+  $parts = explode(':', $time);
+  if (strpos($value, 'PM') && $parts[0] < 12) {
+    $parts[0] += 12;
+    $time = $parts[0] . ':' . $parts[1];
+  }
+  return strtotime($time);
 }
 
 //function plantright_survey_cron() {

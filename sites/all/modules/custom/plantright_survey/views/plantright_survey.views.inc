@@ -267,25 +267,3 @@ function plantright_survey_views_handlers() {
     ),
   );
 }
-
-function _plantright_survey_diff_field_time_helper($values) {
-  foreach ($values as $key => $value) {
-    if (strpos($key, 'field_survey_start_time_value') !== FALSE) {
-      $start_time = _plantright_survey_field_time_helper($value);
-    }
-    else if (strpos($key, 'field_survey_end_time_value') !== FALSE) {
-      $end_time = _plantright_survey_field_time_helper($value);
-    }
-  }
-  return $end_time - $start_time;
-}
-
-function _plantright_survey_field_time_helper($value) {
-  $time = substr($value, 0, -2);
-  if (strpos($value, 'PM')) {
-    $parts = explode(':', $time);
-    $parts[0] += 12;
-    $time = $parts[0] . ':' . $parts[1];
-  }
-  return strtotime($time);
-}
