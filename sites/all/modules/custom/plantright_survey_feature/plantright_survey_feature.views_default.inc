@@ -6764,6 +6764,19 @@ function plantright_survey_feature_views_default_views() {
       'relationship' => 'none',
     ),
   ));
+  $handler->override_option('sorts', array(
+    'created' => array(
+      'order' => 'DESC',
+      'granularity' => 'second',
+      'id' => 'created',
+      'table' => 'node',
+      'field' => 'created',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
   $handler->override_option('filters', array(
     'status' => array(
       'operator' => '=',
@@ -6807,6 +6820,8 @@ function plantright_survey_feature_views_default_views() {
   $handler->override_option('header_empty', 1);
   $handler->override_option('empty', 'No survey data.');
   $handler->override_option('empty_format', '2');
+  $handler->override_option('items_per_page', 25);
+  $handler->override_option('use_pager', '1');
   $handler->override_option('style_plugin', 'table');
   $handler->override_option('style_options', array(
     'grouping' => '',
@@ -7082,6 +7097,8 @@ function plantright_survey_feature_views_default_views() {
     'name' => 'navigation',
   ));
   $handler = $view->new_display('feed', 'Feed', 'feed_1');
+  $handler->override_option('items_per_page', 0);
+  $handler->override_option('use_pager', FALSE);
   $handler->override_option('style_plugin', 'views_csv');
   $handler->override_option('style_options', array(
     'mission_description' => FALSE,
@@ -12071,6 +12088,16 @@ function plantright_survey_feature_views_default_views() {
       'relationship' => 'field_store_name_nid',
     ),
   ));
+  $handler->override_option('sorts', array(
+    'created' => array(
+      'order' => 'DESC',
+      'granularity' => 'second',
+      'id' => 'created',
+      'table' => 'node',
+      'field' => 'created',
+      'relationship' => 'none',
+    ),
+  ));
   $handler->override_option('filters', array(
     'status' => array(
       'operator' => '=',
@@ -12114,6 +12141,8 @@ function plantright_survey_feature_views_default_views() {
   $handler->override_option('header_empty', 1);
   $handler->override_option('empty', 'No survey data.');
   $handler->override_option('empty_format', '2');
+  $handler->override_option('items_per_page', 25);
+  $handler->override_option('use_pager', '1');
   $handler->override_option('style_plugin', 'table');
   $handler->override_option('style_options', array(
     'grouping' => '',
@@ -12803,6 +12832,8 @@ function plantright_survey_feature_views_default_views() {
     'name' => 'navigation',
   ));
   $handler = $view->new_display('feed', 'Feed', 'feed_1');
+  $handler->override_option('items_per_page', 0);
+  $handler->override_option('use_pager', FALSE);
   $handler->override_option('style_plugin', 'views_csv');
   $handler->override_option('style_options', array(
     'mission_description' => FALSE,
