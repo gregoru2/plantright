@@ -38,7 +38,7 @@ function plantright_survey_feature_views_default_views() {
     ),
     'flag_count_rel' => array(
       'label' => 'counter',
-      'required' => 1,
+      'required' => 0,
       'flag' => 'nursery_flag',
       'id' => 'flag_count_rel',
       'table' => 'node',
@@ -48,21 +48,17 @@ function plantright_survey_feature_views_default_views() {
       ),
       'relationship' => 'none',
     ),
-    'uid' => array(
-      'label' => 'Flag user',
-      'required' => 0,
-      'id' => 'uid',
-      'table' => 'flag_content',
-      'field' => 'uid',
-      'relationship' => 'flag_content_rel',
-      'override' => array(
-        'button' => 'Override',
-      ),
-    ),
     'content_profile_rel' => array(
+      'label' => 'Content Profile',
+      'required' => 0,
+      'type' => 'survey_profile',
       'id' => 'content_profile_rel',
       'table' => 'users',
       'field' => 'content_profile_rel',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
     ),
   ));
   $handler->override_option('fields', array(
@@ -1530,7 +1526,7 @@ function plantright_survey_feature_views_default_views() {
   $handler = $view->new_display('feed', 'Feed UNFlagged', 'feed_1');
   $handler->override_option('fields', array(
     'title' => array(
-      'label' => '',
+      'label' => 'Store',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -1561,6 +1557,9 @@ function plantright_survey_feature_views_default_views() {
       'table' => 'node',
       'field' => 'title',
       'relationship' => 'none',
+      'override' => array(
+        'button' => 'Use default',
+      ),
     ),
     'field_store_code_value' => array(
       'label' => 'Store Code',
@@ -1778,50 +1777,6 @@ function plantright_survey_feature_views_default_views() {
       'table' => 'node_data_field_phone',
       'field' => 'field_phone_value',
     ),
-    'field_surveying_user_uid' => array(
-      'label' => 'Surveying User',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'hide_alter_empty' => 1,
-      'link_to_node' => 0,
-      'label_type' => 'widget',
-      'format' => 'default',
-      'multiple' => array(
-        'group' => 1,
-        'multiple_number' => '',
-        'multiple_from' => '',
-        'multiple_reversed' => 0,
-      ),
-      'exclude' => 0,
-      'id' => 'field_surveying_user_uid',
-      'table' => 'node_data_field_surveying_user',
-      'field' => 'field_surveying_user_uid',
-      'override' => array(
-        'button' => 'Use default',
-      ),
-      'relationship' => 'none',
-    ),
   ));
   $handler->override_option('filters', array(
     'type' => array(
@@ -1839,27 +1794,6 @@ function plantright_survey_feature_views_default_views() {
       'table' => 'node',
       'field' => 'type',
       'relationship' => 'none',
-    ),
-    'field_county_value_many_to_one' => array(
-      'operator' => 'or',
-      'value' => array(),
-      'group' => '0',
-      'exposed' => TRUE,
-      'expose' => array(
-        'use_operator' => 0,
-        'operator' => 'field_county_value_many_to_one_op',
-        'identifier' => 'field_county_value_many_to_one',
-        'label' => 'County',
-        'optional' => 1,
-        'single' => 1,
-        'remember' => 0,
-        'reduce' => 0,
-      ),
-      'id' => 'field_county_value_many_to_one',
-      'table' => 'node_data_field_county',
-      'field' => 'field_county_value_many_to_one',
-      'relationship' => 'none',
-      'reduce_duplicates' => 0,
     ),
     'status' => array(
       'operator' => '=',
@@ -1958,7 +1892,7 @@ function plantright_survey_feature_views_default_views() {
     ),
     'flag_count_rel' => array(
       'label' => 'counter',
-      'required' => 1,
+      'required' => 0,
       'flag' => 'nursery_flag',
       'id' => 'flag_count_rel',
       'table' => 'node',
@@ -1967,17 +1901,6 @@ function plantright_survey_feature_views_default_views() {
         'button' => 'Use default',
       ),
       'relationship' => 'none',
-    ),
-    'uid' => array(
-      'label' => 'Flag user',
-      'required' => 0,
-      'id' => 'uid',
-      'table' => 'flag_content',
-      'field' => 'uid',
-      'relationship' => 'flag_content_rel',
-      'override' => array(
-        'button' => 'Override',
-      ),
     ),
     'content_profile_rel' => array(
       'label' => 'Content Profile',
@@ -1994,7 +1917,7 @@ function plantright_survey_feature_views_default_views() {
   ));
   $handler->override_option('fields', array(
     'title' => array(
-      'label' => '',
+      'label' => 'Store',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -2025,6 +1948,9 @@ function plantright_survey_feature_views_default_views() {
       'table' => 'node',
       'field' => 'title',
       'relationship' => 'none',
+      'override' => array(
+        'button' => 'Use default',
+      ),
     ),
     'field_store_code_value' => array(
       'label' => 'Store Code',
@@ -2418,27 +2344,6 @@ function plantright_survey_feature_views_default_views() {
       'table' => 'node',
       'field' => 'type',
       'relationship' => 'none',
-    ),
-    'field_county_value_many_to_one' => array(
-      'operator' => 'or',
-      'value' => array(),
-      'group' => '0',
-      'exposed' => TRUE,
-      'expose' => array(
-        'use_operator' => 0,
-        'operator' => 'field_county_value_many_to_one_op',
-        'identifier' => 'field_county_value_many_to_one',
-        'label' => 'County',
-        'optional' => 1,
-        'single' => 1,
-        'remember' => 0,
-        'reduce' => 0,
-      ),
-      'id' => 'field_county_value_many_to_one',
-      'table' => 'node_data_field_county',
-      'field' => 'field_county_value_many_to_one',
-      'relationship' => 'none',
-      'reduce_duplicates' => 0,
     ),
     'status' => array(
       'operator' => '=',
