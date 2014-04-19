@@ -32,7 +32,7 @@ function plantright_survey_feature_node_info() {
     'nursery' => array(
       'name' => t('Nursery'),
       'module' => 'features',
-      'description' => t('This is a Nursery to be surveyed for the Spring Survey 2011.'),
+      'description' => t('This is a Nursery to be surveyed for the Spring Survey.'),
       'has_title' => '1',
       'title_label' => t('Name'),
       'has_body' => '0',
