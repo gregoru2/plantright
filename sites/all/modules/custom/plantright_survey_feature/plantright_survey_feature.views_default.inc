@@ -504,7 +504,8 @@ function plantright_survey_feature_views_default_views() {
     ),
   ));
   $handler->override_option('access', array(
-    'type' => 'none',
+    'type' => 'perm',
+    'perm' => 'create survey_data content',
   ));
   $handler->override_option('cache', array(
     'type' => 'none',
