@@ -14,6 +14,13 @@ define('PLANTRIGHT_NODE_TYPE_SURVEY_DATA', 'survey_data');
 define('PLANTRIGHT_NODE_TYPE_SURVEY_PHOTOS', 'survey_photos');
 define('PLANTRIGHT_FLAG_SURVEY', 'nursery_flag');
 
+function plantright_survey_get_end_date($area) {
+  $dates = array(
+    'south' => '',
+    'north' => '',
+  );
+}
+
 /**
  * Implementation of hook_init.
  */
@@ -55,6 +62,8 @@ function plantright_survey_menu() {
  */
 function plantright_survey_flag($action, $flag, $content_id, $account) {
   if ($action == 'flag' && $flag->name == 'nursery_flag') {
+    global $user;
+    watchdog('pr_survey', 'Nursery claimed by #' . $account->uid . ' from user logged in #' . $user->uid . ' nursery node #' . $content_id);
     $node = node_load($content_id);
     $member = array();
     $member['uid'] = $account->uid;
@@ -62,6 +71,7 @@ function plantright_survey_flag($action, $flag, $content_id, $account) {
     node_save($node);
   }
   if ($action == 'unflag' && $flag->name == 'nursery_flag') {
+    watchdog('pr_survey', 'Nursery unclaimed by #' . $account->uid . ' from user logged in #' . $user->uid . ' nursery node #' . $content_id);
     $node = node_load($content_id);
     $users = $node->field_surveying_user;
     $node->field_surveying_user = _plantright_survey_removeElementWithValue($users, "uid", $account->uid);
@@ -619,7 +629,7 @@ function plantright_survey_views_api() {
   return array(
     'api' => '2',
     'path' => drupal_get_path('module', 'plantright_survey') . '/views',
-      //'template path' => drupal_get_path('module', 'plantright_survey') . '/themes',
+    //'template path' => drupal_get_path('module', 'plantright_survey') . '/templates',
   );
 }
 
@@ -645,6 +655,6 @@ function _plantright_survey_field_time_helper($value) {
   return strtotime($time);
 }
 
-//function plantright_survey_cron() {
 
+//function plantright_survey_cron() {
 //}

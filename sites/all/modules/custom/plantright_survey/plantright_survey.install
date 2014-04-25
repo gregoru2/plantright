@@ -2,6 +2,7 @@
 
 function plantright_survey_install() {
   drupal_install_schema('plantright_survey');
+  db_query("UPDATE {system} SET weight = 99 WHERE type = 'module' AND name = 'plantright_survey'");
 }
 
 function plantright_survey_schema() {
@@ -283,4 +284,11 @@ function plantright_survey_update_6002() {
   $ret = array();
   db_create_table($ret, 'plantright_survey_volunteer_tracking', $schema['plantright_survey_volunteer_tracking']);
   return $ret;
+}
+
+/**
+ * Update module weight for views template.
+ */
+function plantright_survey_update_6003() {
+  db_query("UPDATE {system} SET weight = 99 WHERE type = 'module' AND name = 'plantright_survey'");
 }
