@@ -177,8 +177,8 @@ function schedule_email_uninstall() {
  * Add nid for sent email tracking.
  */
 function schedule_email_update_6100() {
-  db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('partner_liason', 'Retail Nursery Liason: Send email X days after partnership')");
-  db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('partner_nonliason', 'Retail Nursery Employees: Send email X days after partnership')");
+  db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('partner_liason', '')");
+  db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('partner_nonliason', '')");
   $spec = array(
     'description' => 'Node from the {node} table',
     'type' => 'int',
@@ -198,4 +198,12 @@ function schedule_email_update_6101() {
   db_query("UPDATE {schedule_email_type} SET name = 'Retail User: If not registered, send reminder X days after invite' WHERE name_short='invite'");
   db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('survey_register', 'Survey User: Send email X days after registration (if nursery claimed, no data submitted)')");
   db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('survey_end', 'Survey User: Send email X days before survey end (if nursery claimed, no data submitted)')");
+}
+
+/**
+ * Change text on partner_liason and partner_nonliason email types.
+ */
+function schedule_email_update_6102() {
+  db_query("UPDATE {schedule_email_type} SET name='Retail Nursery Liason: Send email X days after partnership' WHERE name_short='partner_liason'");
+  db_query("UPDATE {schedule_email_type} SET name='Retail Nursery Employees: Send email X days after partnership' WHERE name_short='partner_nonliason'");
 }
