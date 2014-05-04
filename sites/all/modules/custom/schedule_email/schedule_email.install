@@ -195,7 +195,7 @@ function schedule_email_update_6100() {
  */
 function schedule_email_update_6101() {
   db_query("UPDATE {schedule_email_type} SET name='Retail User: Send email X days after registration' WHERE name_short = 'register'");
-  db_query("UPDATE {schedule_email_type} SET name = 'Retail User: If not registered, send reminder X days after invite' WHERE short_name='invite'");
+  db_query("UPDATE {schedule_email_type} SET name = 'Retail User: If not registered, send reminder X days after invite' WHERE name_short='invite'");
   db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('survey_register', 'Survey User: Send email X days after registration (if nursery claimed, no data submitted)')");
   db_query("INSERT INTO {schedule_email_type} (name_short, name) VALUES ('survey_end', 'Survey User: Send email X days before survey end (if nursery claimed, no data submitted)')");
 }
