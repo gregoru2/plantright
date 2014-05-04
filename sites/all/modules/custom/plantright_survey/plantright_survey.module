@@ -14,12 +14,6 @@ define('PLANTRIGHT_NODE_TYPE_SURVEY_DATA', 'survey_data');
 define('PLANTRIGHT_NODE_TYPE_SURVEY_PHOTOS', 'survey_photos');
 define('PLANTRIGHT_FLAG_SURVEY', 'nursery_flag');
 
-function plantright_survey_get_end_date($area) {
-  $dates = array(
-    'south' => '',
-    'north' => '',
-  );
-}
 
 /**
  * Implementation of hook_init.
@@ -655,6 +649,124 @@ function _plantright_survey_field_time_helper($value) {
   return strtotime($time);
 }
 
+/**
+ * Shared function to get the survey end dates.
+ * @return array
+ */
+function plantright_survey_get_end_dates() {
+  $dates = array(
+    'south' => '5/25/2014',
+    'north' => '6/22/2014',
+  );
+  foreach ($dates as $area => $date) {
+    $dates[$area] = strtotime($date);
+  }
+  return $dates;
+}
+
+/**
+ * Shared function to get survey end date by area.
+ * @param string $area
+ * @return timestamp
+ */
+function plantright_survey_get_end_date_by_area($area) {
+  $dates = plantright_survey_get_end_dates();
+  if (isset($dates[$area])) {
+    return $dates[$area];
+  }
+}
+
+/**
+ * Helper function to get array of counties and area.
+ * @return array
+ */
+function plantright_survey_get_counties() {
+  return array(
+    'Alameda' => 'north',
+    'Alpine' => 'north',
+    'Amador' => 'north',
+    'Butte' => 'north',
+    'Calaveras' => 'north',
+    'Colusa' => 'north',
+    'Contra Costa' => 'north',
+    'Del Norte' => 'north',
+    'El Dorado' => 'north',
+    'Fresno' => 'north',
+    'Glenn' => 'north',
+    'Humboldt' => 'north',
+    'Imperial' => 'south',
+    'Inyo' => 'north',
+    'Kern' => 'south',
+    'Kings' => 'north',
+    'Lake' => 'north',
+    'Lassen' => 'north',
+    'Los Angeles' => 'south',
+    'Madera' => 'north',
+    'Marin' => 'north',
+    'Mariposa' => 'north',
+    'Mendocino' => 'north',
+    'Merced' => 'north',
+    'Modoc' => 'north',
+    'Mono' => 'north',
+    'Monterey' => 'north',
+    'Napa' => 'north',
+    'Nevada' => 'north',
+    'Orange' => 'south',
+    'Placer' => 'north',
+    'Plumas' => 'north',
+    'Riverside' => 'south',
+    'Sacramento' => 'north',
+    'San Benito' => 'north',
+    'San Bernardino' => 'north',
+    'San Diego' => 'south',
+    'San Francisco' => 'north',
+    'San Joaquin' => 'north',
+    'San Luis Obispo' => 'south',
+    'San Mateo' => 'north',
+    'Santa Barbara' => 'south',
+    'Santa Clara' => 'north',
+    'Santa Cruz' => 'north',
+    'Shasta' => 'north',
+    'Sierra' => 'north',
+    'Siskiyou' => 'north',
+    'Solano' => 'north',
+    'Sonoma' => 'north',
+    'Stanislaus' => 'north',
+    'Sutter' => 'north',
+    'Tehama' => 'north',
+    'Trinity' => 'north',
+    'Tulare' => 'north',
+    'Tuolumne' => 'north',
+    'Ventura' => 'south',
+    'Yolo' => 'north',
+    'Yuba' => 'north',
+  );
+}
+
+/**
+ * Shared function to return area by county.
+ */
+function plantright_survey_get_area_by_county($county) {
+  $county = ucwords($county);
+  $counties = plantright_survey_get_counties();
+  return $counties[$county];
+}
+
+/**
+ * Shared function to get all counties in an area.
+ * @param string $area
+ * @return array
+ */
+function plantright_survey_get_counties_by_area($area) {
+  $counties = plantright_survey_get_counties();
+  $matches = array();
+  foreach ($counties as $county => $county_area) {
+    if ($area == $county_area) {
+      $matches[] = $county;
+    }
+  }
+  return $matches;
+}
 
 //function plantright_survey_cron() {
 //}

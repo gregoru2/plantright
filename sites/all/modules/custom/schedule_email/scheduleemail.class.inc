@@ -7,9 +7,11 @@
  */
 class ScheduleEmail {
 
+  protected $profile_node_type;
   private $sent_log = array();
 
   public function __construct($send = TRUE) {
+    $this->profile_node_type = 'retail_member';
     if ($send) {
       $types = self::get_types(TRUE);
       $setid = array_search('register', $types);
@@ -65,8 +67,14 @@ class ScheduleEmail {
     if (!$days_ago_timestamp) {
       return;
     }
-    $result = db_query("SELECT u.uid from {users} u LEFT JOIN {schedule_email_sent} ses ON u.uid = ses.uid AND ses.seid = %d LEFT JOIN {node} n ON n.uid=u.uid WHERE n.type = 'retail_member' AND DATE(FROM_UNIXTIME(%d)) = DATE(FROM_UNIXTIME(u.created)) AND ses.uid IS NULL", $scheduled_email->seid, $days_ago_timestamp);
-
+    $result = db_query("SELECT u.uid from {users} u 
+      LEFT JOIN {schedule_email_sent} ses ON u.uid = ses.uid AND ses.seid = %d 
+      LEFT JOIN {node} n ON n.uid=u.uid 
+      WHERE n.type = '" . $this->profile_node_type . "' 
+        AND DATE(FROM_UNIXTIME(%d)) = DATE(FROM_UNIXTIME(u.created)) 
+        AND ses.uid IS NULL", $scheduled_email->seid, $days_ago_timestamp);
+    //("SELECT u.uid from users u LEFT JOIN schedule_email_sent ses ON u.uid = ses.uid AND ses.seid = " . $scheduled_email->seid . " LEFT JOIN node n ON n.uid=u.uid WHERE n.type = '" . $this->profile_node_type . "' AND DATE(FROM_UNIXTIME(" . $days_ago_timestamp . ")) = DATE(FROM_UNIXTIME(u.created)) AND ses.uid IS NULL");
+    
     while ($account = db_fetch_object($result)) {
       $accounts[] = user_load($account->uid);
     }
@@ -99,6 +107,7 @@ class ScheduleEmail {
    *   email parameters
    * @param type $accounts
    *   for mimemail, has to be user object or an array with name and email
+   * @param object $node (node with additional data)
    */
   public function send_scheduled_email($email, $accounts, $node = NULL) {
     //need: to, from, subject, body
@@ -125,12 +134,15 @@ class ScheduleEmail {
       $params['subject'] = check_plain(decode_entities($email->subject));
       $params['message'] = check_markup(decode_entities($email->body), $email->format);
       $params = $this->handle_replacements($params, $account, $node);
-
+      //TODO: Remove commented out.
+if ($account->uid == 939 || $account->uid == 940) {
+  mimemail($from, $to, $params['subject'], $params['message']);
+}
       if (function_exists('mimemail')) {
-        mimemail($from, $to, $params['subject'], $params['message']);
+     //   mimemail($from, $to, $params['subject'], $params['message']);
       }
       else {
-        drupal_mail('schedule_email', $key, $to, $language, $params, $from, $send);
+      //  drupal_mail('schedule_email', $key, $to, $language, $params, $from, $send);
       }
 
       $this->log_email_sent($email, $account, $node->nid);
@@ -171,6 +183,10 @@ class ScheduleEmail {
     if (isset($account->uid) && $account->uid) {
       $uid = $account->uid;
       $iid = 0;
+      if (array_key_exists(PLANTRIGHT_ROLES_SURVEY, $account->roles)) {
+        // Clear nid if this is nursery, because the NID isn't relevant
+        $nid = 0;
+      }
     }
     else {
       $uid = 0;

@@ -4,8 +4,9 @@
  * @file
  * Module code for schedule email
  */
-require 'scheduleemail.class.inc';
-require 'scheduleemailpartner.class.inc';
+require_once 'scheduleemail.class.inc';
+require_once 'scheduleemailpartner.class.inc';
+require_once 'scheduleemailsurvey.class.inc';
 
 /**
  * Implementation of hook_help().
@@ -289,9 +290,10 @@ function schedule_email_mail($key, &$message, $params) {
  * Implements hook_cron().
  */
 function schedule_email_cron() {
-  if (variable_get('schedule_email_enable', 0)) {
+  if (variable_get('schedule_email_enable', 0) && strpos($_SERVER['SERVER_NAME'], 'webenabled.net') === FALSE) {
     $se = new ScheduleEmail();
     $sep = new ScheduleEmailPartner();
+    $ses = new ScheduleEmailSurvey();
   }
 }
 
@@ -472,6 +474,37 @@ function schedule_email_send_single_email($mail, $node, $obj) {
 
       $se = new ScheduleEmailPartner(FALSE);
       $se->send_scheduled_email($node, array($obj), $profile);
+      break;
+    case 'survey_end':
+    case 'survey_register':
+      $obj->mail = $mail;
+      $accounts = array($obj);
+      
+      // Load the user's survey profile.
+      $profile = content_profile_load(PLANTRIGHT_SURVEY_PROFILE, $obj->uid);
+      
+      //TODO: uncomment
+      if (!$profile) {
+        // User doesn't have a survey profile, so they don't have the fields
+        // for this email.
+        drupal_set_message(t('Chosen user does not have a survey member profile. Users must have a <strong>survey member profile</strong> to receive this type of email. The chosen user may not be a survey member.'), 'error');
+        return;
+      }
+      
+      // Get the store user has signed up to survey.
+      $flags = flag_get_user_flags('node', null, $obj->uid);
+      $data_submitted = true;
+      if (count($flags) && isset($flags[PLANTRIGHT_FLAG_SURVEY])) {
+        $flag = array_shift($flags[PLANTRIGHT_FLAG_SURVEY]);
+        $store = node_load($flag->content_id);
+      }
+      else {
+        drupal_set_message(t('Chosen user does not have a nursery claimed. User must have claimed nursery to populate this email.'), 'error');
+        return;
+      }
+
+      $se = new ScheduleEmailSurvey(FALSE);
+      $se->send_scheduled_email($node, $accounts, $store);
       break;
   }
 

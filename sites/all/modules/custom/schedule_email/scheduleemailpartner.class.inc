@@ -41,7 +41,7 @@ class ScheduleEmailPartner extends ScheduleEmail {
     }
 
     $matches = array();
-    $result =  db_query("SELECT n.nid FROM {node} n INNER JOIN {content_type_business} ctb ON n.nid=ctb.nid LEFT JOIN {schedule_email_sent} ses ON n.nid = ses.nid AND ses.seid = %d WHERE DATE(FROM_UNIXTIME(%d)) = DATE(ctb.field_is_certified_date_value) AND ses.nid IS NULL", $scheduled_email->seid, $days_ago_timestamp);
+    $result =  db_query("SELECT n.nid FROM {node} n JOIN {content_type_business} ctb ON n.nid=ctb.nid LEFT JOIN {schedule_email_sent} ses ON n.nid = ses.nid AND ses.seid = %d WHERE DATE(FROM_UNIXTIME(%d)) = DATE(ctb.field_is_certified_date_value) AND ses.nid IS NULL", $scheduled_email->seid, $days_ago_timestamp);
 
       while ($result = db_fetch_object($result)) {
         if ($result) {
@@ -65,7 +65,7 @@ class ScheduleEmailPartner extends ScheduleEmail {
     }
 
     $matches = array();
-    $result =  db_query("SELECT n.nid FROM {node} n INNER JOIN {content_type_business} ctb ON n.nid=ctb.nid LEFT JOIN {schedule_email_sent} ses ON n.nid = ses.nid AND ses.seid = %d WHERE DATE(FROM_UNIXTIME(%d)) = DATE(ctb.field_is_certified_date_value) AND ses.nid IS NULL", $scheduled_email->seid, $days_ago_timestamp);
+    $result =  db_query("SELECT n.nid FROM {node} n JOIN {content_type_business} ctb ON n.nid=ctb.nid LEFT JOIN {schedule_email_sent} ses ON n.nid = ses.nid AND ses.seid = %d WHERE DATE(FROM_UNIXTIME(%d)) = DATE(ctb.field_is_certified_date_value) AND ses.nid IS NULL", $scheduled_email->seid, $days_ago_timestamp);
      while ($result = db_fetch_object($result)) {
       if ($result) {
         $nid = $result->nid;
