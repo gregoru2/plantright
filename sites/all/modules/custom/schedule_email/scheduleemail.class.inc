@@ -134,15 +134,12 @@ class ScheduleEmail {
       $params['subject'] = check_plain(decode_entities($email->subject));
       $params['message'] = check_markup(decode_entities($email->body), $email->format);
       $params = $this->handle_replacements($params, $account, $node);
-      //TODO: Remove commented out.
-if ($account->uid == 939 || $account->uid == 940) {
-  mimemail($from, $to, $params['subject'], $params['message']);
-}
+
       if (function_exists('mimemail')) {
-     //   mimemail($from, $to, $params['subject'], $params['message']);
+        mimemail($from, $to, $params['subject'], $params['message']);
       }
       else {
-      //  drupal_mail('schedule_email', $key, $to, $language, $params, $from, $send);
+        drupal_mail('schedule_email', $key, $to, $language, $params, $from, $send);
       }
 
       $this->log_email_sent($email, $account, $node->nid);
