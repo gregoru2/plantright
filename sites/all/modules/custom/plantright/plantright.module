@@ -9,6 +9,7 @@ DEFINE('PLANTRIGHT_SURVEY_PROFILE', 'survey_profile');
 DEFINE('PLANTRIGHT_PROFILE_FNAME', 'field_fname');
 DEFINE('PLANTRIGHT_PROFILE_LNAME', 'field_lname');
 
+DEFINE('PLANTRIGHT_ROLE_ID_ADMIN', 3);
 
 /**
  * Include token support.

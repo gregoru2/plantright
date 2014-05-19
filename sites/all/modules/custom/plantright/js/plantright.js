@@ -79,28 +79,4 @@ Drupal.behaviors.plantright = function(context) {
     }
   });
 
-  // Customize the bulk upload on nursery survey photos to empty the desc.
-  if (Drupal.settings.swfupload_settings && SWFUpload != undefined && SWFUpload.instances['SWFUpload_0'] != undefined) {
-    var settings = Drupal.settings.swfupload_settings;
-    for (var id in settings) {
-      if (id == 'edit-field-survey-image') {
-        if (Drupal.swfu != undefined && Drupal.swfu[id] != undefined) {
-          var instance = Drupal.swfu[id];
-          $('#swfupload_file_wrapper-field_survey_image td.title').each(function() {
-            var $this = $(this);
-            var desc = $('input.form-textfield', $this).show().val();
-            var filename = $('div.wrapper > span', $this).hide().text();
-            if (filename == '[filename]' || filename == '') {
-              $('input.form-textfield', $this).val('');
-            }
-            setTimeout(function() {
-              $('a.toggle-editable', $this).remove(); 
-            }, 50)
-          });
-          $('td.icon .sfwupload-list-mime').css('height', '100px').css('width', '100px');
-        
-        }
-      }
-    };
-  };
 }

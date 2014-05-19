@@ -51,7 +51,7 @@ Drupal.behaviors.plantright_survey = function (context) {
       hideItems($radio.closest('fieldset'));
     }
   }
-  
+
   var index = 1;
   var $fieldset;
 
@@ -68,5 +68,72 @@ Drupal.behaviors.plantright_survey = function (context) {
     index++;
     $fieldset = $survey_data.find('form fieldset.group-species' + index)
   }
+
+  // SWF upload.
+  // Customize the bulk upload on nursery survey photos to empty the desc.
+  if (!$('body').hasClass('pr-swfupload-initialized') && $('#swfupload_file_wrapper-field_survey_image').length > 0) {
+    $('body').addClass('pr-swfupload-initialized');
+    $('#swfupload_file_wrapper-field_survey_image tr:not(.hidden) td.title').addClass('pr-swfupload-editing')
+  }
+
+  if (Drupal.settings.swfupload_settings && SWFUpload != undefined && SWFUpload.instances['SWFUpload_0'] != undefined) {
+    var settings = Drupal.settings.swfupload_settings;
+
+    for (var id in settings) {
+      if (id == 'edit-field-survey-image') {
+        if (Drupal.swfu != undefined && Drupal.swfu[id] != undefined) {
+          var instance = Drupal.swfu[id];
+          $('#swfupload_file_wrapper-field_survey_image tr:not(.hidden) td.title:not(.pr-swfupload-processed)').each(function() {
+            var $this = $(this);
+            $this.addClass('pr-swfupload-processed');
+
+            var $desc = $this.find('input.form-textfield');
+            var desc = $desc.val();
+            var $filename = $this.find('div.wrapper > span');
+            var filename = $filename.text();
+            var filenameInterval = setInterval(function() {
+              if ('[filename]' != desc) {
+                // Filename is populated.
+                clearInterval(filenameInterval);
+                if (desc == filename) {
+                  if (!$this.hasClass('pr-swfupload-editing')) {
+                    $desc.val('');
+                  }
+                  $desc.show();
+                  $filename.hide();
+                }
+              }
+            }, 50);
+
+            var editInterval = setInterval(function() {
+              // if ($desc.parent().hasClass('editable-enabled')) {
+              if ($this.parent().find('.sfwupload-list-progressbar').length == 0) {
+                clearInterval(editInterval);
+                $desc.unbind('blur');
+                $desc.unbind('keydown');
+                $desc.parents('td').unbind('dblclick');
+                //.parent().removeClass('editable-enabled');
+                $this.find('a.toggle-editable').hide().unbind('click');
+                var id = $this.parents('tr').attr('id');
+                var file;
+
+                $.each(instance.queue, function(index, value) {
+                  if (value.fid == id) {
+                    file = value;
+                  }
+                })
+                $desc.bind('blur', function() {
+                  $filename.html($desc.val());
+                  instance.updateStack(file);
+                });
+              }
+            }, 50);
+          });
+          $('td.icon .sfwupload-list-mime').css('height', '100px').css('width', '100px');
+
+        }
+      }
+    };
+  };
 
 }

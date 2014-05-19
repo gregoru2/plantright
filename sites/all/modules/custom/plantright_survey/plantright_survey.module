@@ -97,7 +97,7 @@ function plantright_survey_nodeapi(&$node, $op, $a3, $a4) {
 
         // Update the photo status of the nursery node.
         $nursery_node = node_load($nursery_node_id);
-        if ($nursery_node) {
+        if ($nursery_node && $nursery_node->field_photo_status[0]['value'] != 'submitted') {
           $nursery_node->field_photo_status[0]['value'] = 'submitted';
           node_save($nursery_node);
         }
@@ -124,7 +124,7 @@ function plantright_survey_nodeapi(&$node, $op, $a3, $a4) {
         if ($nursery_node) {
           $data_nodes = nodereferrer_referrers($nursery_node->nid, array('field_store_name'), array($node->type));
 
-          if (count($data_nodes) <= 1) {
+          if (count($data_nodes) <= 1 && $nursery_node->field_photo_status[0]['value'] != 'none') {
             $nursery_node->field_photo_status[0]['value'] = 'none';
             node_save($nursery_node);
           }
@@ -141,7 +141,7 @@ function plantright_survey_nodeapi(&$node, $op, $a3, $a4) {
 
         // Update the photo status of the nursery node.
         $nursery_node = node_load($nursery_node_id);
-        if ($nursery_node) {
+        if ($nursery_node && $nursery_node->field_data_status[0]['value'] != 'submitted') {
           $nursery_node->field_data_status[0]['value'] = 'submitted';
           node_save($nursery_node);
         }
@@ -152,7 +152,7 @@ function plantright_survey_nodeapi(&$node, $op, $a3, $a4) {
           $data_nodes = nodereferrer_referrers($prev_nursery_node_id, array('field_store_name'), array($node->type));
           if (count($data_nodes) <= 1) {
             $prev_nursery_node = node_load($prev_nursery_node_id);
-            if ($prev_nursery_node) {
+            if ($prev_nursery_node && $prev_nursery_node->field_data_status[0]['value'] != 'none') {
               $prev_nursery_node->field_data_status[0]['value'] = 'none';
               node_save($prev_nursery_node);
             }
@@ -168,7 +168,7 @@ function plantright_survey_nodeapi(&$node, $op, $a3, $a4) {
         if ($nursery_node) {
           $data_nodes = nodereferrer_referrers($nursery_node->nid, array('field_store_name'), array($node->type));
 
-          if (count($data_nodes) <= 1) {
+          if (count($data_nodes) <= 1 && $nursery_node->field_data_status[0]['value'] != 'none') {
             $nursery_node->field_data_status[0]['value'] = 'none';
             node_save($nursery_node);
           }
@@ -657,7 +657,7 @@ function plantright_survey_views_query_alter(&$view, &$query) {
           $uid = $where['args'][$key];
           $account = user_load($uid);
           if (user_access('edit any survey_photos content', $account) || user_access('edit any survey_data content', $account)) {
-            unset($where['clauses'][$key]);
+            unset($where['clauses'][$key], $where['args'][$key]);
           }
         }
       }
