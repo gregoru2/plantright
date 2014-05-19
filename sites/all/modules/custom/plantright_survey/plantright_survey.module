@@ -14,7 +14,6 @@ define('PLANTRIGHT_NODE_TYPE_SURVEY_DATA', 'survey_data');
 define('PLANTRIGHT_NODE_TYPE_SURVEY_PHOTOS', 'survey_photos');
 define('PLANTRIGHT_FLAG_SURVEY', 'nursery_flag');
 
-
 /**
  * Implementation of hook_init.
  */
@@ -59,17 +58,21 @@ function plantright_survey_flag($action, $flag, $content_id, $account) {
     global $user;
     watchdog('pr_survey', 'Nursery claimed by #' . $account->uid . ' from user logged in #' . $user->uid . ' nursery node #' . $content_id);
     $node = node_load($content_id);
-    $member = array();
-    $member['uid'] = $account->uid;
-    array_push($node->field_surveying_user, $member);
-    node_save($node);
+    if ($node) {
+      $member = array();
+      $member['uid'] = $account->uid;
+      array_push($node->field_surveying_user, $member);
+      node_save($node);
+    }
   }
   if ($action == 'unflag' && $flag->name == 'nursery_flag') {
     watchdog('pr_survey', 'Nursery unclaimed by #' . $account->uid . ' from user logged in #' . $user->uid . ' nursery node #' . $content_id);
     $node = node_load($content_id);
-    $users = $node->field_surveying_user;
-    $node->field_surveying_user = _plantright_survey_removeElementWithValue($users, "uid", $account->uid);
-    node_save($node);
+    if ($node) {
+      $users = $node->field_surveying_user;
+      $node->field_surveying_user = _plantright_survey_removeElementWithValue($users, "uid", $account->uid);
+      node_save($node);
+    }
   }
 }
 
@@ -94,17 +97,21 @@ function plantright_survey_nodeapi(&$node, $op, $a3, $a4) {
 
         // Update the photo status of the nursery node.
         $nursery_node = node_load($nursery_node_id);
-        $nursery_node->field_photo_status[0]['value'] = 'submitted';
-        node_save($nursery_node);
+        if ($nursery_node) {
+          $nursery_node->field_photo_status[0]['value'] = 'submitted';
+          node_save($nursery_node);
+        }
 
         $prev_nursery_node_id = $node->prev_field_store_name;
-        if ($prev_nursery_node_id != $nursery_node_id) {
+        if ($prev_nursery_node_id && $nursery_node_id && $prev_nursery_node_id != $nursery_node_id) {
           // Remove from prev node. Check if other submitted first.
           $data_nodes = nodereferrer_referrers($prev_nursery_node_id, array('field_store_name'), array($node->type));
           if (count($data_nodes) <= 1) {
             $prev_nursery_node = node_load($prev_nursery_node_id);
-            $prev_nursery_node->field_photo_status[0]['value'] = 'none';
-            node_save($prev_nursery_node);
+            if ($prev_nursery_node) {
+              $prev_nursery_node->field_photo_status[0]['value'] = 'none';
+              node_save($prev_nursery_node);
+            }
           }
         }
         break;
@@ -114,11 +121,13 @@ function plantright_survey_nodeapi(&$node, $op, $a3, $a4) {
         // Get all referring survey photos. If this is the only one,
         // set the nursery to none submitted.
         $nursery_node = node_load($nursery_node_id);
-        $data_nodes = nodereferrer_referrers($nursery_node->nid, array('field_store_name'), array($node->type));
+        if ($nursery_node) {
+          $data_nodes = nodereferrer_referrers($nursery_node->nid, array('field_store_name'), array($node->type));
 
-        if (count($data_nodes) <= 1) {
-          $nursery_node->field_photo_status[0]['value'] = 'none';
-          node_save($nursery_node);
+          if (count($data_nodes) <= 1) {
+            $nursery_node->field_photo_status[0]['value'] = 'none';
+            node_save($nursery_node);
+          }
         }
         break;
     }
@@ -132,17 +141,21 @@ function plantright_survey_nodeapi(&$node, $op, $a3, $a4) {
 
         // Update the photo status of the nursery node.
         $nursery_node = node_load($nursery_node_id);
-        $nursery_node->field_data_status[0]['value'] = 'submitted';
-        node_save($nursery_node);
+        if ($nursery_node) {
+          $nursery_node->field_data_status[0]['value'] = 'submitted';
+          node_save($nursery_node);
+        }
 
         $prev_nursery_node_id = $node->prev_field_store_name;
-        if ($prev_nursery_node_id != $nursery_node_id) {
+        if ($prev_nursery_node_id && $nursery_node_id && $prev_nursery_node_id != $nursery_node_id) {
           // Remove from prev node. Check if other submitted first.
           $data_nodes = nodereferrer_referrers($prev_nursery_node_id, array('field_store_name'), array($node->type));
           if (count($data_nodes) <= 1) {
             $prev_nursery_node = node_load($prev_nursery_node_id);
-            $prev_nursery_node->field_data_status[0]['value'] = 'none';
-            node_save($prev_nursery_node);
+            if ($prev_nursery_node) {
+              $prev_nursery_node->field_data_status[0]['value'] = 'none';
+              node_save($prev_nursery_node);
+            }
           }
         }
         break;
@@ -152,11 +165,13 @@ function plantright_survey_nodeapi(&$node, $op, $a3, $a4) {
         // Get all referring survey data. If this is the only one,
         // set the nursery to none submitted.
         $nursery_node = node_load($nursery_node_id);
-        $data_nodes = nodereferrer_referrers($nursery_node->nid, array('field_store_name'), array($node->type));
+        if ($nursery_node) {
+          $data_nodes = nodereferrer_referrers($nursery_node->nid, array('field_store_name'), array($node->type));
 
-        if (count($data_nodes) <= 1) {
-          $nursery_node->field_data_status[0]['value'] = 'none';
-          node_save($nursery_node);
+          if (count($data_nodes) <= 1) {
+            $nursery_node->field_data_status[0]['value'] = 'none';
+            node_save($nursery_node);
+          }
         }
         break;
     }
@@ -623,7 +638,7 @@ function plantright_survey_views_api() {
   return array(
     'api' => '2',
     'path' => drupal_get_path('module', 'plantright_survey') . '/views',
-    //'template path' => drupal_get_path('module', 'plantright_survey') . '/templates',
+      //'template path' => drupal_get_path('module', 'plantright_survey') . '/templates',
   );
 }
 
