@@ -467,7 +467,8 @@ li span.flag-nursery-dibs a { background-color: #f7f5ed; border: solid 1px #b697
 #ygyeyc .brown { color: #4d3c14; }
 #ygyeyc .red { color: #a14926; }
 
-#page-node-add-survey-photos .content-add-more { margin-bottom: 15px; margin-top: 10px; }
+#page-node-add-survey-photos .content-add-more, .node-type-survey-photos { margin-bottom: 15px; margin-top: 10px; }
+#page-node-add-survey-photos .form-item-labeled .form-radios, .node-type-survey-photos .form-item-labeled .form-radios, #page-node-add-survey-data .form-item-labeled .form-radios, .node-type-survey-data .form-item-labeled .form-radios  { max-height: 250px; overflow-y: auto; overflow-x: hidden; }
 
 .webform-client-form textarea { background-color: white; width: 90%; }
 
@@ -1613,3 +1614,6 @@ body.popup .popup-hidden { display: none; }
 .ce-resources-success { font-weight: normal; font-size: 1.3em; line-height: 1.25; margin: 10px; }
 .ce-term-number	{ display: block; color: #c4bb9c; background-color: #fff; width: 10%; margin-top: -30px; position: relative; top: 0px; left: 45%; font-weight: 800; text-align: center; font-size: 1.3em; line-height: 1; margin-bottom: 5px; }
 
+/* swf upload */
+.swfupload td.title { max-width: 300px; overflow: hidden; }
+.swfupload td.title input, .swfupload td.title span { width: 100%; display: block;}
