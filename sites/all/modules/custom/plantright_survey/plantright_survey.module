@@ -642,6 +642,29 @@ function plantright_survey_views_api() {
   );
 }
 
+/**
+ * Implements hook_views_query_alter().
+ */
+function plantright_survey_views_query_alter(&$view, &$query) {
+  switch ($view->name) {
+    case 'my_nursuries_node_reference':
+      // Alter nurseries select list for data and photo submission
+      // so admins can have a list of all.
+      $where = &$view->query->where[0];
+      foreach ($where['clauses'] as $key => $clause) {
+        if (strpos($clause, 'users_node_data_field_surveying_user.uid') === 0) {
+          //$clause .= ' OR users_roles.rid = ' . PLANTRIGHT_ROLE_ID_ADMIN;
+          $uid = $where['args'][$key];
+          $account = user_load($uid);
+          if (user_access('edit any survey_photos content', $account) || user_access('edit any survey_data content', $account)) {
+            unset($where['clauses'][$key]);
+          }
+        }
+      }
+      break;
+  }
+}
+
 function _plantright_survey_diff_field_time_helper($values) {
   foreach ($values as $key => $value) {
     if (strpos($key, 'field_survey_start_time_value') !== FALSE) {

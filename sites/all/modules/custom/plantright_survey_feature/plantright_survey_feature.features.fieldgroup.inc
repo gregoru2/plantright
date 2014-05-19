@@ -374,6 +374,94 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     ),
   );
 
+  // Exported group: group_species15
+  $groups['survey_data-group_species15'] = array(
+    'group_type' => 'standard',
+    'type_name' => 'survey_data',
+    'group_name' => 'group_species15',
+    'label' => ' Triadica (Sapium) sebifera - Chinese tallow tree',
+    'settings' => array(
+      'form' => array(
+        'style' => 'fieldset',
+        'description' => '',
+      ),
+      'display' => array(
+        'description' => '',
+        'label' => 'above',
+        'teaser' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        'full' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '4' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '2' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '3' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        'token' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+      ),
+    ),
+    'weight' => '65',
+    'fields' => array(),
+  );
+
+  // Exported group: group_species16
+  $groups['survey_data-group_species16'] = array(
+    'group_type' => 'standard',
+    'type_name' => 'survey_data',
+    'group_name' => 'group_species16',
+    'label' => 'Vinca major - Big leaf periwinkle',
+    'settings' => array(
+      'form' => array(
+        'style' => 'fieldset',
+        'description' => '',
+      ),
+      'display' => array(
+        'description' => '',
+        'label' => 'above',
+        'teaser' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        'full' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '4' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '2' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '3' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        'token' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+      ),
+    ),
+    'weight' => '66',
+    'fields' => array(),
+  );
+
   // Exported group: group_species2
   $groups['survey_data-group_species2'] = array(
     'group_type' => 'standard',
@@ -849,6 +937,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t(' Triadica (Sapium) sebifera - Chinese tallow tree');
   t('Additional Info');
   t('Basic Information');
   t('Carex divulsa (often sold as C. tumulicola Hort.) - Grassland sedge (European Grey Sedge, often sold as Berkeley Sedge)');
