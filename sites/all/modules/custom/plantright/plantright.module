@@ -723,6 +723,6 @@ function _plantright_feeds_ridmap_feeds_set_roles_target($account, $target, $val
     $user_roles[$value] = $roles[$value];
   }
   // map role to what came across and assign role array correctly
-  $account->roles = $account->roles + array_filter($user_roles);
+  $account->roles = array_filter($user_roles);
   return $account;
 }
