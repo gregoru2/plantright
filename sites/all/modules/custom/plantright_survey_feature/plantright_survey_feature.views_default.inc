@@ -5708,42 +5708,6 @@ function plantright_survey_feature_views_default_views() {
     ),
   ));
   $handler->override_option('fields', array(
-    'title_1' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '(nursery not found)',
-      'hide_empty' => 0,
-      'empty_zero' => 1,
-      'hide_alter_empty' => 0,
-      'link_to_node' => 1,
-      'exclude' => 1,
-      'id' => 'title_1',
-      'table' => 'node',
-      'field' => 'title',
-      'override' => array(
-        'button' => 'Override',
-      ),
-      'relationship' => 'field_store_name_nid',
-    ),
     'field_survey_image_fid' => array(
       'label' => '',
       'alter' => array(
