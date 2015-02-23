@@ -235,6 +235,13 @@ function plantright_survey_field_access($op, $field, $account, $node) {
           break;
       }
       break;
+// Think below is not needed because only certified survey members can view the nursery nodes.
+//	case 'field_nursery_notes':
+//	  // hide nursery notes from users who can't create survey data.
+//	  if (!user_access('create survey_data content')) {
+//	    return false;
+//	  }
+//	  break;
   }
 }
 
@@ -524,6 +531,8 @@ function _plantright_survey_county_tracking_build() {
     $stores_number_claimed = 0;
     $stores_number_total = 0;
     $stores_number_w_data_photos = 0;
+	$stores_number_w_data = 0;
+	$stores_number_w_photos = 0;
     $stores_percent_surveyed = 0;
 
     if (!empty($store_nids)) {
@@ -545,18 +554,28 @@ function _plantright_survey_county_tracking_build() {
         if (count($photo_nodes) && count($data_nodes)) {
           $stores_number_w_data_photos++;
         }
-
-        if ('reviewed' == $store->field_photo_status[0]['value'] && count($photo_nodes) && count($data_nodes)) {
-          $stores_number_w_data_photos++;
+		
+		// Increase count if data found.
+		if (count($data_nodes)) {
+          $stores_number_w_data++;
         }
+		
+		// Increase count if photos found.
+		if (count($photo_nodes)) {
+          $stores_number_w_photos++;
+        }
+
+//        if ('reviewed' == $store->field_photo_status[0]['value'] && count($photo_nodes) && count($data_nodes)) {
+//          $stores_number_w_data_photos++;
+//        }
       }
     }
 
     $stores_number_total = count($store_nids);
     $stores_percent_surveyed = number_format(( $stores_number_total > 0 ? ($stores_number_w_data_photos / $stores_number_total) * 100 : 0), 2);
 
-    db_query("INSERT INTO {plantright_survey_county_tracking} (region, county, stores_number_claimed, stores_number_total, stores_delta_claimed, stores_number_w_data_photos, stores_percent_surveyed, stores_delta_data)
-VALUES('%s', '%s', '%d', '%d', '%d', '%d', '%f', '%d')", $region, $county, $stores_number_claimed, $stores_number_total, $stores_number_claimed - $stores_number_total, $stores_number_w_data_photos, $stores_percent_surveyed, $stores_number_w_data_photos - $stores_number_claimed);
+    db_query("INSERT INTO {plantright_survey_county_tracking} (region, county, stores_number_claimed, stores_number_total, stores_delta_claimed, stores_number_w_data_photos, stores_number_w_data, stores_number_w_photos, stores_percent_surveyed, stores_delta_data)
+VALUES('%s', '%s', '%d', '%d', '%d', '%d', '%d', '%d', '%f', '%d')", $region, $county, $stores_number_claimed, $stores_number_total, $stores_number_claimed - $stores_number_total, $stores_number_w_data_photos, $stores_number_w_data, $stores_number_w_photos, $stores_percent_surveyed, $stores_number_w_data_photos - $stores_number_claimed);
   }
 }
 

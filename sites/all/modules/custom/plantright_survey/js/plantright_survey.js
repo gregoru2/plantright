@@ -24,14 +24,17 @@ Drupal.behaviors.plantright_survey = function (context) {
 
   // Handle survey data species data.
   var showItems = function($container) {
-    $container.find('.fieldset-content > .form-item-labeled').slice(1).slideDown();
+  // Show all except the first (did you find) and last field (which is the related genus)
+    $container.find('.fieldset-content > .form-item-labeled').slice(1, -1).slideDown();
     $container.find('input.form-text').each(function() {
       var $elem = $(this);
       $elem.val($elem.data('pr-survey-val'))
     });
   };
   var hideItems = function($container) {
-    $container.find('.fieldset-content > .form-item-labeled').slice(1).slideUp();
+  // Hide all except the first (did you find) and last field (which is the related genus)
+    $container.find('.fieldset-content > .form-item-labeled').slice(1, -1).slideUp();
+	
     // Clear the values so none is saved if "no" selected.
     $container.find('input.form-text').each(function() {
       var $elem = $(this);
@@ -58,7 +61,10 @@ Drupal.behaviors.plantright_survey = function (context) {
   $fieldset = $survey_data.find('form fieldset.group-species' + index);
   while($fieldset.length > 0) {
 
+	// Add indent to all but first and last child fields.
+	$fieldset.find('.form-item').filter(':not(:first-child)').filter(':not(:last-child)').addClass('form-item-indent');
 
+    // Add click handler to the radio button.
     $fieldset.find('input:radio').click(function() {
       showHide($(this));
     }).each(function() {

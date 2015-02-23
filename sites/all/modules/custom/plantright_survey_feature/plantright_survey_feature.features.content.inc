@@ -310,6 +310,69 @@ submitted|Data submitted',
     ),
   );
 
+  // Exported field: field_nursery_notes
+  $fields['nursery-field_nursery_notes'] = array(
+    'field_name' => 'field_nursery_notes',
+    'type_name' => 'nursery',
+    'display_settings' => array(
+      'weight' => '34',
+      'parent' => '',
+      'label' => array(
+        'format' => 'above',
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '1',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => '5',
+      'size' => 60,
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_nursery_notes][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Notes',
+      'weight' => '34',
+      'description' => '',
+      'type' => 'text_textarea',
+      'module' => 'text',
+    ),
+  );
+
   // Exported field: field_phone
   $fields['nursery-field_phone'] = array(
     'field_name' => 'field_phone',
@@ -805,7 +868,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
+      'label' => 'Did you find this plant during your survey?',
       'weight' => '163',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -1116,7 +1179,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '170',
+      'weight' => '169',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -1239,8 +1302,8 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Related Plants in the same genus',
-      'weight' => '169',
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '170',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -1299,7 +1362,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
+      'label' => 'Did you find this plant during your survey?',
       'weight' => '173',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -1610,7 +1673,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '180',
+      'weight' => '179',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -1733,8 +1796,8 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Related Plants in the same genus',
-      'weight' => '179',
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '180',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -1793,7 +1856,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
+      'label' => 'Did you find this plant during your survey?',
       'weight' => '183',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -2104,7 +2167,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '190',
+      'weight' => '189',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -2227,8 +2290,8 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Related Plants in the same genus',
-      'weight' => '189',
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '190',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -2287,7 +2350,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
+      'label' => 'Did you find this plant during your survey?',
       'weight' => '193',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -2598,7 +2661,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '200',
+      'weight' => '199',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -2721,8 +2784,8 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Related Plants in the same genus',
-      'weight' => '199',
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '200',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -2783,7 +2846,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
+      'label' => 'Did you find this plant during your survey?',
       'weight' => '76',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -3094,7 +3157,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '83',
+      'weight' => '82',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -3217,8 +3280,1992 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Related Plants in the same genus',
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '83',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species15_found
+  $fields['survey_data-field_species15_found'] = array(
+    'field_name' => 'field_species15_found',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '1',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => 'No
+Yes',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => 'No',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Did you find this plant during your survey?',
+      'weight' => '76',
+      'description' => '',
+      'type' => 'optionwidgets_buttons',
+      'module' => 'optionwidgets',
+    ),
+  );
+
+  // Exported field: field_species15_grower
+  $fields['survey_data-field_species15_grower'] = array(
+    'field_name' => 'field_species15_grower',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species15_grower][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Name of Grower (from label)',
+      'weight' => '77',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species15_name_common
+  $fields['survey_data-field_species15_name_common'] = array(
+    'field_name' => 'field_species15_name_common',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species15_name_common][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Common Name (from label)',
+      'weight' => '79',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species15_name_cultivar
+  $fields['survey_data-field_species15_name_cultivar'] = array(
+    'field_name' => 'field_species15_name_cultivar',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species15_name_cultivar][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => '\'Cultivar Name\' and/or related plants',
+      'weight' => '81',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species15_name_scientific
+  $fields['survey_data-field_species15_name_scientific'] = array(
+    'field_name' => 'field_species15_name_scientific',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species15_name_scientific][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Scientific Name (from label)',
+      'weight' => '80',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species15_number
+  $fields['survey_data-field_species15_number'] = array(
+    'field_name' => 'field_species15_number',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species15_number][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => '# for Sale',
       'weight' => '82',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species15_price
+  $fields['survey_data-field_species15_price'] = array(
+    'field_name' => 'field_species15_price',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species15_price][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Price / Size ($5/gallon)',
+      'weight' => '78',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species15_related
+  $fields['survey_data-field_species15_related'] = array(
+    'field_name' => 'field_species15_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species15_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '83',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species16_found
+  $fields['survey_data-field_species16_found'] = array(
+    'field_name' => 'field_species16_found',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '1',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => 'No
+Yes',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => 'No',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Did you find this plant during your survey?',
+      'weight' => '76',
+      'description' => '',
+      'type' => 'optionwidgets_buttons',
+      'module' => 'optionwidgets',
+    ),
+  );
+
+  // Exported field: field_species16_grower
+  $fields['survey_data-field_species16_grower'] = array(
+    'field_name' => 'field_species16_grower',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species16_grower][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Name of Grower (from label)',
+      'weight' => '77',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species16_name_common
+  $fields['survey_data-field_species16_name_common'] = array(
+    'field_name' => 'field_species16_name_common',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species16_name_common][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Common Name (from label)',
+      'weight' => '79',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species16_name_cultivar
+  $fields['survey_data-field_species16_name_cultivar'] = array(
+    'field_name' => 'field_species16_name_cultivar',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species16_name_cultivar][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => '\'Cultivar Name\' and/or related plants',
+      'weight' => '81',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species16_name_scientific
+  $fields['survey_data-field_species16_name_scientific'] = array(
+    'field_name' => 'field_species16_name_scientific',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species16_name_scientific][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Scientific Name (from label)',
+      'weight' => '80',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species16_number
+  $fields['survey_data-field_species16_number'] = array(
+    'field_name' => 'field_species16_number',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species16_number][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => '# for Sale',
+      'weight' => '82',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species16_price
+  $fields['survey_data-field_species16_price'] = array(
+    'field_name' => 'field_species16_price',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species16_price][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Price / Size ($5/gallon)',
+      'weight' => '78',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species16_related
+  $fields['survey_data-field_species16_related'] = array(
+    'field_name' => 'field_species16_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species16_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '83',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species17_found
+  $fields['survey_data-field_species17_found'] = array(
+    'field_name' => 'field_species17_found',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '1',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => 'No
+Yes',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => 'No',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Did you find this plant during your survey?',
+      'weight' => '76',
+      'description' => '',
+      'type' => 'optionwidgets_buttons',
+      'module' => 'optionwidgets',
+    ),
+  );
+
+  // Exported field: field_species17_grower
+  $fields['survey_data-field_species17_grower'] = array(
+    'field_name' => 'field_species17_grower',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species17_grower][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Name of Grower (from label)',
+      'weight' => '77',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species17_name_common
+  $fields['survey_data-field_species17_name_common'] = array(
+    'field_name' => 'field_species17_name_common',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species17_name_common][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Common Name (from label)',
+      'weight' => '79',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species17_name_cultivar
+  $fields['survey_data-field_species17_name_cultivar'] = array(
+    'field_name' => 'field_species17_name_cultivar',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species17_name_cultivar][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => '\'Cultivar Name\' and/or related plants',
+      'weight' => '81',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species17_name_scientific
+  $fields['survey_data-field_species17_name_scientific'] = array(
+    'field_name' => 'field_species17_name_scientific',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species17_name_scientific][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Scientific Name (from label)',
+      'weight' => '80',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species17_number
+  $fields['survey_data-field_species17_number'] = array(
+    'field_name' => 'field_species17_number',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species17_number][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => '# for Sale',
+      'weight' => '82',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species17_price
+  $fields['survey_data-field_species17_price'] = array(
+    'field_name' => 'field_species17_price',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species17_price][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Price / Size ($5/gallon)',
+      'weight' => '78',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species17_related
+  $fields['survey_data-field_species17_related'] = array(
+    'field_name' => 'field_species17_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species17_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '83',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species18_found
+  $fields['survey_data-field_species18_found'] = array(
+    'field_name' => 'field_species18_found',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '1',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => 'No
+Yes',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => 'No',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Did you find this plant during your survey?',
+      'weight' => '76',
+      'description' => '',
+      'type' => 'optionwidgets_buttons',
+      'module' => 'optionwidgets',
+    ),
+  );
+
+  // Exported field: field_species18_grower
+  $fields['survey_data-field_species18_grower'] = array(
+    'field_name' => 'field_species18_grower',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species18_grower][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Name of Grower (from label)',
+      'weight' => '77',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species18_name_common
+  $fields['survey_data-field_species18_name_common'] = array(
+    'field_name' => 'field_species18_name_common',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species18_name_common][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Common Name (from label)',
+      'weight' => '79',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species18_name_cultivar
+  $fields['survey_data-field_species18_name_cultivar'] = array(
+    'field_name' => 'field_species18_name_cultivar',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species18_name_cultivar][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => '\'Cultivar Name\' and/or related plants',
+      'weight' => '81',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species18_name_scientific
+  $fields['survey_data-field_species18_name_scientific'] = array(
+    'field_name' => 'field_species18_name_scientific',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species18_name_scientific][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Scientific Name (from label)',
+      'weight' => '80',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species18_number
+  $fields['survey_data-field_species18_number'] = array(
+    'field_name' => 'field_species18_number',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species18_number][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => '# for Sale',
+      'weight' => '82',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species18_price
+  $fields['survey_data-field_species18_price'] = array(
+    'field_name' => 'field_species18_price',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species18_price][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Price / Size ($5/gallon)',
+      'weight' => '78',
+      'description' => '',
+      'type' => 'text_textfield',
+      'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_species18_related
+  $fields['survey_data-field_species18_related'] = array(
+    'field_name' => 'field_species18_related',
+    'type_name' => 'survey_data',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'text',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'text',
+    'active' => '1',
+    'text_processing' => '0',
+    'max_length' => '',
+    'allowed_values' => '',
+    'allowed_values_php' => '',
+    'widget' => array(
+      'rows' => 5,
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'value' => '',
+          '_error_element' => 'default_value_widget][field_species18_related][0][value',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '83',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -3277,7 +5324,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
+      'label' => 'Did you find this plant during your survey?',
       'weight' => '76',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -3588,7 +5635,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '83',
+      'weight' => '82',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -3711,8 +5758,8 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Related Plants in the same genus',
-      'weight' => '82',
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '83',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -3771,7 +5818,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
+      'label' => 'Did you find this plant during your survey?',
       'weight' => '86',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -4082,7 +6129,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '93',
+      'weight' => '92',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -4205,8 +6252,8 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Related Plants in the same genus',
-      'weight' => '92',
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '93',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -4265,7 +6312,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
+      'label' => 'Did you find this plant during your survey?',
       'weight' => '93',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -4576,7 +6623,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '100',
+      'weight' => '99',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -4699,8 +6746,8 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Related Plants in the same genus',
-      'weight' => '99',
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '100',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -4759,7 +6806,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
+      'label' => 'Did you find this plant during your survey?',
       'weight' => '103',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -5070,7 +7117,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '110',
+      'weight' => '109',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -5193,8 +7240,8 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Related Plants in the same genus',
-      'weight' => '109',
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '110',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -5253,7 +7300,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
+      'label' => 'Did you find this plant during your survey?',
       'weight' => '113',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -5564,7 +7611,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '120',
+      'weight' => '119',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -5687,8 +7734,8 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Related Plants in the same genus',
-      'weight' => '119',
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '120',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -5747,7 +7794,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
+      'label' => 'Did you find this plant during your survey?',
       'weight' => '123',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -6057,7 +8104,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '130',
+      'weight' => '129',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -6180,8 +8227,8 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Related Plants in the same genus',
-      'weight' => '129',
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '130',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -6240,7 +8287,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
+      'label' => 'Did you find this plant during your survey?',
       'weight' => '133',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -6551,7 +8598,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '140',
+      'weight' => '139',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -6674,8 +8721,8 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Related Plants in the same genus',
-      'weight' => '139',
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '140',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -6734,7 +8781,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
+      'label' => 'Did you find this plant during your survey?',
       'weight' => '143',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -7045,7 +9092,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '150',
+      'weight' => '149',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -7168,8 +9215,8 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Related Plants in the same genus',
-      'weight' => '149',
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '150',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -7228,7 +9275,7 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Did you find this plant (or any related plants in the same genus) during your survey?',
+      'label' => 'Did you find this plant during your survey?',
       'weight' => '153',
       'description' => '',
       'type' => 'optionwidgets_buttons',
@@ -7539,7 +9586,7 @@ Yes',
       ),
       'default_value_php' => NULL,
       'label' => '# for Sale',
-      'weight' => '160',
+      'weight' => '159',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -7662,8 +9709,8 @@ Yes',
         ),
       ),
       'default_value_php' => NULL,
-      'label' => 'Related Plants in the same genus',
-      'weight' => '159',
+      'label' => 'Did you find any related plants (i.e. in the same genus)? If so, please enter them here',
+      'weight' => '160',
       'description' => '',
       'type' => 'text_textfield',
       'module' => 'text',
@@ -8454,10 +10501,12 @@ In the “description” field please enter the plant name and whether it is of 
   t('County');
   t('Data Status');
   t('Date of Survey');
-  t('Did you find this plant (or any related plants in the same genus) during your survey?');
+  t('Did you find any related plants (i.e. in the same genus)? If so, please enter them here');
+  t('Did you find this plant during your survey?');
   t('Email');
   t('End Time');
   t('Name of Grower (from label)');
+  t('Notes');
   t('Other');
   t('Phone');
   t('Photo');
@@ -8465,7 +10514,6 @@ In the “description” field please enter the plant name and whether it is of 
   t('Photo Status');
   t('Price / Size ($5/gallon)');
   t('Region');
-  t('Related Plants in the same genus');
   t('Scientific Name (from label)');
   t('Start Time');
   t('Store Code');

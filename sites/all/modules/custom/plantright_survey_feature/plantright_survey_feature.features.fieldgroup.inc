@@ -46,7 +46,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '67',
+    'weight' => '23',
     'fields' => array(
       '0' => 'field_survey_start_time',
       '1' => 'field_survey_end_time',
@@ -96,7 +96,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '51',
+    'weight' => '5',
     'fields' => array(
       '0' => 'field_species1_found',
       '1' => 'field_species1_grower',
@@ -104,8 +104,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species1_name_common',
       '4' => 'field_species1_name_scientific',
       '5' => 'field_species1_name_cultivar',
-      '6' => 'field_species1_related',
-      '7' => 'field_species1_number',
+      '6' => 'field_species1_number',
+      '7' => 'field_species1_related',
     ),
   );
 
@@ -114,7 +114,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species10',
-    'label' => 'Leucanthemum vulgare - Ox-eye daisy',
+    'label' => 'Sesbania punicea - Scarlet wisteria',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -149,7 +149,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '60',
+    'weight' => '18',
     'fields' => array(
       '0' => 'field_species10_found',
       '1' => 'field_species10_grower',
@@ -157,8 +157,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species10_name_common',
       '4' => 'field_species10_name_scientific',
       '5' => 'field_species10_name_cultivar',
-      '6' => 'field_species10_related',
-      '7' => 'field_species10_number',
+      '6' => 'field_species10_number',
+      '7' => 'field_species10_related',
     ),
   );
 
@@ -167,7 +167,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species11',
-    'label' => 'Nassella (Stipa) tenuissima - Mexican feather grass',
+    'label' => 'Nassella tenuissima - Mexican feathergrass',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -202,7 +202,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '61',
+    'weight' => '12',
     'fields' => array(
       '0' => 'field_species11_found',
       '1' => 'field_species11_grower',
@@ -210,8 +210,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species11_name_common',
       '4' => 'field_species11_name_scientific',
       '5' => 'field_species11_name_cultivar',
-      '6' => 'field_species11_related',
-      '7' => 'field_species11_number',
+      '6' => 'field_species11_number',
+      '7' => 'field_species11_related',
     ),
   );
 
@@ -255,7 +255,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '62',
+    'weight' => '13',
     'fields' => array(
       '0' => 'field_species12_found',
       '1' => 'field_species12_grower',
@@ -263,8 +263,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species12_name_common',
       '4' => 'field_species12_name_scientific',
       '5' => 'field_species12_name_cultivar',
-      '6' => 'field_species12_related',
-      '7' => 'field_species12_number',
+      '6' => 'field_species12_number',
+      '7' => 'field_species12_related',
     ),
   );
 
@@ -273,7 +273,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species13',
-    'label' => 'Triadica (Sapium) sebifera - Chinese tallow tree',
+    'label' => 'Triadica sebifera - Chinese tallow tree',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -308,7 +308,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '63',
+    'weight' => '14',
     'fields' => array(
       '0' => 'field_species13_found',
       '1' => 'field_species13_grower',
@@ -316,8 +316,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species13_name_common',
       '4' => 'field_species13_name_scientific',
       '5' => 'field_species13_name_cultivar',
-      '6' => 'field_species13_related',
-      '7' => 'field_species13_number',
+      '6' => 'field_species13_number',
+      '7' => 'field_species13_related',
     ),
   );
 
@@ -326,7 +326,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species14',
-    'label' => 'Vinca major - Big leaf periwinkle',
+    'label' => 'Vinca major - Periwinkle',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -361,7 +361,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '64',
+    'weight' => '15',
     'fields' => array(
       '0' => 'field_species14_found',
       '1' => 'field_species14_grower',
@@ -369,8 +369,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species14_name_common',
       '4' => 'field_species14_name_scientific',
       '5' => 'field_species14_name_cultivar',
-      '6' => 'field_species14_related',
-      '7' => 'field_species14_number',
+      '6' => 'field_species14_number',
+      '7' => 'field_species14_related',
     ),
   );
 
@@ -379,7 +379,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species15',
-    'label' => ' Triadica (Sapium) sebifera - Chinese tallow tree',
+    'label' => 'Ligustrum lucidum - Glossy Privet',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -387,7 +387,6 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       ),
       'display' => array(
         'description' => '',
-        'label' => 'above',
         'teaser' => array(
           'format' => 'fieldset',
           'exclude' => 0,
@@ -412,10 +411,20 @@ function plantright_survey_feature_fieldgroup_default_groups() {
           'format' => 'fieldset',
           'exclude' => 0,
         ),
+        'label' => 'above',
       ),
     ),
-    'weight' => '65',
-    'fields' => array(),
+    'weight' => '19',
+    'fields' => array(
+      '0' => 'field_species15_found',
+      '1' => 'field_species15_grower',
+      '2' => 'field_species15_price',
+      '3' => 'field_species15_name_common',
+      '4' => 'field_species15_name_scientific',
+      '5' => 'field_species15_name_cultivar',
+      '6' => 'field_species15_number',
+      '7' => 'field_species15_related',
+    ),
   );
 
   // Exported group: group_species16
@@ -423,7 +432,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species16',
-    'label' => 'Vinca major - Big leaf periwinkle',
+    'label' => 'Schinus terebinthifolius - Brazillian Pepper Tree',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -431,7 +440,6 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       ),
       'display' => array(
         'description' => '',
-        'label' => 'above',
         'teaser' => array(
           'format' => 'fieldset',
           'exclude' => 0,
@@ -456,10 +464,126 @@ function plantright_survey_feature_fieldgroup_default_groups() {
           'format' => 'fieldset',
           'exclude' => 0,
         ),
+        'label' => 'above',
       ),
     ),
-    'weight' => '66',
-    'fields' => array(),
+    'weight' => '20',
+    'fields' => array(
+      '0' => 'field_species16_found',
+      '1' => 'field_species16_grower',
+      '2' => 'field_species16_price',
+      '3' => 'field_species16_name_common',
+      '4' => 'field_species16_name_scientific',
+      '5' => 'field_species16_name_cultivar',
+      '6' => 'field_species16_number',
+      '7' => 'field_species16_related',
+    ),
+  );
+
+  // Exported group: group_species17
+  $groups['survey_data-group_species17'] = array(
+    'group_type' => 'standard',
+    'type_name' => 'survey_data',
+    'group_name' => 'group_species17',
+    'label' => 'Fraxinus udei - Shamel Ash',
+    'settings' => array(
+      'form' => array(
+        'style' => 'fieldset',
+        'description' => '',
+      ),
+      'display' => array(
+        'description' => '',
+        'teaser' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        'full' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '4' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '2' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '3' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        'token' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        'label' => 'above',
+      ),
+    ),
+    'weight' => '21',
+    'fields' => array(
+      '0' => 'field_species17_found',
+      '1' => 'field_species17_grower',
+      '2' => 'field_species17_price',
+      '3' => 'field_species17_name_common',
+      '4' => 'field_species17_name_scientific',
+      '5' => 'field_species17_name_cultivar',
+      '6' => 'field_species17_number',
+      '7' => 'field_species17_related',
+    ),
+  );
+
+  // Exported group: group_species18
+  $groups['survey_data-group_species18'] = array(
+    'group_type' => 'standard',
+    'type_name' => 'survey_data',
+    'group_name' => 'group_species18',
+    'label' => 'Osteospermum fruticosum - African daisy',
+    'settings' => array(
+      'form' => array(
+        'style' => 'fieldset',
+        'description' => '',
+      ),
+      'display' => array(
+        'description' => '',
+        'teaser' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        'full' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '4' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '2' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '3' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        'token' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        'label' => 'above',
+      ),
+    ),
+    'weight' => '22',
+    'fields' => array(
+      '0' => 'field_species18_found',
+      '1' => 'field_species18_grower',
+      '2' => 'field_species18_price',
+      '3' => 'field_species18_name_common',
+      '4' => 'field_species18_name_scientific',
+      '5' => 'field_species18_name_cultivar',
+      '6' => 'field_species18_number',
+      '7' => 'field_species18_related',
+    ),
   );
 
   // Exported group: group_species2
@@ -502,7 +626,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '52',
+    'weight' => '6',
     'fields' => array(
       '0' => 'field_species2_found',
       '1' => 'field_species2_grower',
@@ -510,8 +634,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species2_name_common',
       '4' => 'field_species2_name_scientific',
       '5' => 'field_species2_name_cultivar',
-      '6' => 'field_species2_related',
-      '7' => 'field_species2_number',
+      '6' => 'field_species2_number',
+      '7' => 'field_species2_related',
     ),
   );
 
@@ -520,7 +644,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species3',
-    'label' => 'Catalpa bignonioides - Southern catalpa',
+    'label' => 'Cytisus striatus - Portuguese broom',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -528,7 +652,6 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       ),
       'display' => array(
         'description' => '',
-        'label' => 'above',
         'teaser' => array(
           'format' => 'fieldset',
           'exclude' => 0,
@@ -553,9 +676,10 @@ function plantright_survey_feature_fieldgroup_default_groups() {
           'format' => 'fieldset',
           'exclude' => 0,
         ),
+        'label' => 'above',
       ),
     ),
-    'weight' => '53',
+    'weight' => '16',
     'fields' => array(
       '0' => 'field_species3_found',
       '1' => 'field_species3_grower',
@@ -563,8 +687,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species3_name_common',
       '4' => 'field_species3_name_scientific',
       '5' => 'field_species3_name_cultivar',
-      '6' => 'field_species3_related',
-      '7' => 'field_species3_number',
+      '6' => 'field_species3_number',
+      '7' => 'field_species3_related',
     ),
   );
 
@@ -608,7 +732,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '54',
+    'weight' => '7',
     'fields' => array(
       '0' => 'field_species4_found',
       '1' => 'field_species4_grower',
@@ -616,8 +740,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species4_name_common',
       '4' => 'field_species4_name_scientific',
       '5' => 'field_species4_name_cultivar',
-      '6' => 'field_species4_related',
-      '7' => 'field_species4_number',
+      '6' => 'field_species4_number',
+      '7' => 'field_species4_related',
     ),
   );
 
@@ -661,7 +785,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '55',
+    'weight' => '8',
     'fields' => array(
       '0' => 'field_species5_found',
       '1' => 'field_species5_grower',
@@ -669,8 +793,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species5_name_common',
       '4' => 'field_species5_name_scientific',
       '5' => 'field_species5_name_cultivar',
-      '6' => 'field_species5_related',
-      '7' => 'field_species5_number',
+      '6' => 'field_species5_number',
+      '7' => 'field_species5_related',
     ),
   );
 
@@ -679,7 +803,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species6',
-    'label' => 'Egeria densa - Brazilian waterweed',
+    'label' => 'Myoporum laetum - Myoporum',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -687,7 +811,6 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       ),
       'display' => array(
         'description' => '',
-        'label' => 'above',
         'teaser' => array(
           'format' => 'fieldset',
           'exclude' => 0,
@@ -712,9 +835,10 @@ function plantright_survey_feature_fieldgroup_default_groups() {
           'format' => 'fieldset',
           'exclude' => 0,
         ),
+        'label' => 'above',
       ),
     ),
-    'weight' => '56',
+    'weight' => '17',
     'fields' => array(
       '0' => 'field_species6_found',
       '1' => 'field_species6_grower',
@@ -722,8 +846,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species6_name_common',
       '4' => 'field_species6_name_scientific',
       '5' => 'field_species6_name_cultivar',
-      '6' => 'field_species6_related',
-      '7' => 'field_species6_number',
+      '6' => 'field_species6_number',
+      '7' => 'field_species6_related',
     ),
   );
 
@@ -767,7 +891,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '57',
+    'weight' => '9',
     'fields' => array(
       '0' => 'field_species7_found',
       '1' => 'field_species7_grower',
@@ -775,8 +899,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species7_name_common',
       '4' => 'field_species7_name_scientific',
       '5' => 'field_species7_name_cultivar',
-      '6' => 'field_species7_related',
-      '7' => 'field_species7_number',
+      '6' => 'field_species7_number',
+      '7' => 'field_species7_related',
     ),
   );
 
@@ -820,7 +944,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '58',
+    'weight' => '10',
     'fields' => array(
       '0' => 'field_species8_found',
       '1' => 'field_species8_grower',
@@ -828,8 +952,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species8_name_common',
       '4' => 'field_species8_name_scientific',
       '5' => 'field_species8_name_cultivar',
-      '6' => 'field_species8_related',
-      '7' => 'field_species8_number',
+      '6' => 'field_species8_number',
+      '7' => 'field_species8_related',
     ),
   );
 
@@ -838,7 +962,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species9',
-    'label' => 'Iris pseudacorus - Yellow water iris (Yellow flag iris)',
+    'label' => 'Iris pseudacorus - Yellow water iris',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -873,7 +997,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '59',
+    'weight' => '11',
     'fields' => array(
       '0' => 'field_species9_found',
       '1' => 'field_species9_grower',
@@ -881,8 +1005,8 @@ function plantright_survey_feature_fieldgroup_default_groups() {
       '3' => 'field_species9_name_common',
       '4' => 'field_species9_name_scientific',
       '5' => 'field_species9_name_cultivar',
-      '6' => 'field_species9_related',
-      '7' => 'field_species9_number',
+      '6' => 'field_species9_number',
+      '7' => 'field_species9_related',
     ),
   );
 
@@ -926,7 +1050,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '50',
+    'weight' => '4',
     'fields' => array(
       '0' => 'field_survey_date',
       '1' => 'field_store_name',
@@ -937,23 +1061,26 @@ function plantright_survey_feature_fieldgroup_default_groups() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t(' Triadica (Sapium) sebifera - Chinese tallow tree');
   t('Additional Info');
   t('Basic Information');
   t('Carex divulsa (often sold as C. tumulicola Hort.) - Grassland sedge (European Grey Sedge, often sold as Berkeley Sedge)');
   t('Carpobrotus edulis - Highway iceplant');
-  t('Catalpa bignonioides - Southern catalpa');
   t('Cortaderia selloana - Pampas grass');
   t('Cytisus scoparius - Scotch broom');
-  t('Egeria densa - Brazilian waterweed');
+  t('Cytisus striatus - Portuguese broom');
   t('Eichhornia crassipes - Water hyacinth');
+  t('Fraxinus udei - Shamel Ash');
   t('Genista monspessulana - French broom');
-  t('Iris pseudacorus - Yellow water iris (Yellow flag iris)');
-  t('Leucanthemum vulgare - Ox-eye daisy');
-  t('Nassella (Stipa) tenuissima - Mexican feather grass');
+  t('Iris pseudacorus - Yellow water iris');
+  t('Ligustrum lucidum - Glossy Privet');
+  t('Myoporum laetum - Myoporum');
+  t('Nassella tenuissima - Mexican feathergrass');
+  t('Osteospermum fruticosum - African daisy');
   t('Pennisetum setaceum - Green fountain grass');
-  t('Triadica (Sapium) sebifera - Chinese tallow tree');
-  t('Vinca major - Big leaf periwinkle');
+  t('Schinus terebinthifolius - Brazillian Pepper Tree');
+  t('Sesbania punicea - Scarlet wisteria');
+  t('Triadica sebifera - Chinese tallow tree');
+  t('Vinca major - Periwinkle');
 
   return $groups;
 }

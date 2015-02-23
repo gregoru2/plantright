@@ -57,6 +57,20 @@ function plantright_survey_schema() {
         'not null' => TRUE,
         'default' => 0,
       ),
+	  'stores_number_w_data' => array(
+        'description' => 'Number of stores with data submitted',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+	  'stores_number_w_photos' => array(
+        'description' => 'Number of stores with photos submitted',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
       'stores_percent_surveyed' => array(
         'description' => 'Percent of stores surveyed',
         'type' => 'float',
@@ -292,3 +306,29 @@ function plantright_survey_update_6002() {
 function plantright_survey_update_6003() {
   db_query("UPDATE {system} SET weight = 99 WHERE type = 'module' AND name = 'plantright_survey'");
 }
+
+/**
+ * Split number stores with photo/data into 2 fields.
+ */
+ function plantright_survey_update_6004() {
+	$ret = array();
+	$data_field =  array(
+        'description' => 'Number of stores with data submitted',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+    );
+	$photo_field = array(
+        'description' => 'Number of stores with photos submitted',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+    );
+	db_add_field($ret, 'plantright_survey_county_tracking', 'stores_number_w_data', $data_field);
+	db_add_field($ret, 'plantright_survey_county_tracking', 'stores_number_w_photos', $photo_field);
+	return $ret;
+ }
+
+ 

@@ -2,8 +2,8 @@
 
 function plantright_survey_views_data() {
   $data['views']['plantright_survey_result_calc1'] = array(
-    'title' => t('PlantRight Plants found count'),
-    'help' => t('Number of plant species found'),
+    'title' => t('PlantRight Plants found boolean'),
+    'help' => t('Has invasive plants found'),
     'field' => array(
       'handler' => 'plantright_survey_handler_field_found_count',
       'label' => t('Invasive Present'),
@@ -12,8 +12,8 @@ function plantright_survey_views_data() {
   );
 
   $data['views']['plantright_survey_result_calc2'] = array(
-    'title' => t('PlantRight Plants found number count'),
-    'help' => t('Number of each plant species found.'),
+    'title' => t('PlantRight Plants found count'),
+    'help' => t('Number of invasive plants found.'),
     'field' => array(
       'handler' => 'plantright_survey_handler_field_number_count',
       'label' => t('Number Invasive Present'),
@@ -108,6 +108,24 @@ function plantright_survey_views_data() {
   $data['plantright_survey_county_tracking']['stores_number_w_data_photos'] = array(
     'title' => t('Number of Stores with Data & Pictures Submitted'),
     'help' => t('Survey stores with photos and data submitted'),
+    'field' => array(
+      'handler' => 'views_handler_field_numeric',
+      'click sortable' => TRUE,
+    ),
+  );
+  
+  $data['plantright_survey_county_tracking']['stores_number_w_data'] = array(
+    'title' => t('Number of Stores with Data Submitted'),
+    'help' => t('Survey stores with data submitted'),
+    'field' => array(
+      'handler' => 'views_handler_field_numeric',
+      'click sortable' => TRUE,
+    ),
+  );
+  
+  $data['plantright_survey_county_tracking']['stores_number_w_photos'] = array(
+    'title' => t('Number of Stores with Pictures Submitted'),
+    'help' => t('Survey stores with photos submitted'),
     'field' => array(
       'handler' => 'views_handler_field_numeric',
       'click sortable' => TRUE,
