@@ -149,7 +149,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '18',
+    'weight' => '17',
     'fields' => array(
       '0' => 'field_species10_found',
       '1' => 'field_species10_grower',
@@ -202,7 +202,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '12',
+    'weight' => '7',
     'fields' => array(
       '0' => 'field_species11_found',
       '1' => 'field_species11_grower',
@@ -255,7 +255,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '13',
+    'weight' => '8',
     'fields' => array(
       '0' => 'field_species12_found',
       '1' => 'field_species12_grower',
@@ -308,7 +308,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '14',
+    'weight' => '20',
     'fields' => array(
       '0' => 'field_species13_found',
       '1' => 'field_species13_grower',
@@ -361,7 +361,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '15',
+    'weight' => '11',
     'fields' => array(
       '0' => 'field_species14_found',
       '1' => 'field_species14_grower',
@@ -379,7 +379,60 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species15',
-    'label' => 'Ligustrum lucidum - Glossy Privet',
+    'label' => 'Ligustrum lucidum - Glossy privet',
+    'settings' => array(
+      'form' => array(
+        'style' => 'fieldset',
+        'description' => '',
+      ),
+      'display' => array(
+        'description' => '',
+        'teaser' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        'full' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '4' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '2' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        '3' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        'token' => array(
+          'format' => 'fieldset',
+          'exclude' => 0,
+        ),
+        'label' => 'above',
+      ),
+    ),
+    'weight' => '15',
+    'fields' => array(
+      '0' => 'field_species15_found',
+      '1' => 'field_species15_grower',
+      '2' => 'field_species15_price',
+      '3' => 'field_species15_name_common',
+      '4' => 'field_species15_name_scientific',
+      '5' => 'field_species15_name_cultivar',
+      '6' => 'field_species15_number',
+      '7' => 'field_species15_related',
+    ),
+  );
+
+  // Exported group: group_species16
+  $groups['survey_data-group_species16'] = array(
+    'group_type' => 'standard',
+    'type_name' => 'survey_data',
+    'group_name' => 'group_species16',
+    'label' => 'Schinus terebinthifolius - Brazillian pepper tree',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -416,59 +469,6 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     ),
     'weight' => '19',
     'fields' => array(
-      '0' => 'field_species15_found',
-      '1' => 'field_species15_grower',
-      '2' => 'field_species15_price',
-      '3' => 'field_species15_name_common',
-      '4' => 'field_species15_name_scientific',
-      '5' => 'field_species15_name_cultivar',
-      '6' => 'field_species15_number',
-      '7' => 'field_species15_related',
-    ),
-  );
-
-  // Exported group: group_species16
-  $groups['survey_data-group_species16'] = array(
-    'group_type' => 'standard',
-    'type_name' => 'survey_data',
-    'group_name' => 'group_species16',
-    'label' => 'Schinus terebinthifolius - Brazillian Pepper Tree',
-    'settings' => array(
-      'form' => array(
-        'style' => 'fieldset',
-        'description' => '',
-      ),
-      'display' => array(
-        'description' => '',
-        'teaser' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'full' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '4' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '2' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '3' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'token' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'label' => 'above',
-      ),
-    ),
-    'weight' => '20',
-    'fields' => array(
       '0' => 'field_species16_found',
       '1' => 'field_species16_grower',
       '2' => 'field_species16_price',
@@ -485,7 +485,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species17',
-    'label' => 'Fraxinus udei - Shamel Ash',
+    'label' => 'Fraxinus uhdei - Shamel ash',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -520,7 +520,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '21',
+    'weight' => '18',
     'fields' => array(
       '0' => 'field_species17_found',
       '1' => 'field_species17_grower',
@@ -573,7 +573,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '22',
+    'weight' => '10',
     'fields' => array(
       '0' => 'field_species18_found',
       '1' => 'field_species18_grower',
@@ -626,7 +626,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '6',
+    'weight' => '9',
     'fields' => array(
       '0' => 'field_species2_found',
       '1' => 'field_species2_grower',
@@ -679,7 +679,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '16',
+    'weight' => '13',
     'fields' => array(
       '0' => 'field_species3_found',
       '1' => 'field_species3_grower',
@@ -732,7 +732,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '7',
+    'weight' => '6',
     'fields' => array(
       '0' => 'field_species4_found',
       '1' => 'field_species4_grower',
@@ -785,7 +785,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '8',
+    'weight' => '12',
     'fields' => array(
       '0' => 'field_species5_found',
       '1' => 'field_species5_grower',
@@ -838,7 +838,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '17',
+    'weight' => '16',
     'fields' => array(
       '0' => 'field_species6_found',
       '1' => 'field_species6_grower',
@@ -891,7 +891,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '9',
+    'weight' => '21',
     'fields' => array(
       '0' => 'field_species7_found',
       '1' => 'field_species7_grower',
@@ -944,7 +944,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '10',
+    'weight' => '14',
     'fields' => array(
       '0' => 'field_species8_found',
       '1' => 'field_species8_grower',
@@ -997,7 +997,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '11',
+    'weight' => '22',
     'fields' => array(
       '0' => 'field_species9_found',
       '1' => 'field_species9_grower',
@@ -1069,15 +1069,15 @@ function plantright_survey_feature_fieldgroup_default_groups() {
   t('Cytisus scoparius - Scotch broom');
   t('Cytisus striatus - Portuguese broom');
   t('Eichhornia crassipes - Water hyacinth');
-  t('Fraxinus udei - Shamel Ash');
+  t('Fraxinus uhdei - Shamel ash');
   t('Genista monspessulana - French broom');
   t('Iris pseudacorus - Yellow water iris');
-  t('Ligustrum lucidum - Glossy Privet');
+  t('Ligustrum lucidum - Glossy privet');
   t('Myoporum laetum - Myoporum');
   t('Nassella tenuissima - Mexican feathergrass');
   t('Osteospermum fruticosum - African daisy');
   t('Pennisetum setaceum - Green fountain grass');
-  t('Schinus terebinthifolius - Brazillian Pepper Tree');
+  t('Schinus terebinthifolius - Brazillian pepper tree');
   t('Sesbania punicea - Scarlet wisteria');
   t('Triadica sebifera - Chinese tallow tree');
   t('Vinca major - Periwinkle');
