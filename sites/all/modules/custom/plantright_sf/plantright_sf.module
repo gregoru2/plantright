@@ -32,6 +32,28 @@ function plantright_sf_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
           $node->field_sf_opp_stage[0]['value'] = 'Closed Won';
         }
       }
+      if ($node->type == 'continuing_education_member') {
+        // Check if the value for the affiliation has changed.
+        // If so, delete the opportunity contact role and its mapping,
+        // Because that object can't have the opportunit ID changed.
+        // Has to be recreated as a new one.
+        if ($existing = node_load($node->nid)) {
+          if ($node->field_affiliation != $existing->field_affiliation) {
+            // Changed the value, remove the opportunity contact role
+            // to replace it with the new opportunity.
+            $results = db_query("SELECT sfm.name name, som.sfid sfid FROM {salesforce_object_map} som
+JOIN {salesforce_field_map} sfm ON som.name = sfm.name
+ WHERE sfm.drupal = 'node_continuing_education_member' AND sfm.salesforce = 'OpportunityContactRole' AND som.oid = %d", $node->nid);
+            $result = db_fetch_object($results);
+            if ($result) {
+              $sql = "DELETE FROM {salesforce_object_map} WHERE oid = %d AND name = '%s'";
+              $sql_args = array($node->nid, $result->name);
+              db_query($sql, $sql_args);
+            }
+            $result = salesforce_api_delete_salesforce_objects(array($result->sfid));
+          }
+        }
+      }
       break;
   }
 }
@@ -99,6 +121,50 @@ function plantright_sf_fieldmap_objects_alter(&$objects) {
     'label' => t('Number of all graduates'),
     'export' => '_plantright_sf_export_business_graduates_all',
     'import' => '_plantright_sf_import_business_graduates_all',
+  );
+
+  // Continuing Education Member
+  $objects['drupal']['node_continuing_education_member']['fields']['ce_account_id'] = array(
+    'label' => t('CE Account ID'),
+    'export' => '_plantright_sf_ce_export_account_id',
+    'import' => '_plantright_sf_ce_import_account_id',
+  );
+  $objects['drupal']['node_continuing_education_member']['fields']['project_type'] = array(
+    'label' => t('CE Project Type'),
+    'export' => '_plantright_sf_ce_export_project_type',
+    'import' => '_plantright_sf_ce_import_project_type',
+  );
+  $objects['drupal']['node_continuing_education_member']['fields']['sf_contact_id'] = array(
+    'label' => t('SF Contact ID'),
+    'export' => '_plantright_sf_export_ce_sf_contact_id',
+    'import' => '_plantright_sf_import_ce_sf_contact_id',
+  );
+  $objects['drupal']['node_continuing_education_member']['fields']['ce_opportunity_id'] = array(
+    'label' => t('CE Opportunity ID'),
+    'export' => '_plantright_sf_ce_export_opportunity_id',
+    'import' => '_plantright_sf_ce_import_opportunity_id',
+  );
+
+  // Nursery member
+  $objects['drupal']['node_survey_profile']['fields']['survey_account_id'] = array(
+    'label' => t('Survey Account ID'),
+    'export' => '_plantright_sf_survey_export_account_id',
+    'import' => '_plantright_sf_survey_import_account_id',
+  );
+  $objects['drupal']['node_survey_profile']['fields']['project_type'] = array(
+    'label' => t('Survey Project Type'),
+    'export' => '_plantright_sf_survey_export_project_type',
+    'import' => '_plantright_sf_survey_import_project_type',
+  );
+  $objects['drupal']['node_survey_profile']['fields']['sf_contact_id'] = array(
+    'label' => t('SF Contact ID'),
+    'export' => '_plantright_sf_export_survey_sf_contact_id',
+    'import' => '_plantright_sf_import_survey_sf_contact_id',
+  );
+  $objects['drupal']['node_survey_profile']['fields']['survey_opportunity_id'] = array(
+    'label' => t('Survey Opportunity ID'),
+    'export' => '_plantright_sf_survey_export_opportunity_id',
+    'import' => '_plantright_sf_survey_import_opportunity_id',
   );
 }
 
@@ -261,6 +327,293 @@ function _plantright_sf_import_business_graduates_all(&$node, $drupal_fieldname,
   // No import.
 }
 
+/////////////////////// CONTINUING EDUCATION ///////////////////
+
+function _plantright_sf_ce_get_generic_account_id($sf = NULL, $name = 'Continuing Education') {
+  if (!$sf) {
+    $sf = salesforce_api_connect();
+  }
+
+  $query = "SELECT Id FROM Account WHERE Name = '$name' ORDER BY CreatedDate ASC";
+  try {
+    $result = $sf->client->query($query);
+  }
+  catch (Exception $e) {
+    salesforce_api_log(SALESFORCE_LOG_SOME, 'Exception in export ce account ID: ' . $e->getMessage(), array(), WATCHDOG_ALERT);
+    return;
+  }
+
+  if (0 == $result->size) {
+    // Generic account doesn't exist. Create it.
+    try {
+      $sObject = new stdClass();
+      $sObject->Name = $name;
+      $response = $sf->client->create(array($sObject), 'Account');
+      $id = $response[0]->id;
+      if (!$id) {
+        throw new Exception('Account does not exist and create failed.');
+      }
+    }
+    catch (Exception $e) {
+      salesforce_api_log(SALESFORCE_LOG_SOME, 'Exception in export ce account ID: ' . $e->getMessage(), array(), WATCHDOG_ALERT);
+    }
+  }
+  else {
+    $id = $result->records[0]->Id;
+  }
+  return $id;
+}
+
+/**
+ * Find and export the continuing education account ID.
+ * If account name match for the selected affiliation matches, use it.
+ * If not, use generic CE account. Create generic CE account if doesn't exist.
+ */
+function _plantright_sf_ce_export_account_id($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+  // Find the account ID for CE.
+  $name = $node->field_affiliation[0]['value'];
+  $query = "SELECT Id FROM Account WHERE Name = '$name' ORDER BY CreatedDate ASC";
+
+  // Run the SOQL query against the Salesforce API
+  if ($sf = salesforce_api_connect()) {
+    try {
+      $result = $sf->client->query($query);
+    }
+    catch (Exception $e) {
+      salesforce_api_log(SALESFORCE_LOG_SOME, 'Exception in export ce account ID: ' . $e->getMessage(), array(), WATCHDOG_ALERT);
+      return;
+    }
+
+    $id = NULL;
+    if (0 == $result->size) {
+      // Use generic, because doesn't exist.
+      $id = _plantright_sf_ce_get_generic_account_id($sf);
+    }
+    else {
+      $id = $result->records[0]->Id;
+    }
+
+    return $id;
+  }
+}
+
+function _plantright_sf_ce_import_account_id(&$node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+/**
+ * Export the project type.
+ */
+function _plantright_sf_ce_export_project_type($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+  return 'Continuing Ed';
+}
+
+function _plantright_sf_ce_import_project_type($node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+/**
+ * Get the contact ID from the mapping on the CE profile.
+ */
+function _plantright_sf_export_ce_sf_contact_id($node, $fieldname, $drupal_field_definition, $sf_field_definitio) {
+  // Get current salesforce mapping.
+  return plantright_sf_get_sfid('node_continuing_education_member', 'Contact', $node);
+}
+
+function _plantright_sf_import_ce_sf_contact_id($node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+/**
+ * Find and export the continuing education opportunity ID.
+ */
+function _plantright_sf_ce_export_opportunity_id($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+  // Find the account ID for CE.
+  $year = date('Y');
+  $name = $node->field_affiliation[0]['value'] . '-' . $year;
+  $query = "SELECT Id FROM Opportunity WHERE Name = '$name' ORDER BY CreatedDate ASC";
+  // Run the SOQL query against the Salesforce API
+  if ($sf = salesforce_api_connect()) {
+    try {
+      $result = $sf->client->query($query);
+    }
+    catch (Exception $e) {
+      salesforce_api_log(SALESFORCE_LOG_SOME, 'Exception in export ce account ID: ' . $e->getMessage(), array(), WATCHDOG_ALERT);
+      return;
+    }
+
+    $id = NULL;
+    if (0 == $result->size) {
+      // Use generic, because doesn't exist.
+      $name = 'Continuing Education-' . $year;
+
+      $query = "SELECT Id FROM Opportunity WHERE Name = '$name' ORDER BY CreatedDate ASC";
+      try {
+        $result = $sf->client->query($query);
+      }
+      catch (Exception $e) {
+        salesforce_api_log(SALESFORCE_LOG_SOME, 'Exception in export ce opportunity ID: ' . $e->getMessage(), array(), WATCHDOG_ALERT);
+        return;
+      }
+
+      if (0 == $result->size) {
+        // Generic account doesn't exist. Create it.
+        try {
+          $sObject = new stdClass();
+          $sObject->Name = $name;
+          $sObject->StageName = 'Prospecting';
+          $sObject->CloseDate = $year . '-12-31';
+          $sObject->AccountId = _plantright_sf_ce_get_generic_account_id($sf);
+          $response = $sf->client->create(array($sObject), 'Opportunity');
+          $id = $response[0]->id;
+          if (!$id) {
+            throw new Exception('Opportunity does not exist and create failed.');
+          }
+        }
+        catch (Exception $e) {
+          salesforce_api_log(SALESFORCE_LOG_SOME, 'Exception in export ce opportunity ID: ' . $e->getMessage(), array(), WATCHDOG_ALERT);
+        }
+      }
+      else {
+        $id = $result->records[0]->Id;
+      }
+    }
+    else {
+      $id = $result->records[0]->Id;
+    }
+
+    return $id;
+  }
+}
+
+function _plantright_sf_ce_import_opportunity_id($node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+//////////////////// SURVEY ///////////////////////
+/**
+ * Check for the survey generic account ID. Create if doesn't exist.
+ */
+function _plantright_sf_survey_get_generic_account_id($sf = NULL, $name = 'Spring Nursery Survey') {
+  if (!$sf) {
+    $sf = salesforce_api_connect();
+  }
+
+  if ($sf) {
+    $query = "SELECT Id FROM Account WHERE Name = '$name' ORDER BY CreatedDate ASC";
+    try {
+      $result = $sf->client->query($query);
+    }
+    catch (Exception $e) {
+      salesforce_api_log(SALESFORCE_LOG_SOME, 'Exception in export ce account ID: ' . $e->getMessage(), array(), WATCHDOG_ALERT);
+      return;
+    }
+
+    $id = NULL;
+    if (0 == $result->size) {
+      // Generic account doesn't exist. Create it.
+      try {
+        $sObject = new stdClass();
+        $sObject->Name = $name;
+        $response = $sf->client->create(array($sObject), 'Account');
+        $id = $response[0]->id;
+        if (!$id) {
+          throw new Exception('Account does not exist and create failed.');
+        }
+      }
+      catch (Exception $e) {
+        salesforce_api_log(SALESFORCE_LOG_SOME, 'Exception in export ce account ID: ' . $e->getMessage(), array(), WATCHDOG_ALERT);
+      }
+    }
+    else {
+      $id = $result->records[0]->Id;
+    }
+    return $id;
+  }
+}
+
+/**
+ * Get the account ID.
+ */
+function _plantright_sf_survey_export_account_id($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+  // Find the account ID.
+  return _plantright_sf_survey_get_generic_account_id();
+}
+
+function _plantright_sf_survey_import_account_id($node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+/**
+ * Export the project type.
+ */
+function _plantright_sf_survey_export_project_type($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+  return 'Nursery Survey';
+}
+
+function _plantright_sf_survey_import_project_type($node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+/**
+ * Get the contact ID from the mapping on the CE profile.
+ */
+function _plantright_sf_export_survey_sf_contact_id($node, $fieldname, $drupal_field_definition, $sf_field_definitio) {
+  // Get current salesforce mapping.
+  return plantright_sf_get_sfid('node_survey_profile', 'Contact', $node);
+}
+
+function _plantright_sf_import_survey_sf_contact_id($node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+/**
+ * Find and export the survey opportunity ID.
+ */
+function _plantright_sf_survey_export_opportunity_id($node, $fieldname, $drupal_field_definition, $sf_field_definition) {
+  $year = date('Y');
+  $name = 'Spring Nursery Survey-' . $year;
+  $query = "SELECT Id FROM Opportunity WHERE Name = '$name' ORDER BY CreatedDate ASC";
+  // Run the SOQL query against the Salesforce API
+  if ($sf = salesforce_api_connect()) {
+    try {
+      $result = $sf->client->query($query);
+    }
+    catch (Exception $e) {
+      salesforce_api_log(SALESFORCE_LOG_SOME, 'Exception in export ce account ID: ' . $e->getMessage(), array(), WATCHDOG_ALERT);
+      return;
+    }
+  }
+  if (0 == $result->size) {
+    // Generic account doesn't exist. Create it.
+    try {
+      $sObject = new stdClass();
+      $sObject->Name = $name;
+      $sObject->StageName = 'Prospecting';
+      $sObject->CloseDate = $year . '-12-31';
+      $sObject->AccountId = _plantright_sf_survey_get_generic_account_id($sf);
+      $response = $sf->client->create(array($sObject), 'Opportunity');
+      $id = $response[0]->id;
+      if (!$id) {
+        throw new Exception('Opportunity does not exist and create failed.');
+      }
+    }
+    catch (Exception $e) {
+      salesforce_api_log(SALESFORCE_LOG_SOME, 'Exception in export ce opportunity ID: ' . $e->getMessage(), array(), WATCHDOG_ALERT);
+    }
+  }
+  else {
+    $id = $result->records[0]->Id;
+  }
+  return $id;
+}
+
+function _plantright_sf_survey_import_opportunity_id($node, $drupal_fieldname, $drupal_field_definition, $sf_data, $sf_fieldname, $sf_field_definition) {
+  // No import.
+}
+
+/////////////////// GENERAL ///////////////
+
 /**
  * Helper function for the ID fields above.
  */
@@ -281,3 +634,43 @@ function plantright_sf_get_sfid($drupal, $salesforce, $node) {
     return '';
   }
 }
+
+/**
+ * Helper function that handles mapping existing nodes.
+ * Can be used for "execute arbitrary PHP script" to create mappings.
+ * Run as: _plantright_node_mapping_existing_nodes_helper($object);
+ */
+function _plantright_node_mapping_existing_nodes_helper($node) {
+  $maps1 = salesforce_api_id_load('node', $node->nid);
+  $maps2 = salesforce_api_salesforce_field_map_load_by(array('drupal' => 'node_' . $node->type));
+  $maps = array_replace($maps2, $maps1);
+
+  if (empty($maps)) {
+    return;
+  }
+
+  foreach ($maps as $map) {
+    $auto_create = $map->automatic & SALESFORCE_AUTO_SYNC_CREATE;
+    $auto_update = $map->automatic & SALESFORCE_AUTO_SYNC_UPDATE;
+    if ((!$auto_create && $op == 'insert')
+        || (!$auto_update && $op == 'update')) {
+      unset($maps[$map->name]);
+    }
+  }
+
+  // If all our maps were unset, abort this procedure.
+  if (empty($maps)) {
+    return;
+  }
+
+  foreach ($maps as $map) {
+    // Finally, export the node to Salesforce.
+    try {
+      sf_node_export($node, $map->name, $salesforce_arr[$map->name]->sfid);
+    }
+    catch (Exception $e) {
+      salesforce_api_log(SALESFORCE_LOG_SOME, 'Exception while attempting to export node: ' . $e->getMessage(), array(), WATCHDOG_ERROR, l('node ' . $node->nid, 'node/' . $node->nid));
+    }
+  }
+}
+

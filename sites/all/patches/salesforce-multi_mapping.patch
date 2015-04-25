@@ -132,7 +132,7 @@ index a38d99b..d90c5ac 100644
 -      // If we have an existing link, attempt to load the assoc'd map.
 -      if (!empty($salesforce->name)) {
 -        $map = salesforce_api_fieldmap_load($salesforce->name);
-+        $salesforce_arr = salesforce_api_id_load('node', $node->nid);
++        $salesforce_arr = array_replace(salesforce_api_salesforce_field_map_load_by(array('drupal' => 'node_' . $node->type)), salesforce_api_id_load('node', $node->nid));
 +        if (!empty($salesforce_arr)) {
 +          $maps = array();
 +          foreach ($salesforce_arr as $salesforce) {

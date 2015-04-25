@@ -29,7 +29,9 @@ function plantright_sf_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
       // try to load it. If the load fails, we need to fetch the appropriate
       // fieldmap. Either way, we're upserting the salesforce record.
       if ($node->nid) {
-        $maps = plantright_sf_api_id_load('node', $node->nid);
+        $maps1 = plantright_sf_api_id_load('node', $node->nid);
+        $maps2 = salesforce_api_salesforce_field_map_load_by(array('drupal' => 'node_' . $node->type));
+        $maps = array_replace($maps2, $maps1);
       }
 
       $salesforce_handled = salesforce_api_id_load('node', $node->nid);
@@ -64,7 +66,7 @@ function plantright_sf_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
       if (empty($maps)) {
         break;
       }
-//dpm($maps, 'maps');
+
       foreach ($maps as $map) {
 
         // Finally, export the node to Salesforce.
@@ -145,8 +147,7 @@ function plantright_sf_node_export($node, $name, $sfid = NULL) {
   if ($map->name != $name) {
     $name = $map->name;
   }
-//dpm($map, 'map');
-//dpm($object, 'object');
+
   try {
     $response = $sf->client->upsert('Id', array($object), $map->salesforce);
   }
@@ -193,7 +194,7 @@ function plantright_sf_node_export($node, $name, $sfid = NULL) {
       }
     }
   }
-//dpm($response, 'RESPONSE');
+
   // If the export was successful...
   if ($response->success) {
     // Store the Salesforce ID for the node and return TRUE.
