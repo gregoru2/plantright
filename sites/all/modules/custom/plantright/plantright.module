@@ -224,7 +224,7 @@ function plantright_form_alter(&$form, &$form_state, $form_id) {
     $nursery_name = isset($form_state['values']['title']) ? $form_state['values']['title'] : '';
 
     $pledge = <<<PLEDGE
-      <h3>RETAIL PARTNER AGREEMENT (for pilot program)</h3>
+      <h3>RETAIL PARTNER AGREEMENT</h3>
 
       <p>This agreement is entered between <span class="nursery-name">$nursery_name</span> and Sustainable Conservation, a 501c3 nonprofit that runs the PlantRight initiative. Since 2005, Sustainable Conservation has been collaborating with California’s horticultural industry to identify cost-effective, voluntary measures to stop the sale of known invasive plants and to prevent the introduction of new invasive varieties. Sustainable Conservation recognizes nursery retailers’ leadership role in increasing consumer awareness about the serious, costly problem posed by invasive plants. This joint-partnership effort aims to promote healthy local economies and ecosystems by encouraging the sale of non-invasive, climate-appropriate plants for California gardens and landscapes.</p>
 
