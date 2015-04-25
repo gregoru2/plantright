@@ -1,0 +1,10 @@
+name = Contact Form Reply To
+description = Change mail sent via contact form to be from site and reply-to sender.
+core = 6.x
+
+; Information added by Drupal.org packaging script on 2015-04-06
+version = "6.x-1.0"
+core = "6.x"
+project = "contact_reply_to"
+datestamp = "1428293893"
+
