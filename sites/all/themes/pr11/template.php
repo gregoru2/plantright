@@ -176,6 +176,15 @@ function pr11_preprocess_page(&$vars) {
     $vars['template_files'][] = 'page-popup';
   }
   
+  // 403 pages. Display custom messages by URI.
+  $header = drupal_get_headers(); // d7: drupal_get_http_header('status').
+  if (strpos($header, '403 Forbidden') !== false) {
+	if ('/spring-nursery-survey/nursery-list' === request_uri() && user_access('edit own survey_profile content')) {
+		// Is a survey user, but doesn't have nursery list permission
+		$vars['content'] = 'To gain access to this list, please first pass our short quiz, <a href="http://www.plantright.org/spring-survey-quiz">here</a>. If you have not yet viewed a training, you can gain access information and instructions on <a href="http://www.plantright.org/survey-registration">this registration page</a>. Thank you!';
+	}
+  }
+  
   $attr = array();
   $attr['class'] = trim($vars['body_classes']);
   $attr['class'] .= ' pr11'; // Add the pr11 class so that we can avoid using the 'body' selector
@@ -220,6 +229,7 @@ function pr11_preprocess_page(&$vars) {
 
   // Skip navigation links (508).
   $vars['skipnav'] = "<a id='skipnav' href='#content'>" . t('Skip navigation') . "</a>";
+
 }
 
 /**
