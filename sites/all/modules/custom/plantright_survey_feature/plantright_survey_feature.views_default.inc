@@ -22950,6 +22950,7 @@ function plantright_survey_feature_views_default_views() {
     'name' => 'navigation',
   ));
   $handler = $view->new_display('feed', 'Feed', 'feed_1');
+  $handler->override_option('items_per_page', 0);
   $handler->override_option('style_plugin', 'views_csv');
   $handler->override_option('style_options', array(
     'mission_description' => FALSE,
