@@ -515,7 +515,6 @@ li span.flag-nursery-dibs a { background-color: #f7f5ed; border: solid 1px #b697
 
 #page-node-add-survey-photos .content-add-more, .node-type-survey-photos { margin-bottom: 15px; margin-top: 10px; }
 #page-node-add-survey-photos .form-item-labeled .form-radios, .node-type-survey-photos .form-item-labeled .form-radios, #page-node-add-survey-data .form-item-labeled .form-radios, .node-type-survey-data .form-item-labeled .form-radios  { max-height: 250px; overflow-y: auto; overflow-x: hidden; }
-.plantright-survey-data-form fieldset .form-item-labeled.form-item-indent { margin-left: 30px; }
 
 .webform-client-form textarea { background-color: white; width: 90%; }
 
@@ -995,6 +994,9 @@ body#page-partner-faq #header p#tagline_partner { display: block; }
 
 /* Business Directory styles */
 
+body.section-nursery-partners #right {
+	max-width: 255px;
+}
 
 body.section-nursery-partners div.block-plantright_business_directory h2	{
   max-width: 460px;
@@ -1017,18 +1019,248 @@ body.section-nursery-partners div.view-content {
   margin-top: 1em;
 }
 body.section-nursery-partners div.view-content h3 {
-  font-size: 2em;
+	clear: both;
+  	font-size: 1.43em;
+	margin-bottom: 7px;
+	margin-top: 40px;
+	padding-bottom: 4px;
+	font-weight: 200;
+	border-bottom: 	solid 1px #DCCDAD;
+}
+
+body.section-nursery-partners div.views-field-title h3 {	
+	margin-top: 14px;
+	margin-bottom: 4px;
+}
+
+body.section-nursery-partners div.view-content h3:after {
+	content: ' County';
+}
+
+body.section-nursery-partners div.views-field-title h3:after {
+	content: '';
+}
+
+body.section-nursery-partners div.view-content h4 {
+	font-size: 1.15em;
+}
+
+body#page-nursery-partners-by-name div.view-content h4,
+body#page-nursery-partners-by-county div.views-field-title h4,
+body#page-nursery-partners-by-zip div.views-field-title h4 {
+	margin: 30px 0 15px 0;
+	padding: 0 0 4px 0;
+	font-weight: 600;
+	font-size: 1.2em;
+	border-bottom: 	solid 1px #DCCDAD;
+}
+
+body#page-nursery-partners-by-county div.views-field-title h4,
+body#page-nursery-partners-by-zip div.views-field-title h4 {
+	margin: 20px 0 4px 0;
+	font-weight: 400;
+	font-size: 1.4em;
+}
+
+body#page-nursery-partners-by-name div.view-content .retailer-locations h4 {
+	margin: 10px 0 3px 10px;
+	padding: 0;
+	font-weight: 700;
+	font-size: 1.1em;
+	border-bottom: none;
+}
+
+.section-nursery-partners .field-content, 
+.section-nursery-partners .view-empty {
+	max-width: 460px;
+	width: 460px;
+	overflow: auto;
+}
+
+.retailer-locations .field-content {
+	border-top: dotted 1px #DCCDAD;
+	padding: 4px 0;
+}
+
+.views-field-field-website-url { margin-left: 20px; }
+
+.section-nursery-partners .adr {
+	width: 300px;
+	float: left;
+}
+body#page-nursery-partners-by-name .adr {
+	margin-left: 10px;
+}
+
+.section-nursery-partners .tel, 
+.section-nursery-partners .map-link {
+	width: 150px;
+	float: right;
+}
+
+.section-nursery-partners .views-row {
+	position: relative;
+}
+
+.section-nursery-partners .views-field-edit-node {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#content p.location-count {
+	display: inline-block;
+	margin: 0 0 0 20px;
+	width: 300px;
+}
+
+.location-toggle {
+	display: inline-block;
+	text-align: right;
+	width: 160px;
+}
+.open-locations:after, .close-locations:after {
+  content: '\25BA';
+  color: #AC512A;
+  font-size: .8em;
+  padding-left: 2px;
+}
+
+.close-locations:after {
+  content: '\25BC';
+}
+.multi-locations-container .prompt {
+	margin-bottom: 10px;
 }
 
 body.section-nursery-partners div.views-row {
-  border-top: 1px solid #dccdad;
-  padding: 1em 1em .5em 1em;
+	margin-top: 0;
+	border: none;
+	padding: 0;
 }
-body.section-nursery-partners div.views-row {
-  line-height: 2.5ex;
+
+body#page-nursery-partners-by-name div.views-row {
+	border-bottom: none;
+	padding-bottom: 16px;
+	margin-bottom: 10px;
 }
+
+body#page-nursery-partners-by-name div.views-row h4 {
+	font-size: 1.4em;
+	font-weight: 400;
+	margin-bottom: 5px;
+}
+
 body.section-nursery-partners div.views-row-last {
-  border-bottom: 3px double #dccdad;
+	border-bottom: none;
+	padding-bottom: 0px;
+	margin-bottom: 4px;
+}
+
+.views-field-address	{
+	margin-left: 20px;
+}
+.views-field-title {
+	margin: 20px 0 0 10px;
+}
+.section-nursery-partners .views-row-1 .views-field-title {
+	margin-top: 7px;
+}
+
+body#page-nursery-partners-by-name .views-field-title	{
+	margin-left: 0px;
+}
+
+body#page-nursery-partners-by-name .views-field-address	{
+	margin-left: 10px;
+}
+
+body#page-nursery-partners-by-county .views-field-address,
+body#page-nursery-partners-by-county .views-field-title,
+body#page-nursery-partners-by-county p.location-count,
+body#page-nursery-partners-by-county .adr,
+body#page-nursery-partners-by-county .views-field-field-website-url,
+body#page-nursery-partners-by-zip .views-field-address,
+body#page-nursery-partners-by-zip .views-field-title,
+body#page-nursery-partners-by-zip p.location-count,
+body#page-nursery-partners-by-zip .adr,
+body#page-nursery-partners-by-zip .views-field-field-website-url
+ { margin-left: 0; }
+
+.street-address	{
+	display: block;
+	margin:  0;
+}
+.street { display: block; }
+
+.street:after { 
+	padding-right: .25em;
+ }
+
+.country-name {
+	display: inline-block;
+	display: none;
+}
+	
+.map-link {
+	display: block;
+	text-align: right;
+}
+
+.tel {
+	display: block;
+	white-space: nowrap;
+	text-align: right;
+	min-height: .5em;
+}
+
+body.section-nursery-partners div.views-row div.tel		{
+	margin-top: 0;
+}
+
+.multi-loc-list {
+	width: 100%;
+	overflow: auto;
+}
+
+#content .multi-loc-list ol, #content .multi-loc-list ul	{
+	margin-left: 0;
+}
+
+#content .multi-loc-list ol li	{
+	margin-bottom: 10px;
+}
+
+#content .multi-loc-list ul li	{
+	display: block;
+	list-style-type: none;
+	margin: 0;
+}
+body#page-nursery-partners-by-name .multi-loc-list ul	{
+	margin: 0 0 0 1em;
+}
+
+body#page-nursery-partners-by-name li {
+	padding: 6px 0;
+}
+
+.see-locs {
+	display: inline-block;
+	float: right;
+}
+.see-locs.open {
+	margin-bottom: 10px;
+}
+
+.see-locs:after {
+	content: '\25BA';
+	color: #AC512A;
+	font-size: .8em;
+	margin-left: 2px;
+}
+
+.see-locs.open:after {
+	content: '\25BC';
 }
 
 body.section-nursery-partners div#block-plantright_business_directory-1 ul li	{
@@ -1049,20 +1281,12 @@ body.section-nursery-partners div#block-plantright_business_directory-1 div.item
 }
 body.section-nursery-partners div#block-plantright_business_directory-1 div.item-list ul li.first:after	{
   content: '|';
+  margin-left: 2px;
 }
 
 body.section-nursery-partners div#block-plantright_business_directory-1 div.item-list ul li a:visited	{
   color: #9e5636;
 }
-
-body.section-nursery-partners div.views-row div.tel {
-  margin-top: .5em;
-}
-body.section-nursery-partners div.views-row div.views-field-edit-node {
-  margin-top: .5em;
-}
-
-
 body.section-nursery-partners div#right	{
   position: relative;
   top: -10px;

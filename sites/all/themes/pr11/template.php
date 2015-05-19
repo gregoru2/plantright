@@ -181,7 +181,7 @@ function pr11_preprocess_page(&$vars) {
   if (strpos($header, '403 Forbidden') !== false) {
 	if ('/spring-nursery-survey/nursery-list' === request_uri() && user_access('edit own survey_profile content')) {
 		// Is a survey user, but doesn't have nursery list permission
-		$vars['content'] = 'To gain access to this list, please first pass our short quiz, <a href="http://www.plantright.org/spring-survey-quiz">here</a>. If you have not yet viewed a training, you can gain access information and instructions on <a href="http://www.plantright.org/survey-registration">this registration page</a>. Thank you!';
+		$vars['content'] = 'To gain access to this list, please first pass our short quiz, <a href="/spring-survey-quiz">here</a>. If you have not yet viewed a training, you can gain access information and instructions on <a href="/survey-registration">this registration page</a>. Thank you!';
 	}
   }
   
@@ -729,16 +729,12 @@ function pr11_invite_form($form) {
  */
 function pr11_preprocess_location($vars) {
   // Change the format of the map link.
-  $vars['map_link'] = str_replace(array('See map:', 'Google Maps'), array('', 'map'), $vars['map_link']);
+  $vars['map_link'] = str_replace(array('See map:', 'Google Maps'), array('', 'see map'), $vars['map_link']);
 
   // Format the phone number.
-  // Takes numbers entered as either 5551234567 or 555-123-4567 and formats
+  // Takes numbers entered as either 5551234567, 555-123-4567, 555 123 4567 and formats
   // as (555) 123-4567.
-  $vars['phone'] = preg_replace('/(\d{3})-?(\d{3})-?(\d{4})$/', '($1) $2-$3', $vars['phone']);
-
-  // Country name is set to hidden in settings, but still showing.
-  // Remove below to show again.
-  $vars['country_name'] = '';
+  $vars['phone'] = preg_replace('/(\d{3})[\-\s]?(\d{3})[\-\s]?(\d{4})$/', '($1) $2-$3', $vars['phone']);
 }
 
 /**

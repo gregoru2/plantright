@@ -20,9 +20,9 @@
     <?php if (!empty($postal_code)): ?>
       <span class="postal-code"><?php print $postal_code; ?></span>
     <?php endif; ?>
-    <?php if (!empty($country_name)): ?>
-      <div class="country-name"><?php print $country_name; ?></div>
-    <?php endif; ?>
+	<?php
+		/** Removed country name */
+	?>
 
     <?php if (!empty($fax)): ?>
       <div class="tel">
@@ -30,22 +30,22 @@
         <span><?php print $fax; ?></span>
       </div>
     <?php endif; ?>
-    <?php // "Geo" microformat, see http://microformats.org/wiki/geo ?>
-    <?php if (isset($latitude) && isset($longitude)): ?>
-      <?php // Assume that 0, 0 is invalid. ?>
-      <?php if ($latitude != 0 || $longitude != 0): ?>
-        <span class="geo"><abbr class="latitude" title="<?php print $latitude; ?>"><?php print $latitude_dms; ?></abbr>, <abbr class="longitude" title="<?php print $longitude; ?>"><?php print $longitude_dms; ?></abbr></span>
-      <?php endif; ?>
-    <?php endif; ?>
+
+    <?php
+		/** Removed latitude and longitude */
+	?>
   </div>
+  
+  <?php if (!empty($phone)): ?>
+  <div class="tel">
+    <span class="value"><?php print $phone; ?></span>
+  </div>
+  <?php endif; ?>
+  
   <?php if (!empty($map_link)): ?>
     <div class="map-link">
       <?php print $map_link; ?>
     </div>
   <?php endif; ?>
-  <?php if (!empty($phone)): ?>
-  <div class="tel">
-    <span class="value"><?php print $phone; ?></span>
-  </div>
-<?php endif; ?>
+  
 </div>

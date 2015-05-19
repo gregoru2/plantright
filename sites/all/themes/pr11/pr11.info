@@ -13,6 +13,7 @@ regions[footer] = "Footer"
 scripts[] = "js/modernizr.2.6.3.js"
 scripts[] = "js/textshadow/jquery.textshadow.js"
 scripts[] = "js/plantright.js"
+scripts[] = "js/plantright-nursery-retailers.js"
 
 stylesheets[screen][] = "js/textshadow/jquery.textshadow.css"
 stylesheets[screen][] = "reset.css"
