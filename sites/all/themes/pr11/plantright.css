@@ -995,6 +995,7 @@ body#page-partner-faq #header p#tagline_partner { display: block; }
 /* Business Directory styles */
 
 .view-business-directory { display: none; }
+.locations .location .description { display: none; }
 
 body.section-nursery-partners #right {
 	max-width: 255px;
