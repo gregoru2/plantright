@@ -1,0 +1,74 @@
+<?php
+
+// $Id$
+
+/**
+ * @file
+ * Add website fields to Location address.
+ */
+
+/**
+ * Implementation of hook_locationapi().
+ */
+function location_website_locationapi(&$location, $op, $a3 = NULL, $a4 = NULL) {
+  switch ($op) {
+    case 'fields':
+      return array('website' => t('Website'));
+
+    case 'defaults':
+      return array(
+        'website' => array('default' => '', 'collect' => 0, 'weight' => 9),
+      );
+
+    case 'field_expand':
+      if ($a3 == 'website') {
+        return array(
+          '#type' => 'textfield',
+          '#title' => t('Website'),
+          '#size' => 20,
+          '#maxlength' => 45,
+          '#description' => NULL,
+          '#required' => ($a4 == 2),
+          '#default_value' => $location,
+        );
+      }
+      break;
+
+    case 'save':
+      db_query('DELETE FROM {location_website} WHERE lid = %d', $location['lid']);
+      if (!empty($location['website'])) {
+        db_query("INSERT INTO {location_website} (lid, website) VALUES (%d, '%s')", $location['lid'], $location['website']);
+      }
+      break;
+
+    case 'load':
+      $fields = array('website' => '');
+      if ($row = db_fetch_object(db_query('SELECT website FROM {location_website} WHERE lid = %d', $location['lid']))) {
+        $fields['website'] = $row->website;
+      }
+      return $fields;
+
+    case 'delete':
+      db_query('DELETE FROM {location_website} WHERE lid = %d', $location['lid']);
+      break;
+  }
+}
+
+/**
+ * Implementation of hook_views_api().
+ */
+function location_website_views_api() {
+  return array(
+    'api' => 2,
+  );
+}
+
+/**
+ * Implementation of hook_token_list().
+ */
+function location_website_token_list($type = 'all') {
+  if ($type == 'node' || $type == 'user' || $type == 'all') {
+    $tokens['location']['location-website_N'] = t('Location Website (If there are multiple locations per node, N is the iteration, starting with 0)');
+    return $tokens;
+  }
+}
