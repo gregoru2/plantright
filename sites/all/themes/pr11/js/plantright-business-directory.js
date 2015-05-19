@@ -3,7 +3,7 @@
  */
  
  
- Drupal.behaviors.plantright_nursery_retailers = function (context) {
+ Drupal.behaviors.plantright_business_directory = function (context) {
 	var $view = $('div.view-business-directory', context);
 	if (!$view || $view.length === 0) {
 		// Act only on the business directory view.
@@ -124,7 +124,7 @@
 	else if ($view.hasClass('view-display-id-page_4')) {
 		var title = $('.block-plantright_business_directory h2').text();
 		var county = title.replace('Nurseries in ', '');
-		processLocations($view.find('div.view-content div.views-row'), county + 'County');
+		processLocations($view.find('div.view-content div.views-row'), county + ' County');
 	}
 
 	

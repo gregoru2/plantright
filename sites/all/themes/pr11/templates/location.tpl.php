@@ -20,9 +20,7 @@
     <?php if (!empty($postal_code)): ?>
       <span class="postal-code"><?php print $postal_code; ?></span>
     <?php endif; ?>
-	<?php
-		/** Removed country name */
-	?>
+    <?php /** Removed country name */ ?>
 
     <?php if (!empty($fax)): ?>
       <div class="tel">
@@ -30,22 +28,19 @@
         <span><?php print $fax; ?></span>
       </div>
     <?php endif; ?>
-
-    <?php
-		/** Removed latitude and longitude */
-	?>
+    <?php /** Removed latitude and longitude */ ?>
   </div>
-  
+
   <?php if (!empty($phone)): ?>
   <div class="tel">
     <span class="value"><?php print $phone; ?></span>
   </div>
   <?php endif; ?>
-  
+
   <?php if (!empty($map_link)): ?>
     <div class="map-link">
       <?php print $map_link; ?>
     </div>
   <?php endif; ?>
-  
+
 </div>
