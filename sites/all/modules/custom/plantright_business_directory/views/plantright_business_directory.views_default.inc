@@ -750,4 +750,7 @@ $handler->override_option('tab_options', array(
   'weight' => 0,
   'name' => 'navigation',
 ));
+
+$views[$view->name] = $view;
+return $views;
 }
