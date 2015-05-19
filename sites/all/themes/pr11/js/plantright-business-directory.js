@@ -94,6 +94,9 @@
 	
 	// Remove class names, because they don't have any use
 	// when we're moving the rows around to group them by retailer.
+        $view.hide();
+        $view.before('<div id="business-dir-loading"><img src="/sites/all/themes/pr11/drupal/throbber.gif"></div>');
+        
 	$view.find('.views-row').removeClass('views-row-odd views-row-even views-row-first views-row-last');
 
 	if ($view.hasClass('view-display-id-page_1')) {
@@ -127,5 +130,6 @@
 		processLocations($view.find('div.view-content div.views-row'), county + ' County');
 	}
 
-	
+	$('#business-dir-loading', context).remove();
+        $view.show();
 };
