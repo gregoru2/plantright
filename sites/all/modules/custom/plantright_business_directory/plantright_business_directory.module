@@ -141,6 +141,10 @@ function plantright_business_directory_form_alter(&$form, &$form_state, $form_id
       break;
     case 'business_node_form':
       drupal_add_js(drupal_get_path('module', 'plantright_business_directory') . '/js/plantright_business_directory.js');
+      $bnf_settings = array(
+        'canEditBusiness' => user_access('edit any business content') || user_access('edit own business content'),
+      );
+      drupal_add_js(array('plantright_business_directory' => $bnf_settings), 'setting');
       $form['#after_build'][] = 'plantright_business_node_form_after_build';
       $form['#validate'][] = 'plantright_business_node_form_validate';
       array_unshift($form['#submit'], 'plantright_business_node_form_submit');
@@ -195,10 +199,13 @@ PLEDGE;
 
       break;
     case 'node_type_form':
-      $num = 300;
-      $form['location_settings']['multiple']['min']['#options'][300] = $num;
-      $form['location_settings']['multiple']['max']['#options'][300] = $num;
-      $form['location_settings']['multiple']['add']['#options'][300] = $num;
+      $form['location_settings']['multiple']['min']['#options'][225] = 225;
+      $form['location_settings']['multiple']['max']['#options'][225] = 225;
+      $form['location_settings']['multiple']['add']['#options'][225] = 225;
+      
+      $form['location_settings']['multiple']['min']['#options'][300] = 300;
+      $form['location_settings']['multiple']['max']['#options'][300] = 300;
+      $form['location_settings']['multiple']['add']['#options'][300] = 300;
       break;
   }
 }
