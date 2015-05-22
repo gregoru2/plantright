@@ -1,8 +1,6 @@
 <div class="location vcard">
   <div class="adr">
-    <?php if (!empty($name)): ?>
-      <span class="fn"><?php print $name; ?></span>
-    <?php endif; ?>
+    <?php /* removed location name */ ?>
     <?php if (!empty($street)): ?>
       <div class="street-address">
         <?php print $street; ?>

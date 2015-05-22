@@ -27,24 +27,27 @@ Drupal.behaviors.plantright_business_directory = function (context) {
   */
   function processLocations($locations, locationsInName, groupByCounty) {
     var largeRetailer1Ids = ['5473', '5557'];
+    var largeRetailer1Processed = false;
 
     var retailerIds = array_unique($('span.retailer-id', $locations).map(function() {
       return $(this).attr('data-retailer-id');
     }));
 
     $.each(retailerIds, function(index, value) {
-      if ($.inArray(value, largeRetailer1Ids) > -1 && value !== largeRetailer1Ids[0]) {
-        // For large retailer 1, only execute the 1st ID.
-        return;
-      }
-
       // Get the locations.
-      var $retailerLocations = $('[data-retailer-id=' + value + ']', $locations);
-      if (value === largeRetailer1Ids[0]) {
-        // Add the rest
+      var $retailerLocations;
+      if ($.inArray(value, largeRetailer1Ids) > -1) {
+        if (largeRetailer1Processed === true) {
+          // For large retailer 1, only execute the 1st match.
+          return;
+        }
+        // Add from all nodes
+        $retailerLocations = $('[data-retailer-id=' + largeRetailer1Ids[0] + ']', $locations)
         for(var i = 1; i < largeRetailer1Ids.length; i++) {
           $retailerLocations = $retailerLocations.add($('[data-retailer-id=' + largeRetailer1Ids[i] + ']', $locations));
         }
+      } else {
+        $retailerLocations = $('[data-retailer-id=' + value + ']', $locations);
       }
 
       var locationCount = $retailerLocations.length;
