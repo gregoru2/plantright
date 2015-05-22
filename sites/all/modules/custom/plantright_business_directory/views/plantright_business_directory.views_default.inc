@@ -281,6 +281,20 @@ $handler->override_option('sorts', array(
     'field' => 'title',
     'relationship' => 'none',
   ),
+  'city' => array(
+    'order' => 'ASC',
+    'id' => 'city',
+    'table' => 'location',
+    'field' => 'city',
+    'relationship' => 'none',
+  ),
+  'street' => array(
+    'order' => 'ASC',
+    'id' => 'street',
+    'table' => 'location',
+    'field' => 'street',
+    'relationship' => 'none',
+  ),
 ));
 $handler->override_option('filters', array(
   'field_is_certified_value' => array(
@@ -368,7 +382,7 @@ But not for long! Our retail partner program is just getting started, so we\'re 
 
 Thanks for your support and check back soon!');
 $handler->override_option('empty_format', '2');
-$handler->override_option('items_per_page', 100);
+$handler->override_option('items_per_page', 500);
 $handler->override_option('use_pager', '1');
 $handler->override_option('style_options', array(
   'grouping' => '',
