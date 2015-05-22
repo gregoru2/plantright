@@ -1,5 +1,5 @@
 /**
- * Custom javascripts for plantright.
+ * Custom javascripts for plantright business directory admin page.
  */
 Drupal.behaviors.plantright_bus_dir = function(context) {
   // UI for additional locations on a business/retailer node.
@@ -32,13 +32,31 @@ Drupal.behaviors.plantright_bus_dir = function(context) {
           key++;
         });
 
+//        $locationContainerTemplate = $('fieldset.location:first', $locations).clone();
+//        $locationTemplate = $('fieldset.location:first', $locations).html();
+
         var $input = $('<input type="button" id="pbd-location-add-another" class="form-submit" value="Add another location" />')
         .click(function(e) {
-          if (location_count >= 100) {
-            $('#location-count-warning').remove();
-            $input.after('<p id="location-count-warning">You have 100 or more locations. You may experience errors attempting to save. Please contact an administrator.</p>');
-          }
-
+//          if (location_count >= 300) {
+//            // No more.
+//            $input.after('<p>You have reached the maximum number of locations.</p>');
+//            $input.remove();
+//          } else {
+//            if (location_count >= 100) {
+//              // Give warning.
+//              $('#location-count-warning').remove();
+//              $input.after('<p id="location-count-warning">You have 100 or more locations. You may experience errors attempting to save. Please contact an administrator.</p>');
+//            }
+//
+//            $newLocation = $locationTemplate.replace(/edit-locations-0-/g, 'edit-locations-' + location_count + '-').replace(/locations\[0\]/g, 'locations[' + location_count + ']');
+//            $newLocationContainer = $locationContainerTemplate.clone();
+//            $newLocationContainer.html($newLocation);
+//            $newLocationContainer.find('.fieldset-title em').html(location_count + 1);
+//            $newLocationContainer.find('input:not(.location_auto_province), select').val('');
+//            $newLocationContainer.find('#edit-locations-' + location_count + '-delete-location-wrapper').remove();
+//            $input.before($newLocationContainer);
+//            location_count++;
+//          }
 
           if ($('fieldset.location:nth-child(' + (location_count + 1) + ')').length > 0) {
             $('fieldset.location:nth-child(' + (location_count + 1) + ')').show();
@@ -57,7 +75,6 @@ Drupal.behaviors.plantright_bus_dir = function(context) {
             $input.after('<p>You have reached the maximum number of locations.</p>');
             $input.remove();
           }
-
         });
         $locations.append($input);
       }

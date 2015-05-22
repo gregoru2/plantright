@@ -347,11 +347,6 @@ fieldset { background: #f7f6f2; border: 1px solid #b5a880; border-radius: 5px; m
 fieldset .form-item input { background-color: white; }
 fieldset legend { display: block; background: #d8cfb4; border: 1px solid #b5a880; font-weight: 400; font-size: 1.2em; border-radius: 3px; padding: 3px 5px; margin: 0px; }
 
-body#page-node-add-business fieldset.locations fieldset.location { border: none; margin: 0; background: rgba(255, 255, 255, 0.1); }
-body#page-node-add-business fieldset.locations fieldset.location legend { border: none; background: none; }
-body#page-node-add-business fieldset.locations fieldset.location .form-item { border-bottom: none; }
-body#page-node-add-business fieldset.locations fieldset.location .form-item label { margin-top: 0; padding-top: 5px; text-align: right; }
-
 html.js fieldset.collapsed { background: none; margin-bottom: 20px; }
 html.js fieldset.collapsible legend a { background: transparent url(/images/menu-expanded.gif) no-repeat 0 50%; text-decoration: none; }
 html.js fieldset.collapsed legend a { background: transparent url(/images/menu-collapsed.gif) no-repeat 0 50%; }
@@ -1551,7 +1546,8 @@ fieldset .form-item label { margin: 0px; }
 #page-node-add-business .form-item .form-checkboxes .form-item, #page-node-add-business .form-item .form-radios .form-item { border-bottom: none; }
 #page-node-add-business fieldset .form-item { border-bottom: none; }
 #page-node-add-business input#edit-preview { display: none; }
-#page-node-add-business .form-item input { font-size: 100%; width: auto; }
+#page-node-add-business #content { width: 100%; }
+body.node-type-business .step-title, body#page-node-add-business .step-title { display: none; }
 
 .form-item select, .form-item textarea { font-size: 100%; width: auto; }
 
@@ -1858,8 +1854,6 @@ div#autocomplete ul, div#autocomplete li { list-style: none; margin-left: 0.25em
 #tabbed h3 { font-weight: normal; display: inline-block; cursor: pointer; border: 1px solid #888888; position: relative; top: 1px; margin-bottom: 0; margin-right: -5px; padding: 0.3em 0.5em; background: #eeeeee; z-index: 2; }
 #tabbed h3.active { background: white; border-bottom-color: white; z-index:4;   }
 #tabbed .tab-content { clear: both; position: absolute; top: 0; left: 0; border: 1px solid #888888; padding: 1em; }
-
-#edit-field-is-certified-value-wrapper { display: none; }
 
 div.plantCare img { display: inline-block; margin: 0 10px; }
 

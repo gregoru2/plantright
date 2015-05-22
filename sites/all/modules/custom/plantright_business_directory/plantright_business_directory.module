@@ -195,17 +195,14 @@ PLEDGE;
         $form['group_admin_only']['#access'] = FALSE;
         $form['field_include_in_retailer_choice']['#access'] = FALSE;
         $form['field_is_certified_date']['#access'] = FALSE;
+        $form['field_is_certified']['#access'] = FALSE;
       }
 
       break;
     case 'node_type_form':
-      $form['location_settings']['multiple']['min']['#options'][225] = 225;
-      $form['location_settings']['multiple']['max']['#options'][225] = 225;
-      $form['location_settings']['multiple']['add']['#options'][225] = 225;
-      
-      $form['location_settings']['multiple']['min']['#options'][300] = 300;
-      $form['location_settings']['multiple']['max']['#options'][300] = 300;
-      $form['location_settings']['multiple']['add']['#options'][300] = 300;
+      $form['location_settings']['multiple']['min']['#options'][120] = 120;
+      $form['location_settings']['multiple']['max']['#options'][120] = 120;
+      $form['location_settings']['multiple']['add']['#options'][120] = 120;
       break;
   }
 }
