@@ -199,11 +199,6 @@ PLEDGE;
       }
 
       break;
-    case 'node_type_form':
-      $form['location_settings']['multiple']['min']['#options'][120] = 120;
-      $form['location_settings']['multiple']['max']['#options'][120] = 120;
-      $form['location_settings']['multiple']['add']['#options'][120] = 120;
-      break;
   }
 }
 

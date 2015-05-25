@@ -26,7 +26,7 @@ Drupal.behaviors.plantright_business_directory = function (context) {
   * view or subset of the view.
   */
   function processLocations($locations, locationsInName, groupByCounty) {
-    var largeRetailer1Ids = ['5473', '5557'];
+    var largeRetailer1Ids = ['5473', '5559', '5561'];
     var largeRetailer1Processed = false;
 
     var retailerIds = array_unique($('span.retailer-id', $locations).map(function() {
@@ -46,6 +46,7 @@ Drupal.behaviors.plantright_business_directory = function (context) {
         for(var i = 1; i < largeRetailer1Ids.length; i++) {
           $retailerLocations = $retailerLocations.add($('[data-retailer-id=' + largeRetailer1Ids[i] + ']', $locations));
         }
+        $retailerLocations.closest('.views-row').find('.views-field-title h4').text('The Home Depot');
       } else {
         $retailerLocations = $('[data-retailer-id=' + value + ']', $locations);
       }
