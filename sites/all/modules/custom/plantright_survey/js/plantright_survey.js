@@ -34,7 +34,7 @@ Drupal.behaviors.plantright_survey = function (context) {
   var hideItems = function($container) {
   // Hide all except the first (did you find) and last field (which is the related genus)
     $container.find('.fieldset-content > .form-item-labeled').slice(1, -1).slideUp();
-	
+
     // Clear the values so none is saved if "no" selected.
     $container.find('input.form-text').each(function() {
       var $elem = $(this);
@@ -93,24 +93,28 @@ Drupal.behaviors.plantright_survey = function (context) {
             var $this = $(this);
             $this.addClass('pr-swfupload-processed');
 
+             // Change the description to a textfield so users don't have to click edit.
             var $desc = $this.find('input.form-textfield');
             var desc = $desc.val();
             var $filename = $this.find('div.wrapper > span');
             var filename = $filename.text();
+
             var filenameInterval = setInterval(function() {
               if ('[filename]' != desc) {
                 // Filename is populated.
                 clearInterval(filenameInterval);
                 if (desc == filename) {
-                  if (!$this.hasClass('pr-swfupload-editing')) {
-                    $desc.val('');
-                  }
+// Uncomment to make the default desc input value empty instead of filename.
+//                  if (!$this.hasClass('pr-swfupload-editing')) {
+//                    $desc.val('');
+//                  }
                   $desc.show();
                   $filename.hide();
                 }
               }
             }, 50);
 
+            // Remove the 'edit' link.
             var editInterval = setInterval(function() {
               // if ($desc.parent().hasClass('editable-enabled')) {
               if ($this.parent().find('.sfwupload-list-progressbar').length == 0) {
