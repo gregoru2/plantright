@@ -34,8 +34,8 @@ else:
 </head>
 <body class="popup">
 <div id="content">
-  <?php if (user_access('administer nodes')) : ?>
-    <a href="/node/2392/edit">edit</a>
+  <?php if (user_access('administer nodes') && arg(0) === 'node') : ?>
+    <a href="/node/<?php echo arg(1); ?>/edit">edit</a>
   <?php endif; ?>
   <?php print $content ?>
 </div>
