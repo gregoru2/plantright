@@ -171,7 +171,9 @@ function pr11_preprocess_page(&$vars) {
     'href' => 'http://fonts.googleapis.com/css?family=Oswald:400,700')
   ) ." />\n";
   
-  $nodes = array(2392);
+  // 2392: Registration partner.
+  // 5780: No Internet Explorer prompt.
+  $nodes = array(2392, 5780);
   if (isset($_REQUEST['popup']) && in_array($vars['node']->nid, $nodes)) {
     $vars['template_files'][] = 'page-popup';
   }

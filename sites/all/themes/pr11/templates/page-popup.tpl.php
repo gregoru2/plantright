@@ -30,7 +30,6 @@ else:
         })();
 
 </script>
-<script type="text/javascript" src="/<?php print drupal_get_path('theme', 'pr11') ?>/js/ga-events.js"></script>
 <?php endif; ?>
 </head>
 <body class="popup">
