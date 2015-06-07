@@ -510,6 +510,7 @@ li span.flag-nursery-dibs a { background-color: #f7f5ed; border: solid 1px #b697
 
 #page-node-add-survey-photos .content-add-more, .node-type-survey-photos { margin-bottom: 15px; margin-top: 10px; }
 #page-node-add-survey-photos .form-item-labeled .form-radios, .node-type-survey-photos .form-item-labeled .form-radios, #page-node-add-survey-data .form-item-labeled .form-radios, .node-type-survey-data .form-item-labeled .form-radios  { max-height: 250px; overflow-y: auto; overflow-x: hidden; }
+.survey-photo-issues-note { font-weight: bold; }
 
 .webform-client-form textarea { background-color: white; width: 90%; }
 

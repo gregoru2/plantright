@@ -10483,9 +10483,9 @@ No|No',
       'upload_thumbnail_imagecache_preset' => 'thumb_100',
       'label' => 'Photo',
       'weight' => '44',
-      'description' => '<p>Please select one or more photos to upload using the rounded “Photos” button directly above. In the “description” field please enter the plant name and whether it is of the plant or tag (eg. Pampas grass, plant tag).</p>
+      'description' => '<p class="survey-photo-upload-note">“Click the “Photo” button above to upload your photos and provide descriptions. Please include the plant name and if it is the plant or tag (eg. Pampas grass, tag).</p>
 
-<p class="browser-note"><strong>If you encounter errors submitting your photos, please try <a href="https://get.adobe.com/flashplayer/" target="_blank">updating your version of Flash Player</a>. If the problem persists, please send your photos and descriptions directly to Chris Crawford at <a href="mailto:ccrawford@suscon.org">ccrawford@suscon.org</a>. Thank you.</strong></p>',
+<p class="survey-photo-issues-note">If you encounter errors submitting your photos, please <a href="https://get.adobe.com/flashplayer/" target="_blank">update your Flash Player</a>. If the problem persists, please send your photos and descriptions to Chris Crawford at <a href="mailto:ccrawford@suscon.org">ccrawford@suscon.org</a>. Thank you!</p>',
       'type' => 'swfupload_widget',
       'module' => 'swfupload',
     ),
