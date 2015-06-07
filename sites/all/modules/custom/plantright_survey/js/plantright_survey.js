@@ -104,6 +104,9 @@ Drupal.behaviors.plantright_survey = function (context) {
                 // Filename is populated.
                 clearInterval(filenameInterval);
                 if (desc == filename) {
+                  // Remove file extension from desc.
+                  desc = desc.replace(/\.[^.]+$/, '');
+                  $desc.val(desc);
 // Uncomment to make the default desc input value empty instead of filename.
 //                  if (!$this.hasClass('pr-swfupload-editing')) {
 //                    $desc.val('');
