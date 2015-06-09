@@ -208,6 +208,7 @@ function plantright_survey_nodeapi(&$node, $op, $a3, $a4) {
 function plantright_survey_field_access($op, $field, $account, $node) {
   switch ($field['field_name']) {
     case 'field_photo_status':
+    case 'field_data_status':
     case 'field_store_type':
     case 'field_region':
       switch ($op) {
@@ -220,20 +221,6 @@ function plantright_survey_field_access($op, $field, $account, $node) {
           break;
       }
       break;
-    case 'field_data_status':
-      switch ($op) {
-        case 'view':
-          // Deny access to view these fields to users who don't have administer
-          // nodes permission.
-          if (!user_access('administer nodes', $account)) {
-            return false;
-          }
-          break;
-        case 'edit':
-          // No one edits this field.
-          return false;
-          break;
-      }
       break;
 // Think below is not needed because only certified survey members can view the nursery nodes.
 //	case 'field_nursery_notes':
@@ -554,12 +541,12 @@ function _plantright_survey_county_tracking_build() {
         if (count($photo_nodes) && count($data_nodes)) {
           $stores_number_w_data_photos++;
         }
-		
+
 		// Increase count if data found.
 		if (count($data_nodes)) {
           $stores_number_w_data++;
         }
-		
+
 		// Increase count if photos found.
 		if (count($photo_nodes)) {
           $stores_number_w_photos++;
