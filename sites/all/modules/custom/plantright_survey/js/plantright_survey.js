@@ -77,10 +77,11 @@ Drupal.behaviors.plantright_survey = function (context) {
 
   // SWF upload.
   // Customize the bulk upload on nursery survey photos to empty the desc.
-  if (!$('body').hasClass('pr-swfupload-initialized') && $('#swfupload_file_wrapper-field_survey_image').length > 0) {
-    $('body').addClass('pr-swfupload-initialized');
-    $('#swfupload_file_wrapper-field_survey_image tr:not(.hidden) td.title').addClass('pr-swfupload-editing')
-  }
+// Commented out, because used only for hiding the desc value.
+//  if (!$('body').hasClass('pr-swfupload-initialized') && $('#swfupload_file_wrapper-field_survey_image').length > 0) {
+//    $('body').addClass('pr-swfupload-initialized');
+//    $('#swfupload_file_wrapper-field_survey_image tr:not(.hidden) td.title').addClass('pr-swfupload-editing');
+//  }
 
   if (Drupal.settings.swfupload_settings && SWFUpload != undefined && SWFUpload.instances['SWFUpload_0'] != undefined) {
     var settings = Drupal.settings.swfupload_settings;
@@ -89,7 +90,31 @@ Drupal.behaviors.plantright_survey = function (context) {
       if (id == 'edit-field-survey-image') {
         if (Drupal.swfu != undefined && Drupal.swfu[id] != undefined) {
           var instance = Drupal.swfu[id];
-          $('#swfupload_file_wrapper-field_survey_image tr:not(.hidden) td.title:not(.pr-swfupload-processed)').each(function() {
+
+          // Search outside the context.
+          var $imageRows = $('#swfupload_file_wrapper-field_survey_image tr:not(.hidden) td');
+
+           // Hide the swf description bar til the uploading starts.
+          var $context = $(context);
+          if ($context.hasClass('swfupload') && $context.attr('id') === 'swfupload_file_wrapper-field_survey_image') {
+            if (!$context.hasClass('initialSwfUploadDone')) {
+              $('#edit-field-survey-image .center').text('Add Photos');
+
+              if ($imageRows.length > 0) {
+                $context.show();
+              } else {
+                $context.hide();
+              }
+              $context.addClass('initialSwfUploadDone');
+            } else {
+              // If this isn't the initial load, then photos are being added.
+              // So show the uploader to see the progress indicator
+              $context.fadeIn();
+            }
+          }
+
+
+          $imageRows.filter('.title:not(.pr-swfupload-processed)').each(function() {
             var $this = $(this);
             $this.addClass('pr-swfupload-processed');
 
@@ -142,7 +167,7 @@ Drupal.behaviors.plantright_survey = function (context) {
               }
             }, 50);
           });
-          $('td.icon .sfwupload-list-mime').css('height', '100px').css('width', '100px');
+          $('td.icon .sfwupload-list-mime', context).css('height', '100px').css('width', '100px');
 
         }
       }

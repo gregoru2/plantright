@@ -253,6 +253,12 @@ function plantright_survey_form_alter(&$form, &$form_state, $form_id) {
         '#value' => $form['#node']->field_store_name[0]['nid'],
       );
       $form['#submit'][] = 'plantright_survey_store_name_submit_handler';
+
+      $form['field_survey_image']['#prefix'] = '<div class="form-item">
+        <label>Photos: <span class="form-required" title="This field is required.">*</span></label>
+        <p class="survey-photo-upload-note">Click the "Add Photos" button below to upload your photos and provide descriptions. In the description field, please include the plant name and specify if the photo is of the plant itself or the plant\'s tag (e.g.: Pampas grass, tag).</p>
+        <p class="survey-photo-issues-note">If you encounter errors submitting your photos, <a href="https://get.adobe.com/flashplayer/" target="_blank">updating Flash Player</a> may resolve them.  If you\'re unable to update Flash or errors persist, please send your photos and descriptions to Chris Crawford at <a href="mailto:ccrawford@suscon.org">ccrawford@suscon.org</a>. Thank you!</p>
+        </div>';
       break;
     case 'survey_data_node_form':
       // Add a wrapper so JS doesn't have to use selectors for
