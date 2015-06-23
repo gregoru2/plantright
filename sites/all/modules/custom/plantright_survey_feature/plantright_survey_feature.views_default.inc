@@ -5358,7 +5358,7 @@ function plantright_survey_feature_views_default_views() {
   $handler->override_option('header', '<h2>Survey Photos</h2>');
   $handler->override_option('header_format', '2');
   $handler->override_option('header_empty', 0);
-  $handler->override_option('items_per_page', 25);
+  $handler->override_option('items_per_page', 0);
   $handler->override_option('use_pager', 'mini');
   $handler = $view->new_display('block', 'Block No link', 'block_1');
   $handler->override_option('fields', array(
