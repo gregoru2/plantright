@@ -228,7 +228,7 @@ function quiz_certificate_create_certificate_pdf($quiz, $account, $result = NULL
   $certificate = theme('quiz_certificate', $quiz, $account, $result);
 
   $output = theme('quiz_certificate_pdf', $certificate);
-  $filename = 'certificate-' . strtolower(str_replace(array('/', ' '), '-', check_plain($quiz->title . '-' . $account->name)));
+  $filename = 'certificate-' . strtolower(str_replace(array('/', ' '), '-', check_plain($quiz->title . '-' . $account->name))) . '.pdf';
 
   $directives = array(
     'set_paper' => array(
