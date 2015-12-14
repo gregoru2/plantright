@@ -560,7 +560,7 @@ div#missed_quiz_qs ul li:first-child { margin-top: 2px; padding-top: 0; }
 
 div#quiz-certificate-download	{
   position: relative;
-  top: 42px;
+  top: 20px;
   right: 37px;
   text-align: right;
   margin-top: 8px;
@@ -843,18 +843,19 @@ body.partner_only #footer a { color: #f1ead6; }
 
 sup.tm { font-size: 0.75em; position: relative; top: 0; left: 0; font-weight: 400; }
 
-ul#partner_downloads, ul#education_certificate_download { margin: 0px; padding: 0px; }
+ul#partner_downloads, ul#education_certificate_download, ul#survey_certificate_download { margin: 0px; padding: 0px; }
 
-#content ul#partner_downloads li, #content ul#education_certificate_download li { list-style-type: none; width: 100%; margin: 0px; padding: 0px; }
+#content ul#partner_downloads li, #content ul#education_certificate_download li, ul#survey_certificate_download li { list-style-type: none; width: 100%; margin: 0px; padding: 0px; }
 
-ul#partner_downloads li a, ul#education_certificate_download li a { font-family: "Open Sans", Helvetica, Arial sans-serif; font-size: 1.25em; font-weight: 400; color: #fff; text-align: center; display: block; margin: 10px 0px; padding: 10px; border: solid 1px #4c3d14; background-color: #a15130;
-                                                                    -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.25);
-                                                                    -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.25);
-                                                                    box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.25);
+ul#partner_downloads li a, ul#education_certificate_download li a, ul#survey_certificate_download li a { font-family: "Open Sans", Helvetica, Arial sans-serif; font-size: 1.25em; font-weight: 400; color: #fff; text-align: center; display: block; margin: 10px 0px; padding: 10px; border: solid 1px #4c3d14; background-color: #a15130;
+-webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.25);
+-moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.25);
+box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.25);
 -webkit-border-radius: 7px;
 -moz-border-radius: 7px;
 border-radius: 7px; }
-ul#partner_downloads a:hover, ul#education_certificate_download li a:hover { text-decoration: none; background-color: #493e13; /* Old browsers */ background: -moz-linear-gradient(top, #6b5328 1%, #493e13 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #6b5328), color-stop(100%, #493e13)); /* Chrome,Safari4+ */ background: -webkit-linear-gradient(top, #6b5328 1%, #493e13 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(top, #6b5328 1%, #493e13 100%); /* Opera 11.10+ */ background: -ms-linear-gradient(top, #6b5328 1%, #493e13 100%); /* IE10+ */ background: linear-gradient(to bottom, #6b5328 1%, #493e13 100%); /* W3C */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b5328', endColorstr='#493e13',GradientType=0 ); /* IE6-9 */
+ul#survey_certificate_download li a { font-size: 1.2em; }
+ul#partner_downloads a:hover, ul#education_certificate_download li a:hover, ul#survey_certificate_download li a:hover { text-decoration: none; background-color: #493e13; /* Old browsers */ background: -moz-linear-gradient(top, #6b5328 1%, #493e13 100%); /* FF3.6+ */ background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #6b5328), color-stop(100%, #493e13)); /* Chrome,Safari4+ */ background: -webkit-linear-gradient(top, #6b5328 1%, #493e13 100%); /* Chrome10+,Safari5.1+ */ background: -o-linear-gradient(top, #6b5328 1%, #493e13 100%); /* Opera 11.10+ */ background: -ms-linear-gradient(top, #6b5328 1%, #493e13 100%); /* IE10+ */ background: linear-gradient(to bottom, #6b5328 1%, #493e13 100%); /* W3C */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b5328', endColorstr='#493e13',GradientType=0 ); /* IE6-9 */
 -webkit-border-radius: 7px;
 -moz-border-radius: 7px;
 border-radius: 7px; }

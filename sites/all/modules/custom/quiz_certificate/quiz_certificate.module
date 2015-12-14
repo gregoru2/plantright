@@ -5,6 +5,18 @@
  */
 
 /**
+ * Get the certificate name by the ID. The certificate name corresponds to the
+ * directory to find the certificate resources (images, css)
+ */
+function _quiz_certificate_which_certificate_by_node_id($id) {
+  $certificate = ''; // empty is the root certificate
+  if ($id == '332') {
+    $certificate = 'survey';
+  }
+  return $certificate;
+}
+
+/**
  * Implementation of hook_menu().
  */
 function quiz_certificate_menu() {
@@ -174,7 +186,7 @@ function quiz_certificate_theme($existing, $type, $theme, $path) {
     ),
     'quiz_certificate_pdf' => array(
       'template' => 'quiz-certificate-pdf',
-      'arguments' => array('certificate' => NULL, 'img' => NULL, 'directory' => NULL),
+      'arguments' => array('certificate' => NULL, 'resourcePath' => NULL, 'img' => NULL),
     ),
   );
 }
@@ -189,15 +201,9 @@ function quiz_certificate_preprocess_quiz_certificate(&$vars) {
   $vars['download_link'] = l(t('Download Printable Certificate'), $vars['download_url']);
 }
 
-function quiz_certificate_preprocess_quiz_certificate_pdf(&$vars) {
-  if (isset($_GET['html'])) {
-    $vars['directory'] = '/' . drupal_get_path('module','quiz_certificate');
-  }
-  else {
-    $vars['directory'] = dirname(__FILE__);
-  }
-  $vars['img'] = 'certificate-pdf.jpg';
-}
+// Remove preprocess. Put everything in the theme method.
+//function quiz_certificate_preprocess_quiz_certificate_pdf(&$vars) {
+//}
 
 /**
  * Helper function to determine if quiz has been passed.
@@ -215,7 +221,14 @@ function quiz_certificate_create_certificate($quiz, $account, $result = NULL) {
     $result = quiz_certificate_get_users_passing_result($quiz, $account);
   }
 
-  drupal_add_css(drupal_get_path('module', 'quiz_certificate') . '/quiz_certificate.css');
+  $cssPath = drupal_get_path('module', 'quiz_certificate');
+
+  $whichCertificate = _quiz_certificate_which_certificate_by_node_id($quiz->nid);
+  if ($whichCertificate != '') {
+    $cssPath .= '/' . $whichCertificate;
+  }
+
+  drupal_add_css($cssPath . '/quiz_certificate.css');
   $output = theme('quiz_certificate', $quiz, $account, $result);
   return $output;
 }
@@ -226,8 +239,22 @@ function quiz_certificate_create_certificate_pdf($quiz, $account, $result = NULL
   }
 
   $certificate = theme('quiz_certificate', $quiz, $account, $result);
+  
+  $directory = '';
+  if (isset($_GET['html'])) {
+    $directory = '/' . drupal_get_path('module','quiz_certificate');
+  }
+  else {
+    $directory = dirname(__FILE__);
+  }
 
-  $output = theme('quiz_certificate_pdf', $certificate);
+  // Use the image based on which certificate it is.
+  $whichCertificate = _quiz_certificate_which_certificate_by_node_id($quiz->nid);
+  if ($whichCertificate != '') {
+    $directory .= '/' . $whichCertificate;
+  }
+
+  $output = theme('quiz_certificate_pdf', $certificate, $directory, 'certificate-pdf.jpg');
   $filename = 'certificate-' . strtolower(str_replace(array('/', ' '), '-', check_plain($quiz->title . '-' . $account->name))) . '.pdf';
 
   $directives = array(

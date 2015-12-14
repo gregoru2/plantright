@@ -26,30 +26,23 @@ body {
 }
 #quiz-certificate .certificate-name {
   position:absolute;
-  top: 347px;
-  left: 288px;
-  width: 718px;
-  /*
-  left: 370px;
-  width: 635px;
-  */
+  top: 428px;
+  left: 29px;
+  width: 995px;
   text-align: center;
-  /*
-  color:#79a13f;
-  */
-  color:#78a13f;
+  color:#6d5521;
   font-size:51pt;
   line-height: 75%;
   text-transform: uppercase;
 }
 #quiz-certificate .certificate-date {
   position: absolute;
-  top: 626px;
-  left: 48px;
-  width: 270px;
+  top: 636px;
+  left: 195px;
+  width: 170px;
   text-align: center;
-  color:#0f0f0f;
-  font-size: 18pt;
+  color:#6d5521;
+  font-size: 14pt;
 }
 #quiz-certificate-download {
   display: none;
