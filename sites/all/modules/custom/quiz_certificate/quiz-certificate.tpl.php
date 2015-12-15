@@ -9,7 +9,12 @@
  */
 
 ?>
-<div id="quiz-certificate-download"><?php print $download_link; ?></div>
+<div id="quiz-certificate-download">
+  <?php print $download_link; ?>
+    <?php if ($download_text): ?>
+      <?php print $download_text; ?>
+    <?php endif; ?>
+</div>
 <div id="quiz-certificate">
   <div class="certificate-text">This certifies that</div>
   <div class="certificate-name"><?php print $name; ?></div>

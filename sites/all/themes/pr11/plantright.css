@@ -560,7 +560,7 @@ div#missed_quiz_qs ul li:first-child { margin-top: 2px; padding-top: 0; }
 
 div#quiz-certificate-download	{
   position: relative;
-  top: 20px;
+  top: 10px;
   right: 37px;
   text-align: right;
   margin-top: 8px;

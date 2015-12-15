@@ -182,11 +182,11 @@ function quiz_certificate_theme($existing, $type, $theme, $path) {
   return array(
     'quiz_certificate' => array(
       'template' => 'quiz-certificate',
-      'arguments' => array('quiz' => NULL, 'account' => NULL, 'result' => NULL),
+      'arguments' => array('which_certificate' => NULL, 'quiz' => NULL, 'account' => NULL, 'result' => NULL),
     ),
     'quiz_certificate_pdf' => array(
       'template' => 'quiz-certificate-pdf',
-      'arguments' => array('certificate' => NULL, 'resourcePath' => NULL, 'img' => NULL),
+      'arguments' => array('which_certificate' => NULL, 'certificate' => NULL, 'resourcePath' => NULL, 'img' => NULL),
     ),
   );
 }
@@ -199,6 +199,10 @@ function quiz_certificate_preprocess_quiz_certificate(&$vars) {
   $vars['name'] = plantright_get_user_profile_name($vars['account']);
   $vars['download_url'] = filter_xss($_GET['q']) . '/pdf';
   $vars['download_link'] = l(t('Download Printable Certificate'), $vars['download_url']);
+
+  if ($vars['which_certificate'] == 'survey') {
+    $vars['download_text'] = '<p>Please trim certificate along the lines marked in each corner. Thank you!</p>';
+  }
 }
 
 // Remove preprocess. Put everything in the theme method.
@@ -229,7 +233,7 @@ function quiz_certificate_create_certificate($quiz, $account, $result = NULL) {
   }
 
   drupal_add_css($cssPath . '/quiz_certificate.css');
-  $output = theme('quiz_certificate', $quiz, $account, $result);
+  $output = theme('quiz_certificate', $whichCertificate, $quiz, $account, $result);
   return $output;
 }
 
@@ -238,8 +242,6 @@ function quiz_certificate_create_certificate_pdf($quiz, $account, $result = NULL
     $result = quiz_certificate_get_users_passing_result($quiz, $account);
   }
 
-  $certificate = theme('quiz_certificate', $quiz, $account, $result);
-  
   $directory = '';
   if (isset($_GET['html'])) {
     $directory = '/' . drupal_get_path('module','quiz_certificate');
@@ -254,7 +256,8 @@ function quiz_certificate_create_certificate_pdf($quiz, $account, $result = NULL
     $directory .= '/' . $whichCertificate;
   }
 
-  $output = theme('quiz_certificate_pdf', $certificate, $directory, 'certificate-pdf.jpg');
+  $certificate = theme('quiz_certificate', $whichCertificate, $quiz, $account, $result);
+  $output = theme('quiz_certificate_pdf', $whichCertificate, $certificate, $directory, 'certificate-pdf.jpg');
   $filename = 'certificate-' . strtolower(str_replace(array('/', ' '), '-', check_plain($quiz->title . '-' . $account->name))) . '.pdf';
 
   $directives = array(
