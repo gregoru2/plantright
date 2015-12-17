@@ -194,7 +194,17 @@ function quiz_certificate_theme($existing, $type, $theme, $path) {
 function quiz_certificate_preprocess_quiz_certificate(&$vars) {
   $vars['title'] = $vars['quiz']->title;
   $vars['name'] = $vars['account']->name;
-  $vars['date'] = format_date($vars['result']->time_end, 'custom', 'F j, Y');
+
+  $timestamp = $vars['result']->time_end;
+  if ($vars['which_certificate'] == 'survey') {
+    $year = date("Y");
+    $currentYearTs = mktime(0, 0, 0, 1, 1, $year);
+    if ($timestamp < $currentYearTs) {
+      $timestamp = mktime(0, 0, 0, 7, 1, $year);
+    }
+  }
+
+  $vars['date'] = format_date($timestamp, 'custom', 'F j, Y');
 
   $vars['name'] = plantright_get_user_profile_name($vars['account']);
   $vars['download_url'] = filter_xss($_GET['q']) . '/pdf';
