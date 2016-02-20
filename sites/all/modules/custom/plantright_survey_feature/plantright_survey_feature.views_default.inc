@@ -1277,8 +1277,7 @@ function plantright_survey_feature_views_default_views() {
     ),
   ));
   $handler->override_option('title', 'Available Nurseries');
-  $handler->override_option('header', 'Nurseries in Southern California become available to sign up for at noon on March 2nd, 2015. Stores in Northern California will be added on April 20th at noon. If you would like to participate, but there are no stores left to survey in your county, please contact Chris Crawford for assistance at ccrawford@suscon.org. Thank you.
-');
+  $handler->override_option('header', 'Nurseries in Southern California become available to sign up for at noon on February 29th, 2016. Stores in Northern California will become available on April 18th at noon. If you would like to participate, but there are no stores left to survey in your county, please contact Chris Crawford for assistance at ccrawford@suscon.org. Thank you.');
   $handler->override_option('header_empty', 1);
   $handler->override_option('empty', 'No unclaimed nurseries.');
   $handler->override_option('empty_format', '2');
@@ -7411,7 +7410,7 @@ function plantright_survey_feature_views_default_views() {
       'field' => 'plantright_survey_result_calc3',
       'relationship' => 'none',
     ),
-	'path' => array(
+    'path' => array(
       'label' => 'Link',
       'alter' => array(
         'alter_text' => 0,

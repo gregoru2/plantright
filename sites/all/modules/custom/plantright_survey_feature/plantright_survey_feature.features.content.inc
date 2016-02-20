@@ -3334,14 +3334,14 @@ Yes',
 Yes',
     'allowed_values_php' => '',
     'widget' => array(
-      'rows' => 5,
-      'size' => '60',
       'default_value' => array(
         '0' => array(
           'value' => 'No',
         ),
       ),
       'default_value_php' => NULL,
+      'rows' => 5,
+      'size' => '60',
       'label' => 'Did you find this plant during your survey?',
       'weight' => '76',
       'description' => '',
@@ -3830,14 +3830,14 @@ Yes',
 Yes',
     'allowed_values_php' => '',
     'widget' => array(
-      'rows' => 5,
-      'size' => '60',
       'default_value' => array(
         '0' => array(
           'value' => 'No',
         ),
       ),
       'default_value_php' => NULL,
+      'rows' => 5,
+      'size' => '60',
       'label' => 'Did you find this plant during your survey?',
       'weight' => '76',
       'description' => '',
@@ -10507,9 +10507,9 @@ No|No',
   t('Notes');
   t('Other');
   t('Phone');
-  t('Photo');
   t('Photo Policy');
   t('Photo Status');
+  t('Photos');
   t('Price / Size ($5/gallon)');
   t('Region');
   t('Scientific Name (from label)');

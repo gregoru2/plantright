@@ -18,6 +18,12 @@ function plantright_survey_feature_imagecache_default_presets() {
             'upscale' => 0,
           ),
         ),
+        '1' => array(
+          'weight' => '0',
+          'module' => 'imagecache_autorotate',
+          'action' => 'imagecache_autorotate',
+          'data' => array(),
+        ),
       ),
     ),
   );
