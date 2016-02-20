@@ -10409,7 +10409,7 @@ No|No',
     'description_field' => '1',
     'widget' => array(
       'file_extensions' => 'png gif jpg jpeg',
-      'file_path' => 'spring-survey-images/2013/user-[uid]',
+      'file_path' => 'spring-survey-images/by-orig-filename/user-[uid]',
       'progress_indicator' => 'bar',
       'max_filesize_per_file' => '16M',
       'max_filesize_per_node' => '',
