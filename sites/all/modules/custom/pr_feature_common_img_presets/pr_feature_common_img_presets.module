@@ -1,0 +1,3 @@
+<?php
+
+include_once('pr_feature_common_img_presets.features.inc');
