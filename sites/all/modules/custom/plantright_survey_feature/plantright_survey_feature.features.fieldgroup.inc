@@ -46,7 +46,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '23',
+    'weight' => '34',
     'fields' => array(
       '0' => 'field_survey_start_time',
       '1' => 'field_survey_end_time',
@@ -61,7 +61,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species1',
-    'label' => 'Carex divulsa (often sold as C. tumulicola Hort.) - Grassland sedge (European Grey Sedge, often sold as Berkeley Sedge)',
+    'label' => 'Cotoneaster lacteus - Parney\'s (milkflower) cotoneaster',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -96,7 +96,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '5',
+    'weight' => '21',
     'fields' => array(
       '0' => 'field_species1_found',
       '1' => 'field_species1_grower',
@@ -114,7 +114,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species10',
-    'label' => 'Sesbania punicea - Scarlet wisteria',
+    'label' => 'Schinus terebinthifolius - Brazilian peppertree',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -149,7 +149,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '17',
+    'weight' => '28',
     'fields' => array(
       '0' => 'field_species10_found',
       '1' => 'field_species10_grower',
@@ -202,7 +202,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '7',
+    'weight' => '17',
     'fields' => array(
       '0' => 'field_species11_found',
       '1' => 'field_species11_grower',
@@ -255,7 +255,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '8',
+    'weight' => '18',
     'fields' => array(
       '0' => 'field_species12_found',
       '1' => 'field_species12_grower',
@@ -273,7 +273,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species13',
-    'label' => 'Triadica sebifera - Chinese tallow tree',
+    'label' => 'Ilex aquifolium - English (common) holly',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -308,7 +308,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '20',
+    'weight' => '22',
     'fields' => array(
       '0' => 'field_species13_found',
       '1' => 'field_species13_grower',
@@ -361,7 +361,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '11',
+    'weight' => '20',
     'fields' => array(
       '0' => 'field_species14_found',
       '1' => 'field_species14_grower',
@@ -379,7 +379,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species15',
-    'label' => 'Ligustrum lucidum - Glossy privet',
+    'label' => 'Plecostachys serpyllifolia - Petite licorice, cobweb bush',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -414,7 +414,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '15',
+    'weight' => '23',
     'fields' => array(
       '0' => 'field_species15_found',
       '1' => 'field_species15_grower',
@@ -432,7 +432,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species16',
-    'label' => 'Schinus terebinthifolius - Brazillian pepper tree',
+    'label' => 'Sesbania punicea - Scarlet wisteria',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -467,7 +467,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '19',
+    'weight' => '31',
     'fields' => array(
       '0' => 'field_species16_found',
       '1' => 'field_species16_grower',
@@ -485,7 +485,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species17',
-    'label' => 'Fraxinus uhdei - Shamel ash',
+    'label' => 'Cytisus striatus - Portuguese broom',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -520,7 +520,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '18',
+    'weight' => '32',
     'fields' => array(
       '0' => 'field_species17_found',
       '1' => 'field_species17_grower',
@@ -538,7 +538,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species18',
-    'label' => 'Osteospermum fruticosum - African daisy',
+    'label' => 'Myoporum laetum - Myoporum',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -573,7 +573,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '10',
+    'weight' => '33',
     'fields' => array(
       '0' => 'field_species18_found',
       '1' => 'field_species18_grower',
@@ -626,7 +626,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '9',
+    'weight' => '19',
     'fields' => array(
       '0' => 'field_species2_found',
       '1' => 'field_species2_grower',
@@ -644,7 +644,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species3',
-    'label' => 'Cytisus striatus - Portuguese broom',
+    'label' => 'Fraxinus uhdei - Shamel ash',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -679,7 +679,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '13',
+    'weight' => '26',
     'fields' => array(
       '0' => 'field_species3_found',
       '1' => 'field_species3_grower',
@@ -732,7 +732,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '6',
+    'weight' => '16',
     'fields' => array(
       '0' => 'field_species4_found',
       '1' => 'field_species4_grower',
@@ -750,7 +750,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species5',
-    'label' => 'Cytisus scoparius - Scotch broom',
+    'label' => 'Rhamnus alaternus - Italian buckthorn',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -785,7 +785,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '12',
+    'weight' => '24',
     'fields' => array(
       '0' => 'field_species5_found',
       '1' => 'field_species5_grower',
@@ -803,7 +803,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species6',
-    'label' => 'Myoporum laetum - Myoporum',
+    'label' => 'Phoenix canariensis - Canary Island date palm',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -838,7 +838,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '16',
+    'weight' => '27',
     'fields' => array(
       '0' => 'field_species6_found',
       '1' => 'field_species6_grower',
@@ -891,7 +891,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '21',
+    'weight' => '29',
     'fields' => array(
       '0' => 'field_species7_found',
       '1' => 'field_species7_grower',
@@ -909,7 +909,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species8',
-    'label' => 'Genista monspessulana - French broom',
+    'label' => 'Acacia melanoxylon - Blackwood acacia',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -944,7 +944,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '14',
+    'weight' => '25',
     'fields' => array(
       '0' => 'field_species8_found',
       '1' => 'field_species8_grower',
@@ -997,7 +997,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         'label' => 'above',
       ),
     ),
-    'weight' => '22',
+    'weight' => '30',
     'fields' => array(
       '0' => 'field_species9_found',
       '1' => 'field_species9_grower',
@@ -1050,7 +1050,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '4',
+    'weight' => '15',
     'fields' => array(
       '0' => 'field_survey_date',
       '1' => 'field_store_name',
@@ -1061,25 +1061,25 @@ function plantright_survey_feature_fieldgroup_default_groups() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Acacia melanoxylon - Blackwood acacia');
   t('Additional Info');
   t('Basic Information');
-  t('Carex divulsa (often sold as C. tumulicola Hort.) - Grassland sedge (European Grey Sedge, often sold as Berkeley Sedge)');
   t('Carpobrotus edulis - Highway iceplant');
   t('Cortaderia selloana - Pampas grass');
-  t('Cytisus scoparius - Scotch broom');
+  t('Cotoneaster lacteus - Parney\'s (milkflower) cotoneaster');
   t('Cytisus striatus - Portuguese broom');
   t('Eichhornia crassipes - Water hyacinth');
   t('Fraxinus uhdei - Shamel ash');
-  t('Genista monspessulana - French broom');
+  t('Ilex aquifolium - English (common) holly');
   t('Iris pseudacorus - Yellow water iris');
-  t('Ligustrum lucidum - Glossy privet');
   t('Myoporum laetum - Myoporum');
   t('Nassella tenuissima - Mexican feathergrass');
-  t('Osteospermum fruticosum - African daisy');
   t('Pennisetum setaceum - Green fountain grass');
-  t('Schinus terebinthifolius - Brazillian pepper tree');
+  t('Phoenix canariensis - Canary Island date palm');
+  t('Plecostachys serpyllifolia - Petite licorice, cobweb bush');
+  t('Rhamnus alaternus - Italian buckthorn');
+  t('Schinus terebinthifolius - Brazilian peppertree');
   t('Sesbania punicea - Scarlet wisteria');
-  t('Triadica sebifera - Chinese tallow tree');
   t('Vinca major - Periwinkle');
 
   return $groups;
