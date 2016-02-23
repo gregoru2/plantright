@@ -765,3 +765,11 @@ function pr11_preprocess_content_profile_display_view($vars) {
   $vars['name'] = $vars['node']->profile_items['first_name']['value'] . ' ' . $vars['node']->profile_items['first_name']['value'];
   $vars['user_roles'] = array_keys($vars['user']->roles);
 }
+
+// Use imagecache thumb_100 preset to autorotate using EXIF data.
+function pr11_imagefield_widget_preview($item = NULL) {
+  $preview = '';
+  $type = $item['field']['type_name'];
+  $preview = '<div class="imagefield-preview">' . theme('imagecache', 'thumb_100', $item['filepath'], $item['alt'], $item['title']) . '</div>';
+  return $preview;
+}
