@@ -5753,7 +5753,7 @@ function plantright_survey_feature_views_default_views() {
       'hide_alter_empty' => 1,
       'link_to_node' => 0,
       'label_type' => 'none',
-      'format' => 'survey_submission_default',
+      'format' => 'survey_submission_imagelink',
       'multiple' => array(
         'group' => 0,
         'multiple_number' => '',
