@@ -769,6 +769,16 @@ function plantright_survey_feature_views_default_views() {
       'field' => 'field_county_value',
       'relationship' => 'none',
     ),
+    'title' => array(
+      'order' => 'ASC',
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
   ));
   $handler->override_option('filters', array(
     'type' => array(
@@ -822,6 +832,12 @@ function plantright_survey_feature_views_default_views() {
       'field' => 'status',
       'relationship' => 'none',
     ),
+    'flagged' => array(
+      'id' => 'flagged',
+      'table' => 'flag_content',
+      'field' => 'flagged',
+      'relationship' => 'flag_content_rel',
+    ),
   ));
   $handler->override_option('access', array(
     'type' => 'perm',
@@ -830,7 +846,6 @@ function plantright_survey_feature_views_default_views() {
   $handler->override_option('cache', array(
     'type' => 'none',
   ));
-  $handler->override_option('header', '<a href="/spring-nursery-survey/claimed-list/csv" target="_blank">Export CSV</a>');
   $handler->override_option('header_format', '2');
   $handler->override_option('header_empty', 0);
   $handler->override_option('items_per_page', 0);
@@ -1125,39 +1140,6 @@ function plantright_survey_feature_views_default_views() {
       'field' => 'field_address_value',
       'relationship' => 'none',
     ),
-    'ops' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'hide_alter_empty' => 1,
-      'link_type' => '',
-      'exclude' => 0,
-      'id' => 'ops',
-      'table' => 'flag_content',
-      'field' => 'ops',
-      'relationship' => 'flag_content_rel',
-    ),
     'field_zip_code_value' => array(
       'label' => 'Zip',
       'alter' => array(
@@ -1201,6 +1183,39 @@ function plantright_survey_feature_views_default_views() {
         'button' => 'Use default',
       ),
       'relationship' => 'none',
+    ),
+    'ops' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'absolute' => 0,
+        'link_class' => '',
+        'alt' => '',
+        'rel' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'hide_alter_empty' => 1,
+      'link_type' => '',
+      'exclude' => 0,
+      'id' => 'ops',
+      'table' => 'flag_content',
+      'field' => 'ops',
+      'relationship' => 'flag_content_rel',
     ),
   ));
   $handler->override_option('filters', array(
@@ -1277,13 +1292,11 @@ function plantright_survey_feature_views_default_views() {
     ),
   ));
   $handler->override_option('title', 'Available Nurseries');
-  $handler->override_option('header', 'Nurseries in Southern California become available to sign up for at noon on February 29th, 2016. Stores in Northern California will become available on April 18th at noon. If you would like to participate, but there are no stores left to survey in your county, please contact Chris Crawford for assistance at ccrawford@suscon.org. Thank you.');
-  $handler->override_option('header_empty', 1);
   $handler->override_option('empty', 'No unclaimed nurseries.');
   $handler->override_option('empty_format', '2');
   $handler->override_option('items_per_page', 25);
   $handler->override_option('use_pager', '1');
-  $handler->override_option('path', 'spring-nursery-survey/nursery-list');
+  $handler->override_option('path', 'spring-nursery-survey/nursery-list-VIEWS');
   $handler->override_option('menu', array(
     'type' => 'none',
     'title' => '',
@@ -1824,7 +1837,6 @@ function plantright_survey_feature_views_default_views() {
     ),
   ));
   $handler->override_option('title', 'Claimed Nurseries');
-  $handler->override_option('header', '');
   $handler->override_option('empty', 'No claimed nurseries.');
   $handler->override_option('empty_format', '2');
   $handler->override_option('path', 'spring-nursery-survey/claimed-list');
@@ -2184,6 +2196,7 @@ function plantright_survey_feature_views_default_views() {
   ));
   $handler->override_option('displays', array(
     'page_1' => 'page_1',
+    'block_1' => 'block_1',
     'default' => 0,
     'page_2' => 0,
   ));
@@ -2727,6 +2740,323 @@ function plantright_survey_feature_views_default_views() {
     'page_1' => 0,
   ));
   $handler->override_option('sitename_title', 0);
+  $handler = $view->new_display('block', 'Available Nurseries Block', 'block_1');
+  $handler->override_option('fields', array(
+    'title' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'absolute' => 0,
+        'link_class' => '',
+        'alt' => '',
+        'rel' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'hide_alter_empty' => 1,
+      'link_to_node' => 1,
+      'exclude' => 0,
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'relationship' => 'none',
+    ),
+    'field_city_value' => array(
+      'label' => 'City',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'absolute' => 0,
+        'link_class' => '',
+        'alt' => '',
+        'rel' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'hide_alter_empty' => 1,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_city_value',
+      'table' => 'node_data_field_city',
+      'field' => 'field_city_value',
+      'relationship' => 'none',
+    ),
+    'field_county_value' => array(
+      'label' => 'County',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'absolute' => 0,
+        'link_class' => '',
+        'alt' => '',
+        'rel' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 0,
+        'ellipsis' => 0,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'hide_alter_empty' => 1,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_county_value',
+      'table' => 'node_data_field_county',
+      'field' => 'field_county_value',
+      'relationship' => 'none',
+    ),
+    'field_phone_value' => array(
+      'id' => 'field_phone_value',
+      'table' => 'node_data_field_phone',
+      'field' => 'field_phone_value',
+    ),
+    'field_address_value' => array(
+      'label' => 'Street Address',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'absolute' => 0,
+        'link_class' => '',
+        'alt' => '',
+        'rel' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 0,
+        'ellipsis' => 0,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'hide_alter_empty' => 1,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_address_value',
+      'table' => 'node_data_field_address',
+      'field' => 'field_address_value',
+      'relationship' => 'none',
+    ),
+    'field_zip_code_value' => array(
+      'label' => 'Zip',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'absolute' => 0,
+        'link_class' => '',
+        'alt' => '',
+        'rel' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'hide_alter_empty' => 1,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_zip_code_value',
+      'table' => 'node_data_field_zip_code',
+      'field' => 'field_zip_code_value',
+      'relationship' => 'none',
+    ),
+    'ops' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'absolute' => 0,
+        'link_class' => '',
+        'alt' => '',
+        'rel' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'hide_alter_empty' => 1,
+      'link_type' => '',
+      'exclude' => 0,
+      'id' => 'ops',
+      'table' => 'flag_content',
+      'field' => 'ops',
+      'relationship' => 'flag_content_rel',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+    ),
+  ));
+  $handler->override_option('filters', array(
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'nursery' => 'nursery',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
+      'relationship' => 'none',
+    ),
+    'field_county_value_many_to_one' => array(
+      'operator' => 'or',
+      'value' => array(),
+      'group' => '0',
+      'exposed' => TRUE,
+      'expose' => array(
+        'use_operator' => 0,
+        'operator' => 'field_county_value_many_to_one_op',
+        'identifier' => 'field_county_value_many_to_one',
+        'label' => 'County',
+        'optional' => 1,
+        'single' => 1,
+        'remember' => 0,
+        'reduce' => 0,
+      ),
+      'id' => 'field_county_value_many_to_one',
+      'table' => 'node_data_field_county',
+      'field' => 'field_county_value_many_to_one',
+      'relationship' => 'none',
+      'reduce_duplicates' => 0,
+    ),
+    'status' => array(
+      'operator' => '=',
+      'value' => '1',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'relationship' => 'none',
+    ),
+    'flagged' => array(
+      'operator' => '=',
+      'value' => '0',
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'flagged',
+      'table' => 'flag_content',
+      'field' => 'flagged',
+      'relationship' => 'flag_content_rel',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+    ),
+  ));
+  $handler->override_option('empty', 'No unclaimed nurseries.');
+  $handler->override_option('empty_format', '2');
+  $handler->override_option('items_per_page', 25);
+  $handler->override_option('use_pager', '1');
+  $handler->override_option('block_description', '');
+  $handler->override_option('block_caching', -1);
 
   $views[$view->name] = $view;
 
