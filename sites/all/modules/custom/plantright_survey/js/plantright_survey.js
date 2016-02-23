@@ -74,4 +74,63 @@ Drupal.behaviors.plantright_survey = function (context) {
     index++;
     $fieldset = $survey_data.find('form fieldset.group-species' + index)
   }
+
+  // IMAGE UPLOAD VIA IMAGEFIELD_ZIP
+  // Not using the Drupal context, because context won't include the full form when images change.
+  var $photoForm = $(survey_photo_selector);
+  var $imgsTable = $photoForm.find('#field_survey_image_values');
+  
+  // Change header.
+  $imgsTable.find('thead').hide();
+  $imgsTable.before('<div class="form-item">\n\
+    <label>Photos: <span class="form-required" title="This field is required.">*</span></label>\n\
+    <p class="survey-photo-upload-note">Click the button below to upload your photos and provide descriptions. In the description field, please include the plant name and specify if the photo is of the plant itself or the plant\'s tag (e.g.: Pampas grass, tag).</p>\n\
+    <p class="survey-photo-issues-note">If you encounter errors submitting your photos, please send your photos and descriptions to Chris Crawford at <a href="mailto:ccrawford@suscon.org">ccrawford@suscon.org</a>. Thank you!</p>\n\
+  </div>');
+  
+  // Hide all rows with file inputs to fix weird behavior of imagefield zip that shows empty file inputs.
+  // (Use file inputs because ones that are multi upload have an image not input
+  $imgsTable.find('tbody tr').each(function(index, val) {
+    var $row = $(val);
+    if ($row.find('input[type=file]').length > 0) {
+      $row.hide();
+    } else {
+      // Show.
+      $row.show();
+      // Set desc to the filename (if filename is empty)
+      var $imgPreview = $row.find('.imagefield-preview img');
+      var $descInput = $row.find('input[type=text]');
+      if ($imgPreview.length > 0 && $descInput.length > 0 && $descInput.val() === '') {
+        var desc = $imgPreview.attr('title')
+        // Remove file extension from desc.
+        desc = desc.replace(/\.[^.]+$/, '');
+        $descInput.val(desc);
+      }
+    }
+  });
+
+  // Hide the add more button right after the images table.
+  $photoForm.find('#field_survey_image_values + .content-add-more').hide();
+  
+  // Hide the "Multiple image label"
+  $photoForm.find('label[for=edit-field-survey-image-upload]').hide();
+  
+  // Hide the "Start Upload" button because we're auto starting on input change.
+  $photoForm.find('.zip-field input[type=submit]').hide();
+  
+  // Listen for the zip field input change in order to automatically start the upload
+  // Because imagefield makes users click the start button
+  $photoForm.find('.zip-field input[type=file]').unbind('change.pr-upload-change').bind('change.pr-upload-change', function() {
+    // Click the "Start Upload" button.
+    var $btn = $photoForm.find('.zip-field input[type=submit]');
+    if (!$btn.hasClass('pr-btn-clicked')) {
+      // Don't call mousedown twice within 200 milliseconds
+      $btn.trigger('mousedown').addClass('pr-btn-clicked');
+      setTimeout(function() {
+        $btn.removeClass('pr-btn-clicked');
+      }, 200);
+    }
+  });
+  // END IMAGEFIELD ZIP UPLOAD CUSTOMIZATIONS
+
 }
