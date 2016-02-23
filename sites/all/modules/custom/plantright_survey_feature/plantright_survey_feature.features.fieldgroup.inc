@@ -644,7 +644,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     'group_type' => 'standard',
     'type_name' => 'survey_data',
     'group_name' => 'group_species3',
-    'label' => 'Fraxinus uhdei - Shamel ash',
+    'label' => 'Fraxinus uhdei - Evergreen (shamel) ash',
     'settings' => array(
       'form' => array(
         'style' => 'fieldset',
@@ -1069,7 +1069,7 @@ function plantright_survey_feature_fieldgroup_default_groups() {
   t('Cotoneaster lacteus - Parney\'s (milkflower) cotoneaster');
   t('Cytisus striatus - Portuguese broom');
   t('Eichhornia crassipes - Water hyacinth');
-  t('Fraxinus uhdei - Shamel ash');
+  t('Fraxinus uhdei - Evergreen (shamel) ash');
   t('Ilex aquifolium - English (common) holly');
   t('Iris pseudacorus - Yellow water iris');
   t('Myoporum laetum - Myoporum');
