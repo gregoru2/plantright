@@ -136,7 +136,7 @@ function plantright_survey_feature_views_default_views() {
       'hide_empty' => 0,
       'empty_zero' => 0,
       'hide_alter_empty' => 1,
-      'link_to_node' => 1,
+      'link_to_node' => 0,
       'exclude' => 1,
       'id' => 'title',
       'table' => 'node',
