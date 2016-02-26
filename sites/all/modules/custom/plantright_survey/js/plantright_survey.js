@@ -146,7 +146,7 @@ Drupal.behaviors.plantright_survey = function (context) {
   // Let them know max size applies to all.
   var $sizeDesc = $('.zip-field .zip-description');
   var desc = $sizeDesc.html().replace('Maximum filesize', '<br/>Maximum size per photo batch');
-  desc += '. (You may upload in multiple batches if the total of all your images are larger than 16MB.)';
+  desc += '. (You may upload in multiple batches if the total of all your images are larger.)';
   $sizeDesc.html(desc);
 
   // Disable submit until images are uploaded 
