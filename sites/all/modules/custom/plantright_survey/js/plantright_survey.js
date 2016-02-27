@@ -78,6 +78,10 @@ Drupal.behaviors.plantright_survey = function (context) {
   // IMAGE UPLOAD VIA IMAGEFIELD_ZIP
   // Not using the Drupal context, because context won't include the full form when images change.
   var $photoForm = $(survey_photo_selector);
+  if (!$photoForm || $photoForm.length < 1) {
+    return;
+  }
+  
   var $imgsTable = $photoForm.find('#field_survey_image_values');
 
   // Change header.
