@@ -61,8 +61,7 @@
           <div class="label">Member since</div>
           <div class="value"><?php print date('n/j/Y', $user->created); ?></div>
       </div>
-      
-      <?php if ($node->type == 'survey_profile'): ?>
+      <?php if ($node->type == 'survey_profile' && in_array(4, $user_roles)): ?>
       <ul id="survey_certificate_download">
         <li id="download_certificate"><a href="/node/332/certificate" target="_new">Download your Certificate of Achievement</a></li>
       </ul>
