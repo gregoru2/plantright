@@ -3053,6 +3053,7 @@ function plantright_survey_feature_views_default_views() {
   ));
   $handler->override_option('empty', 'No unclaimed nurseries.');
   $handler->override_option('empty_format', '2');
+  $handler->override_option('use_ajax', TRUE);
   $handler->override_option('items_per_page', 25);
   $handler->override_option('use_pager', '1');
   $handler->override_option('block_description', '');
