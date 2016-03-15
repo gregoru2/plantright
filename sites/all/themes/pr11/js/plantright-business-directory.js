@@ -17,6 +17,30 @@ Drupal.behaviors.plantright_business_directory = function (context) {
     }
     return ret;
   }
+  
+  function _processLocationsLargeRetailer($locations, value, largeRetailer1Ids, retailerTitle) {
+      var $retailerLocations = null;
+      if ($.inArray(value, largeRetailer1Ids) > -1) {
+        // Add from all nodes
+        $retailerLocations = $('[data-retailer-id=' + largeRetailer1Ids[0] + ']', $locations)
+        for(var i = 1; i < largeRetailer1Ids.length; i++) {
+          $retailerLocations = $retailerLocations.add($('[data-retailer-id=' + largeRetailer1Ids[i] + ']', $locations));
+        }
+        $retailerLocations.closest('.views-row').find('.views-field-title h4').text(retailerTitle);
+      }
+      return $retailerLocations;
+  }
+  
+  function _processLocationsLargeRetailers($locations, value) {
+      var matches;
+      // Look for matches in 1st retailer.
+      matches = _processLocationsLargeRetailer($locations, value, ['5473', '5559', '5561'], 'The Home Depot');
+      if (!matches) {
+        // If not, look in second.
+        matches = _processLocationsLargeRetailer($locations, value, ['6270', '6272'], 'Lowes');
+      }
+      return matches;
+  }
 
   /**
   * @method processLocations
@@ -26,33 +50,19 @@ Drupal.behaviors.plantright_business_directory = function (context) {
   * view or subset of the view.
   */
   function processLocations($locations, locationsInName, groupByCounty) {
-    var largeRetailer1Ids = ['5473', '5559', '5561'];
-    var largeRetailer1Processed = false;
-
     var retailerIds = array_unique($('span.retailer-id', $locations).map(function() {
       return $(this).attr('data-retailer-id');
     }));
 
     $.each(retailerIds, function(index, value) {
       // Get the locations.
-      var $retailerLocations;
-      if ($.inArray(value, largeRetailer1Ids) > -1) {
-        if (largeRetailer1Processed === true) {
-          // For large retailer 1, only execute the 1st match.
-          return;
-        }
-        // Add from all nodes
-        $retailerLocations = $('[data-retailer-id=' + largeRetailer1Ids[0] + ']', $locations)
-        for(var i = 1; i < largeRetailer1Ids.length; i++) {
-          $retailerLocations = $retailerLocations.add($('[data-retailer-id=' + largeRetailer1Ids[i] + ']', $locations));
-        }
-        $retailerLocations.closest('.views-row').find('.views-field-title h4').text('The Home Depot');
-      } else {
+      var $retailerLocations = _processLocationsLargeRetailers($locations, value);
+      if (null === $retailerLocations) {
         $retailerLocations = $('[data-retailer-id=' + value + ']', $locations);
       }
 
-      var locationCount = $retailerLocations.length;
-      if ($retailerLocations.length > 1) {
+      if ($retailerLocations && $retailerLocations.length > 1) {
+        var locationCount = $retailerLocations.length;
         $retailerLocations = $retailerLocations.closest('.views-row');
         // Create a new location container.
         // Remove the locations put them into element on the first
