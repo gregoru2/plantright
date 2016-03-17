@@ -274,11 +274,11 @@ $handler->override_option('fields', array(
   ),
 ));
 $handler->override_option('sorts', array(
-  'title' => array(
+  'content' => array(
     'order' => 'ASC',
-    'id' => 'title',
-    'table' => 'node',
-    'field' => 'title',
+    'id' => 'content',
+    'table' => 'views_natural_sort',
+    'field' => 'content',
     'relationship' => 'none',
   ),
   'city' => array(
@@ -399,11 +399,11 @@ $handler->override_option('sorts', array(
     ),
     'relationship' => 'none',
   ),
-  'title' => array(
+  'content' => array(
     'order' => 'ASC',
-    'id' => 'title',
-    'table' => 'node',
-    'field' => 'title',
+    'id' => 'content',
+    'table' => 'views_natural_sort',
+    'field' => 'content',
     'override' => array(
       'button' => 'Use default',
     ),
