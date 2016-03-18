@@ -37,7 +37,7 @@ Drupal.behaviors.plantright_business_directory = function (context) {
       matches = _processLocationsLargeRetailer($locations, value, ['5473', '5559', '5561'], 'The Home Depot');
       if (!matches) {
         // If not, look in second.
-        matches = _processLocationsLargeRetailer($locations, value, ['6270', '6272'], 'Lowes');
+        matches = _processLocationsLargeRetailer($locations, value, ['6270', '6272'], "Lowe's");
       }
       return matches;
   }
