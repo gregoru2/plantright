@@ -427,165 +427,6 @@ function plantright_survey_feature_fieldgroup_default_groups() {
     ),
   );
 
-  // Exported group: group_species16
-  $groups['survey_data-group_species16'] = array(
-    'group_type' => 'standard',
-    'type_name' => 'survey_data',
-    'group_name' => 'group_species16',
-    'label' => 'Sesbania punicea - Scarlet wisteria',
-    'settings' => array(
-      'form' => array(
-        'style' => 'fieldset',
-        'description' => '',
-      ),
-      'display' => array(
-        'description' => '',
-        'teaser' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'full' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '4' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '2' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '3' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'token' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'label' => 'above',
-      ),
-    ),
-    'weight' => '31',
-    'fields' => array(
-      '0' => 'field_species16_found',
-      '1' => 'field_species16_grower',
-      '2' => 'field_species16_price',
-      '3' => 'field_species16_name_common',
-      '4' => 'field_species16_name_scientific',
-      '5' => 'field_species16_name_cultivar',
-      '6' => 'field_species16_number',
-      '7' => 'field_species16_related',
-    ),
-  );
-
-  // Exported group: group_species17
-  $groups['survey_data-group_species17'] = array(
-    'group_type' => 'standard',
-    'type_name' => 'survey_data',
-    'group_name' => 'group_species17',
-    'label' => 'Cytisus striatus - Portuguese broom',
-    'settings' => array(
-      'form' => array(
-        'style' => 'fieldset',
-        'description' => '',
-      ),
-      'display' => array(
-        'description' => '',
-        'teaser' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'full' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '4' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '2' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '3' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'token' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'label' => 'above',
-      ),
-    ),
-    'weight' => '32',
-    'fields' => array(
-      '0' => 'field_species17_found',
-      '1' => 'field_species17_grower',
-      '2' => 'field_species17_price',
-      '3' => 'field_species17_name_common',
-      '4' => 'field_species17_name_scientific',
-      '5' => 'field_species17_name_cultivar',
-      '6' => 'field_species17_number',
-      '7' => 'field_species17_related',
-    ),
-  );
-
-  // Exported group: group_species18
-  $groups['survey_data-group_species18'] = array(
-    'group_type' => 'standard',
-    'type_name' => 'survey_data',
-    'group_name' => 'group_species18',
-    'label' => 'Myoporum laetum - Myoporum',
-    'settings' => array(
-      'form' => array(
-        'style' => 'fieldset',
-        'description' => '',
-      ),
-      'display' => array(
-        'description' => '',
-        'teaser' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'full' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '4' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '2' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        '3' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'token' => array(
-          'format' => 'fieldset',
-          'exclude' => 0,
-        ),
-        'label' => 'above',
-      ),
-    ),
-    'weight' => '33',
-    'fields' => array(
-      '0' => 'field_species18_found',
-      '1' => 'field_species18_grower',
-      '2' => 'field_species18_price',
-      '3' => 'field_species18_name_common',
-      '4' => 'field_species18_name_scientific',
-      '5' => 'field_species18_name_cultivar',
-      '6' => 'field_species18_number',
-      '7' => 'field_species18_related',
-    ),
-  );
-
   // Exported group: group_species2
   $groups['survey_data-group_species2'] = array(
     'group_type' => 'standard',
@@ -1067,19 +908,16 @@ function plantright_survey_feature_fieldgroup_default_groups() {
   t('Carpobrotus edulis - Highway iceplant');
   t('Cortaderia selloana - Pampas grass');
   t('Cotoneaster lacteus - Parney\'s (milkflower) cotoneaster');
-  t('Cytisus striatus - Portuguese broom');
   t('Eichhornia crassipes - Water hyacinth');
   t('Fraxinus uhdei - Evergreen (shamel) ash');
   t('Ilex aquifolium - English (common) holly');
   t('Iris pseudacorus - Yellow water iris');
-  t('Myoporum laetum - Myoporum');
   t('Nassella tenuissima - Mexican feathergrass');
   t('Pennisetum setaceum - Green fountain grass');
   t('Phoenix canariensis - Canary Island date palm');
   t('Plecostachys serpyllifolia - Petite licorice, cobweb bush');
   t('Rhamnus alaternus - Italian buckthorn');
   t('Schinus terebinthifolius - Brazilian peppertree');
-  t('Sesbania punicea - Scarlet wisteria');
   t('Vinca major - Periwinkle');
 
   return $groups;

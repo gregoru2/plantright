@@ -7624,18 +7624,12 @@ function plantright_survey_feature_views_default_views() {
       'field_species13_grower_value' => 'field_species13_grower_value',
       'field_species14_found_value' => 'field_species14_found_value',
       'field_species14_grower_value' => 'field_species14_grower_value',
+      'field_species15_found_value' => 'field_species15_found_value',
+      'field_species15_grower_value' => 'field_species15_grower_value',
       'field_survey_start_time_value' => 'field_survey_start_time_value',
       'field_survey_end_time_value' => 'field_survey_end_time_value',
       'plantright_survey_result_calc4' => 'plantright_survey_result_calc4',
       'plantright_survey_result_calc3' => 'plantright_survey_result_calc3',
-      'field_species15_found_value' => 'field_species15_found_value',
-      'field_species16_found_value' => 'field_species16_found_value',
-      'field_species17_found_value' => 'field_species17_found_value',
-      'field_species18_found_value' => 'field_species18_found_value',
-      'field_species15_grower_value' => 'field_species15_grower_value',
-      'field_species16_grower_value' => 'field_species16_grower_value',
-      'field_species17_grower_value' => 'field_species17_grower_value',
-      'field_species18_grower_value' => 'field_species18_grower_value',
     ),
     'info' => array(
       'nid' => array(
@@ -7822,31 +7816,7 @@ function plantright_survey_feature_views_default_views() {
         'sortable' => 1,
         'separator' => '',
       ),
-      'field_species16_found_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species17_found_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species18_found_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
       'field_species15_grower_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species16_grower_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species17_grower_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species18_grower_value' => array(
         'sortable' => 1,
         'separator' => '',
       ),
@@ -13397,30 +13367,6 @@ function plantright_survey_feature_views_default_views() {
       'field_species15_name_cultivar_value' => 'field_species15_name_cultivar_value',
       'field_species15_related_value' => 'field_species15_related_value',
       'field_species15_number_value' => 'field_species15_number_value',
-      'field_species16_found_value' => 'field_species16_found_value',
-      'field_species16_grower_value' => 'field_species16_grower_value',
-      'field_species16_price_value' => 'field_species16_price_value',
-      'field_species16_name_common_value' => 'field_species16_name_common_value',
-      'field_species16_name_scientific_value' => 'field_species16_name_scientific_value',
-      'field_species16_name_cultivar_value' => 'field_species16_name_cultivar_value',
-      'field_species16_related_value' => 'field_species16_related_value',
-      'field_species16_number_value' => 'field_species16_number_value',
-      'field_species17_found_value' => 'field_species17_found_value',
-      'field_species17_grower_value' => 'field_species17_grower_value',
-      'field_species17_price_value' => 'field_species17_price_value',
-      'field_species17_name_common_value' => 'field_species17_name_common_value',
-      'field_species17_name_scientific_value' => 'field_species17_name_scientific_value',
-      'field_species17_name_cultivar_value' => 'field_species17_name_cultivar_value',
-      'field_species17_related_value' => 'field_species17_related_value',
-      'field_species17_number_value' => 'field_species17_number_value',
-      'field_species18_found_value' => 'field_species18_found_value',
-      'field_species18_grower_value' => 'field_species18_grower_value',
-      'field_species18_price_value' => 'field_species18_price_value',
-      'field_species18_name_common_value' => 'field_species18_name_common_value',
-      'field_species18_name_scientific_value' => 'field_species18_name_scientific_value',
-      'field_species18_name_cultivar_value' => 'field_species18_name_cultivar_value',
-      'field_species18_related_value' => 'field_species18_related_value',
-      'field_species18_number_value' => 'field_species18_number_value',
       'view_node' => 'view_node',
     ),
     'info' => array(
@@ -13977,102 +13923,6 @@ function plantright_survey_feature_views_default_views() {
         'separator' => '',
       ),
       'field_species15_number_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species16_found_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species16_grower_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species16_price_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species16_name_common_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species16_name_scientific_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species16_name_cultivar_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species16_related_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species16_number_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species17_found_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species17_grower_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species17_price_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species17_name_common_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species17_name_scientific_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species17_name_cultivar_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species17_related_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species17_number_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species18_found_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species18_grower_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species18_price_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species18_name_common_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species18_name_scientific_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species18_name_cultivar_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species18_related_value' => array(
-        'sortable' => 1,
-        'separator' => '',
-      ),
-      'field_species18_number_value' => array(
         'sortable' => 1,
         'separator' => '',
       ),
